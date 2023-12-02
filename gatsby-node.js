@@ -53,8 +53,8 @@ exports.createPages = async function ({ actions, graphql }) {
       // Create the query string for passing the mdx as a child
       const contentFilePath = post.internal.contentFilePath;
 
-      // 
-      const specialQueryString = `${postTemplate}?__contentFilePath=${contentFilePath}`
+      // const specialQueryString = `${postTemplate}?__contentFilePath=${contentFilePath}`
+      const specialQueryString = postTemplate;
       
       // Create the page w/ the right template
       actions.createPage({

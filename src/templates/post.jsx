@@ -13,7 +13,8 @@ export default function GeneratePost({pageContext}) {
           {/* <Dump data={pageContext}/> */}
             <h1>{pageContext.title}</h1>
             <h6>{pageContext.date} // {pageContext.tags}</h6>
-            {children}
+            {/* {children} */}
+            {pageContext.body}
             <h7>Article contributed by {pageContext.author}</h7>
         </Layout>
       </>
