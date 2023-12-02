@@ -1,0 +1,180 @@
+/* It's been a good 15 years since I've been deep in CSS. Let's see if I can still 
+     make a stylesheet that doesn't completely suck. Going to try and organize this
+     nicely and put as much as possible within this one goddamn sheet */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin to allow for new margins later. */ 
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+/* Set core page defaults, starting with a set of sans-serif fonts across the whole page */
+
+html {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height:1.55;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: rgb(201, 201, 201);
+    display:grid;
+    /* place-content:center; */
+}
+
+/* We want to, largely, eschew color in favor of a relatively simple/slick grayscale. However,
+     I like the color teal for our links, because I am a man of contrasts. */
+
+a {
+    color:rgb(10, 114, 80);
+    text-decoration:none;
+}
+
+/* This is the primary page container. I'm giving it a small drop shadow, for fun! */
+
+.container {
+    margin-top:-0.5rem;
+    background-color: white;
+    padding:10px;
+    box-shadow: 0 0 1rem hsl(0 0% 0% / 35%);
+    border-radius: 0.5rem;
+    /* display:grid; */
+    /* position:relative; */
+    /* top: 0px; */
+    /* place-content:center; */
+}
+
+/* This controls the top black bar. */
+
+.loathersHead {
+    color:white;
+    background-color:black;
+    display:flex;
+    margin-top:0.5rem;
+
+    font-family: Oswald, Gill Sans, Verdana;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size:37px;
+    
+    text-align: center;
+    height: 100px;
+    line-height:100px;
+}
+
+.loathersHead a:hover {
+    text-decoration:none;
+}
+
+.loathersHead img {
+    width:75px;
+    height:75px;
+    margin: 10px;
+}
+
+.dotNet {
+    color:gray;
+    font-size:20px;
+    line-height:117px;
+}
+
+/* This controls the navbar. */
+     
+.nav-links {
+    margin:0px;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    background-color: rgb(65, 65, 65);
+    padding:0px;
+    font-size:small;
+}
+
+.nav-link-text {
+    color:rgb(220, 220, 220);
+    padding:5px;
+    font-family: Gill Sans, Verdana;
+}
+
+.nav-link-text:hover {
+    background-color: black;
+    color:white;
+}
+
+/* This controls page titles, ported into Layout via a pageTitle var */
+
+.heading {
+    padding: 10px;
+    color: rgb(39, 39, 39);
+    
+    font-family: Oswald, Gill Sans, Verdana;
+
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: bold;
+
+    height:50px;
+    line-height:50px;
+    overflow:hidden;
+
+    margin-top: 5px;
+}
+
+/* This controls subtitles, with date & tag. Also author slug */
+
+h6,
+h7 {
+    margin:0;
+    margin-bottom:10px;
+    color: rgb(102, 102, 102);
+
+    font-family: Menlo, Consolas, monospace;
+    font-size: .8em;
+
+    height:20px;
+    line-height:20px;
+    text-align:right;
+
+    overflow:hidden;
+}
+
+/* This controls spacing for the post itself */
+
+.content {
+    display:grid;
+    place-content:center;
+    padding: 10px
+}
+
+.content p {
+    margin: 0 0 1.5em;
+    font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.content li {
+    margin: 0 0 0.5em;
+    font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* This controls our footers, which is just the small copyright/gatsby callout */
+
+footer {
+    font-size:x-small;
+    color:gray;
+    text-align:right;
+}

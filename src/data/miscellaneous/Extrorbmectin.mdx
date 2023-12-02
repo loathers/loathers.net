@@ -1,0 +1,55 @@
+---
+title: "The Extrorbermectin Stunt"
+date: "2022-01-11"
+slug: "how-we-nerfed-orb"
+author: "worthawholebean"
+section: "shenanigans"
+tag: "Pondering the Orb with Bean & Scotch"
+---
+Have you ever asked yourself "how many fights can I fight in a single KoL day between rollover and rollover"? Or "how could I exploit the Orb and Extrovermectin to maximum effect before the nerf"? Or "what AWS region are the KoL servers in"? Well, worry no more, friends. Your time has come. From Captain Scotch and worthawholebean, we present... **THE EXTRORBERMECTIN STUNT**.
+
+We fought just under 10,000 Witchess Knights and Eldritch Tentacles in 112 zones off of 92 Be Gregarious charges. While not technically in a single KoL day due to having the script interrupted overnight, we used approximately 24 hours of in-game time to complete this. The stunt generated thousands of jumping horseradishes and eldritch effluvia, hundreds of millions of meat, one (1) extremely optimal spreadsheet, and, most importantly, a butt-ton of toast (which was sent to Gausie immediately after completion of the bizarre stunt).
+
+Special thanks to all in /dev for enabling our tomfoolery and helping us get the message safely over to TPTB!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LyJqEkPARgA?si=Sm2UrAkBbx4GJ6T6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Embedded here is a 58-minute screencast of the starting block, featuring live debugging and insults thrown at various server members. 
+
+## ... OK, I don't want to watch a video! How was this done, anyway?
+
+(Hello, Scotch here! Adding a tiny bit more written context to this very silly stunt.)
+
+In a nutshell, this was our way to prove to TPTB that the miniature crystal ball needed to have some sort of cap or high-level blocker on the number of simultaneous predictions. The exploit here was a combination of multiple silly exploits. 
+
+First, this was a big showcase for the miniature crystal ball (known colloquially as... *ORB*). As you may know, fighting a monster with the crystal ball equipped will predict a monster in a new zone. What you may not know is that prior to us committing this silly stunt in 2022, if you never actually spent a turn, you could use the miniature crystal ball to stack up a number of held predictions limited only by the number of zones in the game you could access. This is because the only major condition needed to clear orb predictions required "spending a turn", not "encountering a prediction" (as exists now in the current logic). 
+
+Second, this was a showcase for Extrovermectin, a spleen item from 2021's Cold Medicine Cabinet. Using one extro, you are given 3 natural copies of a monster through the Be Gregarious skill. These copies, unlike past copiers like Digitize, Winks, or Enamorangs, are considered *native zone monsters* -- allowing them to benefit from rejection and other monster selection nuances. However, there's a neat twist to these three copies -- crystal ball predictions don't count. That means that if you encounter 2 and have one stuck in your orb prediction, you can go fight your third in another zone and come back to the original zone to fight one more. I used this to great success in my unrestricted hardcore run back in 2021, but when theorizing with Bean, we realized that just using that in an ascension context is thinking too small -- if you are able to cue up a monster in your orb, and do so in every zone, you can fight `N = # of zones + 3` number of monsters in one fell swoop.
+
+That's... bad! I mean, it's funny and cool. But it is also very degenerate. What this effectively meant was that if you could create a list of zones where you didn't have to worry about noncombats clearing your orb, you could indefinitely swap between "create an orb-predicted free fight in every zone, fight those fights to predict a non-freefight, then use freeruns to do it all over again" in a nigh-indefinite manner. We were able to identify 112 zones in the game where we could guarantee that no noncombat would break our orb streak. We then ate extros for a few days to stack up charges of Be Gregarious. From there, it was straightforward -- spin up AWS, build a great script to hop between your zones, and fight hundreds of free fights at a time. Not only that -- because these were scaling fights, we were able to bring along a Ninja Pirate Zombie Robot, grabbing meat throughout every free fight. As you can see by the final numbers, this nets out to roughly 200 million raw meat, alongside 75 million in Jumping Horseradishes. (It also led to a very funny script breakage when we were asleep and the script found an Optimal Spreadsheet semirare. Great job, script!)
+
+Anyway. Go watch the video, it's fun! Long live the Extrorbermectin Stunt!
+
+## OK. Show me the testimonials.
+
+> "This is quality content ™️  
+> - Scotch
+
+> "never been more insulted in my life" 
+> - Gausie
+
+> "i chuckled about the UR again lmao" 
+> - Aenimus
+
+> "Them DUFFOBOIS are at it again" 
+> - phreddrickkv2
+
+> "Can I have a testimonial about being sad you didn't do it in heavy rains" 
+> - ReverKiller
+
+> "Eric Adams is my favorite mayor of all time."
+> - worthawholebean
+
+[Final dashboard status located here.](https://media.discordapp.net/attachments/718016842895065170/929891874783756318/unknown.png)
+
+Thanks for reading!
