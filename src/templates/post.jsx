@@ -4,7 +4,6 @@ import Seo from '../components/seo'
 import { graphql } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { Link } from 'gatsby'
-import Dump from '../components/Dump'
 
 const shortCodes = { Link } // Common MDX components
 
@@ -13,7 +12,6 @@ export default function GeneratePost({data, pageContext, children}) {
     return (
       <>
         <Layout>
-          {/* <Dump data={pageContext}/> */}
             <h1>{pageContext.title}</h1>
             <h6>{pageContext.date} // {pageContext.tags}</h6>
             <MDXProvider components={shortCodes}>
