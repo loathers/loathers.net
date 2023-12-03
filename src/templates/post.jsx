@@ -1,11 +1,14 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXProvider } from '@mdx-js/react'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
+import { graphql } from 'gatsby'
+import { MDXProvider } from '@mdx-js/react'
+import { Link } from 'gatsby'
 import Dump from '../components/Dump'
 
-export default function GeneratePost({pageContext}) {
+const shortCodes = { Link } // Common MDX components
+
+export default function GeneratePost({data, pageContext, children}) {
 
     return (
       <>
@@ -13,29 +16,25 @@ export default function GeneratePost({pageContext}) {
           {/* <Dump data={pageContext}/> */}
             <h1>{pageContext.title}</h1>
             <h6>{pageContext.date} // {pageContext.tags}</h6>
-            {/* {children} */}
-            {pageContext.body}
+            <MDXProvider components={shortCodes}>
+              {children}
+            </MDXProvider>
             <h7>Article contributed by {pageContext.author}</h7>
         </Layout>
       </>
     )
 }
 
-// export const query = graphql`
-//   query grabPostByID ($id: String!) {
-//     mdx(id: {eq: $id}) {
-//       body
-//       frontmatter {
-//         title
-//         date(formatString: "MMMM Do, YYYY")
-//         tag
-//         author
-//       }
-//       internal {
-//         contentFilePath
-//       }
-//     }
-//   }`
+
+export const query = graphql`
+  query($id: String!) {
+    mdx(id: { eq: $id }) {
+      frontmatter {
+        title
+      }
+    }
+  }
+`
 
 export const Head = ({data}) => (
     <Seo 

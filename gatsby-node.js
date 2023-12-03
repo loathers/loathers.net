@@ -7,8 +7,9 @@ const postTemplate = path.resolve('./src/templates/post.jsx');
 //   I want to also be able to pass certain data through the API for previous/next
 //   post buttons, among other things, so I am switching to a gatsby-node structure
 
-exports.createPages = async function ({ actions, graphql }) {
+exports.createPages = async ({ actions, graphql }) => {
 
+    const { createPage } = actions
 
     // Grab all MDX files with non-null titles
     const { data } = await graphql(`
@@ -52,22 +53,21 @@ exports.createPages = async function ({ actions, graphql }) {
       
       // Create the query string for passing the mdx as a child
       const contentFilePath = post.internal.contentFilePath;
-
-      // const specialQueryString = `${postTemplate}?__contentFilePath=${contentFilePath}`
-      const specialQueryString = postTemplate;
+      const specialQueryString = `${postTemplate}?__contentFilePath=${contentFilePath}`
+      // const specialQueryString = postTemplate;
       
       // Create the page w/ the right template
-      actions.createPage({
+      createPage({
         path: placement + "/" + slug,
         component: specialQueryString,
 
-        // Variables within "context" are accessible within the template's graphql query
+        // Variables within "context" are accessible within the template's pageContext
         context: { 
             id: post.id,
             slug: slug,
             date: post.frontmatter.date,
             title: post.frontmatter.title,
-            body: post.body,
+            // body: post.body,
             tags: post.frontmatter.tag,
             author: post.frontmatter.author,
             string:specialQueryString,

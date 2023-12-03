@@ -14,62 +14,18 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-styled-components",
-    {
-      resolve: 'gatsby-plugin-mdx',
-      options: {
-        extensions: ['.mdx','.md'],
-      },
-    },
     "gatsby-plugin-image", 
     "gatsby-plugin-sitemap", 
     "gatsby-plugin-mdx", 
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'pages',
-        path: `${__dirname}/src/pages`,
+        name: 'data',
+        path: `${__dirname}/src/data`,
       }
     },
     "gatsby-plugin-sharp", 
-    "gatsby-transformer-sharp", 
-    "gatsby-plugin-typescript", 
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "images",
-        "path": "./src/images/"
-      },
-      __key: "images"
-    }, {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "pages",
-        "path": "./src/pages/"
-      },
-      __key: "pages"
-    }, {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "components",
-        "path": "./src/components/"
-      },
-      __key: "components",
-    }, {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "analysis",
-        "path": `./src/data/analysis`
-      },
-      __key: "analysis",
-    }, {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "scripting",
-        "path": `./src/data/scripting`
-      },
-      __key: "scripting",
-    },
+    "gatsby-transformer-sharp",
   ]
 };
 
