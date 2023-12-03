@@ -1,25 +1,42 @@
 import * as React from 'react'
 import Layout from '../components/layout'
-import Dump from '../components/Dump'
 import Seo from '../components/seo'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import HotDogLink from '../components/hotdoglink'
+import Warning from '../components/warning'
 
 // Define the core component
 const IndexPage = ({data}) => {
   return (
     <Layout pageTitle = "Home">
-      {/* <Dump data={data} /> */}
       <>
-        <h1>Newest Analysis!</h1>
+        <Warning emoji="">Everything on this site is a potential KOL spoiler. Proceed at your own risk!</Warning>
+
+        <p>Welcome to <b>Loathers.net</b>, a new site managed by the <a href="https://github.com/loathers/">Loathers Scripting Collective.</a> We're going to be using this site over the coming years to store analysis of the modern speed game, how our collective scripts the game, and host our semi-annual contests.</p>
+
         {data.allMdx.nodes.map(
           ( {excerpt, frontmatter }) => (
-            <Link to={frontmatter.section+"/"+frontmatter.slug}>
-              <h2>{frontmatter.title}</h2>
-              <p>{frontmatter.date}</p>
-              <p>{excerpt}</p>
-            </Link>
+            <>
+            <HotDogLink 
+              link={frontmatter.section+"/"+frontmatter.slug}
+              title={frontmatter.title}
+              date={frontmatter.date}
+              excerpt={excerpt}
+              type="Newest Analysis"
+              />
+            </>
           )
         )}
+
+        <p></p>
+
+        <HotDogLink 
+              link={"/tools/"}
+              title="Museum"
+              date=""
+              excerpt="Museum is our brand-new display case database! Check out who's collected the most of every item in the game."
+              type="Newest Tool"
+              />
       </>
     </Layout>
   )

@@ -10,8 +10,7 @@ const NavBar = () => {
         <li><Link to="/analysis" className={layoutStyles.navLinkText}>📒 analysis</Link></li>
         <li><Link to="/tools" className={layoutStyles.navLinkText}>🔨 tools</Link></li>
         <li><Link to="/scripting" className={layoutStyles.navLinkText}>💾 scripting</Link></li>
-        <li><Link to="/community" className={layoutStyles.navLinkText}>🗣️ community</Link></li>
-        <li><Link to="/about" className={layoutStyles.navLinkText}>🤸about</Link></li>
+        <li><Link to="/community" className={layoutStyles.navLinkText}>🤸 community</Link></li>
       </ul>
     </nav>
     )
