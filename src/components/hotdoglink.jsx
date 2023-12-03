@@ -17,7 +17,7 @@ const HotDogLink  = (props) => {
             <div className={layoutStyles.hotDogLink} style={dogType === "Newest Analysis" ? {backgroundColor: "FireBrick" } : {backgroundColor: "SlateGray"}}>
                 <h1 style={dogType === "Newest Analysis" ? {backgroundColor: "Maroon" } : {backgroundColor: "DarkSlateGray"}}>{dogType}</h1>
                 <div className={layoutStyles.flexBreak} />
-                <li><h2>{dogTitle}</h2> {dogDate !== "" ? "("+dogDate+")" : ""}</li>
+                <li><h2>{dogTitle}</h2> {dogDate !== "" ? dogDate : ""}</li>
                 <li>{dogExcerpt}</li>
             </div>
         </Link>

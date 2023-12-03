@@ -12,7 +12,7 @@ const IndexPage = ({data}) => {
       <>
         <Warning emoji="">Everything on this site is a potential KOL spoiler. Proceed at your own risk!</Warning>
 
-        <p>Welcome to <b>Loathers.net</b>, a new site managed by the <a href="https://github.com/loathers/">Loathers Scripting Collective.</a> We're going to be using this site over the coming years to store analysis of the modern speed game, how our collective scripts the game, and host our semi-annual contests.</p>
+        <p>Welcome to <b>Loathers.net</b>, a new site managed by the <a href="https://github.com/loathers/">Loathers Scripting Collective.</a> We're going to be using this site over the coming years to store analysis of the modern speed game, how our collective scripts the game, and host our semi-annual contests. We hope you enjoy our dulcet tones and sick beats.</p>
 
         {data.allMdx.nodes.map(
           ( {excerpt, frontmatter }) => (
@@ -33,10 +33,20 @@ const IndexPage = ({data}) => {
         <HotDogLink 
               link={"/tools/"}
               title="Museum"
-              date=""
-              excerpt="Museum is our brand-new display case database! Check out who's collected the most of every item in the game."
+              date="October 23, 2023"
+              excerpt="Museum is our brand-new display case database! Check out who's collected the most of every item in the game, and see where your collections rank among the masses!"
               type="Newest Tool"
               />
+        
+        <p></p>
+
+        <HotDogLink
+            link={"/shenanigans/how-we-nerfed-orb/"}
+            title="The Extorbermectin Stunt"
+            date="January 20, 2022"
+            excerpt="We nerfed the miniature crystal ball. Like, pretty considerably. Ever wondered how that happened? Come with us and witness... the Extrorbmectin Stunt (TM)"
+            type="Newest Shenanigan"
+          />
       </>
     </Layout>
   )

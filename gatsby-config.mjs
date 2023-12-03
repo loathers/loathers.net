@@ -22,6 +22,12 @@ const config = {
       }
     },
     "gatsby-plugin-image", 
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: './src/images',
+      }
+    },
     "gatsby-plugin-sitemap", 
     {
       resolve: 'gatsby-plugin-mdx',
@@ -32,6 +38,19 @@ const config = {
       }
     },
     "gatsby-plugin-sharp", 
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          { 
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth:600,
+            }
+          }
+        ]
+      }
+    },
     "gatsby-transformer-sharp",
   ]
 };

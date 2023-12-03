@@ -2,6 +2,14 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+    /* Note to Gausie et al -- I originally tried to make this site in TSX only to 
+       run into a bizarre variety of massive issues. After about 15-20 hours of just 
+       bashing my head into a wall on contradictory documentation and broken type 
+       definitions I gave up. The only remaining TSX file is the SEO file, due to
+       some weird logic bug that doesn't work in JSX and my <0 desire to touch SEO 
+       ever again, because SEO sucks ass. Hence why this shit is here for a site that
+       is 99.9% in JSX. */
+
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
     // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */

@@ -4,20 +4,19 @@ This is an initial plan for what the site tree and general content should look l
 
 =====================================
 
-- MAIN PAGE
+- MAIN PAGE (DONE)
     - caveat at the top that everything on this site is a spoiler
     - Pinned posts 
         - Most recent iotm review 
-        - Most recent path review
         - Newest added loathers script
-    - Recent Posts (five most recent uploads)
-        
-- COMMUNITY PAGE
+        - Most recent shenanigan
+
+- COMMUNITY PAGE (DONE; could use a little TLC)
     - Links (ass discord, wiki, reddit, non-script resources)
     - Scotch Spreadsheet Repository
     - About us (general writer bios; scotch, 3bh, bill, gausie, tes?)
 
-- TOOLS PAGE
+- TOOLS PAGE (needs work)
     - Link to core Loathers.net tools; this is basically a subdomain showcase
     - Core links are:
         - BOFA
@@ -25,13 +24,12 @@ This is an initial plan for what the site tree and general content should look l
         - museum
         - greenbox
 
-- SCRIPTS PAGE + SCRIPTING SECTION
-    - Overview of Loathers scripts
+- SCRIPTS PAGE + SCRIPTING SECTION (DONE; could use a little editing)
     - Link to our Scripting Resources section
         - This is basically just the GarfJalen, but hopefully people update it more often (lol this won't happen)
     - At some point, might be nice to have a guide on contributing to Mafia
 
-- ANALYSIS
+- ANALYSIS (DONE)
     - IOTM Overview (monthly posts outlining IOTMs)
         - Goal will be to populate all of 2023. I don't really care to go too far back beyond that.
         - In addition to monthly IOTM reviews, one or two monthly "retro" reviews for older IOTMs, especially way-back-when IOTMs; this scratches the old IOTM itch without demanding we do EVERYTHING
@@ -46,7 +44,7 @@ This is an initial plan for what the site tree and general content should look l
         - Scotch's Main Quest Rankings
         - Scotch's Standard Ascension IOTM Rankings
 
-- SHENANIGANS
+- SHENANIGANS (only have extorb; could eventually make full page)
     - Stunt Writeups (currently only have extrorb, and mention bean's wad extravaganza in 2CRS, but more would be nice)
         - Duffo
         - Phillanthropist
@@ -65,19 +63,25 @@ COMPONENTS THAT ARE REUSED:
     - Layout (L) <= H + F (header + footer) + Skipnavlink
     - Title (T)
     - Listing (LI) <= BLI (blog list item -> itemtags)
-    - List (LIS)
+    <!-- - List (LIS) -->
     - Seo (S)
-    - Code (C) <= Copy (CO)
-    - HeaderExternalLinks (HEL)
-    - HeaderTitle (HT)
+    <!-- - Code (C) <= Copy (CO) -->
+    <!-- - HeaderExternalLinks (HEL) -->
+    <!-- - HeaderTitle (HT) -->
     - Navigation (N)
-    - Post Footer (PF) <= post (for type?)
+    <!-- - Post Footer (PF) <= post (for type?) -->
 
 COMPONENTS THAT ARE BUILT OF OTHER COMPONENTS
     - Homepage (L + T + LI + LIS + S)
     - Blog (L + LI + S)
     - Header (HT + HEL + N)
-    - mdxcomponents (C + T)
+    <!-- - mdxcomponents (C + T) -->
     - Page (L + S)
     - Post (L + IT + S + PF) (weird circular ref?)
-    - Tag (L +LI + S)
+    <!-- - Tag (L +LI + S) -->
+
+=====================================
+
+POST FUNDAMENTALS:
+
+    - Every instance of "<" or ">" will need to be written as {'<'} or {'>'} due to MDX parsing < as the start of a react thing.

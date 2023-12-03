@@ -1,11 +1,11 @@
 import React from 'react'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-import { Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
 
-const shortCodes = { Link } // Common MDX components
+const shortCodes = { Link, StaticImage }
 
 export default function GeneratePost({data, pageContext, children}) {
 
