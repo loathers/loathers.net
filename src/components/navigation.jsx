@@ -15,11 +15,11 @@ const NavBar = () => {
         <li className={layoutStyles.navSpacer}> </li>
         <li><a href="https://github.com/loathers">
           <StaticImage 
-              src="../images/github-logo-small.png" 
+              src="../images/github-logo20px.png" 
               alt="github" /></a></li>
         <li><a href="https://opencollective.com/loathers">
           <StaticImage 
-              src="../images/opencollective-logo.png" 
+              src="../images/opencollective-logo20px.png" 
               alt="opencollective" /></a></li>
       </ul>
     </nav>

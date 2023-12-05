@@ -13,7 +13,7 @@ const Header = (props) => {
         <Link to="/"><div className = {layoutStyles.loathersHead}>
         <StaticImage 
           alt="A martini glass in black and white"
-          src="../images/loathersLogo.png"
+          src="../images/loathersLogo75px.png"
         />
         Loathers<span class={layoutStyles.dotNet}>.net</span>
       </div></Link>

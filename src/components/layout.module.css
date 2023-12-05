@@ -86,9 +86,7 @@ a {
 }
 
 .loathersHead img {
-    width:75px;
-    height:75px;
-    margin: 10px;
+    margin: 0px;
 }
 
 .dotNet {
@@ -100,8 +98,11 @@ a {
 /* This controls the navbar. */
      
 .nav-links {
-    margin:0px;
+    box-sizing: border-box;
+    margin: 0px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
     list-style: none;
     padding-left: 0;
     background-color: rgb(65, 65, 65);
@@ -130,9 +131,13 @@ a {
 }
 
 .nav-links img {
-    height: 20px;
-    width: 20px;
-    margin:3px 10px;
+    display: inline-block;
+    line-height:25px;
+    margin:0px;
+}
+
+.nav-links span {
+    color: rgb(65, 65, 65);
 }
 
 /* This controls the warning box, which I got cute with for some reason */
