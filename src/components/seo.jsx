@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-const Seo = (props:{pageTitle: any, pathName: any}) => {
+const Seo = (props) => {
   const pageTitle = props.pageTitle
-  const pathName = props.pathName || ''
+  const pathName = props.pathName
 
   const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
 

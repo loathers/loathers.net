@@ -6,8 +6,6 @@ author: "The Loathers Collective"
 section: "scripting"
 tag: "Scripting Resources"
 ---
-# Awesome KoL Scripts
-
 This document contains a list of commonly used and (largely) regularly updated scripts that are used for a wide variety of different use cases. We've sorted these scripts out into four distinct categories, which are (in some cases) split into smaller sub-categories, such as farming & ascension within automation:
 
 - **Automation**: Scripts that allow you to automate pieces of KOL, usually for farming purposes.
@@ -19,42 +17,48 @@ If you would like to submit a script to be placed on this page, please post in t
 
 ## Automation (Ascension)
 
+> Scripts to automate your KOL ascensions. Really, there's only one! (At least, one "easy" one. More later.)
+
 ### autoscend
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [autoscend GitHub](https://github.com/Loathing-Associates-Scripting-Society/autoscend) | Run the script in the GCLI |
+| [Loathers](https://github.com/loathers) | [autoscend GitHub](https://github.com/loathers/autoscend) | Run the script in the GCLI |
 
-**autoscend** is one of the crowning achievements of the Loathing Associates Scripting Society. In a nutshell, autoscend is a script that will play through an entire ascension for you in KoL. The guiding philosophy of autoscend is that while it may not get you through an ascension as efficiently as humanly possible, it will brute force the ascension using as many resources as it can reasonably use, and it will finish (most) paths within 3-4 days. Given the complexity of KOL, this is pretty impressive! In a few recent paths, autoscend has actually been good enough and efficient enough at resource usage to get a few players bronze buttons, which gives you a view into how effective the autoscend team has been in working on the script. If you have questions regarding autoscend, please post issues on the GitHub or reach out in the **#autoscend** channel within the [ASS discord](https://discord.gg/8p7hh8BRSF).
+**autoscend** is one of the crowning achievements of the Loathers collective. In a nutshell, autoscend is a script that will play through an entire ascension for you in KoL. The guiding philosophy of autoscend is that while it may not get you through an ascension as efficiently as humanly possible, it will brute force the ascension using as many resources as it can reasonably use, and it will finish (most) paths within 3-4 days. Given the complexity of KOL, this is pretty impressive! In a few recent paths, autoscend has actually been good enough and efficient enough at resource usage to get a few players bronze buttons, which gives you a view into how effective the autoscend team has been in working on the script. If you have questions regarding autoscend, please post issues on the GitHub or reach out in the **#autoscend** channel within the [ASS discord](https://discord.gg/8p7hh8BRSF).
 
 ## Automation (Farming)
+
+> Scripts to automate your meat farming within the Kingdom of Loathing. 
 
 ### Garbage Collector (AKA Garbo)
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [GARBO GitHub](https://github.com/Loathing-Associates-Scripting-Society/garbage-collector) | Run the script in the GCLI |
+| [Loathers](https://github.com/loathers) | [GARBO GitHub](https://github.com/loathers/garbage-collector) | Run the script in the GCLI |
 
-**Garbage Collector** (more commonly known as "Garbo") is the Loathing Legion Knife of Barf Mountain farming scripts. It does it all! Barf Mountain is a zone from the 2015 Dinseylandfill IOTM. It features the highest ambient meat drop in an infinitely accessible zone in the game. Garbo will buy a ticket to Barf Mountain and use every drop of a player's resources to earn meat -- it features bespoke valuations engines that analyze the value of every free fight source, a knapsack-style dieting system that tabulates potential profit given current mall prices of every possible diet configuration, and both Embezzler/Yachtzee maximization chain logic to use every copier in the game. Garbo is actively developed, and generally supports new IOTMs within a week after their release; for questions or comments, there is a well-described system for bug reports and feature requests within the pins in the **#garbage-collector** channel within the [ASS discord](https://discord.gg/8p7hh8BRSF).
+**Garbage Collector** (more commonly known as "Garbo") is the Loathing Legion Knife of Barf Mountain farming scripts. It does it all! Barf Mountain is a zone from the 2015 Dinseylandfill IOTM. It features the highest ambient meat drop in an infinitely accessible zone in the game. Garbo will buy a ticket to Barf Mountain and use every drop of a player's resources to earn meat -- it features bespoke valuations engines that analyze the value of every free fight source, a knapsack-style dieting system that tabulates potential profit given current mall prices of every possible diet configuration, and both Embezzler/Yachtzee maximization chain logic to use every copier in the game. Garbo is actively developed, and generally supports new IOTMs within a week after their release; for questions or comments, there is a well-described system for bug reports and feature requests within the [issues](https://github.com/loathers/garbage-collector/issues) section of the Garbo GitHub. Join the devs there!
 
 ### freecandydotexe
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [freecandy GitHub](https://github.com/loathing-Associates-Scripting-Society/freecandydotexe) | Run the script in the GCLI |
+| [Loathers](https://github.com/loathers) | [freecandy GitHub](https://github.com/loathers/freecandydotexe) | Run the script in the GCLI |
 
-**freecandydotexe** is a script meant to run a large gob of turns for trick or treating. In KOL, Halloween is a massively valuable exercise, often netting users tens of millions of meat in a single day; freecandy is a script that both trick or treats and fights things like guaranteed kramcos, voting monsters, and nemesis hitmen. It handles familiar swaps (to properly utilize your Trick or Treating Tot) and fills your Pantsgiving stomach. Freecandydotexe is actively developed, and (with some exceptions) will support new IOTMs within 1-2 Halloweens of the IOTM's introduction. For questions, bug reports, or comments, please post relevant details in the **#freecandydotexe support thread** thread within the **#garbage-collector** channel on the [ASS discord](https://discord.gg/8p7hh8BRSF).
+**freecandydotexe** is a script meant to run a large gob of turns for trick or treating. It is powered by GarboLib, a subsidiary of the Garbo corporation. (No, no, it isn't that. It's just an offshoot of Garbo code!) In KOL, Halloween is a massively valuable exercise, often netting users tens of millions of meat in a single day; freecandy is a script that both trick or treats and fights things like guaranteed kramcos, voting monsters, and nemesis hitmen. It handles familiar swaps (to properly utilize your Trick or Treating Tot) and fills your Pantsgiving stomach. Freecandydotexe is actively developed, and (with some exceptions) will support new IOTMs within 1-2 Halloweens of the IOTM's introduction. For questions, bug reports, or comments, please post relevant issues within the [issues](https://github.com/loathers/freecandydotexe/issues/) section of the freecandy GitHub.
 
 ### COMBO
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [COMBO GitHub](https://github.com/loathing-Associates-Scripting-Society/combo) | Run the script in the GCLI |
+| [Loathers](https://github.com/loathers) | [COMBO GitHub](https://github.com/loathers/combo) | Run the script in the GCLI |
 
 **COMBO** is a beach-combing script that will harvest known scarce tiles for fun and profit. When the beach comb was introduced in KOL, TPTB introduced 1000 "scarce" tiles; these tiles, when refreshed, contain the rarest items the beach has to offer, such as cursed pirate gear, meteorite fragments, and rainbow pearls. The tiles refresh on an unknown cadence, and when they are not refreshed, they are indistinguishable from common tiles. However, many enterprising souls spent years combing the beach to figure out exactly where these 1000 tiles are, so that they would be more likely than anyone else to get the scarce items when the tiles refreshed -- COMBO is a project that publicizes these tiles, allowing anyone to have that increased chance at getting rares from their beach. COMBO is a nonprofit project supported by volunteers. Please do not yell at us. For questions, bug reports, and comments, please post relevant details in the **"sharing-new-scarce-tiles"** thread within the **#spading** channel on the [ASS discord](https://discord.gg/8p7hh8BRSF).
 
 ## Organization (Inventory Management)
 
+> Scripts you can use to manage the glut of items that passively accumulate in your inventory when you farm or ascend frequently
+
 ### Philter
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [Philter GitHub](https://github.com/loathing-Associates-Scripting-Society/philter) | Run the script in the GCLI, after relay-organizing your items |
+| [Loathers](https://github.com/loathers) | [Philter GitHub](https://github.com/loathers/philter) | Run the script in the GCLI, after relay-organizing your items |
 
 **Philter** is a next-generation version of a classic KOL script, the "OCD Inventory Control" system designed by Bale of the KOLMafia forums. Philter's goal is to cleanse your inventory of junk items, autoselling & using items that warrant that action and mallselling or Sellbot-sending items that warrant mall action. This involves a detailed relay interface that can be used to sort, organize, and create rulesets around what you want Philter to do with your items. For a sample ruleset, Butts McGruff has shared his rules on the [ASS discord](https://discord.gg/8p7hh8BRSF) in a pinned post within the **#mafia-and-scripting** channel. It is worth noting that making a ruleset you are comfortable with takes quite a lot of time -- expect a significant period of adjustment even if you start at Butts' well-designed sample ruleset. 
 
@@ -67,21 +71,25 @@ If you would like to submit a script to be placed on this page, please post in t
 
 ## Relay (General Purpose)
 
+> General purpose scripts that improve your playing experience in KoL's relay browser
+
 ### TourGuide
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [TourGuide GitHub](https://github.com/loathing-Associates-Scripting-Society/TourGuide) | After installing, select it from the topbar of the relay browser to run the assistant |
+| [Loathers](https://github.com/loathers) | [TourGuide GitHub](https://github.com/loathers/TourGuide) | After installing, select it from the topbar of the relay browser to run the assistant |
 
 **TourGuide** is, effectively, an advice script. It provides a large-scale summary of all available resources that you -could- be using in KoL, with things like lists of available free banishes, steps to complete active quests, tips on how to finish tasks in the fewest turns, and large bright reminders when you have a limited use resource up that you may want to go to a specific place to use. TourGuide is based on the script "Guide" by [Ezandora](https://github.com/Ezandora); while it is based on the bones of Guide, TourGuide has evolved into a vastly different fork of the original brainchild, with roughly three years of extra IOTMs covered and added to the script, along with several additional features. TourGuide developers acknowledge and appreciate Ezandora's work in creating the scaffolding behind TourGuide.
 
 ### ChIT
 | owner | link | usage |
 |---------|------|---------|
-| Soolar (#2463557) | [ChIT GitHub](https://github.com/Loathing-Associates-Scripting-Society/ChIT) | Once installed, will show up automatically |
+| Soolar (#2463557) | [ChIT GitHub](https://github.com/loathers/ChIT) | Once installed, will show up automatically |
 
 **ChIT** is an upgraded character pane. It features a vastly customizable set of tiles that can be moved, twiddled, and re-sized to create a perfect view of what you need to know about your character. Many speed ascenders use it explicitly for the additional support it gives for quick equipment swaps, familiar management, easy buff shrugging & management, and highlighted timers that allow you to remind yourself of future actions you should do in future turns. It is under active development and generally supports IOTMs relatively soon after they are released; if you have ChIT installed and notice that new IOTMs are not supported, please check the GitHub to see if an update was pushed, and consider deleting/re-installing; due to the "always on" nature of ChIT vs other scripts, it is slightly more common for people to experience issues where ChIT does not properly update. Soolar is an active member on the [ASS discord](https://discord.gg/8p7hh8BRSF) and is actively developing ChIT; if you have questions, please post issues on the GitHub or reach out in the **#mafia-and-scripting** channel. 
 
 ## Relay (Supplemental UI for IOTMs)
+
+> Scripts that provide supplemental user interfaces for various IOTMs over the years, improving your user experience by making usage a little easier
 
 ### Briefcase
 | owner | link | usage |
@@ -102,7 +110,7 @@ If you would like to submit a script to be placed on this page, please post in t
 |---------|------|---------|
 | Ezandora (#1557284) | [Genie GitHub](https://github.com/Ezandora/Genie) | Shows up in the relay browser when you make a wish |
 
-**Genie** is a relay override that makes wishing using the [genie bottle](https://kol.coldfront.net/thekolwiki/index.php/Genie_bottle) in KoL considerably easier to do. The native UI for wishes (both pocket wishes and rubbing the Genie bottle) is frustratingly simplistic, requiring checking the wiki to figure out how to do even very basic activities; Ezandora's relay override fixes this issue by spawning a page that gives you a well-formatted list of possible options you can use for your wish. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes.
+**Genie** is a relay override that makes wishing using the [genie bottle](https://kol.coldfront.net/thekolwiki/index.php/Genie_bottle) in KoL considerably easier to do. The native UI for wishes (both pocket wishes and rubbing the Genie bottle) is frustratingly simplistic, requiring checking the wiki to figure out how to do even very basic activities; Ezandora's relay override fixes this issue by spawning a page that gives you a well-formatted list of possible options you can use for your wish. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. Also of note -- due to the Book of Facts re-adding pocket wishes to standard, this relay script is once again very valuable. If you're a BoFA owner, this script comes **highly** recommended!
 
 ### Shorts UI
 | owner | link | usage |
@@ -114,9 +122,9 @@ If you would like to submit a script to be placed on this page, please post in t
 ### Locket UI
 | owner | link | usage |
 |---------|------|---------|
-| [L. A. S. S.](https://github.com/Loathing-Associates-Scripting-Society) | [Philter GitHub](https://github.com/Loathing-Associates-Scripting-Society/locket-ui/) | Click "reminisice" to activate the Locket UI page |
+| [Loathers](https://github.com/loathers) | [Philter GitHub](https://github.com/loathers/locket-ui/) | Click "reminisice" to activate the Locket UI page |
 
-**Locket UI** is a relay override that improves the experience of reminiscing using the [Combat Lover's Locket](https://kol.coldfront.net/thekolwiki/index.php/Combat_lover%27s_locket) IOTM. The native UI is just a drop down with every possible monster; this UI maintains that dropdown, but allows users to filter it to specific desired phylums, while also pulling out a variety of ascension-relevant picks into easy buttons that can be quickly activated during an ascension. This script is actively updated and maintained by LASS; for support, visit the [ASS discord](https://discord.gg/8p7hh8BRSF) and reach out in the **#mafia-and-scripting** channel for us to take a look.
+**Locket UI** is a relay override that improves the experience of reminiscing using the [Combat Lover's Locket](https://kol.coldfront.net/thekolwiki/index.php/Combat_lover%27s_locket) IOTM. The native UI is just a drop down with every possible monster; this UI maintains that dropdown, but allows users to filter it to specific desired phylums, while also pulling out a variety of ascension-relevant picks into easy buttons that can be quickly activated during an ascension. This script is actively updated and maintained by the Loathers collective; for support, visit the [ASS discord](https://discord.gg/8p7hh8BRSF) and reach out in the **#mafia-and-scripting** channel for us to take a look.
 
 ### Bastille
 | owner | link | usage |
@@ -137,21 +145,23 @@ If you would like to submit a script to be placed on this page, please post in t
 |---------|------|---------|
 | Ezandora (#1557284) | [Source Terminal GUI GitHub](https://github.com/Ezandora/Source-Terminal-GUI) | Shows up in the relay browser when you click on your source terminal |
 
-**Source Terminal GUI** is a relay override that simplifies usage of the [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_Terminal) IOTM. Natively, the terminal effectively acts as a unix-style terminal, ingesting commands like "dir, exit, help, ls, reset, status" and running enhance/enquiry/educate/extrude commands at the user's urging. It's a very cute piece of native UI, but can be a little annoying if you have to use it every single ascension; Ezandora's GUI takes the text-based terminal and turns it into a button-based GUI where you simply need to press easily labeled buttons to get the terminal to do what you want. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes.
+**Source Terminal GUI** is a relay override that simplifies usage of the [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_Terminal) IOTM. Natively, the terminal effectively acts as a unix-style terminal, ingesting commands like "dir, exit, help, ls, reset, status" and running enhance/enquiry/educate/extrude commands at the user's urging. It's a very cute piece of native UI, but can be a little annoying if you have to use it every single ascension; Ezandora's GUI takes the text-based terminal and turns it into a button-based GUI where you simply need to press easily labeled buttons to get the terminal to do what you want. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. It still worked in Legacy of Loathing, for example, the summer 2023 challenge path with a replica terminal. It'll probably work for your needs too!
 
 ## Miscellaneous
 
-### Snapshot Maker (cc_snapshot)
+> Scripts that cannot be described by man or beast. Or Chat-GPT, probably. I dunno. Maybe Llama2 can do it, couldn't hurt to try!
+
+### Snapshot Maker (av_snapshot)
 | owner | link | usage |
 |---------|------|---------|
-| CheeseCookie (# N/A) | [cc_snapshot on the KoL Forums](http://forums.kingdomofloathing.com/vb/showthread.php?t=218735) | Run the script in the GCLI |
+| Aventuristo (#3028125) | [cc_snapshot on the KoL Forums](https://forums.kingdomofloathing.com/vb/showthread.php?t=250707) | Run the script in the GCLI |
 
-**Snapshot Maker** (more commonly known as **cc_snapshot**) is a script that populates a public, shareable webpage you can use to show people what you own in KoL. This page will display every IOTM that is bound to your account, what skills you have permed, what your character has consumed, what tattoos your character has unlocked, and whether or not you own a variety of cool semi-relevant items from years prior. When other KOL players ask to see your snapshot (or talk about "greenboxen"), this is what they're talking about. One semi-important note -- Cheesecookie no longer plays KoL, so updates (while relatively consistent) are not frequently done until Cheese is bothered in the linked thread on the KoL forum. Also, the HTTPS certificate in the snapshots is semi-broken, so when looking at your own snapshot linked from the GCLI, we would recommend changing the linked URL to use HTTP instead of HTTPS so you don't get a dire-looking invalid certificate error. 
+**Snapshot Maker** (more commonly known as **av_snapshot**) is a script that populates a public, shareable webpage you can use to show people what you own in KoL. This page will display every IOTM that is bound to your account, what skills you have permed, what your character has consumed, what tattoos your character has unlocked, and whether or not you own a variety of cool semi-relevant items from years prior. When other KOL players ask to see your snapshot (or talk about "greenboxen"), this (or [Greenbox](https://greenbox.loathers.net/), the similar-purpose loathers project) is generally what they're talking about. This project was taken over by Aventuristo in late 2022 and has been extremely actively updated ever since. Thanks, Aventuristo!
 
 ### KoLAccountVal
 | owner | link | usage |
 |---------|------|---------|
-| Irrat (#3469406) | [KolAccountVal GitHub](https://github.com/pstalcup/keeping-tabs) | Run the script in the GCLI |
+| Irrat (#3469406) | [KolAccountVal GitHub](https://github.com/libraryaddict/KolAccountVal) | Run the script in the GCLI |
 
 **AccountVal** is a rewrite of a script by the wise and curious Soolar by the also-wise and ever-curious Irrat. It will analyze your inventory and report back on the value of everything you've got, and will do so slightly faster than the script it was re-written from, as it was written in JavaScript and has some limited caching support. It also has an option that only generates the value of your tradeable items; ergo, you can both revel in the riches you've bound to your account and get excited about the un-accumulated riches your tradeable items could give you.
 
@@ -160,9 +170,9 @@ If you would like to submit a script to be placed on this page, please post in t
 |---------|------|---------|
 | Ezandora (#1557284) | [Gain GitHub](https://github.com/Ezandora/Gain) | Run the script in the GCLI |
 
-In a nutshell, **Gain** is an efficient buffing script. It will analyze pricing on various buff options and get the user to the cheapest possible configuration that achieves their goals. As the help file states, `gain 400 initiative` is a command that will figure out the most cost-efficient way to get your character to 400 initiative and get you there. This is most useful in the context of other scripts, but can be useful in limited scenarios within an ascension, for instance if you are trying to quickly complete an ascension and need to hit a specific threshold for a specific test. As with other scripts by Ezandora, Gain is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. It relies on Mafia's background data when running its calculations, so it is likely it will still evaluate things that were released after the script's most recent update (in February 2021, as of this writing). 
+In a nutshell, **Gain** is an efficient buffing script. It will analyze pricing on various buff options and get the user to the cheapest possible configuration that achieves their goals. As the help file states, `gain 400 initiative` is a command that will figure out the most cost-efficient way to get your character to 400 initiative and get you there. This is most useful in the context of other scripts, but can be useful in limited scenarios within an ascension, for instance if you are trying to quickly complete an ascension and need to hit a specific threshold for a specific test. As with other scripts by Ezandora, Gain is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. It relies on Mafia's background data when running its calculations, so it is likely it will still evaluate things that were released after the script's most recent update (in December 2023, as of this writing). 
 
-# Awesome KoL Scripts... that require Compiling
+## Awesome KoL Scripts... that require Compiling
 
 Everything above this line is usable out-of-the-box. You can install the script and use it either from the GCLI or the relay browser without going through additional pre-installation steps. Below this line, everything listed requires a bit more effort; these projects are built in TypeScript, which requires compiling into a usable script that KoLMafia can read and use. You won't simply be able to run an "SVN install" command and just run the script. 
 
@@ -173,4 +183,4 @@ For more on how to do compile and build these scripts, please cross-reference ou
 |---------|------|---------|
 | Kasekopf (#1210810) | [LoopCasual GitHub](https://github.com/Kasekopf/loop-casual) | Compile the script's JS file, import into your scripts folder, then run the script in the GCLI |
 
-**LoopCasual** aims to complete a casual ascension in one day. It tries to use as few turns as possible to accomplish this, allowing someone to use one of the farming scripts below to use the rest of a character's turns. At a high level, this will power your character up to level 13 and complete quests using a relatively customized quest engine. It was originally built by Kasekopf to work very specifically for Kasekopf's account; it is more flexible than it used to be, but we would recommend having patience and being ready to work with account-specific bugs as you work your account into a place where LoopCasual works for your account. Kasekopf is an active member on the [ASS discord](https://discord.gg/8p7hh8BRSF) and is actively developing LoopCasual; if you have questions regarding LoopCasual, please post issues on the GitHub or reach out in the **#mafia-and-scripting** channel. 
+**LoopCasual** aims to complete a casual ascension in one day. It tries to use as few turns as possible to accomplish this, allowing someone to use one of the farming scripts below to use the rest of a character's turns. At a high level, this will power your character up to level 13 and complete quests using a relatively customized quest engine. It was originally built by Kasekopf to work very specifically for Kasekopf's account; it is more flexible than it used to be, but we would recommend having patience and being ready to work with account-specific bugs as you work your account into a place where LoopCasual works for your account. Kasekopf is an active member on the [ASS discord](https://discord.gg/8p7hh8BRSF) and is actively developing LoopCasual; if you have questions regarding LoopCasual, please post issues on the GitHub or reach out in the **#mafia-and-scripting** channel. (Also of note: there is a `gyou` branch of loop-casual that can be used to loop the Grey You path!)

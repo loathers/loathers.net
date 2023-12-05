@@ -6,13 +6,14 @@ author: "Captain Scotch"
 section: "scripting"
 tag: "Scripting Resources"
 ---
-# ASH
+ASH is a custom coding language designed and built by the KOLMafia development team for scripts interfacing directly with the Kingdom of Loathing. It was lovingly designed and is constantly updated and empowered by Veracity, the queen of KOLMafia. And here, we're going to talk about basic ASH scripting! What a fun time for us all.
+
 ## Using Common ASH Functions (via Example)
 There are a number of useful starter ASH tutorials on the KoLMafia wiki and scattered about Mafia's old home on sourceforge. One that I find particularly useful is [this set of two basic examples of ASH scripts](https://kolmafia.sourceforge.io/advanced.html). At a high level, when thinking about how to use ASH (or, really, any new programming language), the best way to go about it is to start with a small abstract piece of something useful and extend your reach beyond it by bringing in things that add complication and heft to the initial goal. As a start, let's use a very simple, very effective use-case: drinking a nightcap, via the "drink" command.
 ```ash
 drink(1,$item[emergency margarita]);
 ```
-This is easy and straightforward. You could simply save this as nightCap.ash, run it at the end of every day, and you'd be good on your last drink of the day so long as you always had an Emergency Margarita in your inventory. But what if you didn't? It turns out nightcaps can be a bit more complicated! Let's add a check that purchases an emergency margarita for you, if you don't have one lying around.
+This is easy and straightforward. You could simply save this as `nightCap.ash`, run it at the end of every day, and you'd be good on your last drink of the day so long as you always had an Emergency Margarita in your inventory. But what if you didn't? It turns out nightcaps can be a bit more complicated! Let's add a check that purchases an emergency margarita for you, if you don't have one lying around.
 ```ash
 item nightcap = $item[emergency margarita];
 
@@ -20,7 +21,7 @@ if (available_amount(nightcap) == 0) buy(1, nightcap);
 
 drink(1, nightcap);
 ```
-But wait! What if a nefarious actor bought up every single emergency margarita in the mall? Computers are smart, but they're also extraordinarily literal -- if you tell it to purchase a margarita, it will do so, no matter how much meat they cost. Let's add a catch that aborts if margaritas become way too expensive to justify. 
+But wait! What if a nefarious actor like [Martin Shkreli](https://en.wikipedia.org/wiki/Busta_Rhymes) bought up every single emergency margarita in the mall, to corner the market and make untold riches? Computers are smart, but they're also extraordinarily literal -- if you tell it to purchase a margarita, it will do so, no matter how much meat a margarita costs. Let's add a catch that aborts if margaritas become too expensive to justify. 
 
 ```ash
 item nightcap = $item[emergency margarita];
@@ -122,11 +123,13 @@ When you're building your own scripts, one of the best ways to learn is to simpl
 ## Examples of High-Level ASH Code
 TheDictator (a player /dev) has many complex ASH scripts available on [his pastebin](https://pastebin.com/u/thedictator).
 
-[Autoscend](https://github.com/Loathing-Associates-Scripting-Society/autoscend) is a LASS-maintained general-use ascension script written in ASH.
+[Autoscend](https://github.com/loathers/autoscend) is a Loathers-maintained general-use ascension script written in ASH.
 
-Notoriously prolific KoL scripter [Ezandora](https://github.com/Ezandora) has scores of ASH scripts available on her github.
+Notoriously prolific KoL scripter [Ezandora](https://github.com/Ezandora) has scores of ASH scripts available on her GitHub.
 
-Finally, as you develop your own scripts, be sure to check the [KoLMafia forums](https://kolmafia.us/), where you can find an entire repository with years and years of ASH scripts -- some burn turns, some change your KOL relay experience, and [some even put an entire decision tree of complex logic behind every combat](https://kolmafia.us/threads/batbrain-a-central-nervous-system-for-consult-scripts.6445/)!
+I am the czar of [TourGuide](https://github.com/loathers/TourGuide), a generalized ascension advice script written in ASH. It is quite complicated, so this might not be a -great- example of simple ASH usage. My recommendation, if you want to look at how ASH can be used for informatonal aggregation within TourGuide code, would be to look at the [Items of the Month](https://github.com/loathers/TourGuide/tree/main/Source/relay/TourGuide/Items%20of%20the%20Month) subfolder and examine how we put together logic handling for recent IOTMs, like the [August Scepter](https://github.com/loathers/TourGuide/blob/a43eaa1870931c494bc7febb43d7e7b35e6107c5/Source/relay/TourGuide/Items%20of%20the%20Month/2023/August%20Scepter.ash#L109) tile.
+
+Finally, as you develop your own scripts, be sure to check the [KoLMafia forums](https://kolmafia.us/), where you can find a massive repository with years and years of ASH scripts -- some burn turns, some change your KOL relay experience, and [some even put an entire decision tree of complex logic behind every combat](https://kolmafia.us/threads/batbrain-a-central-nervous-system-for-consult-scripts.6445/)!
 
 ## The Pros and Cons of ASH
 

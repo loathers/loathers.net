@@ -11,6 +11,7 @@ const KOLScripting = () => {
         <Layout pageTitle="KOL Scripting">
             <p>Unlike our speedgame analysis, our scripting assistance articles are semi-rarely updated. Still, these should (hopefully!) give curious readers a good starting point from which to start scripting up your very own KOLMafia scripts.</p>
             <p>For our suite of scripts, <a href="https://github.com/loathers">check out our GitHub!</a></p>
+            <hr />
             <h1 style={{textAlign:"center"}}>Scripting Articles</h1>
             <article>
             <dl>

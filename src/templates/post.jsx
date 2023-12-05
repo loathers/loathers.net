@@ -4,8 +4,9 @@ import Seo from '../components/seo'
 import { graphql, Link } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { StaticImage } from 'gatsby-plugin-image'
+import Warning from '../components/warning'
 
-const shortCodes = { Link, StaticImage }
+const shortCodes = { Link, StaticImage, Warning }
 
 export default function GeneratePost({data, pageContext, children}) {
 
@@ -34,9 +35,9 @@ export const query = graphql`
   }
 `
 
-export const Head = ({data}) => (
+export const Head = ({data,pageContext}) => (
     <Seo 
-      pageTitle="title" 
+      pageTitle={pageContext.title}
       pathName = ""
     />
   )

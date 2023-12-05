@@ -2,6 +2,7 @@
 import * as React from 'react'
 import * as layoutStyles from '../components/layout.module.css'
 import Layout from '../components/layout'
+import Seo from '../components/seo'
 
 // Step 2: Define your component
 const ToolsPage = () => {
@@ -24,6 +25,14 @@ const ToolsPage = () => {
     </Layout>
   )
 }
+
+// Set the page title via the Seo component, adding sitename afterwards
+export const Head = () => (
+  <Seo 
+    pageTitle="Tools" 
+    pathName = ""
+  />
+)
 
 // Step 3: Export your component
 export default ToolsPage

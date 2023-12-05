@@ -27,6 +27,16 @@ const IndexPage = ({data}) => {
             </>
           )
         )}
+        
+        <p></p>
+
+        <HotDogLink
+            link={"/shenanigans/winter-2023-contest/"}
+            title="ASTRAY, DARNED OAF II: OAF Catches Strays"
+            date="December 6, 2023"
+            excerpt="We're bringing the band back together and doing yet another 12-months-of-IOTMs anagram contest. And this time, the prize is a Crimbo Elfling. (Wait, WHAT???)"
+            type="🎉 Active Contest 🎉"
+          />
 
         <p></p>
 
@@ -37,16 +47,6 @@ const IndexPage = ({data}) => {
               excerpt="Museum is our brand-new display case database! Check out who's collected the most of every item in the game, and see where your collections rank among the masses!"
               type="Newest Tool"
               />
-        
-        <p></p>
-
-        <HotDogLink
-            link={"/shenanigans/how-we-nerfed-orb/"}
-            title="The Extorbermectin Stunt"
-            date="January 20, 2022"
-            excerpt="We nerfed the miniature crystal ball. Like, pretty considerably. Ever wondered how that happened? Come with us and witness... the Extrorbmectin Stunt (TM)"
-            type="Newest Shenanigan"
-          />
       </>
     </Layout>
   )

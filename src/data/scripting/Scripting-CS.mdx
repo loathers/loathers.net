@@ -6,10 +6,8 @@ author: "DanceCommander06"
 section: "scripting"
 tag: "Scripting Resources"
 ---
-# Scripting Community Service
-## Introduction
 
-[Community Service](https://kol.coldfront.net/thekolwiki/index.php/Community_Service) (CS) has become a commonly scripted challenge path due to its simplicity and speed (both in-game and real-time). Rather than need to perform all of the standard council quests, the player gets 11 tasks that take a single button click each. Said tasks can be accelerated by buffing up things like stats, familiar weight or item drops. It doesn't take a lot of shiny to do a two-day run, and sufficiently loaded accounts can perform replicable one-day ascensions with low turn counts and organ use. This is desirable as it allows for a second shot at valuable once per day item generation, as well as extra aftercore turns for farming or event participation.
+[Community Service](https://kol.coldfront.net/thekolwiki/index.php/Community_Service) (CS) has become a commonly scripted challenge path due to its simplicity and speed (both in-game and real-time). Rather than needing to perform all of the standard council quests, the player gets 11 tasks that take a single button click each. Said tasks can be accelerated by buffing up things like stats, familiar weight or item drops. It doesn't take a lot of shiny IOTMs to do a two-day run, and sufficiently loaded accounts can perform replicable one-day ascensions with low turn counts and organ use. This is desirable, as it allows for a second shot at valuable once per day item generation, as well as extra aftercore turns for farming or event participation.
 
 Unfortunately, it's not easy to create a one-size-fits-all high-end CS solution due to a lot of moving parts. The path rewards access to a lot of old shinies, but it's possible to get creative and plug holes in your setup in various unconventional ways. Once you have an operational CS run plan, it's not that hard to precisely execute it. Scripting can assist with consistency, doing anything from buffing you up so you don't forget some effect all the way to performing a whole run for you.
 
@@ -29,11 +27,11 @@ The non-stat tests are pretty much just a checklist. Captain Scotch created a [v
 
 Another aspect of planning a run are softcore pulls. These can be used to cut turns from tests, or compensate for lacking certain IotM. For example, it's common to pull [borrowed time](https://kol.coldfront.net/thekolwiki/index.php/Borrowed_time) to help with generating turns for coil wire if not in possession of [Clip Art](https://kol.coldfront.net/thekolwiki/index.php/Summon_Clip_Art).
 
-If in need of assistance, ask in `#community-service` in the [ASS discord](https://discord.gg/JqwXkyWF4m). Be prepared with your [snapshot](http://forums.kingdomofloathing.com/vb/showthread.php?t=218735), as it allows for better theorycrafting of a levelling plan or whatever else you may need help with. There are a lot of helpful pinned messages, such as a full-shiny ordering of scaling fights based on their caps or lists of easily accessible pizza ingredients. The folks there are very helpful - I went from an inattentive AFK farmer to creating my own CS script in the space of a couple months with their assistance.
+If in need of assistance, ask in `#community-service` in the [ASS discord](https://discord.gg/JqwXkyWF4m). Be prepared with your [snapshot](https://greenbox.loathers.net), as it allows for better theorycrafting of a levelling plan or whatever else you may need help with. There are a lot of helpful pinned messages, such as a full-shiny ordering of scaling fights based on their caps or lists of easily accessible pizza ingredients. The folks there are very helpful - I went from an inattentive AFK farmer to creating my own CS script in the space of a couple months with their assistance.
 
 ## Doing a Run
 
-Putting together a plan can feel nebulous, and it's a good idea to try it out in practice once it takes a bit of shape. Do whatever pre-run preparations your plan assumes, hop the gash, and try to carry things out. While you're doing so, take excruciatingly detailed notes for every single fight you do. Write down buffs you cast, take screenshots of outfits you've put on. Once you clear the stat test hurdle then you can relax a bit with the note-taking as the Scotch sheet has you covered for the tests. If anything, you may find yourself missing some of the buffs you had planned! In that event, use Mafia's `modtrace` to compare against the sheet. Something as basic as counting how many modifiers you have in each can help you determine how many you're missing, and then you can go fishing for what you forgot.
+Putting together a plan can feel nebulous, and it's a good idea to try it out in practice once it takes a bit of shape. Do whatever pre-run preparations your plan assumes, hop the gash, and try to carry things out. While you're doing so, take excruciatingly detailed notes for every single fight you do. Write down buffs you cast, take screenshots of outfits you've put on. Once you clear the stat test hurdle then you can relax a bit with the note-taking as the [Scotch sheet](https://docs.google.com/spreadsheets/d/1CooctXongsf2nt1JmR8G-Qm_Dhs4V6oHDO04hLRCI_s/edit) has you covered for the tests. If anything, you may find yourself missing some of the buffs you had planned! In that event, use Mafia's `modtrace` to compare against the sheet. Something as basic as counting how many modifiers you have in each can help you determine how many you're missing, and then you can go fishing for what you forgot.
 
 The end result will be a nice confidence boost as you perform your plan in action, get a run out of it, and obtain a very solid set of detailed notes to work with going forward. Now if you were to do the run again, the experience and notes will let you do so quicker. The first go through is the hardest, it gets easier once you're done with it.
 
@@ -59,7 +57,7 @@ Let's consider an example scenario. You are a Pastamancer, you just did coil wir
 
 Now that you are armed in this list of buffs, you can go and retrieve them one by one, visiting the appropriate locations, casting the appropriate skills. But all of them can be acquired via Mafia's CLI, which you're likely familiar with. For example, you can get Feeling Excited by writing `cast 1 Feel Excitement` into the CLI, similar to what you could do in chat. Seeking out the equivalent to all of the effects above yields the following list of calls:
 
-```
+```ash
 daycare mysticality;
 monorail buff;
 telescope look high;
@@ -80,7 +78,7 @@ You can take the text above and paste it into the CLI and it will acquire the ef
 
 There's a very good chance you've crossed paths with KoL's combat macros before. They're an incredible quality of life feature that helps at any level of play, and they're also very useful here. Just in case you're unfamiliar with them, the [documentation](http://forums.kingdomofloathing.com/vb/showthread.php?t=181641) provided on the forums is extremely helpful and easy to follow. Let's go back to the Pastamancer hitting up free fights to level up scenario, and let's assume you're abusing the Saber for combat (scaling fights scale their combat stats to Muscle/Moxie, but Saber hits like a train based on Mysticality, and the fight's stat gain is also Mysticality based). You go into combat, do some staggers and value stuff, and then apply the Saber for an easy win. Putting it all together looks like so:
 
-```
+```ash
 skill Micrometeorite
 skill Sing Along
 attack

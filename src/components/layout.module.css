@@ -125,6 +125,16 @@ a {
     color:white;
 }
 
+.navSpacer {
+    flex-grow:1;
+}
+
+.nav-links img {
+    height: 20px;
+    width: 20px;
+    margin:3px 10px;
+}
+
 /* This controls the warning box, which I got cute with for some reason */
 
 .warnBox {
@@ -137,6 +147,7 @@ a {
         );
     color:white;
     text-align: center;
+    font-size:large;
     font-family: Oswald, Gill Sans, Verdana;
     font-weight: bold;
     text-shadow: 2px 2px 1px black;
@@ -248,6 +259,10 @@ h7 {
     padding: 10px
 }
 
+.content ul {
+    margin:8px 0px;
+}
+
 .content li {
     margin: .7em 0em;
     line-height:1.25em;
@@ -303,6 +318,35 @@ h7 {
 
 .content tbody tr:nth-child(odd) {
     background: rgb(232, 232, 232);
+}
+
+.content code {
+    background-color: rgb(51, 48, 76);
+    color: rgb(237, 213, 213);
+    border-radius:0.3em;
+    padding: 3px;
+}
+
+.content hr {
+    overflow: visible; /* For IE */
+    padding: 0;
+    width:100%;
+    border: none;
+    border-top: medium double #929292;
+    color: #a0a0a0;
+    text-align: center;
+    margin:0px;
+    margin-top: 15px;
+}
+
+.content hr:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
 }
 
 /* This controls our footers, which is just the small copyright/gatsby callout */
@@ -390,4 +434,13 @@ footer {
     margin:0px;
     padding: 10px;
     border-bottom: thick dashed rgb(161, 205, 205);
+}
+
+/* Keep images small */
+
+.content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
