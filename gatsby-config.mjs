@@ -7,7 +7,7 @@ dotenv.config({path: '.env'});
 const config = {
   siteMetadata: {
     title: `loathers.net`,
-    version: '1.0.0',
+    version: '1.0.1',
     siteUrl: `https://www.loathers.net`,
     github:`https://github.com/loathers/`,
     description: `Modern analysis and scripting advice for Kingdom of Loathing players`,
