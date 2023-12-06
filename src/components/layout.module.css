@@ -423,11 +423,11 @@ footer {
     border-radius: 0.5em;
     padding: 10px;
     text-align: center;
-
+/* 
     background:url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><foreignObject width=%22100px%22 height=%22100px%22><div xmlns=%22http://www.w3.org/1999/xhtml%22 style=%22color:transparent;text-shadow: 10px 10px rgba(0, 100, 0, .1), 0 0  rgba(0,50,0,0);font-size:70px%22>⚙️</div></foreignObject></svg>"), rgb(210, 240, 232); 
     background-size: 50px 50px; 
     background-position: top left;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 
 }
 
