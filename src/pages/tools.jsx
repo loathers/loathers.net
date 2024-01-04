@@ -10,6 +10,9 @@ const ToolsPage = () => {
     <Layout pageTitle="Tools">
       <ul className={layoutStyles.toolsGrid}>
           <li>
+            <h2><a href="https://onlyfax.loathers.net">OnlyFax</a></h2>
+            <p>OnlyFax is our new beta-version faxbot. We've got an online resource with all active faxes, a leaderboard of the most faxed monsters in the Kingdom, and support for clan fortune telling (with a few other bells and whistles). Check it out!</p></li>
+          <li>
             <h2><a href="https://bofa.loathers.net">BOFA</a></h2>
             <p>This is a web tool for figuring out which monsters are associated with which postcombat effect from the Book of Facts across the many class/path combinations in the Kingdom. Currently in beta, it may be enhanced soon!</p></li>
           <li>
