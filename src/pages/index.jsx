@@ -42,9 +42,9 @@ const IndexPage = ({data}) => {
 
         <HotDogLink 
               link={"/tools/"}
-              title="Museum"
-              date="October 23, 2023"
-              excerpt="Museum is our brand-new display case database! Check out who's collected the most of every item in the game, and see where your collections rank among the masses!"
+              title="OnlyFax"
+              date="December 28, 2023"
+              excerpt="OnlyFax is a brand-new faxbot run by the Loathers collective. If you're a VIP Key holder wanting to use your VIP fax machine, you may want to check it out!"
               type="Newest Tool"
               />
       </>
