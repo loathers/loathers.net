@@ -19,7 +19,7 @@ const Seo = (props) => {
         <title>{pageTitle} | {seoData.title}</title>
         <meta name="description" content = {seoData.description}/>
         <meta name="image" content = {seoData.image}/>
-        <meta name="twitter:title" content = {seoData.title}/>
+        <meta name="twitter:title" content = {pageTitle}/>
         <meta name="twitter:url" content = {seoData.url}/>
         <meta name="twitter:description" content = {seoData.description}/>
         <meta name="twitter:image" content = {seoData.image}/>
