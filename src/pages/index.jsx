@@ -35,16 +35,16 @@ const IndexPage = ({data}) => {
             title="ASTRAY, DARNED OAF II: OAF Catches Strays"
             date="December 6, 2023"
             excerpt="We're bringing the band back together and doing yet another 12-months-of-IOTMs anagram contest. And this time, the prize is a Crimbo Elfling. (Wait, WHAT???)"
-            type="🎉 Active Contest 🎉"
+            type="Most Recent Contest"
           />
 
         <p></p>
 
         <HotDogLink 
               link={"/tools/"}
-              title="OnlyFax"
-              date="December 28, 2023"
-              excerpt="OnlyFax is a brand-new faxbot run by the Loathers collective. If you're a VIP Key holder wanting to use your VIP fax machine, you may want to check it out!"
+              title="Saṃsāra"
+              date="July 3, 2024"
+              excerpt="Saṃsāra is a new ascension database, a spiritual successor to KOLDB. It includes pretty graphs and user charts. It is under active development; please let the team know if you have requests!"
               type="Newest Tool"
               />
       </>
