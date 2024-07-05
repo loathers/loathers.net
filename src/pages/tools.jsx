@@ -10,6 +10,9 @@ const ToolsPage = () => {
     <Layout pageTitle="Tools">
       <ul className={layoutStyles.toolsGrid}>
           <li>
+            <h2><a href="https://samsara.loathers.net">Saṃsāra</a></h2>
+            <p>Saṃsāra is our new ascension history database. It includes a historical record of all player ascensions that have been played in the Kingdom of Loathing. This includes measurements for Gold Star runs and Pyrites (i.e., the current best mark in each unrestricted path).</p></li>
+          <li>
             <h2><a href="https://onlyfax.loathers.net">OnlyFax</a></h2>
             <p>OnlyFax is our new beta-version faxbot. We've got an online resource with all active faxes, a leaderboard of the most faxed monsters in the Kingdom, and support for clan fortune telling (with a few other bells and whistles). Check it out!</p></li>
           <li>
