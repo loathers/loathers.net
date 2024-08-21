@@ -1,0 +1,120 @@
+I've just uninstalled all of my TS development programs from my windows computer. Let's see what the process is like to get things installed again!
+
+Because I've done this before, I know I'll need to install the following:
+
+- An IDE, such as Visual Studio Code. Some people have told me that technically, VSCode isn't an IDE, but the important thing is that it's better than notepad and it's better than notepad++.
+- Node.js, a program which enables the entire javascript ecosystem to exist
+- A few things that are closely associated with Node.js and may come bundled with it: Node Version Manager (NVM), Node Package Manager (NPM), and probably some other stuff
+- Yarn, the package manager I actually want to use in life
+- Git, a version control system that we use in most things
+- Some VSCode extensions, which is really the candy on top of the sundae.
+
+# Visual Studio Code
+
+Let's start with the easiest: VSCode. It's a program made by Microsoft. I run windows, so this is really a match made in heaven. I'll download it [here](https://code.visualstudio.com/), via the extremely large button that says "Download for Windows". If you don't use Windows, I suggest you find a different button.
+
+I run the installer, using the default checkboxes for just about everything, and I'm done before I can finish typing this sentence. Seriously!
+
+# Node.js
+
+Next up, let's do Node.js! It's an extremely core thing I'll need to install, so it's up next.
+
+According to [the first google result](https://nodejs.org/en/download/package-manager), I can either install it via a package manager (I used chocolatey last time, which was the default option; fnm appears to be the default option as of the time of my writing this), or I can click a tab over and use a prebuilt installer. That seems easier?
+
+One of the listed package managers is nvm, which I mentioned on my list above! Shit!
+
+Don't worry, I googled "install nvm on windows" and have been directed [here](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows), which seems trustworthy. That directed me [here](https://github.com/coreybutler/nvm-windows#installation--upgrades), and the TL;DR sends me [here](https://github.com/coreybutler/nvm-windows/releases). I download nvm-setup.exe and go nuts. Next, I go back to the microsoft.com tab and follow more instructions. I'm already on step 5! I run powershell as an administrator, and type "nvm install latest" and it's party time already.
+
+EDITOR's NOTE: when I typed "nvm ls", it listed 20.12.1. I'm not personally sure if this is me being bad at uninstalling things (plausible!) or if 20.12.1 came with the nvm-for-windows thing (also plausible!).
+
+It's also worth doing a quick "nvm install lts" (long-term service), in case the latest version is _too_ cutting-edge. I'm going to do that, and type "nvm use lts", for now. Maybe I'll go back to "latest" later.
+
+# Yarn
+
+The first google result for "install yarn windows" was, unfortunately, [this](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable). Canny readers among you may have noticed an off-white (#fcf8e3, "Pearl Lusta") box telling you that this is actually old information. By clicking on that box, and going to "getting started", I've found myself in a wonderful world where things are telling me relevant information. And that world is [at your fingertips](https://yarnpkg.com/getting-started). Looks like I need to `corepack enable` and then go nuts later on. Let's actually put a pin in this--yarn is a package manager, and it's not worth using until I have something with packages to manage. Let's move on to git.
+
+# Git
+
+The [first google hit](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) sends me [here](https://git-scm.com/download/win), I download the 64-bit git, and I do actually do one deviation from the regular installation: when it asks me what default editor I want to use, because I am a coward and a man of weak moral standing, I chose Visual Studio Code (remember, from earlier?) rather than god-fearing, american VIM. I'm also going to go ahead and ask it to name my default branch "main" rather than "master", less for political reasons and more because that's the convention I see most places. Every other setting is beyond me, and I leave them at their default values. I'm gittin' here!
+
+# My first repo
+
+I'm going to clone an existing repo for my very first repo. The first thing I'm going to do is create a new folder somewhere on my computer--because I was born after 1990, that folder is on my desktop, and because it's 11:15 PM and I haven't slept very well lately, that folder is titled "New Folder."
+
+Next, I'm going to open VSCode, go to File > Open Folder, and open that folder. Shocking! I tell it to trust what it finds inside that folder (which is currently nothing, but later will be stuff)
+
+Next, I'm going to open a terminal in vscode. I do this by hitting ` ctrl+\``. In that terminal, I'm going to type  `git clone https://github.com/loathers/garbage-collector.git`. For viewers at home, you probably shouldn't clone `loathers/garbage-collector`, you should make a fork on github, and then clone that fork. Because we don't trust you enough to let you do stuff to `loathers/garbage-collector`.
+
+And here we hit the first snaggle of the night:
+
+```
+'git' is not recognized as an internal or external command,
+operable program or batch file.
+```
+
+Uh oh!
+
+I have two options here:
+
+- VSCode defaulted to opening a `command prompt`, but a little dropdown menu lets me open a `git bash`. And listen, if git itself doesn't recognize git as a command, that's when we're neck deep in hot dog water. This doesn't feel like a great solution though
+- First google hit leads me to [this](https://stackoverflow.com/questions/4492979/error-git-is-not-recognized-as-an-internal-or-external-command) stackoverflow post. I found that restarting the console wasn't enough, I had to close and re-open VSCode.
+
+Starting from about this point, it's important to acknowledge that:
+
+- We are all god's creatures, and each of us is different
+- My degree is in math, I am groping through all of this as blind as one of those cancer-immune mole rats
+- Despite the word "valid" being almost meaningless, everything is valid.
+
+What I do next is I go back to File > Open Folder and I open the garbage-collector folder. You might just `cd ./garbage-collector` in the terminal (it'll do something different). Gausie might do a secret third thing. We each have our ways of accessing new things, and if mine differs in some way from yours we just have to remember the great diversity of life on this earth and the fact that none of us has ever fallen from a coconut tree.
+
+# Okay, back to yarn
+
+`corepack enable`
+
+It doesn't say it did anything, but that strikes me as better than an error message.
+
+`yarn install`
+
+We're off to the races! This will take a while, and create a very large folder called "node_modules". That's fine, it's even good!
+
+Let's see if everything I did was morally just and true:
+
+`yarn build`
+
+```
+[eslint-config-garbo]: Process started
+[garbo-lib]: Process started
+[garbo-relay]: Process started
+[eslint-config-garbo]: Nothing to do
+[eslint-config-garbo]: Process exited (exit code 0), completed in 0s 417ms
+[garbo-lib]: Process exited (exit code 0), completed in 2s 849ms
+[garbo-relay]: vite v5.4.2 building for production...
+[garbo-relay]: transforming...
+[garbo-relay]: ✓ 34 modules transformed.
+[garbo-relay]: rendering chunks...
+[garbo-relay]: computing gzip size...
+[garbo-relay]: dist/relay/index.html                     5.36 kB │ gzip:   1.70 kB
+[garbo-relay]: dist/relay/garbage-collector/index.css    2.75 kB │ gzip:   1.07 kB
+[garbo-relay]: dist/relay/garbage-collector/index.js   232.45 kB │ gzip: 110.38 kB
+[garbo-relay]: ✓ built in 905ms
+[garbo-relay]: Process exited (exit code 0), completed in 4s 958ms
+[garbo]: Process started
+[garbo]: Dynamic import can only be transformed when transforming ES modules to AMD, CommonJS or SystemJS.
+[garbo]: Process exited (exit code 0), completed in 9s 38ms
+Done in 14s 43ms
+```
+
+Hell yeah, brother.
+
+Everything we've done so far works!
+
+# VSCode Extensions
+
+I use:
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions)
+- [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Prisma](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) (Only when working on OAF, and certain loathers things)
+- A bunch of other stuff that is less relevant
