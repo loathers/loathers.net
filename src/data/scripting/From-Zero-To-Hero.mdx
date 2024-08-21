@@ -9,6 +9,8 @@ Because I've done this before, I know I'll need to install the following:
 - Git, a version control system that we use in most things
 - Some VSCode extensions, which is really the candy on top of the sundae.
 
+Almost every link found here is found from googling phrases like "install vscode windows" or "install node.js windows" or "where to buy matcha whisk arlington" and clicking the first (or sometimes second) link. The incredible thing about the TypeScript ecosystem is that it exists outside KoL, so almost anything that happens to you is emminently googleable. And frankly, this is a part of the web that isn't yet enshittified. Get in while you can!
+
 # Visual Studio Code
 
 Let's start with the easiest: VSCode. It's a program made by Microsoft. I run windows, so this is really a match made in heaven. I'll download it [here](https://code.visualstudio.com/), via the extremely large button that says "Download for Windows". If you don't use Windows, I suggest you find a different button.
@@ -21,7 +23,7 @@ Next up, let's do Node.js! It's an extremely core thing I'll need to install, so
 
 According to [the first google result](https://nodejs.org/en/download/package-manager), I can either install it via a package manager (I used chocolatey last time, which was the default option; fnm appears to be the default option as of the time of my writing this), or I can click a tab over and use a prebuilt installer. That seems easier?
 
-One of the listed package managers is nvm, which I mentioned on my list above! Shit!
+One of the listed package managers is nvm, which I mentioned on my list above, but is greyed out for windows! Shit!
 
 Don't worry, I googled "install nvm on windows" and have been directed [here](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows), which seems trustworthy. That directed me [here](https://github.com/coreybutler/nvm-windows#installation--upgrades), and the TL;DR sends me [here](https://github.com/coreybutler/nvm-windows/releases). I download nvm-setup.exe and go nuts. Next, I go back to the microsoft.com tab and follow more instructions. I'm already on step 5! I run powershell as an administrator, and type "nvm install latest" and it's party time already.
 
@@ -37,15 +39,17 @@ The first google result for "install yarn windows" was, unfortunately, [this](ht
 
 The [first google hit](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) sends me [here](https://git-scm.com/download/win), I download the 64-bit git, and I do actually do one deviation from the regular installation: when it asks me what default editor I want to use, because I am a coward and a man of weak moral standing, I chose Visual Studio Code (remember, from earlier?) rather than god-fearing, american VIM. I'm also going to go ahead and ask it to name my default branch "main" rather than "master", less for political reasons and more because that's the convention I see most places. Every other setting is beyond me, and I leave them at their default values. I'm gittin' here!
 
+Editor's Note: Apparently my `git` folders already existed when I ran this wizard. I installed over it, so I consider this still in line with the goal of the experiment, which was recreating the experience of installing all of this from nothing without me having to buy a new computer or do anything remotely complicated like partitioning my drive and adding a new windows install (I assume people who know what a computer is have a much easier way of starting fresh here than "uninstalling everything", but I don't know what a computer is beyond as it is explained in Neal Stephenson's _Cryptonomicon_).
+
 # My first repo
 
-I'm going to clone an existing repo for my very first repo. The first thing I'm going to do is create a new folder somewhere on my computer--because I was born after 1990, that folder is on my desktop, and because it's 11:15 PM and I haven't slept very well lately, that folder is titled "New Folder."
+I'm going to clone an existing repo for my very first repo, because this guide isn't about creating git repos. Hell, most of the time when I start making things I'll create an empty git repo, then clone it, rather than creating a repo from an existing folder. Why? Because I don't know what I'm doing, and it's actually fine to not know what you're doing. The first thing I'm going to do is create a new folder somewhere on my computer--because I was born after 1990, that folder is on my desktop, and because it's 11:15 PM and I haven't slept very well lately, that folder is titled "New Folder."
 
 Next, I'm going to open VSCode, go to File > Open Folder, and open that folder. Shocking! I tell it to trust what it finds inside that folder (which is currently nothing, but later will be stuff)
 
 Next, I'm going to open a terminal in vscode. I do this by hitting ` ctrl+\``. In that terminal, I'm going to type  `git clone https://github.com/loathers/garbage-collector.git`. For viewers at home, you probably shouldn't clone `loathers/garbage-collector`, you should make a fork on github, and then clone that fork. Because we don't trust you enough to let you do stuff to `loathers/garbage-collector`.
 
-And here we hit the first snaggle of the night:
+And here we hit the second snaggle of the night (remember nvm for windows? I had to google a second thing):
 
 ```
 'git' is not recognized as an internal or external command,
@@ -56,7 +60,7 @@ Uh oh!
 
 I have two options here:
 
-- VSCode defaulted to opening a `command prompt`, but a little dropdown menu lets me open a `git bash`. And listen, if git itself doesn't recognize git as a command, that's when we're neck deep in hot dog water. This doesn't feel like a great solution though
+- VSCode defaulted to opening a `command prompt`, but a little dropdown menu lets me open a `git bash`. And listen, if git itself doesn't recognize git as a command, that's when we're neck deep in hot dog water. This doesn't feel like a great solution though, but I can guarantee it does work. I tried it!
 - First google hit leads me to [this](https://stackoverflow.com/questions/4492979/error-git-is-not-recognized-as-an-internal-or-external-command) stackoverflow post. I found that restarting the console wasn't enough, I had to close and re-open VSCode.
 
 Starting from about this point, it's important to acknowledge that:
