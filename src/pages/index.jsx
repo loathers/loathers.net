@@ -31,10 +31,10 @@ const IndexPage = ({data}) => {
         <p></p>
 
         <HotDogLink
-            link={"/shenanigans/winter-2023-contest/"}
-            title="ASTRAY, DARNED OAF II: OAF Catches Strays"
-            date="December 6, 2023"
-            excerpt="We're bringing the band back together and doing yet another 12-months-of-IOTMs anagram contest. And this time, the prize is a Crimbo Elfling. (Wait, WHAT???)"
+            link={"/shenanigans/autumn-2024-contest/"}
+            title="THE ROBOT'S BODYGUARDS: the Fall 2024 Contest"
+            date="September 6, 2024"
+            excerpt="Just like 2023, we're holding a contest with an enormous prize pool focused on getting the masses to embrace speed ascension! We're giving away 40+ IOTMs worth billions, alongside hundreds of millions of meat in random prizes. Are YOU ready to face the Robot's Bodyguards???"
             type="Most Recent Contest"
           />
 
