@@ -6,6 +6,7 @@ author: "Captain Scotch"
 section: "analysis"
 tag: "IOTM Overview"
 ---
+
 KOL has been around for a long time. A really long time! 2023's Legacy of Loathing should've made that very clear. If you want to be even MORE clear about it, though, they've created a new tradition. Every ten years, they make a new outlined turkey familiar. 2004 was the original hand turkey outline, 2014 was the fist turkey outline, and 2024 is now the peace turkey outline. While you start looking up odds on FanDuel for the 2034 turkey outline, let's take some time to analyze the lovely familiar we've been blessed with!
 
 ## General Summary
@@ -15,6 +16,7 @@ The Peace Turkey, as one may expect, is a familiar (just like the hand and fist)
 For those who don't recall, the Disgeist is a familiar who doesn't really "do" anything; equipping it just gives you a boost to your noncombat rate, at a formula of `Weight / 7.5` up to a maximum of -10% combat (which it achieves at 75 pounds). The Peace Turkey improves on that rate, increasing your noncombat rate at a formula of `Weight / 5`, maxing out at -10% NC at 50 pounds. 
 
 It does a lot of other random stuff too, though. Unlike Disgeist's cold lack of in-combat assistance or post-combat actions, the Peace Turkey is all about the love. It starts each combat with a delevel on round 1, blocks enemy attacks at random all throughout combat, and (sometimes) procs an after-combat boost in a specific order. In order, the boosts are:
+
 - Dropping **whirled peas**
 - Dropping an olive, either Jumbo or normal
 - Restoring `2*weight` HP and `weight` MP 
@@ -23,6 +25,7 @@ It does a lot of other random stuff too, though. Unlike Disgeist's cold lack of 
 - Dropping a piece of cake (4.5 adv/fullness awesome food of size 1)
 - Dropping a random advanced cocktailcrafting drink
 - Dropping a peace shooter (a 3-turn stun, similar to gas balloons from the hippy war)
+
 The activation rate for these boosts scales with familiar weight. The Peace Turkey will do an after-combat action `24+(weight)^.5` percent of the time. For normal ascension-relevant weights, this goes from a roughly 29% rate (at 26 lbs, with your customary 15 from perms in sympathy, empathy, and leash along with +10 from either the Apriling piccolo or the August Scepter's tiny gold medal) to a 31% rate (at 41 lbs, adding in the Platypus moonsign, lump of loyal latite, and the natural weight you'll acquire while using the familiar for +5 base fam weight). Neat!
 
 ## Speedrun Applicability
@@ -30,6 +33,7 @@ The activation rate for these boosts scales with familiar weight. The Peace Turk
 Before we get into postcombat drops, we'll start with the basics. Most people vastly underrate the power of increased noncombat rate in a speedrun. It makes some sense -- we have a *ton* of ways to force noncombats to happen, so most people just sort of shrug and assume that -com doesn't make a huge impact. 
 
 Spoiler alert -- it does! While there are a metric ton of noncombats we just end up forcing in the modern meta, even in maximally tricked out unrestricted, there's still *some* searching that needs to happen for a variety of noncombats. Take my [1/366 softcore run](https://docs.google.com/spreadsheets/d/1_8aegYxV8vS8BaDLQpD7D_pggt4c9uvgYdcg-ylgWOM/edit?usp=sharing) from "11 Things I Hate About U" earlier this year as an example. If you count the number of turn-taking noncombats in the run, I ended up having **eighty five** whole noncombats. Many of them were things like the Overgrown Shrine NCs, where you don't have to actually adventure for them. But there are a lot of NCs you have to seek out every run -- here's about 35:
+
 - 4-5 in spooky forest
 - 5 in spookyraven; billiards, ballroom, gallery, bathroom 
 - 6 in the airship
@@ -37,6 +41,7 @@ Spoiler alert -- it does! While there are a metric ton of noncombats we just end
 - 12 in the friar zones
 - 4+ in the castle basement, top floor, and middle (since it takes many turns to get your boning knife, if you need it!)
 - 1 war start NC
+
 This year, we have around 13 forcers. 1-2 of those are locked in for the Hidden City. That means that we are only handling 11 out of those 35 NCs with our forcers. It's a reasonably fair assumption that anyone trying can hit the NC rate softcap, so NC rate above that is measured in 1% increments. At 25% NC, you'd expect roughly 63 turns to hit those 35 NCs. At 26% NC, you'd expect 61. At 27% NC, you'd expect 59. And so on and so forth. Which leads to a generally useful rule: **in the modern meta, any NC source that can be used on all sought-out NCs in the run will save (roughly) 2 turns for every 1%**. 
 
 So, what does this mean for the Peace Turkey? Pretty good stuff! If TPTB drops even the slightest amount of additional familiar weight, we will be easily hitting the 50 cap for -10% NC by the time we need to actually look for NCs with our Turkey. Considering that as a +2% chance of NC across those NC hunts, that's worth (on average) 4 turns a run. So, that's a pretty great start for the Turkey's value.
@@ -44,10 +49,12 @@ So, what does this mean for the Peace Turkey? Pretty good stuff! If TPTB drops e
 Which gets us back to the postcombat drops. Most of them aren't stupendously useful. The piece of cake will be a nice supplemental food source for a tiny bit of additional turngen in a post-cookbookbat meta. The peace shooter will be a cute combat helper for some players. Jumbo Olives will make Professor Accodorian happy and provide minimal value for anyone else. 
 
 But then, you get whirled peas. Whirled peas are, by themselves, a very good joke and a very bad food item. But... you can combine them! 
+
 - A gnollish casserole dish and whirled peas combine into a +50% initiative potion
 - A bottle of vodka and whirled peas combine into a size 3 drink at 4 adv/drunk 
 - Flat dough and whirled peas combine into a size 2 food at 3.5 adv/full
 - ... and combining two whirled peas together gives you a **handful of split pea soup**, a freerun with a 30 turn banish!
+
 This is an *extremely nice* use of marginal familiar turns. Not only are you helping yourself search for necessary in-run NCs, you're *also* generating a banish every time you hit two whirled peas. Because the drop order is a given, you'll get your first banish on the 5th postcombat drop from your turkey and every other banish 8 postcombat drops after this.
 
 I did a bunch of math on this a few weeks ago while starting to plan out my end of year runs. The best way to think about this is by using a basic binomial expectation. My assumption was that in-run you would get to about a 30% postcombat rate. It might be a bit higher or lower depending on your shiny set, but that's a decent enough starting point. Because you only need 5 to get your first banish, you'll get that one in an average of 16 turns (with high variance). You'll get each banish thereafter at roughly 27 turns of using the familiar. 
