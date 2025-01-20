@@ -304,6 +304,8 @@ h7 {
 
 .content table {
     margin: 10px;
+    max-width: 100%; 
+    overflow: auto;
 }
 
 .content th {

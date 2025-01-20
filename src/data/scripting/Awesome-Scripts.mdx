@@ -1,6 +1,6 @@
 ---
 title: "Awesome KOL Scripts"
-date: "2022-07-12"
+date: "2025-01-12"
 slug: "awesome-scripts"
 author: "The Loathers Collective"
 section: "scripting"
@@ -9,8 +9,8 @@ tag: "Scripting Resources"
 This document contains a list of commonly used and (largely) regularly updated scripts that are used for a wide variety of different use cases. We've sorted these scripts out into four distinct categories, which are (in some cases) split into smaller sub-categories, such as farming & ascension within automation:
 
 - **Automation**: Scripts that allow you to automate pieces of KOL, usually for farming purposes.
-- **Organization**: Scripts that organize items and resources in specific ways
 - **Relay**: Scripts that create or modify pages in KoLMafia's relay browser, for added UI benefits and information
+- **Organization**: Scripts that organize items and resources in specific ways
 - **Miscellaneous**: Scripts that do not fit the mold of the other 3 categories; these are usually informational in nature, or automate specific tasks in specific ways
 
 If you would like to submit a script to be placed on this page, please post in the **#mafia-and-scripting** channel in the [Ascension Speed Society discord](https://discord.gg/8p7hh8BRSF); tag Captain Scotch (whose Discord name is DocRostov#7004) to ensure it gets seen in a timely fashion.
@@ -30,7 +30,17 @@ If you would like to submit a script to be placed on this page, please post in t
 | owner | link | usage |
 |---------|------|---------|
 | Kasekopf (#1210810) | [loopsmol GitHub](https://github.com/Kasekopf/loopsmol) | Follow GitHub instructions |
+
 **Loopsmol** is a script meant to run through one ascension of the [A Shrunken Adventurer Am I](https://kol.coldfront.net/thekolwiki/index.php/A_Shrunken_Adventurer_Am_I) challenge path. It is meant to complete your ascension in 1 day, allowing you to get to farming immediately after the completion of your run, similar to Kasekopf's loopcasual script described at the end of this page. This script is meant to be used by farmers with a massive number of IOTMs; 1-day looping in a <Link to="/scripting/cs-resources/">Community Service</Link> context generally takes significantly fewer IOTMs. This script is under active development and is changed relatively frequently, so be sure to keep up-to-date about it, and consider joining the discussion in the loopsmol thread within the #other-loops channel on the ASS discord.
+
+### looprobot
+| owner | link | usage |
+|---------|------|---------|
+| Kasekopf (#1210810) | [looprobot GitHub](https://github.com/Kasekopf/looprobot) | Follow GitHub instructions |
+
+**Looprobot** is a script meant to run through one ascension of the [You, Robot](https://kol.coldfront.net/thekolwiki/index.php/You,_Robot) challenge path. It is meant to complete your ascension in 1 day, allowing you to get to farming immediately after the completion of your run, similar to Kasekopf's loopcasual script described at the end of this page. This script is meant to be used by farmers with a massive number of IOTMs; 1-day looping in a <Link to="/scripting/cs-resources/">Community Service</Link> context generally takes significantly fewer IOTMs. This script is under active development and is changed relatively frequently, so be sure to keep up-to-date about it, and consider joining the discussion in the loopsmol thread within the #other-loops channel on the ASS discord.
+
+---
 
 ## Automation (Farming)
 
@@ -64,7 +74,7 @@ If you would like to submit a script to be placed on this page, please post in t
 ### delve
 | owner | link | usage |
 |---------|------|---------|
-| [Loathers](https://github.com/loathers) | [Delve GitHub](https://github.com/loathers/philter) | Run the script in the GCLI |
+| [Loathers](https://github.com/loathers) | [Delve GitHub](https://github.com/loathers/delve) | Run the script in the GCLI |
 
 **Delve** is the brainchild of one BurningBman, a B-man whose heart burns with a yearning desire to complete Fernswarthy's Basement in a fully automated way. The script is simple: do a few tasks (outlined in the readme), run `delve`, and watch as your character happily descends to level 500 in Fernswarthy's Basement, in order to get a coupon redeemable for one free telescope improvement. (Or, if you've maxed out your telescope, placement on the "most levels descended" leaderboard). It's great! 
 
@@ -75,27 +85,18 @@ If you would like to submit a script to be placed on this page, please post in t
 
 **Bountiul** is a Loathers fork of a well-worn ASH script from many years ago by RESPRiT, which was itself an adaptation of AutoBHH, by the motley crew of Izchak, Raorn, and Zarqon. It is a bounty hunting script, allowing for automation (over a long, long period of time) of the acquisition of [Transcendent Olfaction](https://kol.coldfront.net/thekolwiki/index.php/Transcendent_Olfaction), one of the absolute very best skills in the base game. We fixed a few long-running bugs in the script but kept the core the same; it is one of our very few ASH scripts (alongside TourGuide and Autoscend). Given the importance of Olfaction for most speedster runs, we highly recommend you give the script a try if you don't have the skill! 
 
-## Organization (Inventory Management)
-
-> Scripts you can use to manage the glut of items that passively accumulate in your inventory when you farm or ascend frequently
-
-### Philter
-| owner | link | usage |
-|---------|------|---------|
-| [Loathers](https://github.com/loathers) | [Philter GitHub](https://github.com/loathers/philter) | Run the script in the GCLI, after relay-organizing your items |
-
-**Philter** is a next-generation version of a classic KOL script, the "OCD Inventory Control" system designed by Bale of the KOLMafia forums. Philter's goal is to cleanse your inventory of junk items, autoselling & using items that warrant that action and mallselling or Sellbot-sending items that warrant mall action. This involves a detailed relay interface that can be used to sort, organize, and create rulesets around what you want Philter to do with your items. For a sample ruleset, Butts McGruff has shared his rules on the [ASS discord](https://discord.gg/8p7hh8BRSF) in a pinned post within the **#mafia-and-scripting** channel. It is worth noting that making a ruleset you are comfortable with takes quite a lot of time -- expect a significant period of adjustment even if you start at Butts' well-designed sample ruleset. 
-
-### Keeping Tabs
-| owner | link | usage |
-|---------|------|---------|
-| ReverKiller (#892618) | [Keeping Tabs GitHub](https://github.com/pstalcup/keeping-tabs) | Run the script in the GCLI, after tab-organizing your items |
-
-**Keeping Tabs** is a lower-user-effort version of Philter (discussed above), which uses the native KOL inventory tab system to organize your items and allow users to modify their desired tab behavior. Essentially, you as a user just need to make a number of custom-named tabs that reflect what you want to do to your items; running `keeping-tabs` will then do exactly what you told it to do, flushing your inventory out and emptying it in the way you outlined. There is no active support system for Keeping Tabs -- if you have questions, please post an [issue](https://github.com/pstalcup/keeping-tabs/issues) on the GitHub linked above and Rev will get to it on his own time. 
+---
 
 ## Relay (General Purpose)
 
 > General purpose scripts that improve your playing experience in KoL's relay browser
+
+### Yorick
+| owner | link | usage |
+|---------|------|---------|
+| [Loathers](https://github.com/loathers) | [Yorick GitHub](https://github.com/loathers/yorick) | After installing, select it from the topbar of the relay browser to run the assistant |
+
+**Yorick** is an advice script. It provides a large-scale summary of all available resources that you -could- be using in KoL, with things like lists of available free banishes, steps to complete active quests, tips on how to finish tasks in the fewest turns, and large bright reminders/tracking when you have a limited use resource up that you may want to go to a specific place to use. Originally based conceptually on TourGuide (linked below), Yorick is a rebuilt version of the TourGuide framework using more modern coding frameworks, a TypeScript/React baseline, and a few additional features. 
 
 ### TourGuide
 | owner | link | usage |
@@ -111,6 +112,8 @@ If you would like to submit a script to be placed on this page, please post in t
 
 **ChIT** is an upgraded character pane. It features a vastly customizable set of tiles that can be moved, twiddled, and re-sized to create a perfect view of what you need to know about your character. Many speed ascenders use it explicitly for the additional support it gives for quick equipment swaps, familiar management, easy buff shrugging & management, and highlighted timers that allow you to remind yourself of future actions you should do in future turns. It is under active development and generally supports IOTMs relatively soon after they are released; if you have ChIT installed and notice that new IOTMs are not supported, please check the GitHub to see if an update was pushed, and consider deleting/re-installing; due to the "always on" nature of ChIT vs other scripts, it is slightly more common for people to experience issues where ChIT does not properly update. Soolar is an active member on the [ASS discord](https://discord.gg/8p7hh8BRSF) and is actively developing ChIT; if you have questions, please post issues on the GitHub or reach out in the **#mafia-and-scripting** channel. 
 
+---
+
 ## Relay (Supplemental UI)
 
 > Scripts that provide supplemental user interfaces for various IOTMs and game elements over the years, improving your user experience by making usage a little easier
@@ -121,6 +124,27 @@ If you would like to submit a script to be placed on this page, please post in t
 | [Loathers](https://github.com/loathers) | [8Bit-Relay GitHub](https://github.com/loathers/8bit-relay) | Shows up in the relay browser when you visit the 8-Bit Realm |
 
 **8Bit-Relay** is a relay override that helps navigate the brand-new (by KOL standards) 8-Bit realm. In January 2023, the entire realm was redesigned, now featuring a bonus-zone structure where your bonus zone shifts every 5 turns spent in the realm. This relay override by Beldur (and maintained, insofar as maintenance is needed, by Loathers) drastically simplifies the matter, showing you exactly which zone is the bonus zone and letting you know how close or far you are to capping the bonus with your active enchantments. It's great!
+
+### c2t_megg
+| owner | link | usage |
+|---------|------|---------|
+| c2t (#3286685) | [c2t_megg GitHub](https://github.com/C2Talon/c2t_megg) | Shows up in the relay browser when you visit the DNA Bank |
+
+The **c2t_megg** script adds several useful features to the Chest Mimic's DNA Bank. First, it removes the articles that make sifting through the dropdown somewhat annoying. Second, it turns the basic dropdown into a filterable search menu; allowing you to, for instance, type "gremlin" and get a list of all monsters with "gremlin" in the name. This is a killer feature! It also keeps a maintained list of donated monsters, to prevent users from donating eggs to the DNA bank that are already fully donated. It's a small shot of extra features, but very welcome and powerful. Thanks, c2t!
+
+### Genie
+| owner | link | usage |
+|---------|------|---------|
+| Ezandora (#1557284) | [Genie GitHub](https://github.com/Ezandora/Genie) | Shows up in the relay browser when you make a wish |
+
+**Genie** is a relay override that makes wishing using the [genie bottle](https://kol.coldfront.net/thekolwiki/index.php/Genie_bottle) in KoL considerably easier to do. The native UI for wishes (both pocket wishes and rubbing the Genie bottle) is frustratingly simplistic, requiring checking the wiki to figure out how to do even very basic activities; Ezandora's relay override fixes this issue by spawning a page that gives you a well-formatted list of possible options you can use for your wish. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. Also of note -- due to the Book of Facts re-adding pocket wishes to standard, this relay script is once again very valuable. If you're a BoFA owner, this script comes **highly** recommended!
+
+### Autumn-aton override
+| owner | link | usage |
+|---------|------|---------|
+| Tissen | [Forum Post]() | Shows up in the relay browser when sending your Autumn-aton on an adventure |
+
+The **Autumn-aton override** script is a nice quality-of-life improvement for early run excursions with everyone's favorite autumnal beep-boop friend. This script groups Autumn-aton destinations by difficulty and indoor/outdoor/underground. It also adds a short reminder what the different upgrades found in these destinations do, and what the default reward is. Groups that have upgrades not yet installed are marked with an asterisk (*). Essentially, it makes it less necessary to have a wiki page up all the time telling you exactly what the autumn-aton zones do, which is a great help. Thanks, Tissen!
 
 ### Briefcase
 | owner | link | usage |
@@ -135,13 +159,6 @@ If you would like to submit a script to be placed on this page, please post in t
 | Lacey Jones (#2993889) | [Pizza Cube GUI GitHub](https://github.com/ggvgiu/PizzaCubeGUI/) | Shows up in the relay browser when you click on your workshed with the Pizza Cube installed |
 
 **Pizza Cube GUI** is a relay override that improves the experience of baking diabolic pizzas in KoLMafia. The [Diabolic Pizza Cube](https://kol.coldfront.net/thekolwiki/index.php/Diabolic_pizza_cube) IOTM allows users to sacrifice four items into your pizza oven to generate a diabolic pizza. The items chosen give the pizza various effects and beneficial attributes to the user. This GUI features predictions of the effects pizza would generate with a given selection of items, suggestions for possible pizzas that could be helpful to you, various ways to filter and sort large inventories when trying to make your perfect pizza, and filters out effects that do not work in the pizza cube. Highly recommended if you plan on baking pizzas in your KOL career. Lacey is a semi-active user in the [ASS discord](https://discord.gg/8p7hh8BRSF); if you have questions, please post issues on the GitHub or reach out in the **#mafia-and-scripting** channel for our scripters to take a look. 
-
-### Genie
-| owner | link | usage |
-|---------|------|---------|
-| Ezandora (#1557284) | [Genie GitHub](https://github.com/Ezandora/Genie) | Shows up in the relay browser when you make a wish |
-
-**Genie** is a relay override that makes wishing using the [genie bottle](https://kol.coldfront.net/thekolwiki/index.php/Genie_bottle) in KoL considerably easier to do. The native UI for wishes (both pocket wishes and rubbing the Genie bottle) is frustratingly simplistic, requiring checking the wiki to figure out how to do even very basic activities; Ezandora's relay override fixes this issue by spawning a page that gives you a well-formatted list of possible options you can use for your wish. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. Also of note -- due to the Book of Facts re-adding pocket wishes to standard, this relay script is once again very valuable. If you're a BoFA owner, this script comes **highly** recommended!
 
 ### Shorts UI
 | owner | link | usage |
@@ -178,6 +195,28 @@ If you would like to submit a script to be placed on this page, please post in t
 
 **Source Terminal GUI** is a relay override that simplifies usage of the [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_Terminal) IOTM. Natively, the terminal effectively acts as a unix-style terminal, ingesting commands like "dir, exit, help, ls, reset, status" and running enhance/enquiry/educate/extrude commands at the user's urging. It's a very cute piece of native UI, but can be a little annoying if you have to use it every single ascension; Ezandora's GUI takes the text-based terminal and turns it into a button-based GUI where you simply need to press easily labeled buttons to get the terminal to do what you want. This script is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. It still worked in Legacy of Loathing, for example, the summer 2023 challenge path with a replica terminal. It'll probably work for your needs too!
 
+---
+
+## Organization (Inventory Management)
+
+> Scripts you can use to manage the glut of items that passively accumulate in your inventory when you farm or ascend frequently
+
+### Philter
+| owner | link | usage |
+|---------|------|---------|
+| [Loathers](https://github.com/loathers) | [Philter GitHub](https://github.com/loathers/philter) | Run the script in the GCLI, after relay-organizing your items |
+
+**Philter** is a next-generation version of a classic KOL script, the "OCD Inventory Control" system designed by Bale of the KOLMafia forums. Philter's goal is to cleanse your inventory of junk items, autoselling & using items that warrant that action and mallselling or Sellbot-sending items that warrant mall action. This involves a detailed relay interface that can be used to sort, organize, and create rulesets around what you want Philter to do with your items. For a sample ruleset, Butts McGruff has shared his rules on the [ASS discord](https://discord.gg/8p7hh8BRSF) in a pinned post within the **#mafia-and-scripting** channel. It is worth noting that making a ruleset you are comfortable with takes quite a lot of time -- expect a significant period of adjustment even if you start at Butts' well-designed sample ruleset. 
+
+### Keeping Tabs
+| owner | link | usage |
+|---------|------|---------|
+| [Loathers](https://github.com/loathers) | [Keeping Tabs GitHub](https://github.com/loathers/keeping-tabs) | Run the script in the GCLI, after tab-organizing your items |
+
+**Keeping Tabs** is a lower-user-effort version of Philter (discussed above), which uses the native KOL inventory tab system to organize your items and allow users to modify their desired tab behavior. Essentially, you as a user just need to make a number of custom-named tabs that reflect what you want to do to your items; running `keeping-tabs` will then do exactly what you told it to do, flushing your inventory out and emptying it in the way you outlined. There is no active support system for Keeping Tabs -- if you have questions, please post an [issue](https://github.com/loathers/keeping-tabs/issues) on the GitHub linked above and Rev will get to it on his own time. 
+
+---
+
 ## Miscellaneous
 
 > Scripts that cannot be described by man or beast. Or Chat-GPT, probably. I dunno. Maybe Llama2 can do it, couldn't hurt to try!
@@ -202,6 +241,8 @@ If you would like to submit a script to be placed on this page, please post in t
 | Ezandora (#1557284) | [Gain GitHub](https://github.com/Ezandora/Gain) | Run the script in the GCLI |
 
 In a nutshell, **Gain** is an efficient buffing script. It will analyze pricing on various buff options and get the user to the cheapest possible configuration that achieves their goals. As the help file states, `gain 400 initiative` is a command that will figure out the most cost-efficient way to get your character to 400 initiative and get you there. This is most useful in the context of other scripts, but can be useful in limited scenarios within an ascension, for instance if you are trying to quickly complete an ascension and need to hit a specific threshold for a specific test. As with other scripts by Ezandora, Gain is not actively updated or maintained, but has not required significant changes in years, so likely will still work very well for your purposes. It relies on Mafia's background data when running its calculations, so it is likely it will still evaluate things that were released after the script's most recent update (in December 2023, as of this writing). 
+
+---
 
 ## Awesome KoL Scripts... that require Compiling
 
