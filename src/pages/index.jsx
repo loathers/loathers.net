@@ -31,10 +31,10 @@ const IndexPage = ({data}) => {
         <p></p>
 
         <HotDogLink
-            link={"/shenanigans/autumn-2024-contest/"}
-            title="THE ROBOT'S BODYGUARDS: the Fall 2024 Contest"
-            date="September 6, 2024"
-            excerpt="Just like 2023, we're holding a contest with an enormous prize pool focused on getting the masses to embrace speed ascension! We're giving away 40+ IOTMs worth billions, alongside hundreds of millions of meat in random prizes. Are YOU ready to face the Robot's Bodyguards???"
+            link={"/shenanigans/winter-2025-contest/"}
+            title="PASSING TIME III: Time After Time"
+            date="January 20, 2025"
+            excerpt="To pass the time between the new year and the Spring Challenge Path, we are hosting a speed ascension contest! Every entrant gets 3 million, and the top 12 runs get a piece of a roughly 3 billion meat prize pool. Check it out and enter now!"
             type="Most Recent Contest"
           />
 
