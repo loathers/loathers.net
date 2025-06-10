@@ -1,0 +1,178 @@
+---
+title: "Prismatic Beret: Overview"
+date: "2025-06-07"
+slug: "2025-06-beret"
+author: "Captain Scotch"
+section: "analysis"
+tag: "IOTM Overview"
+---
+
+For this month's IOTM, we get a hat. This makes sense, given that the current challenge path is primarily a [chapeau-focused affair](https://kol.coldfront.net/thekolwiki/index.php/Hat_Trick). June's hat is a beret, a style of hat that is actually quite a bit more common in the kingdom than I realized. We have berets of the following flavors: bark, bauxite, brimstone, Elf Guard red/white, raspberry, seasonal, and silent. Since it's Pride month, the prismatic beret is going to massively increase the number of accessible colors beret-lovers can plop on their head, as the item's color range adds 42 additional berets. But will these myriad colors help you ascend faster? The answer is yes -- let's find out how!
+
+## General Summary
+
+The prismatic beret is a hat. The hat gives you access to three skills (busking, boasting, and blasting), as well as a truly bonkers quantity of enchantments. The beret's enchantments are all tied to the calculation `P = HAT POWER + SHIRT POWER + PANTS POWER`. In my view, the easiest way to understand the menu of enchantments is to hew back to the beret's bonus Damage Absorption. The beret's DA is `BDA = P / 5`. Every other enchantment increases as the `BDA` increases, like so: 
+
+- Flat mysticality, muscle, and moxie (gaining 1 point each 2 `BDA`, in that order) 
+- Flat HP & MP (gaining 1 point each `BDA`, in that order)
+- +% Hat Drop from Monsters (gaining 1 point each 2 `BDA`)
+- Elemental Resistance (gaining 1 point each 8 `BDA`, in the order of hot, cold, spooky, stench, and sleaze)
+- Elemental Damage (gaining 1 point each 2 `BDA`, in the order of cold, spooky, stench, sleaze, and hot)
+- Elemental Spell Damage (gaining 1 point each 2 `BDA`, in the order of sleaze, stench, spooky, hot, and cold)
+
+There is a soft cap on the value of `P` at 1100 power; after 1100 power, additional `P` is added at the discounted rate of of `P ^ 0.8`, slowing the enchantment gains. `P` is subject to several boosters -- Tao of the Terrapin (which doubles hat/pants power) is counted for this equation, as is the effect "Hammertime", an effect from 2011's Tome of Clip Art that adds +300% to your pants power.
+
+For the three skills: 
+
+- Beret Boast is an 11/day skill that delevels your opponent, deleveling them by roughly 20% of your `BDA`.
+- Beret Blast is an 11/day skill that damages your opponent with prismatic damage, doing roughly 75% to 85% of your `BDA` of each element -- including physical.
+- Beret Busk is a 5/day skill that grants you `P/100` buffs. More on this one later!
+
+## Speedrun Applicability
+
+Let's get the enchantments out of the way first. In a speedrun, most of these enchantments are relatively unhelpful. There are a few small niche benefits you can glean from them. In rough order of power:
+
+- You can get a tiny bit of extra cold resistance for your early Mmm-brr mouthwash leveling. It's worth noting: you really can't get much! In standard, if you use your best turn 0 gear (the beret + the tearaway pants), you end up juuust short of a 2nd point, so it's +1 cold res. If you grab astral shirt, or use your wardrobe-o-matic pull bizarrely early, it's +2. Not a huge add, but neat.
+- You can get a bit of extra resistance for the Blech House noncombat in the Smut Orc Logging Camp. Here, assuming you wait until later in run when you can equip the Distressed Denim Pants and your wardrobe-o-matic shirt, you can get +2, which is... fine. You probably don't need it to max your bridge parts, but everything helps.
+- Similarly, you can get a bit of extra sleaze damage to help you with the Mob of Zeppelin Protestors -- once again, this isn't a massive boost; because you are almost certainly using your tearaway pants, this is only +14 overall sleaze if you wear the 100-power wardrobe shirt. If you happen to do some Hammertime shenanigans, this goes up to +26, but that isn't a huge amount of damage in the grand scheme of things.  
+- The additional % chance of hat drop is pretty cute. There are two useful hats you try to get in most runs -- the Mohawk Wig (a 10% drop hat from the airship's Burly Sidekick) and the Knob Goblin harem veil (a 20% drop hat from the knob's Harem Girl). This will be a mildly helpful drop boost for these items, but not a ton; think in the neighborhood of 30-50% extra drop. Might be able to avoid dropping a yellow ray on the harem girl, but you probably *won't* be able to avoid one for the sidekick.
+- The prismatic damage will likely simplify the picture a bit for the elemental damage needed for the tavern, too, which may free up some equipment space for more monster level or noncombat gear.
+
+Beyond that, you get a bit of survivability; similar to the June Cleaver's combat simplification, this will have you rolling into fights with a bunch of extra damage and a bit of extra DA, which is cute. The Boast/Blast skills are similar here; a neat little gob of prismatic damage or small deleveling might help a low-shiny adventurer in some hard fights. 
+
+If these were the only things this IOTM did, this would be a pretty awful IOTM. Luckily, there's one last thing, and it's the crux of why this IOTM is going to be a useful player in the next 2.5 years of speed ascending.
+
+## We Must, We Must, We Must Increase Our Busk
+
+... and, yes, of course: it's busking. It makes us feel good, or so I'm told. For the next few years, it'll probably make speedrunners feel crazy.
+
+The way busking works is pretty wild. In a nutshell, it's an out-of-combat skill that generates a paltry amount of meat, along with 10 turns each of a bunch of effects. The number of effects you get is based on the overall `P` used to derive the rest of the hat's enchantment amounts -- the higher the `P`, the more effects you get. The effects are from a pool similar to the [ittah bittah hookah](https://kol.coldfront.net/thekolwiki/index.php/Ittah_bittah_hookah) and [Crazy Horse](https://kol.coldfront.net/thekolwiki/index.php/A_Horsery) effect pools. If you are unfamiliar with how these pools operate, here are some basic rules:
+
+- The effects must be "positive" -- that means if an effect has something TPTB deem a "negative" attribute (e.g., decreases your stats, makes fights harder, decreases one modifier to increase another), it is ineligible for the busking effect pool. Traditionally, ML and combat rate modification are seen as a "negative" effects due to increasing fight difficulty or changing the overall combat expectation of a zone, so both are (largely) not in the pool, with singular exceptions discussed later.
+- The effects must not be avatar potion effects; there are a ton of avatar potions in the game, and this (helpfully) keeps the pool of effects a bit more skewed away from actively useless effects.
+- The effects must not be scaling effects; during spading, we discovered that effects that scale according to the amount of turns of the effect remaining seem to be ineligible (things like [Roly Poly](https://kol.coldfront.net/thekolwiki/index.php/Roly_Poly), which scales additional initiative per the # of turns remaining)
+- Effects that gain you access to specific zones are ineligible; I.E., no Half-Astral, Transpondent, Dis Abled, Absinthe-Minded, Shadow Affinity, etc. 
+
+In addition to these general rules, there are a lot of otherwise positive effects that are ineligible due to TPTB manually declaring the effects to be `nohookah` (the internal game tag for an effect ineligible for these positive random effect generators). Some effects are ineligible because they're -too- good -- for example, do-it-all effects like Frosty and Shadow Waters. Some are ineligible because they only come from very specific IOTM sources and are not meant to be accessed without those sources and the associated resource tradeoff from those sources -- for example, the +rollover adventure effects from the April Shower shield food and booze. And some are just not eligible due to random toggles unknowable by man, like [Beefy](https://kol.coldfront.net/thekolwiki/index.php/Beefy), a +1 prismatic resist effect.
+
+If the effects were truly random, this IOTM would be a frustrating roll of the dice every single run. Instead, this IOTM is a puzzle to be solved in each and every run, because the effects you get are **not** random. They aren't predictable through some easy heuristic, but the noble spades of the Ascension Speed Society (namely Semenar & Phillammon, with assistance from Beefy & The Hunters) figured out how to crack the random number seed and solve the derivation of your busk effects. There are now multiple ways to access your menu of busks:
+
+- One is a Loathers.net tool -- [beret.loathers.net](https://beret.loathers.net). This can be used to either search for specific effects or view what you'll get on a given cast of your busk for the `P` (shirt + hat + pants power) you are rolling your busk with. 
+- One is a mafia tool, the [BuskerSolver](https://github.com/Ignose/buskersolver) by Seraphiii. Once installed, you can run something along the lines of `busker-solver modifiers="Item Drop, Familiar Weight"` for the script to output a number of different busks with the best results for that specific group of modifiers. (You can also use the `uselesseffects` option to exclude buffs you can trivially generate with your own resources).
+- Finally, mafia itself now has support for busking. Run `jsref busk` in the GCLI for some information about the various busking preferences; if you are looking for more detail, the [mafia pull request](https://github.com/kolmafia/kolmafia/pull/2941) where Gausie built in the busk support should give you more information.
+
+Having covered the basics of busking, let's get to the heart of busking's strategic value -- the actual effects you can generate in a run. 
+
+### Busking: Notable Singular Effects
+
+First, we'll start out with a few interesting turnsaving effects that may be worth busking for. 
+
+- **Dirty Pear** is an effect that doubles your sleaze and sleaze spell damage, a great thing to do when completing your mob of Zeppelin protestors. With the <Link to="/analysis/2023-12-candy-cane-sword">Candy Cane Sword Cane</Link> in standard, this busk saves 1-2 turns; it generally saves 2+ turns without the CCSC, and saves some effort in procuring all the possible sources of sleaze damage.
+- **Riboflavin'** is an effect that allows you to pickpocket. That's it! It is a pretty nice thing to have pickpocket (effectively) on demand, despite all our shiny pickpocket-likes that can also serve the purpose (i.e. swoops, the deft pirate hook, septapus, the FLART...). This likely is worth about 1 turn if used creatively in concert with waffling.
+- **Salty Mouth** is an effect that gives +5 adventures and is consumed if you drink a beer, like an Astral Pilsner. No real turnsave here, but being able to snag 5 turns per salty mouth accessible wish is going to be a huge turnbloat boon for any paths that are on the precipice of a 1-day run.
+- **Craft Tea** and **Inigo's Incantation of Inspiration** are effects that gives 1 free craft in exchange for 5 turns of the effect. As busking gives you 10 turns, that's two free crafts for any busk that happens to hit either of these. You may be able to get away with using Crafting Plans from the <Link to="/analysis/2025-03-leprecondo">Leprecondo</Link>, but if you're going to need to spend any turns crafting, this could save you those turns!
+- **Stone-Faced** is the effect normally acquired through stone wool. You need two stone wool every ascension to unlock the Hidden City for the Level 11 quest. In the modern meta, you actually want 3, to reset the <Link to="/analysis/2024-05-mayam-calendar">Mayam calendar</Link>. Getting three generally requires spending a yellow ray on Baa'Baa, the 11-leaf-clover adventure for the Hidden Temple. With busking, you may be able to avoid this by using a peridot adventure to get a stone sheep, swooping one wool, and forcing the drop for your three, saving one of your few yellow rays for something else. I doubt everyone will be doing this, but it's a real option!
+- **Hammertime**, as discussed earlier, increases your pants power by +300%. This opens up avenues for different (higher power) busks. Not directly turnsaving, but if it opens up big busks that encase multiple effects, it can be useful!
+
+### Busking: Notable Enchantments 
+
+Having covered the singular effects with interesting non-enchantment boosts, let's cover a few key enchantments that may be worth busking for, alongside a few of the best busk options for each.
+
+- **MEAT DROP** is a good one for both 8-Bit Realm and the war sidequest where you retrieve the Nuns' stolen meat. Helpfully, this quest will usually take \<10 turns, so the low duration on these effects isn't a big deal. The amount of turns saved by an individual meat drop effect is entirely dependent on how much meat drop you actually have, but 100% tends to be worth 0.5 to 0.75 turns. There's one meat drop effect in the pool that's 200% -- **Sinuses For Miles**, for 200%. After that, there are a bunch of 100% effects, then a bunch of 50-80% effects. 
+- **ITEM DROP** is helpful for many areas in a run; for example, the Nook, the Red Zeppelin, Spookyraven Basement, the Airship, Oil Peak, Twin Peak, A-Boo Peak, and 8-Bit Realm, just to name a few. The 10 turn duration is a bit harmful here, as many of these tasks will take you more than 10 turns, and fitting all of them into a single stretch of busks is very unlikely to be possible. The best effect  here is **One Very Clear Eye** for +100% item drop. Other useful ones: **Melancholy Burden** for 60%, **Always Be Collecting** for 50% (& +100% meat!), and **Polka Face** for 55%.
+- **FAMILIAR EXPERIENCE** is helpful for lowering the number of turns needed to level up your Chest Mimic for extra copies, or (in general) to level up a familiar who needs more weight. There aren't a ton of available buffs that help here, but there are a few; you can generate +5 experience with either **Warm Shoulders** or **Your Days Are Numbed**. Note that the latter is available via the <Link to="/analysis/2025-03-leprecondo">Leprecondo</Link>; it may in some cases help your routing to generate it via busking, but we would (generally) recommend aiming for Warm Shoulders instead. 
+- **FAMILIAR WEIGHT** is largely helpful for juicing the odds on Peace Turkey drops, and is mildly helpful for small assistance with meat/item drops. It also converts to a bit of ML when applied to your Purse Rat. There are a metric ton of familiar weight buffs available through busking. The most notable one is probably **Hip to the Jive**, which gives +10 weight and +2 familiar experience. Other useful ones that are largely impossible to access otherwise are **Healthy Green Glow**, **Bureaucratized**, **Down With Chow**, and **Joy** -- all for +10 familiar weight. 
+- **COLD RESISTANCE** is helpful in concert with Mmm-brr mouthwash. It's pretty unlikely that this is going to be a big target for those with full IOTM suites, but for players who lack some of the big cold resistance buffs in standard, busking can help you level quicker. The best effect here is **Fever From the Flavor** for +9 resistance, but it is unfortunately inaccessible in most buff configurations. **Super Structure** and **Yeah, It's Just Gasoline** are +5 resistance and somewhat available in the 2nd busk, although you could certainly make an argument against them given the need to waste a first busk before accessing them.
+- **INITIATIVE** is not very useful for most players in Standard, as we have a truly absurd number of initiative sources. However, if you're missing some shinies, you might want to use a busk or two to bulk up your initiative to find Modern Zmobies in the Cyrpt or pass the 8-Bit Realm initiative test. The best effect here is **Hare-o-dynamic** for +300% initiative.
+
+In addition to these six enchantments, there are two other useful enchantments that bear mentioning even though there aren't many actual options for them:
+
+- **MONSTER LEVEL** is considered a negative/neutral effect by TPTB, so it is virtually absent in the effect pool. However, there is one single available source of ML: **Muddled**, for +15 ML. I'm not sure you actually want to spend busks on it, but it is available to you. 
+- **COMBAT RATE** is also considered a negative/neutral effect, so it generally is not allowed in these kinds of pools. There are two exceptions, and they're intimately connected: **Become Superficially Interested** and **Become Intensely Interested**. These are both effects from the New-You Calendar IOTM from 2017. Superficial gives -5% combat, and Intense gives +5% combat. The reason this effect is unambiguously positive is that either of the effects toggle to the other one; you can click on the effect description and toggle back and forth between + or - combat as needed. Again, only 10 turns of it, but a useful effect to keep an eye on.
+
+### Busking: Considerations & Routing 
+
+Having covered a few of your busk targets, it's worth discussing a few important considerations that this IOTM introduces. 
+
+Firstly, busking gets better the more busk options you have. In some theoretical ascension where you only had one pair of pants and no shirts, you'd be locked in to only 2 different configurations (beret + pants, beret + no pants) for your 5 buffs, which (probably) wouldn't have any of these effects in it. The more pants and shirts you can acquire, the wider range of `P` values you can achieve with your equipment, which means you have more and more options of what to grab. Increasing this optionality is critical to get the most out of your busks.
+
+Secondly, this IOTM dramatically increases the value of Tao of the Terrapin; paths with Tao and without Tao will feel completely different, as they will have different available suites of effects from your 5 daily busks. In general, busks of a higher power have a better chance of being "good" than busks of a lower power. This is due to simple math -- if you have, say, 10% of the effect pool that helps you, you're more likely to draw one of those effects if you have more chances at drawing them. If you haven't permed Tao, you probably want to.
+
+Thirdly, this IOTM adds a **lot** more crafting pressure than previously existed in speedruns, and adds new value to many unused pieces of the base game. When it comes to producing busks, the more shirts and pants you can generate to modify the `P` value that produces your buffs, the larger universe of busk options you'll have available to you. To wit, here is a table going over some in-run accessible shirts and pants.
+
+INSERT TABLE HERE
+
+As you can see, differentially powered pants are *significantly* easier to access than shirts, with the only two shirts available on turn zero being the astral shirt (50) and futuristic shirt from the Wardrobe-o-Matic (100). There are a bunch of shirts you can craft using Armorcraftiness, however, with the White Snakeskin Duster (45), Demonskin Jacket (80), and the yak anorak (115) perhaps the most interesting three. There are also some you may just want to grab, like the bronze breastplate (105). 
+
+Pants-wise, there are a bunch of power levels you can get from smithing as well -- specifically, the barskin loincloth (25) and basic meat pants (40) open up new power levels. The Armory in Market Square gives you access to 20, 30, 50, 80, 110, and 140 as soon as you have the meat (which, in all cases, double when you have Tao, or quadruple when you have Tao + Hammertime). 
+
+Still -- if you need to craft in order to get a specific power for a buff you want, you'll want to make sure you can do it for free. In the case of the loincloth, the meat pants, and a frilly skirt, that can be done simply by choosing a friendly Degrassi Knoll sign in your ascension; Smith Innabox can freely create those two craftables, and the skirt can be snagged in the store. For the other Armorcraftiness entries, you will either need to busk up Craft Tea or Inigo's (as previously discussed) or snag crafting plans from the Leprecondo. 
+
+None of this is impossible to juggle, but all of it creates a lot more routing pressure around snagging the shirts and pants you need to properly optimize your busks. It also creates an ever-widening universe of busk availability. As an example, let's say that you grab all of the easily available items in the table above, along with a yak anorak and a bronze breastplate. That's 4 shirts and 12 pants. Counting the possibility of not wearing shirts/pants, that gets you (roughly) 65 different options for `P`. Add in hammertime, and that's 130 different options. Every additional pant you get adds 10 more options for `P`, and every additional shirt gets you 13-15. And it gets even more complicated -- that's only for one busk. Because each busk has a different seed, the 130 options for one seed becomes roughly *650* options over 5 seeds. (Math nerds: yes, this is the upper limit, I know.)
+
+That's a lot! Too much, perhaps. So let's try and make it a bit easier.
+
+### Busking: Example 2025 Standard Busks 
+
+Having covered singular buffs, enchantments, and the various considerations one might think about when selecting their targeted busks, we are now going to do **three levels** of example standard busks, with increasing complexity. Our hope is that the first level is good enough for a speed ascender who just wants an easy, straightforward suite, the second level gives you a bit more to chew on, and the third level gives you a deep dive on how you might go about generating these yourself. 
+
+For this set of busks, we want **the simplest usage possible.** We are ignoring the existence of Hammertime and are just giving you one busk per cast that should be generically useful and good in one specific situation that will save a decent number of turns. To try and avoid routing confusion, these are all meant to be used (essentially) on top of each other.
+
+1. YAK ANORAK + ANTIQUE GREAVES = +100% meat
+2. NO SHIRT + UNION SCALEMAIL PANTS = +80% meat, +40% item 
+3. NO SHIRT + TEARAWAY PANTS = 60% meat 
+4. YAK ANORAK + ANTIQUE GREAVES = 100% meat, 90% item 
+5. NO SHIRT + TEARAWAY PANTS = 50% meat, 25% item 
+
+If done during nuns, this gets you (in total) 390% meat and 155% item drop; that massive gob of +meat will likely get you way below 10 turns on nuns, so the item% can be used after you finish nuns on any of the item% targets discussed above. Pretty good stuff! 
+
+Having covered one simple suite, we're now going to give a selection of the best busks for different situations and goals, with 3 different "goals" to achieve per busk slot. Please note that these power levels are all assuming that you have permed **Tao of the Terrapin**, as discussed earlier.
+
+- For Busk \#1...
+    - If you want higher **item drop**, get a total of +75% item and +50% meat at 220 power. (Gear: no shirt, tearaway pants)
+    - If you want **free crafts**, get 2 free crafts via Craft Tea at 285 power. (Gear: bronze breastplate, paper-plate-mail pants)
+    - If you want more **familiar experience**, get +5 via Warm Shoulders at 280 power. (Gear: futuristic shirt, paper-plate-mail pants)
+- For Busk \#2...
+    - If you want to **grab more shadow bricks**, get **Riboflavin'** at 65 power. (Gear: white snakeskin duster, no pants)
+    - If you want higher **meat OR item drop** and **help unlocking the Red Zeppelin, get a total of +75% meat and +60% item alongside Dirty Pear at 230 power. (Gear: astral shirt, paper-plate-mail pants) ... note that you'll need to have 11-13 drunkenness for the 75% meat, because nothing is easy in this life.
+    - If you want to **modify your combat rate**, get + or - 5% combat at 445 power. (Gear: yak anorak, bloodied surgical dungarees)
+- For Busk \#3...
+    - If you want higher **item drop**, get a total of +70% item drop at 225 power. (Gear: surgical apron, barskin loincloth)
+    - If you want higher **meat drop**, get a total of +100% meat drop at 245 power. (Gear: surgical apron, frilly skirt)
+    - If you want **free crafts** and **potential sleaze damage turnsave**, get +100 sleaze damage, +25% item, and 2 free crafts at 375 power. (Gear: surgical apron, tearaway pants)
+- For Busk \#4...
+    - If you want to **unlock the Red Zeppelin**, get *Dirty Pear* at 80 power. (Gear: no shirt, frilly skirt)
+    - If you want higher **meat OR item drop**, get a total of +100% meat and +90% item at 435 power. (Gear: yak anorak, antique greaves) 
+    - If you want to **generate some meat via weird autosell goods*, get *Serendipity* and +30% item at 415 power. (Gear: yak anorak, alpha-mail pants) ... note: the in-run Serendipity pool is the [pool skimmer item pool](https://kol.coldfront.net/thekolwiki/index.php/Pool_skimmer)
+- For Busk \#5...
+    - If you want higher **meat drop**, get +100% meat drop at 70 power (Gear: astral shirt, no pants)
+    - If you want higher **initiative or item drop**, get +300% initiative and +30% item at 300 power. (Gear: no shirt, alpha-mail pants)
+    - If you want anything else, you're out of luck, because busk the seeds for busk \#5 are strangely terrible.
+
+And finally, if you want to experience Hammertime, likely in a 1-day run, get yourself 540% meat drop for nuns alongside +5 turns generated with...
+
+- Use Busk #1 to generate 10 turns of Hammertime -- equip the white snakeskin duster & old sweatpants for 85 power.
+- Use Busk #2 to generate 240% meat drop -- equip the astral shirt & distressed denim pants for 750 power.
+- Use Busk #3 to generate +5 turns from Salty Mouth -- equip the unrequired jacket & antique greaves for 780 power.
+- Use Busk #4 to generate 200% meat drop -- equip the white snakeskin duster & the hippopotamus pants for 575 power.
+- Use Busk #5 to generate 100% meat drop -- equip the futuristic shirt & antique greaves for 720 power.
+
+## 2025 In-Standard Synergies
+
+- As noted, this IOTM has significant synergy with the <Link to="/analysis/2024-08-tearaway-pants">tearaway pants</Link> (2024). The first obvious synergy is simply the access to 100 power pants on turn 0. The second important synergy is through pants pickpocketing; using the "tear off your pants" skill can get you a handful of useful in-run pants that can open up different busking options. Specifically, you may want to use your tearaway pants to grab the following pantalones:
+    - (OFF PATH) The **los chinos** (55 power) from the *lumberjuan* in Camp Logging Camp
+    - The **antique greaves** (150 power) from the *empty suit of armor* in the Haunted Gallery
+    - (OFF PATH) The **dress pants** (115 power) from the *Bubblemint twins* in Twin Peak 
+    - The **flowing hippy skirt** (180 power) from the *War Hippy Elder Shaman* in the Battlefield (in a frat uniform, after 250 Battlefield kills)
+- This IOTM has synergy with the <Link to="/analysis/2025-03-leprecondo">Leprecondo</Link> (2025), as the condo's crafting plans can increase the universe of busks you can access.
+- This IOTM has synergy with the <Link to="/analysis/2024-09-sept-ember-censer">Sept-Ember Censer</Link> (2024) by generating cold res for Mmm-brr stats.
+- This IOTM can generate familiar experience for your <Link to="/analysis/2024-01-chest-mimic">Chest Mimic</Link> (2024), making it easier to grab your faxes and copies.
+- It's not quite a synergy, but it's worth noting that busking is quite aligned with wishing as a game mechanic. It's basically wishing's annoying cousin. Wishing is accessible via pocket wishes from the <Link to="/analysis/2023-09-bofa">Book of Facts</Link> (2023) or paw wishes from the Cursed Monkey Paw (2023). Notably, because busks are only 10 turns, wishing provides a bit more wiggle room for using the effect you're generating by giving you more turns of it; this certainly makes it better than busking for things like mimic XP or for an attempt to put all the item drop zones together. There also are certain effects that are accessible via wishing that are not via busking, like **Frosty** (+100% item, +200% meat), **Polonoia** (+50 ML), or **Ultrahydrated** (not useful if you have BOFA, but unambiguously useful if you don't). When planning out your runs, keep that in mind! 
+
+In addition to those in-standard synergies, there is one out-of-standard synergy that bears mention:
+
+- If you own a **Mad Hatrack** (2008), you can cast the busking skill by equipping the prismatic beret on the hatrack and equipping youself with whatever hat you want. This opens up a -bonkers- universe of additional busks, as the hat on your head is the hat that's active for the busk calculations. You're swapping out a 10 power hat with anything from 0 to 300, which is also doubled by Tao. It's wacky, dude. 
+
+## Overall Rating
+
+We rate the prismatic beret a tier 2 IOTM. I struggled a lot with what to rate this one. It's genuinely pretty hard to rank! The non-busk uses are worth fractional turns at best, so that can be mostly ignored for the purposes of ranking the IOTM. Busking represents a massive amount of extra item and meat drop, and is flexible enough to help you in a lot of different areas. It opens up your wishes for more items snagged with the Monkey's Paw and interesting edge case uses for your pocket wishes. If you use the Hammertime suite noted above, or the other simple "item/meat" configuration, busking represents about 4-5 turns saved; if you're a bit more clever and use it judiciously to solve a bunch of different tasks, you can inch it closer to 6-7 turns saved. In my head, I tend to think of wishes as worth "roughly a 1-2 turns" -- due to the shorter duration on these effects and the (frankly) annoying resource tradeoffs you have to make to generate them, I think it's more apt to consider busks as closer to a flat 1 turn saved. That lands us around 6 turns saved in expectation -- on the edge of a T1 IOTM, but not *quite* there. 
