@@ -36,9 +36,11 @@ I'm going to be real with you: I've never built a React site before, and I had a
 I will also note -- although the site doesn't look AMAZING, it looks OK, and further layout overrides will need to be approved through me. I did a lot of work on this thing, and any core layout change that adds -any- possible overhead to generating content will probably be rejected and/or heavily pushed on. (Sorry -- managed a bunch of blogs in my time. Every piece of additional friction on content contributors will make it hard to impossible to get people to write anything for the site, and it'll just become me toiling away.)
 
 ## To-Do List
+- I am converting the to-do list into GitHub Issues. This is because I am an adult, and adults just use GitHub Issues for their problems. 
+
 - Put the site online!
 - MDX isn't linking up properly with any of the remark image plugins I tried to use. However, you can get around this pretty easily by just uploading images to GitHub instead, as images do work when they are externally sourced. Not a perfect solution but it works fine for now.
-- RSS feed support via an allMdx query-to-xml generator
+- RSS feed support via an `allMdx` query-to-xml generator
 - OAF integration so that OAF knows when new articles get published (probably after the RSS feed, seems like that would be easiest)
 - Would be nice to set up next/previous post buttons within our two content streams (analysis & scripting)
 - When we complete a mafia data API, I really want to make IOTM boxes that generate on site build that pop up with an in-game item card. That way we can pepper IOTM analysis with images of the item without taking screenshots of every item.
