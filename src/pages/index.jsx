@@ -42,9 +42,9 @@ const IndexPage = ({data}) => {
 
         <HotDogLink 
               link={"/tools/"}
-              title="Saṃsāra"
-              date="July 3, 2024"
-              excerpt="Saṃsāra is a new ascension database, a spiritual successor to KOLDB. It includes pretty graphs and user charts. It is under active development; please let the team know if you have requests!"
+              title="Beret"
+              date="June 4, 2025"
+              excerpt="Beret is a web tool you can use to determine what effects you'll get from busking with the Prismatic Beret. Use it to find busks for specific effects & what you'll get at specific power levels!"
               type="Newest Tool"
               />
       </>
