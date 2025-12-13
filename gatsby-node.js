@@ -8,8 +8,12 @@ const postTemplate = path.resolve('./src/templates/post.jsx');
 //   post buttons, among other things, so I am switching to a gatsby-node structure
 
 exports.createPages = async ({ actions, graphql }) => {
+    const { createPage, createRedirect } = actions
 
-    const { createPage } = actions
+    createRedirect({
+      fromPath: "/contribute",
+      toPath: "https://opencollective.com/loathers"
+    });
 
     // Grab all MDX files with non-null titles
     const { data } = await graphql(`
