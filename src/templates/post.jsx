@@ -4,21 +4,52 @@ import Seo from '../components/seo'
 import { graphql, Link } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { StaticImage } from 'gatsby-plugin-image'
+import * as layoutStyles from '../components/layout.module.css'
 import Warning from '../components/warning'
 
 const shortCodes = { Link, StaticImage, Warning }
 
 export default function GeneratePost({data, pageContext, children}) {
 
+    const previous = pageContext.previous
+    const next = pageContext.next
+    const needsPagination = Boolean(previous) || Boolean(next)
+
     return (
       <>
         <Layout>
             <h1>{pageContext.title}</h1>
             <h6>{pageContext.date} // {pageContext.tags}</h6>
+            {needsPagination && (
+            <nav>
+              <ul className={layoutStyles.navLinks}>
+                {previous && (
+                    <li><Link to={`/${previous.frontmatter.section}/${previous.frontmatter.slug}`} className={layoutStyles.navLinkText}>   ← {previous.frontmatter.title}</Link></li>
+                  )}
+                <li className={layoutStyles.navSpacer}> </li>
+                  {next && (
+                      <li><Link to={`/${next.frontmatter.section}/${next.frontmatter.slug}`} className={layoutStyles.navLinkText}>{next.frontmatter.title} →   </Link></li>
+                    )}
+              </ul>
+            </nav>
+          )}
             <MDXProvider components={shortCodes}>
               {children}
             </MDXProvider>
             <h7>Article contributed by {pageContext.author}</h7>
+          {needsPagination && (
+            <nav>
+              <ul className={layoutStyles.navLinks}>
+                {previous && (
+                    <li><Link to={`/${previous.frontmatter.section}/${previous.frontmatter.slug}`} className={layoutStyles.navLinkText}>   ← {previous.frontmatter.title}</Link></li>
+                  )}
+                <li className={layoutStyles.navSpacer}> </li>
+                  {next && (
+                      <li><Link to={`/${next.frontmatter.section}/${next.frontmatter.slug}`} className={layoutStyles.navLinkText}>{next.frontmatter.title} →   </Link></li>
+                    )}
+              </ul>
+            </nav>
+          )}
         </Layout>
       </>
     )
