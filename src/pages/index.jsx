@@ -34,7 +34,7 @@ const IndexPage = ({data}) => {
             link={"/shenanigans/winter-2026-contest/"}
             title="PASSING TIME IV: PAST TO THE FUTURE"
             date="January 5, 2025"
-            excerpt="To pass the time between the new year and the Spring Challenge Path, we are hosting a speed ascension contest! Every entrant gets 3 million, and the top 12 runs get a piece of a roughly 3 billion meat prize pool. Check it out and enter now!"
+            excerpt="To pass the time between the new year and the Spring Challenge Path, we are hosting a speed ascension contest! The top 30 runners will all get one standard IOTM of their choice. That's dope! Check it out and enter now!"
             type="Most Recent Contest"
           />
 
