@@ -1,4 +1,3 @@
-import remarkGFM from 'remark-gfm'
 import * as dotenv from 'dotenv'
 
 dotenv.config({path: '.env'});
@@ -7,13 +6,18 @@ dotenv.config({path: '.env'});
 const config = {
   siteMetadata: {
     title: `loathers.net`,
-    version: '1.0.1',
+    version: '1.0.2',
     siteUrl: `https://www.loathers.net`,
     github:`https://github.com/loathers/`,
     description: `Modern analysis and scripting advice for Kingdom of Loathing players`,
     image:`/images/loathersLogo.png`,
   },
   plugins: [
+    "gatsby-plugin-image", 
+    "gatsby-plugin-sitemap", 
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -21,14 +25,13 @@ const config = {
         path: `./src/data`,
       }
     },
-    "gatsby-plugin-image", 
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'images',
         path: './src/images',
       }
     },
-    "gatsby-plugin-sitemap", 
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -36,16 +39,22 @@ const config = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1200,
+              maxWidth: 800,
             }
           }
-        ],
-        mdxOptions: {
-          remarkPlugins: [remarkGFM]
-        }
+        ]
       }
     },
-    "gatsby-plugin-sharp", 
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          quality: 70,
+          formats: ['auto', 'webp', 'avif'],
+          placeholder: 'blurred',
+        },
+      },
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -53,14 +62,12 @@ const config = {
           { 
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth:600,
+              maxWidth:800,
             }
           }
         ]
       }
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-styled-components",
   ]
 };
 

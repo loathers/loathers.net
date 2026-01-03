@@ -2,12 +2,13 @@ import React from 'react'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 import { graphql, Link } from 'gatsby'
+// import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
-import { StaticImage } from 'gatsby-plugin-image'
+import { StaticImage, getImage, GatsbyImage } from 'gatsby-plugin-image'
 import * as layoutStyles from '../components/layout.module.css'
 import Warning from '../components/warning'
 
-const shortCodes = { Link, StaticImage, Warning }
+const shortCodes = { Link, StaticImage, Warning, getImage, GatsbyImage }
 
 export default function GeneratePost({data, pageContext, children}) {
 
@@ -35,6 +36,8 @@ export default function GeneratePost({data, pageContext, children}) {
           )}
             <MDXProvider components={shortCodes}>
               {children}
+              {/* {pageContext.embeddedImagesLocal && (<MDXRenderer localImages={embeddedImagesLocal}>{children}</MDXRenderer>)} */}
+              {/* {!pageContext.embeddedImagesLocal && (<MDXRenderer>{children}</MDXRenderer>)} */}
             </MDXProvider>
             <h7>Article contributed by {pageContext.author}</h7>
           {needsPagination && (

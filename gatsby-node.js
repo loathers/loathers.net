@@ -1,6 +1,28 @@
 const path = require('path');
 const postTemplate = path.resolve('./src/templates/post.jsx');
 
+// // Due to my constant attempts to fix Gatsby's complete inability to render local 
+// //   images, I ended up having to build a stupid fucking schema to add an optional
+// //   GraphQL field for images. I hate this stupid fucking backend.
+
+// exports.createSchemaCustomization = ({ actions, schema }) => {
+//   const { createTypes, printTypeDefinitions } = actions;
+
+//   createTypes(`
+//     type Mdx implements Node {
+//       frontmatter: Frontmatter
+//       embeddedImagesRemote: [File] @link(from: "fields.embeddedImagesRemote")
+//     }
+    
+//     type Frontmatter @dontInfer {
+//       title: String!
+//       embeddedImagesLocal: [File] @fileByRelativePath
+//       embeddedImagesRemote: [String]
+//     }
+//     `);
+
+//   printTypeDefinitions({ path: './typeDefs.txt' });
+// };
 
 // The Gatsby learn-to-build docs started out with a file system route API form of
 //   collecting posts. After further research, that doesn't -quite- do it for me;
@@ -92,6 +114,7 @@ exports.createPages = async ({ actions, graphql }) => {
             internal:post.node.internal,
             previous: previous ? previous : null,
             next: next ? next : null,
+            // embeddedImagesLocal:post.node.embeddedImagesLocal,
         },
       })
     })
