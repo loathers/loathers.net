@@ -12,7 +12,7 @@ const IndexPage = ({data}) => {
       <>
         <Warning emoji="">Everything on this site is a potential KOL spoiler. Proceed at your own risk!</Warning>
 
-        <p>Welcome to <b>Loathers.net</b>, a new site managed by the <a href="https://github.com/loathers/">Loathers Scripting Collective</a>! We are a group of coders who play and contribute to a long-running browser game, <a href="https://www.kingdomofloathing.com/">the Kingdom of Loathing.</a> We're going to be using this site over the coming years to store analysis of the modern speed game, how our collective scripts tools for the game, and host semi-annual contests. We hope you enjoy our dulcet tones and sick beats.</p>
+        <p>Welcome to <b>Loathers.net</b>, a webpage managed by the <a href="https://github.com/loathers/">Loathers Scripting Collective</a>! We are a group of coders who play and contribute to a long-running browser game, <a href="https://www.kingdomofloathing.com/">the Kingdom of Loathing.</a> We're going to be using this site over the coming years to store analysis of the modern speed game, how our collective scripts tools for the game, and host semi-annual contests. We hope you enjoy our dulcet tones and sick beats.</p>
 
         {data.allMdx.nodes.map(
           ( {excerpt, frontmatter }) => (
@@ -42,9 +42,9 @@ const IndexPage = ({data}) => {
 
         <HotDogLink 
               link={"/tools/"}
-              title="Beret"
-              date="June 4, 2025"
-              excerpt="Beret is a web tool you can use to determine what effects you'll get from busking with the Prismatic Beret. Use it to find busks for specific effects & what you'll get at specific power levels!"
+              title="Pricegun"
+              date="November 20, 2025"
+              excerpt="Pricegun is a web tool for finding data on item prices in the Mall of Loathing. It uses a time-weighted average accumulator to summarize recent marketplace data. Check it out!"
               type="Newest Tool"
               />
       </>
