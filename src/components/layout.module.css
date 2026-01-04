@@ -453,3 +453,8 @@ footer {
     margin-right: auto;
     width: 80%;
 }
+
+.legendary {
+    background-color: black; 
+    color: #ff8000;
+}

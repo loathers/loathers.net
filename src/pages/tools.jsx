@@ -10,6 +10,9 @@ const ToolsPage = () => {
     <Layout pageTitle="Tools">
       <ul className={layoutStyles.toolsGrid}>
           <li>
+            <h2><a href="https://pricegun.loathers.net">Pricegun</a></h2>
+            <p>Pricegun is a web tool for finding data on item prices in the Mall of Loathing. It uses a time-weighted average accumulator to summarize recent marketplace data. Check it out!</p></li>
+          <li>
             <h2><a href="https://beret.loathers.net">Beret</a></h2>
             <p>Beret is a web tool for determining what effects you'll get from busking with the <a href="https://loathers.net/analysis/2025-06-beret">Prismatic Beret</a>. Use it to find busks for specific effects & what you'll get at specific power levels!</p></li>
           <li>
