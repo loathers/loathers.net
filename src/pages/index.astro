@@ -1,0 +1,60 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HotDogLink from "@components/HotDogLink.astro";
+import Warning from "@components/Warning.astro";
+import { getPostsBySection, formatDate } from "@lib/posts";
+
+const analysisPosts = await getPostsBySection("analysis");
+const newest = analysisPosts[0];
+---
+
+<BaseLayout pageTitle="Home">
+  <Warning emoji="">
+    Everything on this site is a potential KOL spoiler. Proceed at your own
+    risk!
+  </Warning>
+
+  <p>
+    Welcome to <b>Loathers.net</b>, a webpage managed by the <a
+      href="https://github.com/loathers/">Loathers Scripting Collective</a
+    >! We are a group of coders who play and contribute to a long-running
+    browser game, <a href="https://www.kingdomofloathing.com/"
+      >the Kingdom of Loathing.</a
+    > We're going to be using this site over the coming years to store analysis
+    of the modern speed game, how our collective scripts tools for the game, and
+    host semi-annual contests. We hope you enjoy our dulcet tones and sick
+    beats.
+  </p>
+
+  {
+    newest && (
+      <HotDogLink
+        link={`${newest.data.section}/${newest.data.slug}`}
+        title={newest.data.title}
+        date={formatDate(newest.data.date)}
+        excerpt={newest.body?.slice(0, 200) || ""}
+        type="Newest Analysis"
+      />
+    )
+  }
+
+  <p></p>
+
+  <HotDogLink
+    link="/shenanigans/winter-2026-contest/"
+    title="PASSING TIME IV: PAST TO THE FUTURE"
+    date="January 5, 2025"
+    excerpt="To pass the time between the new year and the Spring Challenge Path, we are hosting a speed ascension contest! The top 30 runners will all get one standard IOTM of their choice. That's dope! Check it out and enter now!"
+    type="Most Recent Contest"
+  />
+
+  <p></p>
+
+  <HotDogLink
+    link="/tools/"
+    title="Pricegun"
+    date="November 20, 2025"
+    excerpt="Pricegun is a web tool for finding data on item prices in the Mall of Loathing. It uses a time-weighted average accumulator to summarize recent marketplace data. Check it out!"
+    type="Newest Tool"
+  />
+</BaseLayout>

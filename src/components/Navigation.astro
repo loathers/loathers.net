@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import layoutStyles from "./layout.module.css";
+import githubLogo from "../images/github-logo20px.png";
+import opencollectiveLogo from "../images/opencollective-logo20px.png";
+---
+
+<nav>
+  <ul class={layoutStyles["nav-links"]}>
+    <li>
+      <a href="/" class={layoutStyles["nav-link-text"]}>home</a>
+    </li>
+    <li>
+      <a href="/analysis" class={layoutStyles["nav-link-text"]}
+        >📒 analysis</a
+      >
+    </li>
+    <li>
+      <a href="/tools" class={layoutStyles["nav-link-text"]}>🔨 tools</a>
+    </li>
+    <li>
+      <a href="/scripting" class={layoutStyles["nav-link-text"]}
+        >💾 scripting</a
+      >
+    </li>
+    <li>
+      <a href="/community" class={layoutStyles["nav-link-text"]}
+        >🤸 community</a
+      >
+    </li>
+    <li class={layoutStyles.navSpacer}>&nbsp;</li>
+    <li>
+      <a href="https://github.com/loathers">
+        <Image src={githubLogo} alt="github" width={20} height={20} />
+      </a>
+    </li>
+    <li>
+      <a href="https://opencollective.com/loathers">
+        <Image
+          src={opencollectiveLogo}
+          alt="opencollective"
+          width={20}
+          height={20}
+        />
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import layoutStyles from "./layout.module.css";
+import Navigation from "./Navigation.astro";
+import loathersLogo from "../images/loathersLogo75px.png";
+---
+
+<header>
+  <a href="/">
+    <div class={layoutStyles.loathersHead}>
+      <Image
+        src={loathersLogo}
+        alt="A martini glass in black and white"
+        width={75}
+        height={75}
+      />
+      Loathers<span class={layoutStyles.dotNet}>.net</span>
+    </div>
+  </a>
+  <Navigation />
+</header>

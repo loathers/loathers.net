@@ -1,0 +1,96 @@
+---
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import "@styles/global/reset.css";
+import layoutStyles from "@components/layout.module.css";
+import { SITE } from "@lib/constants";
+
+interface Props {
+  pageTitle: string;
+  pathName?: string;
+}
+
+const { pageTitle, pathName = "" } = Astro.props;
+const url = `${SITE.siteUrl}${pathName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle} | {SITE.title}</title>
+    <meta name="description" content={SITE.description} />
+    <meta name="image" content={SITE.image} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:description" content={SITE.description} />
+    <meta name="twitter:image" content={SITE.image} />
+    <link rel="icon" href={SITE.image} />
+  </head>
+  <body>
+    <div class={layoutStyles.container}>
+      <Header />
+      <div class={layoutStyles.content}>
+        <slot />
+      </div>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelectorAll(".astro-code").forEach((pre) => {
+    const code = pre.querySelector("code");
+    if (!code) return;
+
+    const language =
+      pre.getAttribute("data-language") ||
+      pre.className
+        .split(" ")
+        .find((c) => c.startsWith("language-"))
+        ?.replace("language-", "") ||
+      "";
+
+    const wrapper = document.createElement("div");
+    wrapper.style.cssText =
+      "background:#011627;border-radius:0.5rem;margin-top:2rem;margin-bottom:2rem;padding-left:1.5rem;";
+
+    const header = document.createElement("div");
+    header.style.cssText = "display:flex;position:relative;";
+
+    const langLabel = document.createElement("div");
+    langLabel.style.cssText =
+      "background:#ffffff;margin-right:1rem;padding-left:0.5rem;padding-right:0.5rem;text-transform:uppercase;border-bottom-left-radius:0.5rem;border-bottom-right-radius:0.5rem;font-family:Lato,system-ui,-apple-system;font-weight:bold;text-align:center;display:flex;justify-content:center;align-items:center;";
+    langLabel.textContent = language;
+
+    const spacer = document.createElement("div");
+    spacer.style.flexGrow = "1";
+
+    const copyBtn = document.createElement("button");
+    copyBtn.style.cssText =
+      "margin-right:1.5rem;margin-top:0.5rem;padding:8px 12px;background:#00f5c426;border:none;border-radius:8px;cursor:pointer;color:#E2E8F0;font-size:14px;font-family:sans-serif;line-height:1;";
+    copyBtn.textContent = "Copy";
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(code.textContent || "");
+      copyBtn.textContent = "🎉 Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
+    });
+
+    header.append(langLabel, spacer, copyBtn);
+
+    const preParent = pre.parentNode!;
+    preParent.insertBefore(wrapper, pre);
+
+    const codeWrapper = document.createElement("div");
+    codeWrapper.style.cssText =
+      "overflow:auto;background:#011627;border-radius:0.5rem;";
+
+    (pre as HTMLElement).style.backgroundColor = "transparent";
+    (pre as HTMLElement).style.float = "left";
+    (pre as HTMLElement).style.minWidth = "100%";
+
+    codeWrapper.appendChild(pre);
+    wrapper.append(header, codeWrapper);
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  name: string;
+  link: string;
+}
+
+const { name, link } = Astro.props;
+---
+
+<div class={layoutStyles.hotDogLink} style="background-color:SlateGray">
+  <h1 style="background-color:DarkSlateGray">
+    <a href={link}>{name}</a>
+  </h1>
+  <div class={layoutStyles.flexBreak}></div>
+  <li><slot /></li>
+</div>
+<p></p>

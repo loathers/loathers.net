@@ -1,0 +1,14 @@
+---
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  emoji?: string;
+}
+
+const { emoji = "⚠️" } = Astro.props;
+const displayEmoji = emoji === "" ? "⚠️" : emoji;
+---
+
+<div class={layoutStyles.warnBox}>
+  {displayEmoji} <slot /> {displayEmoji}
+</div>

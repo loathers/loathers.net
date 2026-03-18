@@ -1,0 +1,39 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getPostsBySection, formatDate } from "@lib/posts";
+
+const posts = await getPostsBySection("scripting");
+---
+
+<BaseLayout pageTitle="Scripting" pathName="/scripting">
+  <p>
+    Unlike our speedgame analysis, our scripting assistance articles are
+    semi-rarely updated. Still, these should (hopefully!) give curious readers a
+    good starting point from which to start scripting up your very own KOLMafia
+    scripts.
+  </p>
+  <p>
+    For our suite of scripts, <a href="https://github.com/loathers"
+      >check out our GitHub!</a
+    >
+  </p>
+  <hr />
+  <h1 style="text-align:center">Scripting Articles</h1>
+  <article>
+    <dl>
+      {
+        posts.map((post) => (
+          <>
+            <a href={`/scripting/${post.data.slug}`}>
+              <dt>
+                <h2>{post.data.title}</h2>
+                <p>{formatDate(post.data.date)}</p>
+              </dt>
+            </a>
+            <dd>{post.body?.slice(0, 200)}</dd>
+          </>
+        ))
+      }
+    </dl>
+  </article>
+</BaseLayout>

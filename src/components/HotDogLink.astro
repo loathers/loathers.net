@@ -1,0 +1,28 @@
+---
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  title: string;
+  date: string;
+  excerpt: string;
+  link: string;
+  type: string;
+}
+
+const { title, date, excerpt, link, type } = Astro.props;
+const isNewest = type === "Newest Analysis";
+const bgColor = isNewest ? "FireBrick" : "SlateGray";
+const headerColor = isNewest ? "Maroon" : "DarkSlateGray";
+---
+
+<a href={link}>
+  <div class={layoutStyles.hotDogLink} style={`background-color:${bgColor}`}>
+    <h1 style={`background-color:${headerColor}`}>{type}</h1>
+    <div class={layoutStyles.flexBreak}></div>
+    <li>
+      <h2>{title}</h2>
+      {date !== "" ? date : ""}
+    </li>
+    <li>{excerpt}</li>
+  </div>
+</a>
