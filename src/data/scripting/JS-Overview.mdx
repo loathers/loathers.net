@@ -17,7 +17,7 @@ The single biggest advantage that Javascript has over ASH is the fact that it is
 This is a very silly question that I've put into your mouth, and so it gets a very silly answer. An answer to one interpretation of this question is Rhino, a Javascript engine written in Java (despite their names, these languages are unrelated), that Mafia uses to read Javascript, uh, scripts.
 
 An answer to another interpretation of this question is pretty similar to ASH: just start writing. When you write in Javascript, you'll need to import any mafia functions you plan on using, by having a big chunk of text at the top of your script that essentially looks like this:
-```JavaScript
+```javascript
 const {
  adv1,
  availableAmount,
@@ -41,19 +41,19 @@ This is a programming concept which means, in practical terms, that you can catc
 The Loathers collective provides two very helpful packages for TypeScript projects. The first is [Libram](https://github.com/loathers/libram), an all-purpose toolkit meant to extend existing mafia functions, with the end goal of making it just about the only external module any KoL scripter will ever need. Its features include the `get()` function, which is a modified version of mafia's `getProperty()` that returns objects of the appropriate type. It also has a system of template literals that makes it slightly easier to talk about Items and Familiars and Skills and the sort. 
 
 This small change adds up a lot:
-```TypeScript
+```typescript
 if (get("_sourceTerminalDigitizeMonster").maxMeat > $monster`garbage tourist`.maxMeat)
 ```
 is much shorter and more legible than
-```TypeScript
+```typescript
 if (toMonster(getProperty("_sourceTerminalDigitizeMonster")).maxMeat > Monster.get("garbage tourist").maxMeat)
 ```
 The other spicy package we provide is libram-linked: it is the [eslint Libram plugin](https://github.com/loathers/eslint-plugin-libram), which is used across all Loathers TypeScript projects. ESLint is a tool that analyzes Javascript and TypeScript code for bad code and bad form, and the plugin adds a variety of features, the most important of which is its ability to verify constants. Normally, in Javascript, if I write something like
-```Javascript
+```javascript
 Item.get("Unwrapped retro knock-off superhero cape")
 ```
 the code will get through just fine, it'll reach mafia, and mafia'll throw a tantrum over the fact that there is no such item. With the eslint Libram plugin, however, it'll catch that
-```TypeScript
+```typescript
 $item`Unwrapped retro knock-off superhero cape`
 ```
 is wrong, and you'll be able to correct it with the name of the [correct item](https://wiki.kingdomofloathing.com/Unwrapped_knock-off_retro_superhero_cape) before compiling and running your code.

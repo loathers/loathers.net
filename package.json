@@ -18,9 +18,9 @@
     "typecheck": "astro check"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/mdx": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
-    "astro": "^5.18.1"
+    "astro": "^6.0.5"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

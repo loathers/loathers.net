@@ -44,7 +44,7 @@ To test any of these, you can simply run them in the GCLI. For example:
 These are all relatively similar, but differences in syntax and structure become more pronounced as scripts get more complicated. Here are two examples of a more complex task: returning all one-handed weapons that you have, sorted by familiar weight. 
 
 In Javascript, this would look like:
-```JavaScript
+```javascript
 Item.all()
   .filter((item) => availableAmount(item) > 0 && weaponHands(item) === 1)
   .sort((a, b) => numericModifier(b, "Familiar Weight") - numericModifier(a, "Familiar Weight"));

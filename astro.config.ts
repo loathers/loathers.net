@@ -8,6 +8,13 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: "night-owl",
+      langs: [
+        {
+          name: "ash",
+          scopeName: "source.ash",
+          patterns: [],
+        },
+      ],
     },
   },
   redirects: {

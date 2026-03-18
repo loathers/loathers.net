@@ -44,21 +44,21 @@ Just making your fork is simply not enough. You must also "clone" the fork. I've
 ![image](https://user-images.githubusercontent.com/8014761/149842243-09ad81ea-ab94-43cb-8475-6bc1375da62f.png)
 
 Click the double-rectangles, next to the URL. After doing this, and after navigating within the terminal to a folder you want to place your repository into, you will type the following into your command prompt, once you've navigated to a folder you'd feel comfortable working in (using your actual copied URL, of course!):
-```Terminal
+```bash
 git clone https://github.com/copied-url
 ```
 
 **STEP 3: IF IT'S TYPESCRIPT, INSTALL DEPENDENCIES** 
 
 This is a pretty important step. Many loathers repositories are written in TypeScript. When you are working on a TypeScript project, there's a variety of tools and necessary repositories that your code editor (likely VSCode) will need to access in order to tell you if you've written your code correctly or properly format your final saves. Luckily, this is actually a very simple step. Just run the following code, which will force yarn to grab the project's dependencies and install them all into your project folder:
-```Terminal
+```bash
 yarn install
 ```
 
 **STEP 4: MAKE A BRANCH**
 
 Branching is an important part of the PR process; it ensures that your copied repository stays relatively clean, and that your changes are confined to an easily accessed place that can be compared against the core development code. The best way to think about a branch is that it's just a segregated project folder that has some changes from the main folder. To make a branch, you will need to run the following commands. The first command shows you the branches, the second command adds a branch, and the third command switches you to your newly created branch. 
-```Terminal
+```bash
 git branch
 git branch newBranchName
 git switch newBranchName
@@ -73,7 +73,7 @@ I can't walk you through this step. Just do whatever you want to do to the code.
 
 Now that you've made your changes (and saved them! YOU HAVE TO SAVE THEM!), you need to add your changes to the internet. To do this, you need to do a series of three commands, listed here. The first command adds your new files and ensures that Git understands that you've made changes. The second command applies a commit message, so that you know what your changes mean later on. And the final command pushes your branch up into the branch stored on GitHub.com, which will allow you to make the pull request we have been teasing this entire article. The "set-upstream" part is important because GitHub needs to know what your new branch is based on. Since you just forked the project, it is (obviously) based on origin. 
 
-```Terminal
+```bash
 git add .
 git commit -m 'insert a message that describes what changes you've made to the code here'
 git push --set-upstream origin nameOfBranch
