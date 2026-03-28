@@ -1,0 +1,257 @@
+---
+title: "Heartstone: Overview"
+date: "2026-03-27"
+slug: "2026-02-Heartstone"
+author: "Captain Scotch"
+section: "analysis"
+tag: "IOTM Overview"
+---
+While we were quite on time with the last two IOTMs, it has taken a perhaps jarring amount of time for me to complete this analysis on the Heartstone. There's a few different reasons for this. One, I had a two week trip to Australia for work. Two, I have been beset with ills and ailments upon my household heretofore unseen by man or beast. Three, this IOTM is the devil's work, and perhaps the most impossible-to-helpfully analyze IOTM... ever? Not sure. Regardless. I've been iterating on notes for ages and it's finally time to publish. Let's get to the heart of it.
+
+## General Summary
+
+The Heartstone is an accessory. When equipped, it gives the following enchantments:
+
+- All Attributes +25%
+- +3 Stat(s) Per Fight 
+- Regenerate 15-20 HP per adventure
+- Steal the Hearts of Foes 
+
+The "Steal the Hearts of Foes" enchantment reflects a new skill you get access to while wearing the Heartstone: **Steal Monster's Heart**. In addition to the analysis discussion below, you can unlock six extra Heartstone skills via usage of Steal Monster's Heart. Access to these skills persist through ascension, and are available with the Heartstone equipped. They are:
+
+- **Heartstone: BOOM** -- 5/day combat skill; insta-kill with reasonably large extra statgain
+- **Heartstone: GONE** -- 5/day combat skill; insta-kill that banishes the monster, a la Batter Up 
+- **Heartstone: STUN** -- 5/day combat skill; strong multi-round stun
+- **Heartstone: BUDS** -- 5/day noncombat skill; gives 25 turns of "Best Pals" for +1 fam XP & +5 fam weight
+- **Heartstone: BUFF** -- 5/day noncombat skill; gives 25 turns of "Ultraheart" for +50/50% to all stats
+- **Heartstone: LUCK** -- 1/day noncombat skill; when used, makes you Lucky!
+
+As with the <a href="/analysis/2025-10-blood-cubic-zirconia/">Blood Cubic Zirconia</a> and the <a href="analysis/2025-05-peridot/">Peridot of Peril</a>, the Heartstone is a gem -- that means it can be set within the <a href="/analysis/2026-01-eternity-codpiece">Eternity Codpiece</a>. When the gem is installed, it adds an enchantment of +5 familiar weight to the codpiece.
+
+Instead of our normal "speedrun applicability" section, I'm going to start this one by attempting to explain -- mechanically -- how Steal Monster's Heart works. 
+
+## Heartstone: Mechanics
+
+Abstractly, Steal Monster's Heart involves stealing the letters from monster's names, combining them into a 4 letter word, and generating something from that collection of letters -- items, buffs, monsters, et cetera. We will get into exactly what you can steal (and, later, the optimal steals) -- but we'll start with trying to build intuition on what letter you receive when you cast the skill. 
+
+Mechanically, when you cast the skill, you are able to steal a letter from the middle of a monster's name. This means the monster has to have an odd number of characters in its name; if it has an even number, the skill is unavailable and you can't try to steal anything. Some simple examples, to start:
+
+- A **crate** has 5 characters; you steal the A
+- A **quiet healer** has 11 characters; you steal the H, as spaces don't count 
+- A **black panther** has 12 characters; you can't steal a letter, as 12 is even
+- An **elephant (meatcar?) topiary animal** has 33 characters; you steal the R, as punctuation symbols *do* count
+- A **War Frat 151st Infantryman** has 23 characters; you steal the T, as numbers *do* count
+
+If you just want to know the basics, that pretty much sums it up. There are a few other small mechanical annoyances that are worth knowing, though.
+
+- If the middle letter isn't an A-Z letter, you can't steal it. As noted earlier, punctuation and numbers do count for figuring out what the middle letter is, but they *do not* count as a stealable character, so monsters with a number or punctuation in the center (a la War Frat 151st Captain) are un-stealable
+- If a monster's name contains non-ASCII characters, the name is treated as a UTF-8 string. This is pretty annoying. The crêep contains the letter "ê". In UTF-8, ê is represented by two characters, which means 6 total characters in the name, which means you can't steal a heart even though it "looks" like a 5 character monster.
+- This post is long enough that I'm not going to belabor the point on this, but... items that change the monster's displayed name *do* actually impact the letter you receive. Most notably, when a monster's name is altered by a <a href="https://wiki.kingdomofloathing.com/Monster_Modifier">1CRS Monster Modifier</a>, the letter you grab changes. This is actually an extremely standard relevant point, because in softcore you could always pull one of the perma-standard <a href="https://wiki.kingdomofloathing.com/Dice-print_do-rag">dice accessories</a>. Modifiers add anywhere from 3 to 13 letters to a monster's name, changing what you receive from basically every monster in unpredictable ways. Given the glut of monsters with generally unhelpful letters, it might actually be a positive value pull for some people. You know. If you *really* hate yourself, and you *really* love randomness.
+
+One important note. There's no cap on the number of hearts you can steal in a day; if you somehow generated 1000 monster encounters in a day, you could steal 1000 letters. This is... quite a lot!
+
+## Heartstone: Notable Four-Letter Words
+
+As noted, when you collect four letters in your Heartstone, it combines into a word. We already noted six words that you probably want to grab before your next ascension: BOOM, GONE, STUN, BUDS, BUFF, and LUCK. The first time you spell those 6 words, it unlocks the on-equip skills described in the general summary. 
+
+But those aren't the only notable spellings! There are a total of **173 effects** you can gain 20 turns of when spelling four-letter words via stolen letters. In this way, the Heartstone is (kind of) like a newfangled version of the Diabolic Pizza Cube; it takes some annoying routing to use, but it allows you to generate a bunch of different effects at the expense of that routing. Many of the effects are really, really worthless. But there are a handful of bonus effects that are worth highlighting. (The four letters you spell are **bolded** for each effect, with the full effect name for completeness.)
+
+- For meat drop, spell "A **VIEW** to Some Meat" (+100%), "**GUTS** Feeling" (+50%), "The **RICH** Get Richer" (+50%), or "Eyes **WIDE** Propped" (50%, & +25% item drop)
+- For item drop, spell "**BETA** Carotene Overdose" (+50%) or "**FIVE** Sticky Fingers" (+50%)
+- For familiar weight, spell  "Hip to the **JIVE**" (+10), "Down With **CHOW**" (+10), or "Whole Latte **LOVE**" (+10). (Also can do CUTE, WARM, ROCK, WEEK, and GRIN for +5 apiece)
+- For familiar experience, spell "Three Days **SLOW**" (+3), "**WARM** Shoulders" (+5), or "Hip to the **JIVE**" (+2). (Technically, you can also spell ["**BLUE** Swayed"](https://wiki.kingdomofloathing.com/Blue_Swayed), but with just 20 turns it's a weird use of letters and not particularly recommended)
+- For sleaze damage for the Zeppelin mob, spell "Fifty **WAYS** to Bereave Your Lover" (+100) or spell **any swear word** for "Dirty Mind" (+50, and +5 sleaze res)
+- For cold resistance, spell "Fever **FROM** the Flavor" (+9)
+- For statgain, spell "Thou Shant Not **SING**" (+50% Moxie experience) or "**BUFF** as a Baobab" (+20% Muscle experience, assuming you've already gotten the BUFF skill)
+
+In addition to the effects, you also can swap your current monster into a variety of different monsters. Most of them are just brand new ways to fight [your own butt](https://wiki.kingdomofloathing.com/Your_butt)... but there are a few notable ones outside of that. 
+
+- Some of the monster changers allow you to get a head start on your next word. If you want to do a word that starts with M, for instance, and you're having trouble finding an M on-path, you can spell **WERE** to change the monster you get the final E from into a weremoose, which can be used to start any M-spelled words. 
+- Which dovetails nicely into the only particularly ascension-relevant monster summon: spelling MILK or GOAT turns the T or K monster from that spelling into a dairy goat. This is neat, because you can drag a goat into delay, which is cool. (You can also steal the goat's Y to start your next word, if there's a Y word you feel you absolutely need to spell.)
+
+If all the Heartstone did was the skills and the above effects/monster changers, it would be a moderately useful but largely pleasant IOTM. But it does a bit more than that, and that's where the trouble starts. In addition to effects, skills, and monster-changers, you can also summon **actual items** by spelling out words. And... well... *there's a lot of them*. There are 297 unique items you can summon by spelling four letter words, in fact. Most of them are pretty middling and do not require much analysis; you aren't getting "candied **YAMS**" unless you really, really like yams. But there are a few notable uses that bear mention.
+
+- **COPY/YR/FREEFIGHT**: First, the absolute best of the item summons is the "Spooky VHS **TAPE**", a combat item from the 2002 Mr. Store Catalog. While the catalog recently left standard, if you are able to acquire the item in-run, combat items are still usable beyond their standard restricted date. For those who either don't remember or never had access to the 2002 catalog, using the tape on a monster gives you a copy of that monster in 7 turns. The copy is free, its drops are forced, and it can be plopped into any delay zone you want. It's a bonkers item, and being able to generate an arbitrarily large number of them is a massive meta-shifting change.
+- **LEVEL 11 QUEST**: You can generate three useful items to speed up the level 11 quest. The best of the lot is a "wet **STEW**"! This saves you the turns and effort needed to snag the lion oil and bird rib you'd usually need to grab in Whitey's Grove. Nowadays, that's 1-2 fights; you can use BCZ's refraction and summoning up Some Fish with the monodent to get both the oil and the rib in one fight. This one is admittedly a little hazy, since T and E are the worst letters to grab from TAPE (as we'll discuss later), but it's a pretty high value spelling in paths where it's hard to generate the 400% item drop needed to cap your rib/oil, routes where you are getting down to the wire on your refract usage. And it's guaranteed to save at least one turn by obviating the need for that fight at all. Beyond wet stew, you can also generate a "**TOMB** ratchet" and a "**DRUM** machine". The drum machine isn't massively useful in this standard set but may be valuable in a few years once <a href="/analysis/2024-04-apriling-band-helmet/">Apriling Band Helmet</a> & <a href="/analysis/2025-10-blood-cubic-zirconia/">BCZ</a> cycle out; the ratchet is helpful for the middle chamber, in an emergency situation where you haven't snagged enough tangles of rat tails from the tavern quest.
+- **FREERUN BANISHES**: There are two freerun banishes you can generate from the Heartstone. The first is "handful of split pea **SOUP**", a 30-turn banish you can generate naturally through use of the Peace Turkey familiar. The second can be found by spelling "**HALF** a purse"; once you summon it, you just pulverize the half a purse into a handful of smithereens and meatpaste it with Ben-Gal Balm for a louder than bomb, a 30-turn banish. Helpfully, SOUP/HALF aren't terribly hard to spell given the letters we have available. (You can also generate half-a-banish via PEAS, as that gives you a handful of peas. This isn't super useful, but is perhaps nice in niche scenarios where you're near the end of the run and know you don't have the familiar turns left to get one more pea.)
+- **BERET HELPERS**: As we discussed in our <a href="/analysis/2025-06-beret/">Prismatic Beret</a> post, every extra shirt you get opens up the decision space for more buffs and can marginally improve the value of your summoned effects. To that end, there are several shirts with unique shirt power values that are accessible via the Heartstone that aren't easily accessible without it. In particular: "harem **GIRL** t-shirt" requires 900% in-run item drop to force and cannot be yellow rayed, but as a 25 power shirt, it opens the door to a lot of neat odd-number power tabulations for the beret. "eXtreme Bi-Polar Fleece **VEST**" is a 90 power shirt, which is again not particularly accessible in-run. "General Sage's Lonely Diamonds **CLUB** Jacket" is 130 power; if you happen to get a jacket from using a yellow ray on a refraction in the Oasis, you don't need it, but otherwise it is a unique 130 shirt power in-run. 
+- **MINOR QUEST ITEMS**: You can spell four semi-useful quest items outside of the Level 11 quest from the Heartstone. You can grab an "amulet of extreme **PLOT** significance" to help navigate the noncombat in the Castle Basement for the level 10 quest. You can grab an "eleven-foot **POLE**" to bypass Daily Dungeon elemental tests, for the hero keys needed at the sorceress tower. You can grab a "**RUBY** W" for your Wand of Nagamar. Finally, you can grab an "enchanted **BEAN**", which is useless while <a href="/analysis/2024-10-bat-wings">Bat Wings</a> is in standard, but will be useful as early as next year. Of these, the amulet is probably the only one I'd ever really consider right now, but in current meta it doesn't really make much sense to grab it like this -- especially since it steals away a T from your pile of spooky TAPEs.
+
+## Heartstone: Beating the Heart & Embracing Big TAPE
+
+So. You've followed us this far. Now you want to actually use the Heartstone. What does usage look like? Mainly, this.
+
+![Please help me budget my Spooky VHS Tapes. My family is dying.](./heartstone-vhs-tape-meme.png)
+
+That's my meme answer, but it's hardly that far off. The most valuable thing you can do with the Heartstone is generate as many spooky VHS tapes as humanly possible. It's *really really* hard to beat the combined value of copying something you want to fight, making it free, and placing that free copy into a delay zone. Here are some good workaday uses of the VHS tapes; all of the following fun options can be placed into fun delay zones:
+
+- Copy war hippies for war progress
+- Copy dirty ol' lihcs for Defiled Niche progress
+- Copy some modern zmobies for Defiled Alcove progress
+- Copy pygmy witch accountants for Hidden City progress
+- Copy oil cartels for oil peak progress (note: not recommended, for reasons later discussed!)
+- Copy a summoned mountain man for two guaranteed ores towards the Big Mountain quest
+- Copy summoned shadow slabs; while not relocating a fight from a delay zone, it generates guaranteed shadow bricks for extra freekills
+
+So, yes. Tapes are great. The problem comes with actually -getting- tapes. As you quickly realize when you start analyzing the monster tables in every available ascension zone, there are a limited number of options for pretty much every letter -- especially if you're looking for on-path letters. Some are easier than others, but to get the most out of the Heartstone's good options, players will need to engage in *some* level of facestabbing. As a good teaching example, let's examine how to get the letters in TAPE in a standard ascension.
+
+> THE LETTER T 
+
+The following T monsters are on-path in a speedrun:
+
+- elegant animated nightstand (1, The Haunted Bedroom) 
+- Tektite (1-3, Hero's Field)
+- War Frat 151st Infantryman (1, Calculate the Universe)
+- The Frattlesnake (1, requires starting Shen's quest on D2, Smut Orc Logging Camp)
+- pygmy witch nurse (1-2, The Hidden Hospital)
+
+The following T monsters are off-path, summoned, or conditional, but plausible to encounter:
+
+- blue hat hacker, grey hat hacker (1-10, CyberRealm; unpredictable)
+- skeletal cat (1, +1 turn, Peridot @ The Haunted Conservatory)
+- Knott Yeti (1, +1 turn, Peridot @ Icy Peak)
+- Knob Goblin Elite Guard Captain (1, +1 turn, lucky adventure in Cobb's Knob Barracks)
+
+> THE LETTER A 
+
+The following A monsters are on-path in a speedrun:
+
+- bar (1-3, The Spooky Forest)
+- fleaman (1-3, Vanya's Castle)
+- oil cartel (5, Oil Peak)
+- tomb rat king (1-2, The Middle Chamber)
+
+The following A monsters are off-path, summoned, or conditional, but plausible to encounter:
+
+- mountain man (1, use Chest Mimic to summon)
+- crate (infinite, +1 turn apiece, Noob Cave)
+- possessed laundry press (1, The Haunted Laundry Room)
+- Black Crayon Fish (1-11, use Chest Mimic to summon and copy)
+- Black Crayon Hobo (1-11, use Chest Mimic to summon and copy)
+- skeleton astronaut (1, +1 turn, use Chest Mimic to summon)
+
+> THE LETTER P 
+
+The following P monsters are on-path in a speedrun:
+
+- War Hippy Baker (5-6, The Battlefield (Frat Uniform))
+- War Hippy Naturopathic Homeopath (5-6, The Battlefield (Frat Uniform))
+
+The following P monsters are off-path, summoned, or conditional, but plausible to encounter:
+
+- Black Crayon Spiraling Shape (1-11, use Chest Mimic to summon and copy)
+- XXX pr0n (1, +1 turn, Peridot @ The Valley of Rof L'm Fao)
+- stone temple pirate (1, +1 turn, Peridot @ The Hidden Temple)
+- big creepy spider (1, +1 turn, Peridot @ The Sleazy Back Alley)
+- sassy pirate, warty pirate (1, +1 turn, Peridot @ The Obligatory Pirate's Cove)
+
+> THE LETTER E
+
+The following E monsters are on-path in a speedrun:
+
+- met (1-3, Megalo-City)
+- Foodie Giant (3-4, Castle in the Clouds in the Sky (Ground Floor))
+- red skeleton (1-2, The Red Zeppelin)
+- tomb servant (5-6, Upper Chamber & Middle Chamber)
+- Keese (1-3, Hero's Field)
+- ninja dressed as a waiter (3-4, The Copperhead Club)
+- Mobile Armored Sweat Lodge (3-4, The Battlefield (Frat Uniform))
+- time cop (5-6, via wearing the <a href="/analysis/2025-08-Möbius-ring">Möbius ring</a>)
+
+The following E monsters are off-path, summoned, or conditional, but plausible to encounter:
+
+- Government Agent (3, +1 turn apiece, only in paths where you can access Portscan.exe via the Source Terminal)
+- (There are way, way more. But this is more than enough for our needs.)
+
+> PLANNING OUT YOUR TAPES 
+
+So. If you added those up, that gives us 5-8 "easily" available T's, 8-13 "easily" available A's, 10-12 "easily" available P's (but all crammed in one quest), and 17-30 "easily" available E's. I put easily in quotation marks because there are further complications to consider here. 
+
+Some of these are... well, maybe not mutually exclusive, but off-route by such a massive extent that it's impossible to use them together. Some are strictly mutually exclusive; you can't route in a T through Tektite if you've routed in an A through fleaman, since you need to be at Hero's Field for Tektite and Vanya's Castle for fleaman. You can't use tomb rat king for your A and red skeleton for your E.
+
+As an example, let me share a proposed route for 8 VHS tapes over a run:
+
+1. T = Frat 151 via Numberology, A = Peridot a Bar, P = Summon/copy a Black Crayon Shape, E = Peridot + olfact a ninja waiter 
+2. T = elegant nightstand, A = Peridot a Fleaman, P = Copy a Black Crayon Shape, E = ninja waiter 
+3. T = pygmy witch nurse, A = Find a Fleaman, P = Copy a Black Crayon Shape, E = Peridot a Keese
+4. T = Peridot a Tektite, A = oil cartel, P = Peridot a Hippy Baker, E = Peridot + olfact a Foodie Giant
+5. T = Frattlesnake (it's D2!), A = oil cartel, P = Peridot a Hippy Baker (it's D2!), E = Peridot a Foodie Giant
+6. T = Peridot a Tektite, A = oil cartel, P = Find a Hippy Baker, E = Find a Foodie Giant 
+7. T = Find a Tektite, A = oil cartel, P = Find a Homeopath, E = red skeleton 
+8. T = Peridot a pygmy witch nurse, A = oil cartel, P = Find a Homeopath, E = tomb servant 
+
+You'll notice a few things here. First, while, Peridot helps guarantee several of them, a bunch are unguaranteed; especially on D2, you end up with a lot of instances where you'll simply need to go searching in certain zones for a monster in order to cobble together your tape. This means that you will greatly benefit from the glut of turn-taking banishes you can use within these zones if you happen to encounter a monster you don't actually want. (Happily, this synergizes with "Heartstone: GONE", the turn-taking banish combat skill!) 
+
+Second, this introduces some brand new routing struggle in the run; given the paucity of available Ts, you now *really* want to split your Tektites over days 1-2, despite the fact that Hero's Field is a relatively high (450%!) item drop % check and usually is done via freekills during a period where you're highly buffed up from the Beret. 
+
+Finally, it's worth pointing out that I compiled the above plan without spending extra turns for any of the letters. (With the possible exception of the last pygmy nurse, not entirely sure that one is a fair inclusion. Probably like +0.5 turns in expectation by not just banishing and finishing the zone at the first opportunity.) Despite this, there are a lot of (relatively) easy-to-access As, Ps, and Es still available after you go through all of these options. This is actually pretty big deal! Spooky VHS Tapes, as previously discussed, save a little over 2 turns apiece when used correctly. This means that in the event it costs 1 turn to generate a T, if you can "freely" generate the last 3 letters, it *may still be worth it to generate another tape.* 
+
+Such is the truly infuriating truth about the Heartstone's TAPE obsession: the face-stabbing frustration is essentially never ending. Short of a path where you are able to complete the path in few enough turns that you are capped on the number of useful VHS tapes, you can virtually always generate more tapes and save more turns if you're willing to put yourself through the pain. It is an unyielding torrent of misery and woe. *I just want to save one more turn, man.*
+
+## Heartstone: Non-TAPE Uses 
+
+Having discussed TAPE generation to death, it is worth a short discussion of how one might generate other useful items, effects, and monsters within the confines of a standard ascension. I am not going to do the extreme level of detail I gave for TAPEs, but instead just give a route for each alternate usage and render a quick verdict on whether it's worth considering.
+
+> STEW: wet stew 
+
+- **ROUTE:** S = Peridot a Knob Goblin Assistant Chef, T = grey/blue hat hacker, E = Summon a kid who is too old to be Trick-or-Treating via Chest Mimic, W = Peridot a Paper Towelgeist
+
+Wet Stew is one of the best uses of the Heartstone, in theory. But it does end up using one of your Ts. That's really frustrating! I'd probably only do it if you happen to roll a day where you can access bluehat or greyhat hackers, as noted in the proposed route. Even then, the E here is a little awkward, but plausibly doable.
+
+VERDICT: Not worth it. Unless you hit a properly hatted hacker. Then it's worth it.
+
+> WARM: 20 turns of Warm Shoulders (+5 fam XP)
+
+- **ROUTE:** W = Peridot a warwelf, A = Summon a Mountain Man, R = Peridot a filthworm royal guard, M = Peridot a Whatsian Commando Ghost (or a gator-human hybrid, if Oliver's Place is still in standard; I believe it still is, but it probably shouldn't be)
+
+Once again, this does take a letter away from TAPE (with one of your As), but thankfully we have some As to spare. The royal guard and the A-Boo ghost are honestly pretty easy to synergize, but I do worry that requiring Frattlesnake's completion makes this a D2 summon when you'd probably prefer it as one of the last things you do D1 (in order to get the benefit on both sets of freefights/kills from both days.) Warwelf is also a bit awkward to save up (though a really great use of a D2 Spooky Forest Peridot). But it really isn't that bad, and +5 familiar XP for 20 turns is very helpful; as you may have noticed, there's more a lot more pressure to use all 11 Chest Mimic eggs every day with the Heartstone, and this could be a huge boon to help you achieve that.
+
+VERDICT: Probably worth it.
+
+> HALF: half a purse (to get +1 Louder Than Bomb)
+
+- **ROUTE:** H = Peridot a War Hippy Homeopath, A = tomb rat king, L = Find a War Hippy Elder Shaman or Elite Rigger, F = Summon a Frozen Bag of Tortellini (it's a free fight!)
+
+If only we could just steal Alf away from his beloved sitcom. Then we'd just need to get an H. I actually don't really mind this one, although we do start to get into a zone of "wait, are we SURE we have enough As?" Still. Because this requires a summon, it's basically trading 100 familiar XP for one freerun banish. Not a great trade-off, but not terrible, truth be told.
+
+VERDICT: Not always worth it, but maybe occasionally.
+
+> WAYS: 20 turns of Fifty Ways to Bereave Your Lover
+
+- **ROUTE:** W = Peridot a Paper Towelgeist, A = oil cartel, Y = beefy bodyguard bat, S = waiter dressed as a ninja
+
+I don't love stealing away an A. But I don't really mind the rest of these. Warwelf is a bit annoying since you're probably using two peridots in the Spooky Forest for other As for your TAPE summons, so you can't really force it, but it should be available as long as you're holding a few forest NCs. But beefy bodyguard bat and waiter dressed as a ninja are both pretty easy. This one probably requires some math. IYou need to make sure that it actually saves 1-2 turns. If so, though, it could be a neat little 1 turn summon. 
+
+VERDICT: Not always worth it, but maybe occasionally.
+
+> SOUP: handful of split pea soup
+
+- **ROUTE:** S = pygmy shaman, O = Peridot a Blooper, U = red butler OR monstrous boiler, P = War Hippy Baker
+
+Honestly, I went into this exercise expecting SOUP to be clearly inferior to other options. But this is a surprisingly easy route that can be done in the middle of your tape accumulation with minimal issue. It does use one of your Ps, but P has the benefit of being a letter that has a free summon you can use mimic eggs on with Black Crayon Spiraling Shape.
+
+VERDICT: Probably worth it; maybe even 2?
+
+> MILK: change the current monster into a Dairy Goat
+
+- **ROUTE:**  M = Peridot a Whatsian Commando Ghost, I = burly sidekick, L = War Hippy Elder Shaman, K = Iiti Kitty
+
+In this year's standard, you don't really need to care much about this one; the <a href="/analysis/2024-05-mayam-calendar">Mayam Calendar</a> (2024). But if you don't happen to own Mayam, this one is a slightly annoying yet fun little boost. The annoying part is that you're essentially holding off the Level 8 quest until after you're at the very last stage of the Level 11 quest. From a routing perspective there's no major problem with it, but it's a little awkward. The benefit, though, is that you get to change a monster you don't care about into a Dairy Goat that burns delay. Pretty cute! Probably will be strictly meta next year.
+
+VERDICT: Not worth it in 2024, but will be meta for the next two!
+
+## 2026 In-Standard Synergies
+
+- As noted all throughout this post, the <a href="analysis/2025-05-peridot/">Peridot of Peril</a> (2025) is a key part of generating real value from the Heartstone. Once the Peridot is gone, the degree of difficulty for generating valuable items from this IOTM will significantly rise.
+- As noted in our "Beating the Heart" section, finding the right letters synergizes pretty well with the glut of banishes we have available -- even the turn-taking ones. When you're in a zone that contains letters you know you'll need for your TAPE generation, it behooves you to banish any monster you don't want to encounter again. Examples of these turn-taking (or, in the case of Spring Away, just sort of infinite-use) banishes include Spring Away from <a href="/analysis/2024-02-spring-shoes/">the Spring Shoes</a> (2024), Throw a Lightning Bolt from <a href="/analysis/2025-09-monodent">Monodent of the Sea</a> (2025), Mark Your Territory from consuming one of <a href="/analysis/2025-10-blood-cubic-zirconia/">BCZ</a>'s Pheromone Cocktail (2025), Batter Up from the base seal clubber skills, Throwin' Ember from the <a href="/analysis/2024-09-sept-ember-censer">Sept-Ember Censer</a> (2024), and Heartstone: GONE (from... you know, the heartstone). It also does synergize with our free-run banishes as well (Punch Out Your Foe via <a href="/analysis/2025-03-leprecondo">Leprecondo</a> (2025), handful of split pea soup via the <a href="/analysis/2024-11-peace-turkey">Peace Turkey</a> (2024), anchor bomb via <a href="/analysis/2024-12-takerspace">TakerSpace</a> (2024), Stuffed Yam Stinkbomb via <a href="/analysis/2024-05-mayam-calendar">Mayam Calendar</a> (2024)), especially in delay zones.
+- This felt deeply unnecessary for the main body of this post, but it's worth noting that you can get small infusions of meat from this IOTM that are helpful for the currently active challenge path, Adventurer Meats World. Initial spading indicates these generate around 500 meat a pop, which isn't a ton, but is enough to be a potentially meaningful consideration if you lack other elements of the standard set; it's a hard path! To get \~500 meat, spell BUCK, CASH, MEAT, or SCAM. (I'd recommend not doing MEAT, though, because that steals away a T that you'd rather use for a TAPE.)
+
+## Overall Rating
+
+We'd rate the Heartstone a tier 1 IOTM. It's enormously good, and if you really eke every bit of value out of it, you could be looking at something like 12 TAPE summons in a run, for 24-ish turns saved alongside any extra power gleaned from the extra Lucky! charge and a few other goodies throughout the run. That's a lot, and it's basically a top-tier IOTM. However, I'm not sure it's fair to rate something like this in accordance with the absolute maximum possible savings. The amount of routing pain and pressure caused by this IOTM means that we are more likely to see a situation where people in most runs will snag 3-5 TAPEs a day and call it a day; once you've exhausted your Peridot charges, generating TAPEs becomes significantly harder and significantly more likely to cost you a turn -- if not through tactically using a turn to get a T, through causing you to make a routing mistake or introducing an annoying pathing issue that wouldn't have existed if you hadn't tried to get the last 1-2 TAPEs.
+
+Still, even if you limit yourself to three TAPEs a day, one SOUP, and a STEW or a WARM... that's still a really good IOTM! So I would begrudgingly recommend it, but emphasize that the purpose of playing a game is to have fun. If you aren't enjoying the severe routing pain this IOTM inflicts on you, remember that you can always wash your hands of it and do a simpler, more limited usage. Hopefully, this strategy guide has been helpful in your buying decisions. Good luck out there, speedsters!
+
+---
+
+One quick programming note -- we will be doing a stream tomorrow! I will be streaming the prize distribution from our most recent contest, <a href="/shenanigans/winter-2026-contest/">PASSING TIME IV: Past to the Future</a>. It should, hopefully, be streaming in the <a href="https://discord.gg/kol">Ascension Speed Society Discord!</a> and also on my extremely unloved <a href="https://www.twitch.tv/captainscotch">Twitch account</a>. It's currently looking like it'll happen around 2:00 PM, Eastern Standard Time... but watch the #contest-chat-2026 channel on Discord for *up to the second* reporting on when I will or will not be streaming. Hooray! Content!
