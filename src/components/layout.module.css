@@ -22,7 +22,7 @@ p {
 /* Set core page defaults, starting with a set of sans-serif fonts across the whole page */
 
 html {
-    font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Verdana, 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -55,11 +55,49 @@ a {
     box-shadow: 0 0 1rem hsl(0 0% 0% / 35%);
     border-radius: 0.5rem;
     max-width:1000px;
+    font-family:Helvetica, Arial, Geneva, Tahoma, sans-serif;
     /* display:grid; */
     /* position:relative; */
     /* top: 0px; */
     /* place-content:center; */
     
+}
+
+.content ul {
+    list-style:"◉ ";
+    padding-left: 2rem;
+}
+
+.content ul li {
+    padding-left: 5px;
+}
+
+.content ol {
+    list-style:none;
+    padding-left: 2rem;
+    counter-reset: steps;
+}
+
+.content ol li {
+  counter-increment: steps;
+  padding-left: 5px;
+}
+
+.content ol li:before {
+  content: counter(steps);
+  margin-right: 0.5rem;
+  background: #ff6f00;
+  color: white;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  line-height: 1.2em;
+}
+
+.content ol ol li:before {
+  background: rgb(135, 42, 182);
 }
 
 /* This controls the top black bar. */
@@ -70,7 +108,7 @@ a {
     display:flex;
     margin-top:0.5rem;
 
-    font-family: Oswald, Gill Sans, Verdana;
+    font-family: Arial Black,Verdana,Arial;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
@@ -87,6 +125,8 @@ a {
 
 .loathersHead img {
     margin: 0px;
+    width:auto;
+    height:100%;
 }
 
 .dotNet {
@@ -115,15 +155,32 @@ a {
     font-weight:normal;
 }
 
+.nav-links ul {
+    list-style:none;
+    padding-left: 0px;
+}
+
+.nav-links ol {
+    list-style:none;
+    padding-left:0px;
+}
+
+.nav-links li {
+    list-style:none;
+    padding-left:0px;
+}
+
 .nav-link-text {
     color:rgb(220, 220, 220);
-    padding:5px;
-    font-family: Gill Sans, Verdana;
+    padding:9px;
+    font-family: Verdana;
+    padding-left:10px;
 }
 
 .nav-link-text:hover {
     background-color: black;
     color:white;
+    border: 1px black;
 }
 
 .navSpacer {
@@ -134,6 +191,7 @@ a {
     display: inline-block;
     line-height:25px;
     margin:0px;
+    vertical-align:middle;
 }
 
 .nav-links span {
@@ -153,7 +211,7 @@ a {
     color:white;
     text-align: center;
     font-size:large;
-    font-family: Oswald, Gill Sans, Verdana;
+    font-family: Verdana;
     font-weight: bold;
     text-shadow: 2px 2px 1px black;
     border:thick solid rgb(109, 0, 0);
@@ -170,9 +228,9 @@ a {
 
 /* This is for the post listing */
 
-
-h1, dl {
+h1, h2, dl {
 	margin: .5em 0em;
+    font-family: Arial Black,Arial, Verdana;
 }
 
 article {
@@ -216,6 +274,7 @@ dd {
 	padding: 1rem;
 	display: flex;
 	align-items: center;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 /* This controls page titles, ported into Layout via a pageTitle var */
@@ -224,7 +283,7 @@ dd {
     padding: 10px;
     color: rgb(39, 39, 39);
     
-    font-family: Oswald, Gill Sans, Verdana;
+    font-family: Arial Black, Verdana, Arial;
 
     font-size: 20px;
     letter-spacing: -1px;
@@ -265,7 +324,7 @@ h7 {
 }
 
 .content ul {
-    margin:8px 0px;
+    margin:.7em 0em;
 }
 
 .content li {
@@ -305,7 +364,7 @@ h7 {
 .content table {
     margin: 10px;
     max-width: 100%; 
-    overflow: auto;
+    overflow: hidden;
 }
 
 .content th {
@@ -389,8 +448,8 @@ footer {
 
 .hotDogLink h1 {
     background-color:#800000;
-    font-family: Gill Sans, Verdana;
-    font-size: 1em;
+    font-family: Arial Black, Verdana, Arial;
+    font-size: 1.2em;
     text-align: center;
     flex-grow: 1;
     padding:5px;
