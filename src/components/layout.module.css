@@ -219,6 +219,36 @@ a {
     padding: 5px;
 }
 
+/* This controls the item box. */
+
+.itemBox {
+    background:#FFFFFF;
+    color:blue;
+    width: 60%;
+    padding: 20px;
+    margin: 30px 20%;
+    border:thick solid rgb(180, 180, 255);
+    
+    box-shadow: 0 0 1rem hsla(0, 0%, 41%, 0.35);
+}
+
+.itemBox h3 {
+    background:rgb(180, 180, 255);
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 100 100'><text y='.9em' font-size=90>&#x2612;</text></svg>");
+    color:#ffffff;
+    text-align:center;
+    width:100%;
+    padding: 10px;
+}
+
+.itemBox ul {
+    text-align: center;
+    list-style:"";
+    text-indent: 0;
+    padding-left: 0px;
+    font-weight:bold;
+}
+
 /* This is a way to cheat flexboxes into making full width items */
 
 .flexBreak {

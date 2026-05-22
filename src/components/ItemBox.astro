@@ -1,0 +1,28 @@
+---
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  itemName?: string;
+}
+
+const { itemName = "" } = Astro.props;
+const highlights = {
+    "Spooky":"gray", 
+    "Hot":"red",
+    "Sleaze":"purple",
+    "Cold":"blue",
+    "Stench":"green",
+};
+
+let html = await Astro.slots.render('default');
+
+for (const [word, color] of Object.entries(highlights)) {
+    const regex = new RegExp(`\\b${word}\\b(?![^<]*>)`,"gi");
+    html = html.replace(regex, `<span style="color:${color};font-weight:bold">${word}</span>`);
+}
+---
+
+<div class={layoutStyles.itemBox}>
+    <h3>{itemName}</h3>
+  <Fragment set:html={html}>
+</div>
