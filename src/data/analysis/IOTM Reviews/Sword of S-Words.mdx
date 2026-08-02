@@ -1,0 +1,132 @@
+---
+title: "Sword of S-Words: Overview"
+date: "2026-08-01"
+slug: "2026-06-sword-of-s-words"
+author: "Captain Scotch"
+section: "analysis"
+tag: "IOTM Overview"
+---
+
+import OddsCalculator from "@components/OddsCalculator.astro"
+
+I usually will put programming notes at the end, but wanted to note that I have had a truly awful June and July; I contracted walking pneumonia and have been coughing my lungs out for the entirety of the last two months. I've been on steroids and antibiotics for nearly the whole time, and spent half the month traveling (first in Australia, then in Arizona, then Pittsburgh, then Delaware, then all over my home state, Virginia). I say all this to note that while my inclination is to apologize for the late post, in practice, there was simply no way for me to write this before now. I'm still coughing a bunch of junk out, but I'm finally off of antibiotics and the roid rage has died down. So it is finally time to break out some swears and talk s-words with the lads.
+
+## General Summary
+The Sword of S-Words is actually *not* a weapon. It's a familiar!
+
+As a base familiar, it's a fairy -- no special formula for it, so it increases item drops at a rate of `(55*weight)^0.5 + weight - 3`%. It also strengthens you via three enchantments. First, it counts the number of words starting with "S" in your equipment (let's call it X). It then adds that X to your base weapon damage, and adds X/2 to your muscle, mysticality, and moxie. Cute!
+
+It also will attack your opponent, but it does so in a strange way; if combat text contains any S-words, the sword will attack for 5*X damage, where X is the number of S-words in that round of combat.
+
+Finally, it allows you to cast `%fn, kill a lot of these guys` three times a day as a combat skill with the sword equipped. Once cast, the sword stores the monster you targeted with the skill. While your active familiar, the sword will replace the drops of any monster you fight with the drops of the monster you had targeted with the skill, with up to 100 drop tables per day replaced. The targeted monster is reserved over rollover as well, allowing you to get a few more drops out of one of your targeted monsters, if needed.
+
+## Speedrun Applicability
+
+As a fairy, the sword is the most useful class of familiar, and would have a (mild) case to be brought along with you throughout the day. It's unlikely that the Sword of S-Words will be your primary fairy in a run, but it isn't completely out of the picture, as you are almost certainly spending around 100 turns with the sword every day. So long as the Chest Mimic and the Cooler Yeti are in standard, you probably spend more time with those, but maybe not as much as you'd think. The mid-fight attacks and the extremely minor weapon damage and stat boosts are fine, but not particularly powerful.
+
+The "kill a lot of these guys" skill? Now **THAT'S** powerful.
+
+A few years ago, there was a challenge path called Wildfire. Some of you may remember it. The path's main diversion from a normal ascension was that every zone was on fire, which meant every item burned up unless you used different special things to grab the item. Things like the industrial fire extinguisher, or the in-path pickpocket mechanic, or specific resource expenditures to clear zones of fire. In the first few weeks, prior to running the path, there was a lot of talk about how hard the path might end up given how many items you actually needed to get in a run.
+
+Well. By the end of the path, it was clear that "every item burns up except for a handful of specifically targeted drops" actually isn't that big of a deal. It isn't a big deal because it turns out that in any given run, some obscene majority of the monsters you fight don't actually have item drops you care about. Don't get it twisted -- there are a handful of really important things you don't want to miss. But there aren't THAT many important things you don't want to miss. This means that an item like this that replaces the drop tables of (again) 100 monsters per day is, frankly, *completely bonkers*. It really isn't that hard to find 100 turns where you simply do not care about the drops, so the only item of real strategic import you have to think about is what items you're going to target with your Sword of S-Words. 
+
+## A Bunch of S-Word Targets
+
+Here are a bunch of items you could target with your Sword of S-Words. I've ranked these roughly by quality, with a rough estimate of how many turns are saved by generating this item with your Sword, and a rough estimate of how many you need and how many turns it would take to get that amount if you are rolling with +200% item drop. (Realistically, you will have more in some paths and less in others, but it's a good small-c conservative estimate.)
+
+> **SHADOW BRICKS** (saves 12-13 turns a day)
+- Set your S-Word on a SHADOW SLAB
+- You can use 13 per day; in a 2-day run, you want to generate 26
+- At 200% +item, it takes 43.3 S-Word turns for 13 bricks (...and 86.6 for 26)
+
+Shadow bricks are a pretty obvious one; each brick generated up to 13 gives you a free kill, strictly saving one turn per brick. One freekill in exchange for 3-4 familiar turns is a very easy tradeoff and one of the best things you can do with your S-Word. You still need to summon and kill one shadow slab in order to start it out, so you do lose out on one turn from summoning/fighting the slab (hence the 12-13 turns per day saved rather than 13), but you helpfully can generate all the bricks you'll need for the whole run from that one slab. So that's neat!
+
+> **FREE SMUT ORC BRIDGE** (saves 8-14 turns in a run)
+- Set your S-Word on a SMUT ORC JACKER/PIPELAYER/NAILER/SCREWER
+- You need 30 fasteners and 30 planks (or 25, with Bat Wings)
+- At 200% +item, it takes 100 turns to get a bridge without swapping targets, or ~50 turns with it
+
+This one is a bit interesting. The orcs in the Smut Orc Logging Camp always drop one fastener and one plank. One is dropped at a 100% rate, the other at a 10% rate. This means at 200% item drop, you need 100 turns to drop 30 of the "10% rate" bridge piece. However, there's an alternate method to get your bridge that takes a lot less time. In this method, spend 25 turns targeting a monster that drops a fastener at a 100% rate, then 25 turns targeting a monster that drops a plank at a 100% rate. In 25 turns, you'd expect 7-8 of the 10% drop, which is enough to give you 30 of both bridge part. 
+
+On the number of turns saved, it is worth noting that there are other ways to get bridge parts. The Sept-Ember Censer gives 5/5 bridge parts once per day, and Bat Wings lowers the # you need a bit as well. If you are getting all your bridge parts from adventuring in the zone, and you own zero of the items that help out with the bridge, you'll need anywhere from 12-16 turns to get all your bridge parts. But each helper does considerably lower the amount of turns you actually need, which thus lowers the full-run turn-saving impact of getting a free bridge. (It's also worth noting that you do need to fight two orcs to do the target-swap version of this usage, which is 2 turns spent. Hence why this saves at max 14 turns.)
+
+> **FREE DEFILED NOOK** (saves 9-11 turns in a run)
+- Set your S-Word on a TOOTHY SKLELTON or a SPINY SKELELTON
+- You need 13 Evil Eyes to get to the boss
+- At 200% +item, it takes 21.7 turns to get 13 evil eyes
+
+There are a bunch of different ways to tackle the Defiled Nook nowadays. You can get to 400% item drop, banish one monster, and spend 10 turns in the Nook. You can spend refract charges to make your party skeletons worth 2x evil eyes. You can summon skeleton astronauts for dupable eyes and do a bunch of silly nonsense involving your goose and your camel and a bunch of random janky stuff in unrestricted to get 30-something eyes out of two fights. Or, you can ignore all of that and simply use your S-Word to generate a bunch of evil eyes and not have to worry about it at all. As evil eyes are a 20% base drop rate, the rate of return isn't even that bad here; just a few turns is all you really need!
+
+> **TOMB RATCHETS** (saves 4-5 turns in a run)
+- Set your S-Word on a TOMB RAT
+- You need 10 tomb ratchets
+- At 200% +item, it takes 17 turns to get 10 tomb ratchets
+
+Realistically, you probably don't -actually- need 10 tomb ratchets. Assuming you aren't doing some wacky unrestricted jank, you will always get 1 wheel from the upper chamber's semi-guaranteed noncombat, which is interchangable with a ratchet. You also will probably get a few while you are adventuring in the middle chamber as well. It's a very good zone to use some free-run banishes, and if you're down to just tomb rats, you're pretty likely to get a ratchet or two in the 8 turns of combat-delay you've got in the zone. Still, this is a plausibly turn-saving usage of the S-Word for two reasons. 
+
+First, it's pretty common to have a few ratchets remaining despite your best efforts, and this saves any extra turns in the middle chamber spent getting those extra ratchets. Second, you can use this as an excuse to -really- pump noncombat rate in the tavern without having to focus on getting a tangle of rat tails. While tangles are generally considered semi-essential items (as they save extra turns spent in the middle chamber), every tangle does technically cost a turn when compared to the skippable noncombats in the typical tavern. You may be able to pump a bit more -com in exchange for some of your ML items in the tavern, snagging an extra turn or two. Just a thought!
+
+> **A-BOO CLUES** (saves 1-3 turns in a run)
+- Set your S-Word on ANY GHOST AT A-BOO PEAK
+- You need 4 A-Boo Clues
+- At 200% +item, it takes 8.9 turns to get 4 A-Boo Clues
+
+We are entering the realm of "technically useful, realistically mid-to-bad" targets. A-Boo Clues are quite useful; you're going to want to get them every run. But there are two easier ways to get the clues you need. The first is refracting a summoned "some fish" and yellow-raying it through the synergy between the <a href="/analysis/2025-09-monodent">Monodent of the Sea</a> and the <a href="/analysis/2025-10-blood-cubic-zirconia/">Blood Cubic Zirconia</a>. (And a yellow ray source, too.) It's wonky, but it is a very nice way to solve the A-Boo Peak problem. The second evergreen source is to just spend two clovers there. Two clovers and four clue turns finishes your peak, and is (probably) preferable to the S-Word, which technically only saves you one turn and two clovers over that method. If you are low on shinies and end up tight on clovers, this is a decent usage. But I'm not really sure it's ever going to be more than a very marginal option for optimizing your S-Word.
+
+> **RUSTY HEDGE TRIMMERS** (saves 1-3 turns in a run)
+- Set your S-Word on ANY TWIN PEAK TOPIARY ANIMAL
+- You need 0-4 Rusty Hedge Trimmers
+- At 200% +item, it takes 8.9 turns to get 4 rusty hedge trimmers
+
+Similar to A-Boo clues, this isn't necessarily a big piece of the puzzle, but it's a nice end-of-run thing you can pull on if nothing else is left. The thing with Twin Peak is that the zone has a 90% combat rate. Since we can pretty trivially get to -25% combat, that means that every turn you spend in twin peak has a 35% (or more) chance of just generating the noncombat you need anyway. So, 1/3 turns you spend in the zone will probably be a noncombat. Given that fact, you don't necessarily need that many hedge trimmers in the first place. And given that you need to fight one topiary animal in order to set the S-Word, you might as well just (as with A-Boo clues) use a monodent/BCZ/yellow ray combo to generate 3 hedge trimmers in one fight while also keeping NC rate on so that you have a chance of just getting the NC anyway. Still, it's not a bad possible last target, and is better if you're missing some of the aforementioned items.
+
+> **BARRELS OF GUNPOWDER** (saves 4-30 turns in a run)
+- Set your S-Word on a LOBSTERFROGMAN
+- You need 5 barrels of gunpowder
+- At any +item at all, it takes 5 turns to get 5 barrels of gunpowder 
+
+I don't think this will actually be a very good usage for someone with a full standard set at any point in this IOTM's standard lifecycle, as the superior solution to the lobsterfrogman problem is to eat some <a href="/analysis/2026-05-legendary-pasta-wand">Legendary Pasta Wand</a> food to guarantee combats and spend 5 turns at Sonofa Beach. But if you are lacking the pasta wand, this is actually a pretty great use of the sword. And it's certainly possible we get a path or two where you can't eat food, at which point this may come up again as a good use. Even with +20% combat rate, Sonofa Beach still takes anywhere from 25-35 turns without other ways to guarantee an LFM, so swapping that out with one summon and 4 familiar turns is an easy win for the intrepid adventurer. Again, I don't really think it's worth it otherwise (as it's only a 4-turn save), but it's a tool to have in your toolbox.
+
+> **SONARS-IN-A-BISCUIT** (saves 1-4 turns in a run)
+- Set your S-Word on ANY BAT THAT DROPS A SONAR 
+- You need 3 sonars-in-a-biscuit 
+- At +200% +item, it takes 10 turns to get 3 sonars (or 7 turns, if you copy a ratbat)
+
+So long as this shares a standard set with the <a href="/analysis/2024-10-bat-wings">Bat Wings</a>, this isn't really useful at all; you get 2 of the 3 sonars you need for free. But it may actually warrant a short look later. You don't really want to spend turns in any of the bat zones, and it's sort of a crappy refract target because you need to waste a yellow ray on it. The idea of summoning up an enchanted beanbat and using the S-Word to ensure you open up all your zones may actually beat generating them naturally, especially given how the <a href="/analysis/2026-03-Archaeologist's-Spade">Archaeologist's Spade</a> has made the ratbat burrow an inferior Shen snake zone as compared to the cemetery.
+
+> **BOWLING BALLS** (saves 1-3 turns in a run)
+- Set your S-Word on a PYGMY BOWLER 
+- You need 5 bowling balls (but you'll get 1 with the bowler, so really 4)
+- At >150% +item, it takes 4 turns to generate 4 bowling balls 
+
+I don't really like this one at all, but I'm mentioning it because it is begrudgingly *could* be worth the same 3-4 turn amount that the above few are worth. My thing with bowling balls is that there are a lot of different (better) ways to generate a lot of bowling balls from a paucity of combats. It's an easy no-yellow-ray-needed refract target, it's a great shrunken head target, a solid "club across the battlefield" target, and it's a very good pickpocket target. You also can get them from the noncombat in the Hidden Park. Still, this does (technically) save a few turns, so I'm including it.
+
+> **TURN GENERATION**
+
+I'm not going to include the projection bit, because there are a lot of different options for turn generation. My favorite is the **CRAGGY BARTENDER**, which has three 15% drops. All are 3-potency 12-turngen booze, and they're TTT drops, so they're evergreen. At 4 adv/drunk, it's not exactly changing your life, but it's mildly helpful if you want to boost the value of your liver, so perhaps +5-10 turns versus the alternatives. If you have access to pastamastery and pulverize, using this on a **FLEET WOODSMAN** to get a bunch of fleetwood chains is a good way to boost your adventure output from your stomach, as that should allow you to get enough fleetwood mac 'n' cheeses to fill 12 of your fullness per day with 5 adv/fullness foods. This is probably worth a few more turns, something like +10-15 turns per day. A potentially good option if you're nearing a daycount barrier!
+
+## Planning Out Your S-Words
+
+I will admit -- usage of the S-Word is a little more annoying to plan than some of our other IOTMs. Because you are just rolling for a monster's item at your own active drop rate, you have to generate estimates of how many turns it will (probably) take to get the number of items you want. I used +200% item drop as the baseline for the above estimates, but any speed ascender knows that your character's item drop rate flits around during a run depending on what equipment you can reasonably equip, buffs you happen to have on, and the weight of your item-drop familiar (in this case, your S-Word). To that end, here is a helpful little tool that you can use during your runs to figure out how many more S-Word turns it may take to get more of a given item at whatever drop rate you're currently running. Happy ascending!
+
+<OddsCalculator
+  baseChance={10}
+  bonusLabel="Item Drop bonus"
+  maxBonus={1800}
+  defaultAmount={13}
+/>
+
+## 2026 In-Standard Synergies
+
+- There's very high synergy with the <a href="analysis/2025-05-peridot/">Peridot of Peril</a> (2025) and the <a href="/analysis/2024-01-chest-mimic/">Chest Mimic</a> (2024). When you want to switch targets, you want to encounter whatever you're switching to as quickly as possible, and being able to generate the target monster at-will via the Peridot or the Mimic is great.
+- As noted throughout the article, there are areas of overlap where the S-Word provides alternate solutions to things we would traditionally use other IOTMs for. (As an example, there's little need to use the Baseball Diamond for shadow bricks anymore, given the alternate acquisition method represented by the S-Word.)
+- This is yet another IOTM that pairs nicely with the <a href="/analysis/2025-09-monodent">Monodent of the Sea</a> (2024). Because you're using the S-Word to replace the monster's drop table, the actual monster you fight doesn't matter all that much, which allows you to use the scaling Some Fish monster instead of whatever crappy monster you'd be fighting otherwise in many zones. This is helpful for statgain, which doesn't matter much in the Censer's standard set, but will matter a bit more in the 2027 and 2028 standard sets. 
+- Two important anti-synergies worth noting -- free kills that destroy a monster's drop table also destroy the drop table of the monster your S-Word is targeting. This means you can't get items out of your lianas, or drunk pygmies, or (out of standard) groveling gravel. You'll just waste one of your 100 S-Word turns with no chance of gaining the associated monster's drop. This also applies to refracts; the way the S-Word works is that it completely destroys the drop table of the monster you are fighting. Refraction modifies the monster's drop table, but that modification is overridden by the S-Word. So... don't refract-and-sword!
+
+## Overall Rating
+
+We'd rate the Sword of S-Words a tier 0 IOTM. That's right -- top tier! In the Ascension Speed Society Discord, there was some talk about this IOTM being mid or bad. I don't really get it! Generating your bricks via familiar turns is amazing; marginal familiar turns are worth extremely little in standard, with 25-30 turns exchanging into one turn saved with a handful of split pea soup. This is an awesome IOTM that allows you to save 12-13 turns per day with your shadow bricks, 9-10 turns per run with your evil eyes, 8-14 turns per run with your bridge, and an assortment of 3-6 turnsave uses for your other few uses. Put it all together and you're easily saving 20 or so turns per day, making it one of the wackiest IOTMs ever.
+
+---
+
+Programming note. I am not entirely sure that either Cup of 13s or the Laughing Stock warrants their own full posts. They're fun, but both pretty mid. I might make one post for both of them! Or I might make two separate tiny posts. I'm not sure yet. I would also warn readers that given the curious compounding interest mechanic in the Interesting Coin, I suspect that any post on the coin won't drop until at least the 3rd week of August, since I do intend to analyze the usefulness of the various derivatives for ascension purposes, and there are a *lot* of costly derivatives that will require a few people to exist in long aftercore for a bit. 
