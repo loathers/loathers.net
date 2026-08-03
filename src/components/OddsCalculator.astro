@@ -1,0 +1,264 @@
+---
+// OddsCalculator.astro
+//
+// Small odds calculator for the Sword of S-Words post. Plausibly useful
+//   elsewhere I suppose, but mostly for that. 
+//
+// "++Probability" modifier is a % applied multiplicatively to the base chance
+// (effective = base * (1 + bonus/100)), same as in-game Item Drop% bonuses.
+
+interface Props {
+  /** Default base chance of the event, as a percent (e.g. 10 for 10%). Reader can edit it. */
+  baseChance: number;
+  /** Label for the modifier, shown next to the slider. */
+  bonusLabel?: string;
+  /** Max value for the bonus slider, as a percent. */
+  maxBonus?: number;
+  /** Default value for the mode-specific amount field (adventures, or items wanted). */
+  defaultAmount?: number;
+}
+
+const {
+  baseChance,
+  bonusLabel = "Additional probability",
+  maxBonus = 300,
+  defaultAmount = 100,
+} = Astro.props;
+
+// Unique-enough id so multiple instances of this component on one page
+// don't collide on <label for="">/<input id=""> pairs.
+const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="oddsCalc">
+  <div class="oddsCalc-body">
+    <div class="oddsCalc-row">
+      <label for={`${uid}-base`}>Drop Rate of the Item (%)</label>
+      <input
+        id={`${uid}-base`}
+        class="oc-base"
+        type="number"
+        min="0"
+        max="100"
+        step="0.1"
+        value={baseChance}
+      />
+    </div>
+
+    <div class="oddsCalc-row">
+      <label for={`${uid}-bonus-range`}>{bonusLabel} (%)</label>
+      <div class="oddsCalc-bonus-controls">
+        <input
+          id={`${uid}-bonus-range`}
+          class="oc-bonus-range"
+          type="range"
+          min="0"
+          max={maxBonus}
+          step="1"
+          value="0"
+        />
+        <input
+          class="oc-bonus-number"
+          type="number"
+          min="0"
+          max={maxBonus}
+          step="1"
+          value="0"
+        />
+      </div>
+    </div>
+
+    <div class="oddsCalc-row">
+      <label for={`${uid}-mode`}>What do you want to know?</label>
+      <select id={`${uid}-mode`} class="oc-mode">
+          <option value="adventures">Adventures needed for a number of items</option>
+          <option value="items">Items dropped in a number of adventures</option>
+      </select>
+    </div>
+
+    <div class="oddsCalc-row">
+      <label class="oc-amount-label" for={`${uid}-amount`}>Number of adventures</label>
+      <input
+        id={`${uid}-amount`}
+        class="oc-amount"
+        type="number"
+        min="0"
+        step="1"
+        value={defaultAmount}
+      />
+    </div>
+
+    <div class="oc-bar-track">
+      <div class="oc-bar-fill"></div>
+    </div>
+
+    <dl class="oc-stats">
+      <dt>Effective chance per adventure</dt>
+      <dd class="oc-effective">—</dd>
+
+      <dt class="oc-result-label">Expected items</dt>
+      <dd class="oc-result">—</dd>
+    </dl>
+  </div>
+</div>
+
+<script>
+  function initCalculator(container: HTMLElement) {
+    const baseInput = container.querySelector<HTMLInputElement>(".oc-base")!;
+    const bonusRange = container.querySelector<HTMLInputElement>(".oc-bonus-range")!;
+    const bonusNumber = container.querySelector<HTMLInputElement>(".oc-bonus-number")!;
+    const modeSelect = container.querySelector<HTMLSelectElement>(".oc-mode")!;
+    const amountInput = container.querySelector<HTMLInputElement>(".oc-amount")!;
+    const amountLabel = container.querySelector(".oc-amount-label")!;
+    const effectiveEl = container.querySelector(".oc-effective")!;
+    const resultLabelEl = container.querySelector(".oc-result-label")!;
+    const resultEl = container.querySelector(".oc-result")!;
+    const barFill = container.querySelector<HTMLElement>(".oc-bar-fill")!;
+
+    function recalc() {
+      const base = parseFloat(baseInput.value) || 0;
+      const bonus = parseFloat(bonusNumber.value) || 0;
+      const amount = Math.max(0, parseFloat(amountInput.value) || 0);
+
+      // If the item drop rate addition is wrong, change this.
+      const effective = Math.min(1, (base / 100) * (1 + bonus / 100));
+
+      effectiveEl.textContent = `${(effective * 100).toFixed(2)}%`;
+      barFill.style.width = `${Math.min(100, effective * 100)}%`;
+
+      if (modeSelect.value === "items") {
+        resultEl.textContent = (effective * amount).toFixed(2);
+      } else {
+        const expectedAdventures = effective > 0 ? amount / effective : Infinity;
+        resultEl.textContent = isFinite(expectedAdventures)
+          ? expectedAdventures.toFixed(1)
+          : "—";
+      }
+    }
+
+    function syncBonusFromRange() {
+      bonusNumber.value = bonusRange.value;
+      recalc();
+    }
+
+    function syncBonusFromNumber() {
+      let v = parseFloat(bonusNumber.value);
+      if (Number.isNaN(v)) v = 0;
+      v = Math.max(0, Math.min(parseFloat(bonusRange.max), v));
+      bonusRange.value = String(v);
+      recalc();
+    }
+
+    function updateModeUI() {
+      if (modeSelect.value === "items") {
+        amountLabel.textContent = "Number of adventures";
+        resultLabelEl.textContent = "Expected items";
+      } else {
+        amountLabel.textContent = "Number of items wanted";
+        resultLabelEl.textContent = "Expected adventures";
+      }
+      recalc();
+    }
+
+    baseInput.addEventListener("input", recalc);
+    bonusRange.addEventListener("input", syncBonusFromRange);
+    bonusNumber.addEventListener("input", syncBonusFromNumber);
+    modeSelect.addEventListener("change", updateModeUI);
+    amountInput.addEventListener("input", recalc);
+
+    updateModeUI();
+  }
+
+  document
+    .querySelectorAll<HTMLElement>(".oddsCalc")
+    .forEach(initCalculator);
+</script>
+
+<style>
+  .oddsCalc {
+    background: #ffffff;
+    color: #222;
+    width: 60%;
+    padding: 20px;
+    margin: 30px 20%;
+    border: thick solid rgb(180, 214, 40);
+    box-shadow: 0 0 1rem hsla(0, 0%, 41%, 0.35);
+  }
+
+  .oddsCalc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .oddsCalc-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .oddsCalc-row label {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .oddsCalc-bonus-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .oddsCalc-bonus-controls input[type="range"] {
+    flex: 1;
+  }
+
+  .oddsCalc-bonus-controls input[type="number"] {
+    width: 4.5em;
+  }
+
+  .oddsCalc-row input[type="number"],
+  .oddsCalc-row select {
+    padding: 4px;
+    border: 1px solid rgb(180, 214, 40);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+  }
+
+  .oc-bar-track {
+    width: 100%;
+    height: 14px;
+    background: rgb(232, 232, 232);
+    border-radius: 7px;
+    overflow: hidden;
+  }
+
+  .oc-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: rgb(10, 114, 80);
+    transition: width 0.15s ease-out;
+  }
+
+  .oc-stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 0;
+    margin: 0;
+  }
+
+  .oc-stats dt {
+    background: rgb(232, 232, 232);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+  }
+
+  .oc-stats dd {
+    background: rgb(215, 215, 215);
+    margin: 0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    font-family: Menlo, Consolas, monospace;
+  }
+</style>
