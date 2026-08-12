@@ -508,14 +508,23 @@ footer {
 
 /* Styling for our tools page */
 
-.toolsGrid {
+ul.toolsGrid {
     list-style: none;
-    display:block;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
     padding: 5px;
+}
+
+@media (max-width: 700px) {
+    ul.toolsGrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .toolsGrid li {
     text-indent: 0;
+    margin: 0;
     border-radius: 1em;
     padding: 10px;
     text-align: center;
