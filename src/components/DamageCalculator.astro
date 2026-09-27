@@ -1,11 +1,13 @@
 ---
 // DamageCalculator.astro
 //
-// this was made largely by claude and i kind of hate how messy and long 
-// it is. but... it does actually seem to work correctly. 
-// 
+// this was made largely by claude and i kind of hate how messy and long
+// it is. but... it does actually seem to work correctly. updated via
+// midgley's PR review that noted that basically all the min/max values
+// were wrong. not all of them though... claude did get DA right!
+//
 // ---
-// 
+//
 // Damage calculator for the Meat Shield Maiden post. Given a player's
 // stats and a monster's attack, predicts the damage the monster would
 // deal via "%fn, protect me!" and the resulting Meat Shield Maiden buffs.
@@ -18,11 +20,11 @@
 // roll distribution entirely.
 //
 // Three independent damage "lanes" are computed from one shared monster
-// attack, because Flared Nostrils only touches Stench and non-elemental
+// attack, because Flared Nostrils only touches Stench and physical
 // damage never takes an elemental-resistance term:
 //   - elemental  -> feeds Hot / Cold / Spooky / Sleaze (shared tier)
 //   - stench     -> feeds Stench (Flared Nostrils aware)
-//   - nonElemental -> feeds the Non-Elemental buff (no resistance term)
+//   - physical -> feeds the physical buff (no resistance term)
 
 interface Props {
   /** Flat +Monster Level. */
@@ -73,37 +75,83 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
 
         <div class="dmgCalc-row">
           <label for={`${uid}-flatml`}>Flat +ML</label>
-          <input id={`${uid}-flatml`} class="dc-flatml" type="number" min="0" max="500" step="1" value={defaultFlatML} />
+          <input
+            id={`${uid}-flatml`}
+            class="dc-flatml"
+            type="number"
+            min="-1000"
+            max="1000"
+            step="1"
+            value={defaultFlatML}
+          />
         </div>
 
         <div class="dmgCalc-row">
           <label for={`${uid}-pctml`}>+% ML</label>
-          <select id={`${uid}-pctml`} class="dc-pctml">
-            <option value="0" selected={defaultPercentML === 0}>0%</option>
-            <option value="20" selected={defaultPercentML === 20}>20%</option>
-            <option value="25" selected={defaultPercentML === 25}>25%</option>
-            <option value="45" selected={defaultPercentML === 45}>45%</option>
-          </select>
+          <div class="dc-suffix-wrap">
+            <input
+              id={`${uid}-pctml`}
+              class="dc-pctml"
+              type="number"
+              min="0"
+              max="1000"
+              step="1"
+              value={defaultPercentML}
+            />
+            <span class="dc-suffix" aria-hidden="true">%</span>
+          </div>
         </div>
 
         <div class="dmgCalc-row">
           <label for={`${uid}-moxie`}>Moxie</label>
-          <input id={`${uid}-moxie`} class="dc-moxie" type="number" min="1" max="100000" step="1" value={defaultMoxie} />
+          <input
+            id={`${uid}-moxie`}
+            class="dc-moxie"
+            type="number"
+            min="1"
+            max="100000"
+            step="1"
+            value={defaultMoxie}
+          />
         </div>
 
         <div class="dmgCalc-row">
           <label for={`${uid}-dr`}>Damage Reduction</label>
-          <input id={`${uid}-dr`} class="dc-dr" type="number" min="0" max="100" step="1" value={defaultDR} />
+          <input
+            id={`${uid}-dr`}
+            class="dc-dr"
+            type="number"
+            min="0"
+            max="100"
+            step="1"
+            value={defaultDR}
+          />
         </div>
 
         <div class="dmgCalc-row">
           <label for={`${uid}-da`}>Damage Absorption</label>
-          <input id={`${uid}-da`} class="dc-da" type="number" min="0" max="1000" step="1" value={defaultDA} />
+          <input
+            id={`${uid}-da`}
+            class="dc-da"
+            type="number"
+            min="0"
+            max="1000"
+            step="1"
+            value={defaultDA}
+          />
         </div>
 
         <div class="dmgCalc-row">
           <label for={`${uid}-res`}>Relevant Elemental Resistance</label>
-          <input id={`${uid}-res`} class="dc-res" type="number" min="-5" max="69" step="1" value={defaultRes} />
+          <input
+            id={`${uid}-res`}
+            class="dc-res"
+            type="number"
+            min="-20"
+            max="169"
+            step="1"
+            value={defaultRes}
+          />
         </div>
 
         <div class="dmgCalc-row">
@@ -119,8 +167,17 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
         <h4 class="dmgCalc-col-title">The Fight</h4>
 
         <div class="dmgCalc-row">
-          <label for={`${uid}-baseatk`}>Monster's Base Attack (0 = scaling)</label>
-          <input id={`${uid}-baseatk`} class="dc-baseatk" type="number" min="0" step="1" value={defaultBaseAttack} />
+          <label for={`${uid}-baseatk`}
+            >Monster's Base Attack (0 = scaling)</label
+          >
+          <input
+            id={`${uid}-baseatk`}
+            class="dc-baseatk"
+            type="number"
+            min="0"
+            step="1"
+            value={defaultBaseAttack}
+          />
         </div>
 
         <div class="dmgCalc-row">
@@ -140,11 +197,14 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
         </div>
 
         <p class="dmgCalc-hint">
-          Leave "Monster's Base Attack" at 0 for scaling monsters (sausage goblin, hackers, etc.) — 
-          their base attack equals your Moxie, so will be tethered to the Moxie entry. Enter a value directly for fixed-attack
-          monsters like the Batsnake (160) or Big Wisnewski (250). Scaling
-          monsters' attack caps (e.g. 10,000 for the sausage goblin) aren't
-          modeled here, so double-check you're not past the cap. (You aren't getting past 10,000 in standard, but you might get past 450 for the summonable pasta fights.)
+          Leave "Monster's Base Attack" at 0 for scaling monsters (sausage
+          goblin, hackers, etc.) — their base attack equals your Moxie, so will
+          be tethered to the Moxie entry. Enter a value directly for
+          fixed-attack monsters like the Batsnake (160) or Big Wisnewski (250).
+          Scaling monsters' attack caps (e.g. 10,000 for the sausage goblin)
+          aren't modeled here, so double-check you're not past the cap. (You
+          aren't getting past 10,000 in standard, but you might get past 500 for
+          the summonable pasta fights.)
         </p>
       </div>
     </div>
@@ -160,8 +220,8 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
         <span class="dc-tier-value">—</span>
         <span class="dc-tier-dmg">— dmg</span>
       </div>
-      <div class="dc-tier dc-tier-nonelemental">
-        <span class="dc-tier-label">Non-Elemental Tier</span>
+      <div class="dc-tier dc-tier-physical">
+        <span class="dc-tier-label">Physical Tier</span>
         <span class="dc-tier-value">—</span>
         <span class="dc-tier-dmg">— dmg</span>
       </div>
@@ -169,32 +229,56 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
 
     <div class="dmgCalc-effects">
       <details class="dc-effect dc-hot">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Hot</span><span class="dc-eff-short">—</span></summary>
-        <p>+Hot Damage &amp; Damage to Hot Spells (max 20), +Combat Initiative (max 130%).</p>
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Hot</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>
+          +Hot Damage &amp; Damage to Hot Spells (max 20), +Combat Initiative
+          (max 130%).
+        </p>
       </details>
 
       <details class="dc-effect dc-cold">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Cold</span><span class="dc-eff-short">—</span></summary>
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Cold</span
+          ><span class="dc-eff-short">—</span></summary
+        >
         <p>+Muscle % (max 200%), +ranged HP regen per adventure (max ~36).</p>
       </details>
 
       <details class="dc-effect dc-spooky">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Spooky</span><span class="dc-eff-short">—</span></summary>
-        <p>+Mysticality % (max 200%), +ranged MP regen per adventure (max ~18).</p>
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Spooky</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>
+          +Mysticality % (max 200%), +ranged MP regen per adventure (max ~18).
+        </p>
       </details>
 
       <details class="dc-effect dc-stench">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Stench</span><span class="dc-eff-short">—</span></summary>
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Stench</span
+          ><span class="dc-eff-short">—</span></summary
+        >
         <p>-Combat Rate (max 15%), +Stench Resistance (max 5).</p>
       </details>
 
       <details class="dc-effect dc-sleaze">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Sleaze</span><span class="dc-eff-short">—</span></summary>
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Sleaze</span
+          ><span class="dc-eff-short">—</span></summary
+        >
         <p>+Moxie % (max 200%), +Meat Drop % (max 50%).</p>
       </details>
 
-      <details class="dc-effect dc-nonelemental">
-        <summary><span class="dc-swatch"></span><span class="dc-eff-name">Non-Elemental</span><span class="dc-eff-short">—</span></summary>
+      <details class="dc-effect dc-physical">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name"
+            >Physical</span
+          ><span class="dc-eff-short">—</span></summary
+        >
         <p>+Stats per fight (max 10), +Damage Reduction (max 20).</p>
       </details>
     </div>
@@ -203,30 +287,48 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
 
 <script>
   function initCalculator(container: HTMLElement) {
-    const flatMLInput = container.querySelector<HTMLInputElement>(".dc-flatml")!;
-    const pctMLSelect = container.querySelector<HTMLSelectElement>(".dc-pctml")!;
+    const flatMLInput =
+      container.querySelector<HTMLInputElement>(".dc-flatml")!;
+    const pctMLInput = container.querySelector<HTMLInputElement>(".dc-pctml")!;
     const moxieInput = container.querySelector<HTMLInputElement>(".dc-moxie")!;
     const drInput = container.querySelector<HTMLInputElement>(".dc-dr")!;
     const daInput = container.querySelector<HTMLInputElement>(".dc-da")!;
     const resInput = container.querySelector<HTMLInputElement>(".dc-res")!;
     const mystSelect = container.querySelector<HTMLSelectElement>(".dc-myst")!;
-    const baseAtkInput = container.querySelector<HTMLInputElement>(".dc-baseatk")!;
-    const equipSelect = container.querySelector<HTMLSelectElement>(".dc-equip")!;
-    const flaredSelect = container.querySelector<HTMLSelectElement>(".dc-flared")!;
+    const baseAtkInput =
+      container.querySelector<HTMLInputElement>(".dc-baseatk")!;
+    const equipSelect =
+      container.querySelector<HTMLSelectElement>(".dc-equip")!;
+    const flaredSelect =
+      container.querySelector<HTMLSelectElement>(".dc-flared")!;
 
-    const elementalTierEl = container.querySelector(".dc-tier-elemental .dc-tier-value")!;
-    const elementalDmgEl = container.querySelector(".dc-tier-elemental .dc-tier-dmg")!;
-    const stenchTierEl = container.querySelector(".dc-tier-stench .dc-tier-value")!;
-    const stenchDmgEl = container.querySelector(".dc-tier-stench .dc-tier-dmg")!;
-    const nonElementalTierEl = container.querySelector(".dc-tier-nonelemental .dc-tier-value")!;
-    const nonElementalDmgEl = container.querySelector(".dc-tier-nonelemental .dc-tier-dmg")!;
+    const elementalTierEl = container.querySelector(
+      ".dc-tier-elemental .dc-tier-value",
+    )!;
+    const elementalDmgEl = container.querySelector(
+      ".dc-tier-elemental .dc-tier-dmg",
+    )!;
+    const stenchTierEl = container.querySelector(
+      ".dc-tier-stench .dc-tier-value",
+    )!;
+    const stenchDmgEl = container.querySelector(
+      ".dc-tier-stench .dc-tier-dmg",
+    )!;
+    const physicalTierEl = container.querySelector(
+      ".dc-tier-physical .dc-tier-value",
+    )!;
+    const physicalDmgEl = container.querySelector(
+      ".dc-tier-physical .dc-tier-dmg",
+    )!;
 
     const hotShort = container.querySelector(".dc-hot .dc-eff-short")!;
     const coldShort = container.querySelector(".dc-cold .dc-eff-short")!;
     const spookyShort = container.querySelector(".dc-spooky .dc-eff-short")!;
     const stenchShort = container.querySelector(".dc-stench .dc-eff-short")!;
     const sleazeShort = container.querySelector(".dc-sleaze .dc-eff-short")!;
-    const nonElementalShort = container.querySelector(".dc-nonelemental .dc-eff-short")!;
+    const physicalShort = container.querySelector(
+      ".dc-physical .dc-eff-short",
+    )!;
 
     // Elemental resistance LEVEL -> fraction of damage resisted (0-1).
     // Piecewise per KoL Wiki "Elemental Resistance"; Myst classes get +5%.
@@ -249,8 +351,8 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
     }
 
     function recalc() {
-      const flatML = Math.max(0, parseFloat(flatMLInput.value) || 0);
-      const pctML = parseFloat(pctMLSelect.value) || 0;
+      const flatML = parseFloat(flatMLInput.value) || 0;
+      const pctML = parseFloat(pctMLInput.value) || 0;
       const moxie = Math.max(0, parseFloat(moxieInput.value) || 0);
       const dr = Math.max(0, parseFloat(drInput.value) || 0);
       const da = Math.max(0, parseFloat(daInput.value) || 0);
@@ -266,33 +368,37 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
       const hasFlared = flaredSelect.value === "yes";
 
       const monsterAttack = (baseAtk + flatML) * (1 + pctML / 100);
-      const preReduction = Math.max(0, monsterAttack - moxie) + 0.25 * monsterAttack - dr;
+      const preReduction =
+        Math.max(0, monsterAttack - moxie) + 0.25 * monsterAttack - dr;
       const absorbFrac = absorbFraction(da);
 
       // Elemental lane: Hot / Cold / Spooky / Sleaze.
       const elementalFrac = resistanceFraction(res, isMyst);
-      const elementalDamage = Math.max(0, preReduction * (1 - absorbFrac) * (1 - elementalFrac));
+      const elementalDamage = Math.max(
+        1,
+        preReduction * (1 - absorbFrac) * (1 - elementalFrac),
+      );
       const elementalTier = tierFromDamage(elementalDamage, hasEquip);
 
       // Stench lane: Flared Nostrils bypasses resistance and doubles the result.
       let stenchDamage: number;
       if (hasFlared) {
-        stenchDamage = Math.max(0, preReduction * (1 - absorbFrac)) * 2;
+        stenchDamage = Math.max(1, preReduction * (1 - absorbFrac)) * 2;
       } else {
         stenchDamage = elementalDamage;
       }
       const stenchTier = tierFromDamage(stenchDamage, hasEquip);
 
-      // Non-elemental lane: no elemental resistance term at all.
-      const nonElementalDamage = Math.max(0, preReduction * (1 - absorbFrac));
-      const nonElementalTier = tierFromDamage(nonElementalDamage, hasEquip);
+      // physical lane: no elemental resistance term at all.
+      const physicalDamage = Math.max(1, preReduction * (1 - absorbFrac));
+      const physicalTier = tierFromDamage(physicalDamage, hasEquip);
 
       elementalTierEl.textContent = `T${elementalTier}`;
       elementalDmgEl.textContent = `${Math.round(elementalDamage)} dmg`;
       stenchTierEl.textContent = `T${stenchTier}`;
       stenchDmgEl.textContent = `${Math.round(stenchDamage)} dmg`;
-      nonElementalTierEl.textContent = `T${nonElementalTier}`;
-      nonElementalDmgEl.textContent = `${Math.round(nonElementalDamage)} dmg`;
+      physicalTierEl.textContent = `T${physicalTier}`;
+      physicalDmgEl.textContent = `${Math.round(physicalDamage)} dmg`;
 
       const T = elementalTier;
       hotShort.textContent = `T${T} — +${Math.min(20, T * 2)} Hot Dmg, +${Math.min(130, 20 + T * 10)}% Init`;
@@ -303,12 +409,12 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
       const ST = stenchTier;
       stenchShort.textContent = `T${ST} — ${Math.min(15, 3 + ST * 2)}% -combat, +${Math.min(5, ST)} Stench Res`;
 
-      const NT = nonElementalTier;
-      nonElementalShort.textContent = `T${NT} — +${Math.min(10, NT)} stats/fight, +${Math.min(20, NT * 2)} DR`;
+      const NT = physicalTier;
+      physicalShort.textContent = `T${NT} — +${Math.min(10, NT)} stats/fight, +${Math.min(20, NT * 2)} DR`;
     }
 
     flatMLInput.addEventListener("input", recalc);
-    pctMLSelect.addEventListener("change", recalc);
+    pctMLInput.addEventListener("input", recalc);
     moxieInput.addEventListener("input", recalc);
     drInput.addEventListener("input", recalc);
     daInput.addEventListener("input", recalc);
@@ -321,9 +427,7 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
     recalc();
   }
 
-  document
-    .querySelectorAll<HTMLElement>(".dmgCalc")
-    .forEach(initCalculator);
+  document.querySelectorAll<HTMLElement>(".dmgCalc").forEach(initCalculator);
 </script>
 
 <style>
@@ -384,6 +488,25 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
     border-radius: 4px;
     font-family: inherit;
     font-size: 1em;
+  }
+
+  .dc-suffix-wrap {
+    position: relative;
+    display: flex;
+  }
+
+  .dc-suffix-wrap input {
+    flex: 1;
+    padding-right: 2.8em; /* keep digits and spinner clear of the % */
+  }
+
+  .dc-suffix {
+    position: absolute;
+    right: 1.8em;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* clicks still reach the input */
+    color: #555;
   }
 
   .dmgCalc-hint {
@@ -474,10 +597,22 @@ const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
     color: #333;
   }
 
-  .dc-hot { border-left-color: red; }
-  .dc-cold { border-left-color: blue; }
-  .dc-spooky { border-left-color: gray; }
-  .dc-stench { border-left-color: green; }
-  .dc-sleaze { border-left-color: purple; }
-  .dc-nonelemental { border-left-color: black; }
+  .dc-hot {
+    border-left-color: red;
+  }
+  .dc-cold {
+    border-left-color: blue;
+  }
+  .dc-spooky {
+    border-left-color: gray;
+  }
+  .dc-stench {
+    border-left-color: green;
+  }
+  .dc-sleaze {
+    border-left-color: purple;
+  }
+  .dc-physical {
+    border-left-color: black;
+  }
 </style>
