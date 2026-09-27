@@ -1,0 +1,618 @@
+---
+// DamageCalculator.astro
+//
+// this was made largely by claude and i kind of hate how messy and long
+// it is. but... it does actually seem to work correctly. updated via
+// midgley's PR review that noted that basically all the min/max values
+// were wrong. not all of them though... claude did get DA right!
+//
+// ---
+//
+// Damage calculator for the Meat Shield Maiden post. Given a player's
+// stats and a monster's attack, predicts the damage the monster would
+// deal via "%fn, protect me!" and the resulting Meat Shield Maiden buffs.
+//
+// Formula source: KoL Wiki "Weapon Damage#Monster_Damage_Formula" and
+// "Elemental Resistance", cross-checked against the live formulas in the
+// "Damage Predictor" tab of the community spading sheet. "Protect me"
+// always forces the monster's maximum possible hit, so we use the 25%
+// (not 20-25%) end of the monster-attack term and skip the triangular
+// roll distribution entirely.
+//
+// Three independent damage "lanes" are computed from one shared monster
+// attack, because Flared Nostrils only touches Stench and physical
+// damage never takes an elemental-resistance term:
+//   - elemental  -> feeds Hot / Cold / Spooky / Sleaze (shared tier)
+//   - stench     -> feeds Stench (Flared Nostrils aware)
+//   - physical -> feeds the physical buff (no resistance term)
+
+interface Props {
+  /** Flat +Monster Level. */
+  defaultFlatML?: number;
+  /** Percentage Monster Level bonus; one of 0, 20, 25, 45. */
+  defaultPercentML?: number;
+  /** Player moxie. */
+  defaultMoxie?: number;
+  /** Damage Reduction. */
+  defaultDR?: number;
+  /** Damage Absorption. */
+  defaultDA?: number;
+  /** Elemental resistance *level* (not percent) to the monster's element. */
+  defaultRes?: number;
+  /** Whether the player is a Mysticality class (Sauceror/Pastamancer). */
+  defaultMystClass?: boolean;
+  /** The monster's base attack, before ML is added. 0 means "use the player's moxie" (scaling free-fights). */
+  defaultBaseAttack?: number;
+  /** Whether the Maiden's unique familiar equipment is equipped. */
+  defaultEquip?: boolean;
+  /** Whether the player has the "Flared Nostrils" effect. */
+  defaultFlaredNostrils?: boolean;
+}
+
+const {
+  defaultFlatML = 50,
+  defaultPercentML = 20,
+  defaultMoxie = 100,
+  defaultDR = 10,
+  defaultDA = 0,
+  defaultRes = 2,
+  defaultMystClass = false,
+  defaultBaseAttack = 100,
+  defaultEquip = true,
+  defaultFlaredNostrils = false,
+} = Astro.props;
+
+// Unique-enough id so multiple instances of this component on one page
+// don't collide on <label for="">/<input id=""> pairs.
+const uid = `dc-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="dmgCalc">
+  <div class="dmgCalc-body">
+    <div class="dmgCalc-columns">
+      <div class="dmgCalc-col">
+        <h4 class="dmgCalc-col-title">Your Character</h4>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-flatml`}>Flat +ML</label>
+          <input
+            id={`${uid}-flatml`}
+            class="dc-flatml"
+            type="number"
+            min="-1000"
+            max="1000"
+            step="1"
+            value={defaultFlatML}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-pctml`}>+% ML</label>
+          <div class="dc-suffix-wrap">
+            <input
+              id={`${uid}-pctml`}
+              class="dc-pctml"
+              type="number"
+              min="0"
+              max="1000"
+              step="1"
+              value={defaultPercentML}
+            />
+            <span class="dc-suffix" aria-hidden="true">%</span>
+          </div>
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-moxie`}>Moxie</label>
+          <input
+            id={`${uid}-moxie`}
+            class="dc-moxie"
+            type="number"
+            min="1"
+            max="100000"
+            step="1"
+            value={defaultMoxie}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-dr`}>Damage Reduction</label>
+          <input
+            id={`${uid}-dr`}
+            class="dc-dr"
+            type="number"
+            min="0"
+            max="100"
+            step="1"
+            value={defaultDR}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-da`}>Damage Absorption</label>
+          <input
+            id={`${uid}-da`}
+            class="dc-da"
+            type="number"
+            min="0"
+            max="1000"
+            step="1"
+            value={defaultDA}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-res`}>Relevant Elemental Resistance</label>
+          <input
+            id={`${uid}-res`}
+            class="dc-res"
+            type="number"
+            min="-20"
+            max="169"
+            step="1"
+            value={defaultRes}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-myst`}>Sauceror / Pastamancer?</label>
+          <select id={`${uid}-myst`} class="dc-myst">
+            <option value="no" selected={!defaultMystClass}>No</option>
+            <option value="yes" selected={defaultMystClass}>Yes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dmgCalc-col">
+        <h4 class="dmgCalc-col-title">The Fight</h4>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-baseatk`}
+            >Monster's Base Attack (0 = scaling)</label
+          >
+          <input
+            id={`${uid}-baseatk`}
+            class="dc-baseatk"
+            type="number"
+            min="0"
+            step="1"
+            value={defaultBaseAttack}
+          />
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-equip`}>Maiden's Unique Equip Worn?</label>
+          <select id={`${uid}-equip`} class="dc-equip">
+            <option value="no" selected={!defaultEquip}>No</option>
+            <option value="yes" selected={defaultEquip}>Yes</option>
+          </select>
+        </div>
+
+        <div class="dmgCalc-row">
+          <label for={`${uid}-flared`}>Flared Nostrils Active?</label>
+          <select id={`${uid}-flared`} class="dc-flared">
+            <option value="no" selected={!defaultFlaredNostrils}>No</option>
+            <option value="yes" selected={defaultFlaredNostrils}>Yes</option>
+          </select>
+        </div>
+
+        <p class="dmgCalc-hint">
+          Leave "Monster's Base Attack" at 0 for scaling monsters (sausage
+          goblin, hackers, etc.) — their base attack equals your Moxie, so will
+          be tethered to the Moxie entry. Enter a value directly for
+          fixed-attack monsters like the Batsnake (160) or Big Wisnewski (250).
+          Scaling monsters' attack caps (e.g. 10,000 for the sausage goblin)
+          aren't modeled here, so double-check you're not past the cap. (You
+          aren't getting past 10,000 in standard, but you might get past 500 for
+          the summonable pasta fights.)
+        </p>
+      </div>
+    </div>
+
+    <div class="dmgCalc-summary">
+      <div class="dc-tier dc-tier-elemental">
+        <span class="dc-tier-label">Elemental Tier</span>
+        <span class="dc-tier-value">—</span>
+        <span class="dc-tier-dmg">— dmg</span>
+      </div>
+      <div class="dc-tier dc-tier-stench">
+        <span class="dc-tier-label">Stench Tier</span>
+        <span class="dc-tier-value">—</span>
+        <span class="dc-tier-dmg">— dmg</span>
+      </div>
+      <div class="dc-tier dc-tier-physical">
+        <span class="dc-tier-label">Physical Tier</span>
+        <span class="dc-tier-value">—</span>
+        <span class="dc-tier-dmg">— dmg</span>
+      </div>
+    </div>
+
+    <div class="dmgCalc-effects">
+      <details class="dc-effect dc-hot">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Hot</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>
+          +Hot Damage &amp; Damage to Hot Spells (max 20), +Combat Initiative
+          (max 130%).
+        </p>
+      </details>
+
+      <details class="dc-effect dc-cold">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Cold</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>+Muscle % (max 200%), +ranged HP regen per adventure (max ~36).</p>
+      </details>
+
+      <details class="dc-effect dc-spooky">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Spooky</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>
+          +Mysticality % (max 200%), +ranged MP regen per adventure (max ~18).
+        </p>
+      </details>
+
+      <details class="dc-effect dc-stench">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Stench</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>-Combat Rate (max 15%), +Stench Resistance (max 5).</p>
+      </details>
+
+      <details class="dc-effect dc-sleaze">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name">Sleaze</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>+Moxie % (max 200%), +Meat Drop % (max 50%).</p>
+      </details>
+
+      <details class="dc-effect dc-physical">
+        <summary
+          ><span class="dc-swatch"></span><span class="dc-eff-name"
+            >Physical</span
+          ><span class="dc-eff-short">—</span></summary
+        >
+        <p>+Stats per fight (max 10), +Damage Reduction (max 20).</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCalculator(container: HTMLElement) {
+    const flatMLInput =
+      container.querySelector<HTMLInputElement>(".dc-flatml")!;
+    const pctMLInput = container.querySelector<HTMLInputElement>(".dc-pctml")!;
+    const moxieInput = container.querySelector<HTMLInputElement>(".dc-moxie")!;
+    const drInput = container.querySelector<HTMLInputElement>(".dc-dr")!;
+    const daInput = container.querySelector<HTMLInputElement>(".dc-da")!;
+    const resInput = container.querySelector<HTMLInputElement>(".dc-res")!;
+    const mystSelect = container.querySelector<HTMLSelectElement>(".dc-myst")!;
+    const baseAtkInput =
+      container.querySelector<HTMLInputElement>(".dc-baseatk")!;
+    const equipSelect =
+      container.querySelector<HTMLSelectElement>(".dc-equip")!;
+    const flaredSelect =
+      container.querySelector<HTMLSelectElement>(".dc-flared")!;
+
+    const elementalTierEl = container.querySelector(
+      ".dc-tier-elemental .dc-tier-value",
+    )!;
+    const elementalDmgEl = container.querySelector(
+      ".dc-tier-elemental .dc-tier-dmg",
+    )!;
+    const stenchTierEl = container.querySelector(
+      ".dc-tier-stench .dc-tier-value",
+    )!;
+    const stenchDmgEl = container.querySelector(
+      ".dc-tier-stench .dc-tier-dmg",
+    )!;
+    const physicalTierEl = container.querySelector(
+      ".dc-tier-physical .dc-tier-value",
+    )!;
+    const physicalDmgEl = container.querySelector(
+      ".dc-tier-physical .dc-tier-dmg",
+    )!;
+
+    const hotShort = container.querySelector(".dc-hot .dc-eff-short")!;
+    const coldShort = container.querySelector(".dc-cold .dc-eff-short")!;
+    const spookyShort = container.querySelector(".dc-spooky .dc-eff-short")!;
+    const stenchShort = container.querySelector(".dc-stench .dc-eff-short")!;
+    const sleazeShort = container.querySelector(".dc-sleaze .dc-eff-short")!;
+    const physicalShort = container.querySelector(
+      ".dc-physical .dc-eff-short",
+    )!;
+
+    // Elemental resistance LEVEL -> fraction of damage resisted (0-1).
+    // Piecewise per KoL Wiki "Elemental Resistance"; Myst classes get +5%.
+    function resistanceFraction(level: number, isMyst: boolean): number {
+      const mystBonus = isMyst ? 5 : 0;
+      const pct =
+        level <= 3
+          ? 10 * level + mystBonus
+          : 90 - 50 * Math.pow(5 / 6, level - 4) + mystBonus;
+      return pct / 100;
+    }
+
+    function absorbFraction(da: number): number {
+      return Math.min(0.9, Math.max(0, (Math.sqrt(da / 10) - 1) / 10));
+    }
+
+    function tierFromDamage(damage: number, equipBonus: boolean): number {
+      const base = 1 + Math.floor(Math.sqrt(Math.max(0, damage) / 9));
+      return equipBonus ? base + 1 : base;
+    }
+
+    function recalc() {
+      const flatML = parseFloat(flatMLInput.value) || 0;
+      const pctML = parseFloat(pctMLInput.value) || 0;
+      const moxie = Math.max(0, parseFloat(moxieInput.value) || 0);
+      const dr = Math.max(0, parseFloat(drInput.value) || 0);
+      const da = Math.max(0, parseFloat(daInput.value) || 0);
+      const res = parseFloat(resInput.value) || 0;
+      const isMyst = mystSelect.value === "yes";
+
+      // Scaling free-fight summons (sausage goblin, etc.) attack with a base
+      // equal to the player's Moxie; a value of 0 in the field means "scaling".
+      const enteredBaseAtk = Math.max(0, parseFloat(baseAtkInput.value) || 0);
+      const baseAtk = enteredBaseAtk > 0 ? enteredBaseAtk : moxie;
+
+      const hasEquip = equipSelect.value === "yes";
+      const hasFlared = flaredSelect.value === "yes";
+
+      const monsterAttack = (baseAtk + flatML) * (1 + pctML / 100);
+      const preReduction =
+        Math.max(0, monsterAttack - moxie) + 0.25 * monsterAttack - dr;
+      const absorbFrac = absorbFraction(da);
+
+      // Elemental lane: Hot / Cold / Spooky / Sleaze.
+      const elementalFrac = resistanceFraction(res, isMyst);
+      const elementalDamage = Math.max(
+        1,
+        preReduction * (1 - absorbFrac) * (1 - elementalFrac),
+      );
+      const elementalTier = tierFromDamage(elementalDamage, hasEquip);
+
+      // Stench lane: Flared Nostrils bypasses resistance and doubles the result.
+      let stenchDamage: number;
+      if (hasFlared) {
+        stenchDamage = Math.max(1, preReduction * (1 - absorbFrac)) * 2;
+      } else {
+        stenchDamage = elementalDamage;
+      }
+      const stenchTier = tierFromDamage(stenchDamage, hasEquip);
+
+      // physical lane: no elemental resistance term at all.
+      const physicalDamage = Math.max(1, preReduction * (1 - absorbFrac));
+      const physicalTier = tierFromDamage(physicalDamage, hasEquip);
+
+      elementalTierEl.textContent = `T${elementalTier}`;
+      elementalDmgEl.textContent = `${Math.round(elementalDamage)} dmg`;
+      stenchTierEl.textContent = `T${stenchTier}`;
+      stenchDmgEl.textContent = `${Math.round(stenchDamage)} dmg`;
+      physicalTierEl.textContent = `T${physicalTier}`;
+      physicalDmgEl.textContent = `${Math.round(physicalDamage)} dmg`;
+
+      const T = elementalTier;
+      hotShort.textContent = `T${T} — +${Math.min(20, T * 2)} Hot Dmg, +${Math.min(130, 20 + T * 10)}% Init`;
+      coldShort.textContent = `T${T} — +${Math.min(200, T * 10)}% Mus, +${Math.min(36, T * 6)} HP/adv`;
+      spookyShort.textContent = `T${T} — +${Math.min(200, T * 10)}% Myst, +${Math.min(18, T * 3)} MP/adv`;
+      sleazeShort.textContent = `T${T} — +${Math.min(200, T * 10)}% Mox, +${Math.min(50, T * 5)}% Meat`;
+
+      const ST = stenchTier;
+      stenchShort.textContent = `T${ST} — ${Math.min(15, 3 + ST * 2)}% -combat, +${Math.min(5, ST)} Stench Res`;
+
+      const NT = physicalTier;
+      physicalShort.textContent = `T${NT} — +${Math.min(10, NT)} stats/fight, +${Math.min(20, NT * 2)} DR`;
+    }
+
+    flatMLInput.addEventListener("input", recalc);
+    pctMLInput.addEventListener("input", recalc);
+    moxieInput.addEventListener("input", recalc);
+    drInput.addEventListener("input", recalc);
+    daInput.addEventListener("input", recalc);
+    resInput.addEventListener("input", recalc);
+    mystSelect.addEventListener("change", recalc);
+    baseAtkInput.addEventListener("input", recalc);
+    equipSelect.addEventListener("change", recalc);
+    flaredSelect.addEventListener("change", recalc);
+
+    recalc();
+  }
+
+  document.querySelectorAll<HTMLElement>(".dmgCalc").forEach(initCalculator);
+</script>
+
+<style>
+  .dmgCalc {
+    background: #ffffff;
+    color: #222;
+    width: 80%;
+    padding: 20px;
+    margin: 30px 10%;
+    border: thick solid rgb(180, 214, 40);
+    box-shadow: 0 0 1rem hsla(0, 0%, 41%, 0.35);
+  }
+
+  .dmgCalc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .dmgCalc-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .dmgCalc-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .dmgCalc-col-title {
+    margin: 0 0 10px 0;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: rgb(10, 114, 80);
+    border-bottom: 2px solid rgb(232, 232, 232);
+    padding-bottom: 4px;
+  }
+
+  .dmgCalc-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .dmgCalc-row label {
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+
+  .dmgCalc-row input,
+  .dmgCalc-row select {
+    padding: 4px;
+    border: 1px solid rgb(180, 214, 40);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+  }
+
+  .dc-suffix-wrap {
+    position: relative;
+    display: flex;
+  }
+
+  .dc-suffix-wrap input {
+    flex: 1;
+    padding-right: 2.8em; /* keep digits and spinner clear of the % */
+  }
+
+  .dc-suffix {
+    position: absolute;
+    right: 1.8em;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* clicks still reach the input */
+    color: #555;
+  }
+
+  .dmgCalc-hint {
+    font-size: 0.8em;
+    color: #555;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .dmgCalc-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dc-tier {
+    flex: 1;
+    min-width: 150px;
+    background: rgb(232, 232, 232);
+    border-radius: 6px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+  }
+
+  .dc-tier-label {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #555;
+  }
+
+  .dc-tier-value {
+    font-size: 1.4em;
+    font-weight: 700;
+    font-family: Menlo, Consolas, monospace;
+  }
+
+  .dc-tier-dmg {
+    font-size: 0.8em;
+    color: #555;
+    font-family: Menlo, Consolas, monospace;
+  }
+
+  .dmgCalc-effects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .dmgCalc-effects {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .dc-effect {
+    background: rgb(245, 245, 245);
+    border-radius: 6px;
+    padding: 8px 12px;
+    border-left: 5px solid #888;
+  }
+
+  .dc-effect summary {
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: Menlo, Consolas, monospace;
+    font-size: 0.85em;
+  }
+
+  .dc-effect p {
+    margin: 8px 0 0 0;
+    font-size: 0.8em;
+    color: #444;
+  }
+
+  .dc-eff-name {
+    font-weight: 700;
+    font-family: inherit;
+  }
+
+  .dc-eff-short {
+    color: #333;
+  }
+
+  .dc-hot {
+    border-left-color: red;
+  }
+  .dc-cold {
+    border-left-color: blue;
+  }
+  .dc-spooky {
+    border-left-color: gray;
+  }
+  .dc-stench {
+    border-left-color: green;
+  }
+  .dc-sleaze {
+    border-left-color: purple;
+  }
+  .dc-physical {
+    border-left-color: black;
+  }
+</style>
