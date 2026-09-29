@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Warning from "@components/Warning.astro";
-import { getPostsBySection, formatDate } from "@lib/posts";
+import { getPostsBySection, formatDate, getExcerpt } from "@lib/posts";
 
 const posts = await getPostsBySection("analysis");
 ---
@@ -46,7 +46,7 @@ const posts = await getPostsBySection("analysis");
                 <p>{formatDate(post.data.date)}</p>
               </dt>
             </a>
-            <dd>{post.body?.slice(0, 200)}</dd>
+            <dd>{getExcerpt(post)}</dd>
           </>
         ))
       }

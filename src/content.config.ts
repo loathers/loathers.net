@@ -11,6 +11,7 @@ const posts = defineCollection({
     section: z.enum(["analysis", "scripting", "shenanigans"]),
     tag: z.string(),
     author: z.string(),
+    excerpt: z.string().optional(),
   }),
 });
 
