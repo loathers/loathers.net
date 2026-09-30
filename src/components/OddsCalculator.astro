@@ -225,6 +225,12 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     font-size: 1em;
   }
 
+  /* Without an explicit width, the dropdown sizes itself to its longest option
+     and forces the whole page wider on phones */
+  .oddsCalc-row select {
+    width: 100%;
+  }
+
   .oc-bar-track {
     width: 100%;
     height: 14px;
@@ -260,5 +266,14 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     display: flex;
     align-items: center;
     font-family: Menlo, Consolas, monospace;
+  }
+
+  /* On narrow screens, use the full column width instead of the centered 60% card */
+  @media (max-width: 480px) {
+    .oddsCalc {
+      width: auto;
+      margin: 20px 0;
+      padding: 12px;
+    }
   }
 </style>

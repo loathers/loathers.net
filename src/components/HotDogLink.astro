@@ -19,10 +19,10 @@ const headerColor = isNewest ? "Maroon" : "DarkSlateGray";
   <div class={layoutStyles.hotDogLink} style={`background-color:${bgColor}`}>
     <h1 style={`background-color:${headerColor}`}>{type}</h1>
     <div class={layoutStyles.flexBreak}></div>
-    <li>
+    <div class={layoutStyles.hotDogItem}>
       <h2>{title}</h2>
       {date !== "" ? date : ""}
-    </li>
-    <li>{excerpt}</li>
+    </div>
+    <div class={layoutStyles.hotDogItem}>{excerpt}</div>
   </div>
 </a>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import layoutStyles from "@components/layout.module.css";
-import { getAllPostsSortedAsc, formatDate } from "@lib/posts";
+import { getAllPostsSortedAsc, formatDate, getExcerpt } from "@lib/posts";
 import { render } from "astro:content";
 import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 
@@ -29,6 +29,7 @@ const needsPagination = Boolean(previous) || Boolean(next);
 <BaseLayout
   pageTitle={post.data.title}
   pathName={`/${post.data.section}/${post.data.slug}`}
+  description={getExcerpt(post)}
 >
   <h1>{post.data.title}</h1>
   <h6>{formatDate(post.data.date)} // {post.data.tag}</h6>

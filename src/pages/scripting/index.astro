@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { getPostsBySection, formatDate } from "@lib/posts";
+import { getPostsBySection, formatDate, getExcerpt } from "@lib/posts";
 
 const posts = await getPostsBySection("scripting");
 ---
@@ -30,7 +30,7 @@ const posts = await getPostsBySection("scripting");
                 <p>{formatDate(post.data.date)}</p>
               </dt>
             </a>
-            <dd>{post.body?.slice(0, 200)}</dd>
+            <dd>{getExcerpt(post)}</dd>
           </>
         ))
       }

@@ -12,6 +12,7 @@ export default defineConfig({
         {
           name: "ash",
           scopeName: "source.ash",
+          repository: {},
           patterns: [],
         },
       ],
