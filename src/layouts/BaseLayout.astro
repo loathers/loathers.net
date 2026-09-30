@@ -8,10 +8,17 @@ import { SITE } from "@lib/constants";
 interface Props {
   pageTitle: string;
   pathName?: string;
+  description?: string;
 }
 
-const { pageTitle, pathName = "" } = Astro.props;
+const {
+  pageTitle,
+  pathName = Astro.url.pathname,
+  description = SITE.description,
+} = Astro.props;
 const url = `${SITE.siteUrl}${pathName}`;
+// Link previews (Discord, Slack, etc.) expect a full URL for the image
+const imageUrl = new URL(SITE.image, SITE.siteUrl).href;
 ---
 
 <!doctype html>
@@ -20,12 +27,19 @@ const url = `${SITE.siteUrl}${pathName}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle} | {SITE.title}</title>
-    <meta name="description" content={SITE.description} />
-    <meta name="image" content={SITE.image} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a7250" />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:url" content={url} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:url" content={url} />
-    <meta name="twitter:description" content={SITE.description} />
-    <meta name="twitter:image" content={SITE.image} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <link rel="icon" href={SITE.image} />
   </head>
   <body>
