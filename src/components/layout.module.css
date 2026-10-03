@@ -487,6 +487,14 @@ h7 {
     padding: 3px;
 }
 
+/* Inline code styling shouldn't leak into fenced code blocks */
+.content pre code {
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+}
+
 .content hr {
     overflow: visible;
     /* For IE */
