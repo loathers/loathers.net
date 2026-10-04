@@ -8,6 +8,7 @@ tag: "Scripting Resources"
 excerpt: "A step-by-step walkthrough for getting a KoLmafia TypeScript development environment up and running, from installing VSCode to running your first built script in the GCLI."
 ---
 import Warning from "@components/Warning.astro"
+import Step from "@components/Step.astro"
 
 > EDITOR'S NOTE: This guide is an amalgamation of two posts, one by [Frazazel](https://docs.google.com/document/d/1Me9ejxu2gaVjA-OCKnsl-uaAVH2Hpj2HWp12OMgvMJI/edit?tab=t.0#heading=h.a58azpim3ta1) and one by [Sweaty Bill](https://github.com/loathers/loathers.net/pull/13). Using the dark magicks of reading comprehension and guile, I have stitched them together into one guide. We will try to keep this a bit more updated than some of the older guides! -- Scotch
 
@@ -27,11 +28,11 @@ The full list of what we'll be installing:
 
 ## Installing Your Tools
 
-> **STEP 1: INSTALL VSCODE**
+<Step n={1}>Install VSCode</Step>
 
 Download the installer for [Visual Studio Code](https://code.visualstudio.com/). Run the installer and leave the default options checked. (If you're on Mac, download the Mac version.)
 
-> **STEP 2: INSTALL NODE.JS**
+<Step n={2}>Install Node.js</Step>
 
 Download and install [Node.js](https://nodejs.org/). If you're given a choice of versions, pick the **LTS** (long-term support) version; the latest release can (occasionally) be too cutting-edge for some tools.
 
@@ -40,7 +41,7 @@ If you expect to be juggling several projects that need different versions of No
 - For Windows users, you can install [nvm-windows](https://github.com/coreybutler/nvm-windows/releases) and use it to install Node with `nvm install lts` followed by `nvm use lts`. Microsoft has a [good walkthrough of this approach](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows). This is entirely optional; the regular installer works just fine, and will be sufficient for most users.
 - For Mac and Linux users, you can use [nvm](https://github.com/nvm-sh/nvm) instead. While macOS users may actually be fine just doing something simple like the regular installer from nodejs.org outside of the nvm universe, Linux users will benefit a bit more from nvm management as base distro packages can be a few versions old.
 
-> **STEP 3: INSTALL GIT**
+<Step n={3}>Install Git</Step>
 
 Git differs a bit depending on operating systems as well. 
 
@@ -56,7 +57,7 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-> **STEP 4: INSTALL VSCODE EXTENSIONS**
+<Step n={4}>Install VSCode Extensions</Step>
 
 Open VSCode and install the following extensions:
 
@@ -69,11 +70,11 @@ You may see older guides recommend the Prettier extension as well; it is no long
 
 ## Creating Your Script
 
-> **STEP 5: OPEN A TERMINAL IN YOUR PROJECTS FOLDER**
+<Step n={5}>Open a Terminal in Your Projects Folder</Step>
 
 First, pick where you want your scripting projects to live. (As an example, one may have a `Documents/GitHub/` folder.) Open the folder in VSCode via **File > Open Folder**, and then open VSCode's built-in terminal with ``Ctrl+` ``.
 
-> **STEP 6: INSTALL YARN**
+<Step n={6}>Install Yarn</Step>
 
 In your terminal, run the following two commands to install yarn:
 ```bash
@@ -81,9 +82,9 @@ npm install -g corepack
 corepack enable
 ```
 
-`corepack enable` may not print anything, which is fine; no news is good news. You only need to do this once per computer, not once per script. (If you are on Mac or Linux, and did not use the nvm route discussed earlier, you may need to use a `sudo` command to install corepack.)
+`corepack enable` may not print anything, which is fine; no news is good news. You only need to do this once per computer, not once per script. (If you are on Mac or Linux, and did not use the [nvm route](#step-2) discussed earlier, you may need to use a `sudo` command to install corepack.)
 
-> **STEP 7: CREATE YOUR SCRIPT**
+<Step n={7}>Create Your Script</Step>
 
 In your terminal, run:
 ```bash
@@ -92,7 +93,7 @@ yarn create kolmafia-script scriptname
 
 Answer its questions, and choose to install [libram](https://github.com/loathers/libram). Choose to install [grimoire](https://github.com/loathers/grimoire) if you want to use it for adventuring tasks or for its argument handling. It will then install a whole bunch of stuff and configure it with great defaults. It should add most of the packages you need, and it will also create a git repository for you. Don't be alarmed by the very large `node_modules` folder it creates; that's where all of those packages live, and it's supposed to be there.
 
-> **STEP 8: MOVE INTO YOUR NEW SCRIPT FOLDER**
+<Step n={8}>Move Into Your New Script Folder</Step>
 
 In your terminal, change directory into the folder it just created:
 ```bash
@@ -101,11 +102,11 @@ cd scriptname
 
 ## Building & Running Your Script
 
-> **STEP 9: WRITE SOME CODE**
+<Step n={9}>Write Some Code</Step>
 
 Open `src/main.ts` in VSCode. (We recommend opening the containing folder of your script with "File > Open Folder" and selecting that file through the left-hand sidebar). Write some TypeScript code to do something, and save it.
 
-> **STEP 10: BUILD YOUR SCRIPT**
+<Step n={10}>Build Your Script</Step>
 
 In your terminal, run:
 ```bash
@@ -114,14 +115,14 @@ yarn run build
 
 After a few seconds, it will create a `.js` script in a new `dist/scripts/scriptname/` folder.
 
-> **STEP 11: LINK YOUR SCRIPT TO KOLMAFIA**
+<Step n={11}>Link Your Script to KoLmafia</Step>
 
 For this step, we need to place a symlink in your KoLmafia folder so that you don't need to copy the script over to mafia every time you build it. The default location of your mafia folder varies by OS, which will lightly vary the installation command needed:
 - For Windows, your folder will be wherever the `.jar` file you use to start mafia lived. You will need to find that path and pass it to a new install command, which should look like `yarn run install-mafia "C:\Users\YourName\Documents\KoLmafia"`, replacing the path to wherever you are currently storing your mafia files.
 - For Mac, assuming you have not moved your data folder away from default, you just need to run `yarn run install-mafia`. (In case you're curious, the Mac default location is `~/Library/Application Support/KoLmafia`.) If you've moved it, pass the path like the Windows example.
 - For Linux, assuming you have not moved your data folder away from default, you just need to run `yarn run install-mafia`. (In case you're curious, the Linux default location is `~/.kolmafia`.) If you've moved it, pass the path like the Windows example.
 
-> **STEP 12: RUN IT!**
+<Step n={12}>Run It!</Step>
 
 Open KoLmafia, type `scriptname` into the GCLI, and watch it do its thing.
 
@@ -130,12 +131,12 @@ Open KoLmafia, type `scriptname` into the GCLI, and watch it do its thing.
 Once everything is set up, your day-to-day loop looks like this:
 
 1. In VSCode, write or edit your code and save.
-2. In your terminal, run `yarn run build`. The symlink we set up in Step 11 allows KoLmafia to see the newly generated script. (Consider enabling rebuild-on-save with `yarn run watch` -- this means you don't need to run build all the time, which can be nice for your development flow.)
+2. In your terminal, run `yarn run build`. The symlink we set up in [Step 11](#step-11) allows KoLmafia to see the newly generated script. (Consider enabling rebuild-on-save with `yarn run watch` -- this means you don't need to run build all the time, which can be nice for your development flow.)
 3. Open KoLmafia and rerun your script!
 
 ## Working on an Existing Script Instead
 
-The tools you installed in Steps 1 through 6 are also everything you need to work on someone else's TypeScript script, like [garbage-collector](https://github.com/loathers/garbage-collector). Rather than creating a new script, you'll fork the project on GitHub, clone your fork, and install its dependencies:
+The tools you installed in [Steps 1 through 6](#step-1) are also everything you need to work on someone else's TypeScript script, like [garbage-collector](https://github.com/loathers/garbage-collector). Rather than creating a new script, you'll fork the project on GitHub, clone your fork, and install its dependencies:
 ```bash
 git clone https://github.com/your-username/garbage-collector.git
 cd garbage-collector
@@ -151,6 +152,6 @@ There are a number of things this guide doesn't address, but that you should pro
 
 - Actually developing your script will require a different guide. This one just gets your environment set up.
 - You should use git for version control. It's not hard, and it saves a lot of headaches. Consider [GitHub Desktop](https://desktop.github.com/) for git with a GUI and easy GitHub integration instead of command-line git.
-- If you said yes to the GitHub files in Step 7 (which you should've!), your repo already includes a workflow that builds your script into a `release` branch every time you push to `main`. Players can then install it with `git checkout yourname/scriptname release`; we recommend putting that in your `README.md` for ease of use.
+- If you said yes to the GitHub files in [Step 7](#step-7) (which you should've!), your repo already includes a workflow that builds your script into a `release` branch every time you push to `main`. Players can then install it with `git checkout yourname/scriptname release`; we recommend putting that in your `README.md` for ease of use.
 - Upgrading packages for the latest KoLmafia, libram, etc. is occasionally required for new KoL content.
 - Configuring `package.json`, rollup, TypeScript, and ESLint via their saved configuration files is sometimes a thing you should do, but that's too much for this guide. Just know that these configuration files are there, and you can change them!
