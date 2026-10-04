@@ -446,7 +446,8 @@ h7 {
 
 .content li {
     margin: .7em 0em;
-    line-height: 1.25em;
+    /* Tall enough that bordered inline code chips on wrapped lines don't overlap */
+    line-height: 1.5em;
 }
 
 .content h2 {
@@ -512,10 +513,12 @@ h7 {
 }
 
 .content code {
-    background-color: rgb(51, 48, 76);
-    color: rgb(237, 213, 213);
+    background-color: #f3eef9;
+    color: #5a2a82;
+    border: 1px solid #e2d6f0;
     border-radius: 0.3em;
-    padding: 3px;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
     /* Let long unbroken strings (file paths, URLs) wrap instead of widening the page on phones */
     overflow-wrap: anywhere;
 }
@@ -524,8 +527,10 @@ h7 {
 .content pre code {
     background-color: transparent;
     color: inherit;
+    border: none;
     border-radius: 0;
     padding: 0;
+    font-size: inherit;
 }
 
 .content hr {
