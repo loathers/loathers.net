@@ -27,11 +27,11 @@ The full list of what we'll be installing:
 
 ## Installing Your Tools
 
-**STEP 1: INSTALL VSCODE**
+> **STEP 1: INSTALL VSCODE**
 
 Download the installer for [Visual Studio Code](https://code.visualstudio.com/). Run the installer and leave the default options checked. (If you're on Mac, download the Mac version.)
 
-**STEP 2: INSTALL NODE.JS**
+> **STEP 2: INSTALL NODE.JS**
 
 Download and install [Node.js](https://nodejs.org/). If you're given a choice of versions, pick the **LTS** (long-term support) version; the latest release can (occasionally) be too cutting-edge for some tools.
 
@@ -40,7 +40,7 @@ If you expect to be juggling several projects that need different versions of No
 - For Windows users, you can install [nvm-windows](https://github.com/coreybutler/nvm-windows/releases) and use it to install Node with `nvm install lts` followed by `nvm use lts`. Microsoft has a [good walkthrough of this approach](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows). This is entirely optional; the regular installer works just fine, and will be sufficient for most users.
 - For Mac and Linux users, you can use [nvm](https://github.com/nvm-sh/nvm) instead. While macOS users may actually be fine just doing something simple like the regular installer from nodejs.org outside of the nvm universe, Linux users will benefit a bit more from nvm management as base distro packages can be a few versions old.
 
-**STEP 3: INSTALL GIT**
+> **STEP 3: INSTALL GIT**
 
 Git differs a bit depending on operating systems as well. 
 
@@ -56,7 +56,7 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-**STEP 4: INSTALL VSCODE EXTENSIONS**
+> **STEP 4: INSTALL VSCODE EXTENSIONS**
 
 Open VSCode and install the following extensions:
 
@@ -65,15 +65,15 @@ Open VSCode and install the following extensions:
 
 You may see older guides recommend the Prettier extension as well; it is no longer recommended. Just run `yarn run format` before you commit.
 
-<Warning>If a command in any of the following steps gives you an error saying "not recognized as an internal or external command" or "command not found", close and reopen your terminal. If that doesn't work, close and reopen VSCode entirely. Newly installed programs often aren't visible to terminals that were already open when you installed them.</Warning>
+<Warning>If a command in any of the following steps gives you an error like "not recognized as an internal or external command" or "command not found", close and reopen VSCode entirely. Newly installed programs often aren't visible to terminals already open when you installed them.</Warning>
 
 ## Creating Your Script
 
-**STEP 5: OPEN A TERMINAL IN YOUR PROJECTS FOLDER**
+> **STEP 5: OPEN A TERMINAL IN YOUR PROJECTS FOLDER**
 
 First, pick where you want your scripting projects to live. (As an example, one may have a `Documents/GitHub/` folder.) Open the folder in VSCode via **File > Open Folder**, and then open VSCode's built-in terminal with ``Ctrl+` ``.
 
-**STEP 6: INSTALL YARN**
+> **STEP 6: INSTALL YARN**
 
 In your terminal, run the following two commands to install yarn:
 ```bash
@@ -83,7 +83,7 @@ corepack enable
 
 `corepack enable` may not print anything, which is fine; no news is good news. You only need to do this once per computer, not once per script. (If you are on Mac or Linux, and did not use the nvm route discussed earlier, you may need to use a `sudo` command to install corepack.)
 
-**STEP 7: CREATE YOUR SCRIPT**
+> **STEP 7: CREATE YOUR SCRIPT**
 
 In your terminal, run:
 ```bash
@@ -92,7 +92,7 @@ yarn create kolmafia-script scriptname
 
 Answer its questions, and choose to install [libram](https://github.com/loathers/libram). Choose to install [grimoire](https://github.com/loathers/grimoire) if you want to use it for adventuring tasks or for its argument handling. It will then install a whole bunch of stuff and configure it with great defaults. It should add most of the packages you need, and it will also create a git repository for you. Don't be alarmed by the very large `node_modules` folder it creates; that's where all of those packages live, and it's supposed to be there.
 
-**STEP 8: MOVE INTO YOUR NEW SCRIPT FOLDER**
+> **STEP 8: MOVE INTO YOUR NEW SCRIPT FOLDER**
 
 In your terminal, change directory into the folder it just created:
 ```bash
@@ -101,11 +101,11 @@ cd scriptname
 
 ## Building & Running Your Script
 
-**STEP 9: WRITE SOME CODE**
+> **STEP 9: WRITE SOME CODE**
 
 Open `src/main.ts` in VSCode. (We recommend opening the containing folder of your script with "File > Open Folder" and selecting that file through the left-hand sidebar). Write some TypeScript code to do something, and save it.
 
-**STEP 10: BUILD YOUR SCRIPT**
+> **STEP 10: BUILD YOUR SCRIPT**
 
 In your terminal, run:
 ```bash
@@ -114,14 +114,14 @@ yarn run build
 
 After a few seconds, it will create a `.js` script in a new `dist/scripts/scriptname/` folder.
 
-**STEP 11: LINK YOUR SCRIPT TO KOLMAFIA**
+> **STEP 11: LINK YOUR SCRIPT TO KOLMAFIA**
 
-For this step, we need to install a symlink in your KoLmafia folder so that you don't need to copy the script over to mafia every time you build it. The default location of your mafia folder varies by OS, which will lightly vary the installation command needed:
+For this step, we need to place a symlink in your KoLmafia folder so that you don't need to copy the script over to mafia every time you build it. The default location of your mafia folder varies by OS, which will lightly vary the installation command needed:
 - For Windows, your folder will be wherever the `.jar` file you use to start mafia lived. You will need to find that path and pass it to a new install command, which should look like `yarn run install-mafia "C:\Users\YourName\Documents\KoLmafia"`, replacing the path to wherever you are currently storing your mafia files.
 - For Mac, assuming you have not moved your data folder away from default, you just need to run `yarn run install-mafia`. (In case you're curious, the Mac default location is `~/Library/Application Support/KoLmafia`.) If you've moved it, pass the path like the Windows example.
 - For Linux, assuming you have not moved your data folder away from default, you just need to run `yarn run install-mafia`. (In case you're curious, the Linux default location is `~/.kolmafia`.) If you've moved it, pass the path like the Windows example.
 
-**STEP 12: RUN IT!**
+> **STEP 12: RUN IT!**
 
 Open KoLmafia, type `scriptname` into the GCLI, and watch it do its thing.
 
