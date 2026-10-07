@@ -100,6 +100,30 @@ a {
     background: rgb(135, 42, 182);
 }
 
+/* Numbered step headers for walkthrough guides, matching the ordered-list badges above */
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1.75em 0 0.5em;
+    font-family: Arial Black, Arial, Verdana;
+    font-size: 1.15em;
+    line-height: 1.3em;
+}
+
+.stepNumber {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    background: #ff6f00;
+    color: white;
+    font-size: 0.9em;
+}
+
 /* This controls the top black bar. */
 
 .loathersHead {
@@ -127,6 +151,9 @@ a {
     margin: 0px;
     width: auto;
     height: 100%;
+    /* Inset the logo so it doesn't touch the edges of the black banner */
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 .dotNet {
@@ -142,6 +169,10 @@ a {
         letter-spacing: 1px;
         height: 64px;
         line-height: 64px;
+    }
+
+    .loathersHead img {
+        padding: 5px;
     }
 
     .dotNet {
@@ -415,7 +446,8 @@ h7 {
 
 .content li {
     margin: .7em 0em;
-    line-height: 1.25em;
+    /* Tall enough that bordered inline code chips on wrapped lines don't overlap */
+    line-height: 1.5em;
 }
 
 .content h2 {
@@ -481,10 +513,24 @@ h7 {
 }
 
 .content code {
-    background-color: rgb(51, 48, 76);
-    color: rgb(237, 213, 213);
+    background-color: #f3eef9;
+    color: #5a2a82;
+    border: 1px solid #e2d6f0;
     border-radius: 0.3em;
-    padding: 3px;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+    /* Let long unbroken strings (file paths, URLs) wrap instead of widening the page on phones */
+    overflow-wrap: anywhere;
+}
+
+/* Inline code styling shouldn't leak into fenced code blocks */
+.content pre code {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
 }
 
 .content hr {

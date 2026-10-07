@@ -1,0 +1,14 @@
+---
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  n: number;
+}
+
+const { n } = Astro.props;
+---
+
+<h3 class={layoutStyles.step} id={`step-${n}`}>
+  <span class={layoutStyles.stepNumber}>{n}</span>
+  <span><slot /></span>
+</h3>
