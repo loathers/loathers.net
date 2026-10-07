@@ -3,7 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import layoutStyles from "@components/layout.module.css";
 import { getAllPostsSortedAsc, formatDate, getExcerpt } from "@lib/posts";
 import { render } from "astro:content";
-import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
+import type { InferGetStaticPropsType } from "astro";
 
 export async function getStaticPaths() {
   const posts = await getAllPostsSortedAsc();
