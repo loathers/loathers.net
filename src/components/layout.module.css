@@ -100,87 +100,6 @@ a {
     background: rgb(135, 42, 182);
 }
 
-/* Numbered step headers for walkthrough guides, matching the ordered-list badges above */
-
-.step {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 1.75em 0 0.5em;
-    font-family: Arial Black, Arial, Verdana;
-    font-size: 1.15em;
-    line-height: 1.3em;
-}
-
-.stepNumber {
-    flex-shrink: 0;
-    display: inline-grid;
-    place-items: center;
-    width: 1.8em;
-    height: 1.8em;
-    border-radius: 50%;
-    background: #ff6f00;
-    color: white;
-    font-size: 0.9em;
-}
-
-/* This controls the top black bar. */
-
-.loathersHead {
-    color: white;
-    background-color: black;
-    display: flex;
-    margin-top: 0.5rem;
-
-    font-family: Arial Black, Verdana, Arial;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-size: 37px;
-
-    text-align: center;
-    height: 100px;
-    line-height: 100px;
-}
-
-.loathersHead a:hover {
-    text-decoration: none;
-}
-
-.loathersHead img {
-    margin: 0px;
-    width: auto;
-    height: 100%;
-    /* Inset the logo so it doesn't touch the edges of the black banner */
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.dotNet {
-    color: gray;
-    font-size: 20px;
-    line-height: 117px;
-}
-
-/* On narrow screens, shrink the banner so ".net" doesn't run off the edge */
-@media (max-width: 480px) {
-    .loathersHead {
-        font-size: 24px;
-        letter-spacing: 1px;
-        height: 64px;
-        line-height: 64px;
-    }
-
-    .loathersHead img {
-        padding: 5px;
-    }
-
-    .dotNet {
-        font-size: 13px;
-        line-height: 74px;
-    }
-}
-
 /* This controls the navbar. */
 
 .nav-links {
@@ -233,83 +152,8 @@ a {
     flex-grow: 1;
 }
 
-.nav-links img {
-    display: inline-block;
-    line-height: 25px;
-    margin: 0px;
-    vertical-align: middle;
-}
-
 .nav-links span {
     color: rgb(65, 65, 65);
-}
-
-/* On narrow screens, let the header nav wrap instead of squeezing the links and icons */
-@media (max-width: 480px) {
-    header .nav-links {
-        flex-wrap: wrap;
-        padding-right: 4px;
-    }
-
-    header .nav-link-text {
-        white-space: nowrap;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    header .nav-links img {
-        flex-shrink: 0;
-        margin: 0 4px;
-    }
-}
-
-/* This controls the warning box, which I got cute with for some reason */
-
-.warnBox {
-    background: repeating-linear-gradient(45deg,
-            #bc6060,
-            #bc6060 10px,
-            #984646 10px,
-            #984646 20px);
-    color: white;
-    text-align: center;
-    font-size: large;
-    font-family: Verdana;
-    font-weight: bold;
-    text-shadow: 2px 2px 1px black;
-    border: thick solid rgb(109, 0, 0);
-    margin: 10px 30px;
-    padding: 5px;
-}
-
-/* This controls the item box. */
-
-.itemBox {
-    background: #FFFFFF;
-    color: blue;
-    width: 60%;
-    padding: 20px;
-    margin: 30px 20%;
-    border: thick solid rgb(180, 180, 255);
-
-    box-shadow: 0 0 1rem hsla(0, 0%, 41%, 0.35);
-}
-
-.itemBox h3 {
-    background: rgb(180, 180, 255);
-    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 100 100'><text y='.9em' font-size=90>&#x2612;</text></svg>");
-    color: #ffffff;
-    text-align: center;
-    width: 100%;
-    padding: 10px;
-}
-
-.itemBox ul {
-    text-align: center;
-    list-style: "";
-    text-indent: 0;
-    padding-left: 0px;
-    font-weight: bold;
 }
 
 /* This is a way to cheat flexboxes into making full width items */
@@ -411,25 +255,6 @@ dd {
     overflow: hidden;
 
     margin-top: 5px;
-}
-
-/* This controls subtitles, with date & tag. Also author slug */
-
-h6,
-h7 {
-    margin: 0;
-    margin-bottom: 10px;
-    color: rgb(102, 102, 102);
-
-    /* using monospace for this  */
-    font-family: Menlo, Consolas, monospace;
-    font-size: .8em;
-
-    height: 20px;
-    line-height: 20px;
-    text-align: right;
-
-    overflow: hidden;
 }
 
 /* This controls spacing for the post itself */
@@ -570,15 +395,6 @@ h7 {
     background: white;
 }
 
-/* This controls our footers, which is just the small copyright/gatsby callout */
-
-footer {
-    font-size: x-small;
-    color: gray;
-    text-align: right;
-}
-
-
 /* This controls the hotdoglink, a long main page link card */
 
 .hotDogLink {
@@ -631,43 +447,6 @@ footer {
 
 .hotDogLink p {
     margin: 0px;
-}
-
-/* Styling for our tools page */
-
-ul.toolsGrid {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1em;
-    padding: 5px;
-}
-
-@media (max-width: 700px) {
-    ul.toolsGrid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.toolsGrid li {
-    text-indent: 0;
-    margin: 0;
-    border-radius: 1em;
-    padding: 10px;
-    text-align: center;
-    background-color: rgb(225, 243, 238);
-    /* 
-    background:url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><foreignObject width=%22100px%22 height=%22100px%22><div xmlns=%22http://www.w3.org/1999/xhtml%22 style=%22color:transparent;text-shadow: 10px 10px rgba(0, 100, 0, .1), 0 0  rgba(0,50,0,0);font-size:70px%22>⚙️</div></foreignObject></svg>"), rgb(210, 240, 232); 
-    background-size: 50px 50px; 
-    background-position: top left;
-    background-repeat: no-repeat; */
-
-}
-
-.toolsGrid h2 {
-    margin: 0px;
-    padding: 10px;
-    border-bottom: thick dashed rgb(161, 205, 205);
 }
 
 /* Keep images small */

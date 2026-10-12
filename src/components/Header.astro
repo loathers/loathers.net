@@ -1,13 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import layoutStyles from "./layout.module.css";
 import Navigation from "./Navigation.astro";
 import loathersLogo from "../images/loathersLogo.png";
 ---
 
 <header>
   <a href="/">
-    <div class={layoutStyles.loathersHead}>
+    <div class="loathersHead">
       <Image
         src={loathersLogo}
         alt="A martini glass in black and white"
@@ -15,8 +14,66 @@ import loathersLogo from "../images/loathersLogo.png";
         height={100}
         densities={[1, 2]}
       />{" "}
-      Loathers<span class={layoutStyles.dotNet}>.net</span>
+      Loathers<span class="dotNet">.net</span>
     </div>
   </a>
   <Navigation />
 </header>
+
+<style>
+  /* This controls the top black bar. */
+  .loathersHead {
+    color: white;
+    background-color: black;
+    display: flex;
+    margin-top: 0.5rem;
+
+    font-family: Arial Black, Verdana, Arial;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 37px;
+
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .loathersHead a:hover {
+    text-decoration: none;
+  }
+
+  .loathersHead img {
+    margin: 0px;
+    width: auto;
+    height: 100%;
+    /* Inset the logo so it doesn't touch the edges of the black banner */
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  .dotNet {
+    color: gray;
+    font-size: 20px;
+    line-height: 117px;
+  }
+
+  /* On narrow screens, shrink the banner so ".net" doesn't run off the edge */
+  @media (max-width: 480px) {
+    .loathersHead {
+      font-size: 24px;
+      letter-spacing: 1px;
+      height: 64px;
+      line-height: 64px;
+    }
+
+    .loathersHead img {
+      padding: 5px;
+    }
+
+    .dotNet {
+      font-size: 13px;
+      line-height: 74px;
+    }
+  }
+</style>

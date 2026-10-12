@@ -1,6 +1,4 @@
 ---
-import layoutStyles from "./layout.module.css";
-
 interface Props {
   emoji?: string;
 }
@@ -9,6 +7,28 @@ const { emoji = "⚠️" } = Astro.props;
 const displayEmoji = emoji === "" ? "⚠️" : emoji;
 ---
 
-<div class={layoutStyles.warnBox}>
+<div class="warnBox">
   {displayEmoji} <slot /> {displayEmoji}
 </div>
+
+<style>
+  /* This controls the warning box, which I got cute with for some reason */
+  .warnBox {
+    background: repeating-linear-gradient(
+      45deg,
+      #bc6060,
+      #bc6060 10px,
+      #984646 10px,
+      #984646 20px
+    );
+    color: white;
+    text-align: center;
+    font-size: large;
+    font-family: Verdana;
+    font-weight: bold;
+    text-shadow: 2px 2px 1px black;
+    border: thick solid rgb(109, 0, 0);
+    margin: 10px 30px;
+    padding: 5px;
+  }
+</style>

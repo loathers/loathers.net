@@ -1,0 +1,80 @@
+---
+// PostNav.astro
+//
+// The previous/next post bar shown above and below every post.
+
+import type { CollectionEntry } from "astro:content";
+import layoutStyles from "./layout.module.css";
+
+interface Props {
+  previous: CollectionEntry<"posts"> | null;
+  next: CollectionEntry<"posts"> | null;
+}
+
+const { previous, next } = Astro.props;
+const postUrl = (post: CollectionEntry<"posts">) =>
+  `/${post.data.section}/${post.data.slug}`;
+---
+
+{
+  (previous || next) && (
+    <nav class="post-nav">
+      <ul class={layoutStyles["nav-links"]}>
+        {previous && (
+          <li class="prev">
+            <a href={postUrl(previous)} class={layoutStyles["nav-link-text"]}>
+              ← {previous.data.title}
+            </a>
+          </li>
+        )}
+        <li class:list={[layoutStyles.navSpacer, "spacer"]}>&nbsp;</li>
+        {next && (
+          <li class="next">
+            <a href={postUrl(next)} class={layoutStyles["nav-link-text"]}>
+              {next.data.title} →
+            </a>
+          </li>
+        )}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  /* The nav sits inside the post content, so undo the list indents, margins,
+     and long-word breaking meant for lists in the post body (the .post-nav
+     prefix is needed to outrank those rules) */
+  .post-nav ul {
+    padding-left: 0;
+  }
+
+  /* Previous and next split the bar evenly instead of a long title squeezing
+     the other one; the spacer just keeps them apart */
+  .post-nav li {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding-left: 0;
+    overflow-wrap: normal;
+  }
+
+  .post-nav li.spacer {
+    flex: 0 0 8px;
+  }
+
+  .post-nav li.next {
+    text-align: right;
+  }
+
+  /* Inline-block so the padding wraps the whole title; as inline links, each
+     wrapped line got its own padded box that overlapped the line above on hover */
+  .post-nav a {
+    display: inline-block;
+    padding: 9px 12px 9px 24px;
+    line-height: 1.4;
+  }
+
+  .post-nav li.next a {
+    padding: 9px 24px 9px 12px;
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import layoutStyles from "@components/layout.module.css";
+import PostNav from "@components/PostNav.astro";
 import { getAllPostsSortedAsc, formatDate, getExcerpt } from "@lib/posts";
 import { render } from "astro:content";
 import type { InferGetStaticPropsType } from "astro";
@@ -23,7 +23,6 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post, previous, next } = Astro.props;
 const { Content } = await render(post);
-const needsPagination = Boolean(previous) || Boolean(next);
 ---
 
 <BaseLayout
@@ -37,67 +36,11 @@ const needsPagination = Boolean(previous) || Boolean(next);
   }}
 >
   <h1>{post.data.title}</h1>
-  <h6>{formatDate(post.data.date)} // {post.data.tag}</h6>
-  {
-    needsPagination && (
-      <nav class="post-nav">
-        <ul class={layoutStyles["nav-links"]}>
-          {previous && (
-            <li>
-              <a
-                href={`/${previous.data.section}/${previous.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                ← {previous.data.title}
-              </a>
-            </li>
-          )}
-          <li class={layoutStyles.navSpacer}>&nbsp;</li>
-          {next && (
-            <li>
-              <a
-                href={`/${next.data.section}/${next.data.slug}`}
-                class:list={[layoutStyles["nav-link-text"], "next"]}
-              >
-                {next.data.title} →
-              </a>
-            </li>
-          )}
-        </ul>
-      </nav>
-    )
-  }
+  <p class="post-date">{formatDate(post.data.date)} // {post.data.tag}</p>
+  <PostNav previous={previous} next={next} />
   <Content />
   <p class="post-author">Article contributed by {post.data.author}</p>
-  {
-    needsPagination && (
-      <nav class="post-nav">
-        <ul class={layoutStyles["nav-links"]}>
-          {previous && (
-            <li>
-              <a
-                href={`/${previous.data.section}/${previous.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                ← {previous.data.title}
-              </a>
-            </li>
-          )}
-          <li class={layoutStyles.navSpacer}>&nbsp;</li>
-          {next && (
-            <li>
-              <a
-                href={`/${next.data.section}/${next.data.slug}`}
-                class:list={[layoutStyles["nav-link-text"], "next"]}
-              >
-                {next.data.title} →
-              </a>
-            </li>
-          )}
-        </ul>
-      </nav>
-    )
-  }
+  <PostNav previous={previous} next={next} />
 </BaseLayout>
 
 <script>
@@ -129,7 +72,9 @@ const needsPagination = Boolean(previous) || Boolean(next);
           setTimeout(() => {
             anchor.classList.remove("copied");
             tip.classList.add("fading");
-            tip.addEventListener("transitionend", () => tip.remove(), { once: true });
+            tip.addEventListener("transitionend", () => tip.remove(), {
+              once: true,
+            });
           }, 1500);
         });
       });
@@ -193,51 +138,26 @@ const needsPagination = Boolean(previous) || Boolean(next);
     opacity: 0;
   }
 
-  /* Block links so the padding wraps the whole title; as inline links, each
-     wrapped line got its own padded box that overlapped the line above on hover */
-  /* The nav sits inside the post content, so undo the list indents, margins,
-     and long-word breaking meant for lists in the post body */
-  .post-nav ul {
-    padding-left: 0;
-  }
-
-  .post-nav li {
-    flex: 1 1 0;
-    min-width: 0;
-    margin: 0;
-    padding-left: 0;
-    overflow-wrap: normal;
-  }
-
-  /* Previous and next split the bar evenly instead of a long title squeezing
-     the other one; the spacer just keeps them apart */
-  .post-nav li:not(:has(> a)) {
-    flex: 0 0 8px;
-  }
-
-  .post-nav li:has(> a.next) {
-    text-align: right;
-  }
-
-  .post-nav a {
-    display: inline-block;
-    padding: 9px 12px 9px 24px;
-    line-height: 1.4;
-  }
-
-  .post-nav a.next {
-    padding: 9px 24px 9px 12px;
-  }
-
+  /* The date & tag line under the title, and the author line at the bottom */
+  .post-date,
   .post-author {
     margin: 0;
     margin-bottom: 10px;
     color: rgb(102, 102, 102);
     font-family: Menlo, Consolas, monospace;
     font-size: 0.8em;
+    font-weight: bold;
     height: 20px;
     line-height: 20px;
     text-align: right;
     overflow: hidden;
+  }
+
+  /* Matches how the date line looked back when it was an <h6>: bold, no
+     bottom margin, and none of the long-word breaking post paragraphs get */
+  .post-date {
+    margin-bottom: 0;
+    font-weight: bold;
+    overflow-wrap: normal;
   }
 </style>

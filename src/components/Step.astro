@@ -1,6 +1,4 @@
 ---
-import layoutStyles from "./layout.module.css";
-
 interface Props {
   n: number;
 }
@@ -8,7 +6,33 @@ interface Props {
 const { n } = Astro.props;
 ---
 
-<h3 class={layoutStyles.step} id={`step-${n}`}>
-  <span class={layoutStyles.stepNumber}>{n}</span>
+<h3 class="step" id={`step-${n}`}>
+  <span class="stepNumber">{n}</span>
   <span><slot /></span>
 </h3>
+
+<style>
+  /* Numbered step headers for walkthrough guides, matching the ordered-list
+     badges in post content */
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1.75em 0 0.5em;
+    font-family: Arial Black, Arial, Verdana;
+    font-size: 1.15em;
+    line-height: 1.3em;
+  }
+
+  .stepNumber {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    background: #ff6f00;
+    color: white;
+    font-size: 0.9em;
+  }
+</style>

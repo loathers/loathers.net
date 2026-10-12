@@ -29,12 +29,12 @@ import opencollectiveLogo from "../images/opencollective-logo20px.png";
       >
     </li>
     <li class={layoutStyles.navSpacer}>&nbsp;</li>
-    <li>
+    <li class="icon">
       <a href="https://github.com/loathers">
         <Image src={githubLogo} alt="github" width={20} height={20} />
       </a>
     </li>
-    <li>
+    <li class="icon">
       <a href="https://opencollective.com/loathers">
         <Image
           src={opencollectiveLogo}
@@ -46,3 +46,31 @@ import opencollectiveLogo from "../images/opencollective-logo20px.png";
     </li>
   </ul>
 </nav>
+
+<style>
+  img {
+    display: inline-block;
+    line-height: 25px;
+    margin: 0px;
+    vertical-align: middle;
+  }
+
+  /* On narrow screens, let the header nav wrap instead of squeezing the links and icons */
+  @media (max-width: 480px) {
+    ul {
+      flex-wrap: wrap;
+      padding-right: 4px;
+    }
+
+    li:not(.icon) a {
+      white-space: nowrap;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    img {
+      flex-shrink: 0;
+      margin: 0 4px;
+    }
+  }
+</style>
