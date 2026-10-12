@@ -459,6 +459,20 @@ h7 {
     margin: 0.5em 0em;
 }
 
+/* Let freakishly long words (looking at you, Sssshhsssblllrrggghsssssggggrrgglsssshhssslblgl)
+   wrap instead of widening the page on phones */
+.content p,
+.content li {
+    overflow-wrap: anywhere;
+}
+
+/* Embeds like YouTube videos come with a fixed pixel width; shrink them to fit */
+.content iframe {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
 .content blockquote {
     background-color: #efefef;
     color: rgb(97, 97, 97);
