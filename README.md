@@ -23,6 +23,33 @@ Otherwise, it's all basic markdown, and should be very easy to contribute to! Pl
 
 Eventually, we are hoping to have various components like `<IOTMBox iotm="gamename" />` that contributors can use, but we don't have those yet. When we do, we'll put a guide to using them here (or in a separate MD file!)
 
+### Using KoL icons in a post
+
+We keep our own copies of any KoL images we use, all in one place: `public/images/kol/`. The folder structure mirrors KoL's own image server, so the pumpkin icon lives at `public/images/kol/itemimages/pumpkin.gif`, the same `itemimages/pumpkin.gif` path that KoLmafia's data files and greenbox use. Please don't hotlink KoL's servers or drop icons next to your post; put them here so everyone can reuse them.
+
+To grab an icon, find its image filename (the `items.txt` file in KoLmafia's data lists one for every item) and run:
+
+```
+npm run kol-icon -- pumpkin.gif
+```
+
+A few notes:
+
+- A bare filename is assumed to be an item image. For anything else, give the full path, like `npm run kol-icon -- otherimages/sigils/hobotat19.gif`.
+- You can fetch several at once: `npm run kol-icon -- pumpkin.gif bigpumpkin.gif skeleton.gif`.
+- Icons you already have are skipped. Add `--force` to download them again.
+- Commit the downloaded files along with your post.
+
+Then use the `KolIcon` component in your MDX:
+
+```
+import KolIcon from "@components/KolIcon.astro"
+
+<KolIcon image="pumpkin.gif" alt="pumpkin" />
+```
+
+Icons render at KoL's native 30x30 by default; pass `size={60}` (or another multiple of 30) to scale them up without blurring. If you use an icon you haven't downloaded, the build will fail and tell you the exact `npm run kol-icon` command to fix it.
+
 ## For contributors to the core website frontend/backend
 
 To set up a local development environment, clone this repository and run `npm run develop`. In theory that should be all you need to do? Probably an `npm install` for good measure first.

@@ -1,0 +1,488 @@
+---
+// TierTable.astro
+//
+// Sortable tier table for retro reviews, plus a "tier board" view that drops
+//   each row's icon into tier lanes and can flip between rating columns (so you
+//   can watch things fall from "at the time" to "modern"). Built for the Garden
+//   Slot post, but rows/columns come in as props so other retros can reuse it.
+//
+// Without JS it's just a plain table in the order the rows were given.
+
+import { tierColor } from "@lib/tiers";
+import KolIcon from "./KolIcon.astro";
+import TierMark from "./TierMark.astro";
+
+interface Column {
+  /** Key into each row's `tiers` */
+  key: string;
+  label: string;
+}
+
+interface Row {
+  name: string;
+  year: number;
+  /** KoL image path, as KolIcon takes it */
+  icon: string;
+  /** Link target, usually the row's section heading (#2010-a-pumpkin-patch) */
+  href?: string;
+  /** Tier per column key; null or missing shows as TBD and always sorts last */
+  tiers: Record<string, number | null>;
+}
+
+interface Props {
+  columns: Column[];
+  rows: Row[];
+  /** What the first column is called, e.g. "Garden" */
+  nameLabel?: string;
+  /** Lowest (worst) tier on the board; tier 0 is always the best */
+  maxTier?: number;
+}
+
+const { columns, rows, nameLabel = "Item", maxTier = 6 } = Astro.props;
+
+const tierOf = (row: Row, key: string) => row.tiers[key] ?? null;
+const lanes = Array.from({ length: maxTier + 1 }, (_, i) => i);
+const boardKey = columns[0].key;
+
+// Unique-enough id so multiple instances on one page don't share radio groups
+const uid = `tt-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="tierTable" data-columns={JSON.stringify(columns.map((c) => c.key))}>
+  <div class="tt-controls" hidden>
+    <fieldset class="tt-toggle tt-view">
+      <legend>View</legend>
+      <div class="tt-toggle-options">
+        <label>
+          <input type="radio" name={`${uid}-view`} value="table" checked />
+          <span>Table</span>
+        </label>
+        <label>
+          <input type="radio" name={`${uid}-view`} value="board" />
+          <span>Tier board</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="tt-toggle tt-board-column" hidden>
+      <legend>Rating</legend>
+      <div class="tt-toggle-options">
+        {
+          columns.map((c) => (
+            <label>
+              <input
+                type="radio"
+                name={`${uid}-column`}
+                value={c.key}
+                checked={c.key === boardKey}
+              />
+              <span>{c.label}</span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="tt-table-view">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{nameLabel}</th>
+          <th scope="col" data-sort="year" aria-sort="ascending">
+            <button type="button">Year<span class="tt-arrow" aria-hidden="true"></span></button>
+          </th>
+          {
+            columns.map((c) => (
+              <th scope="col" data-sort={c.key} aria-sort="none">
+                <button type="button">
+                  {c.label}
+                  <span class="tt-arrow" aria-hidden="true" />
+                </button>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr data-year={row.year} data-tiers={JSON.stringify(row.tiers)}>
+              <td class="tt-name">
+                <KolIcon image={row.icon} alt="" />
+                {row.href ? <a href={row.href}>{row.name}</a> : row.name}
+              </td>
+              <td>{row.year}</td>
+              {columns.map((c) => {
+                const t = tierOf(row, c.key);
+                return (
+                  <td class="tt-tier">
+                    <TierMark tier={t} />
+                  </td>
+                );
+              })}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tt-board-view" hidden>
+    <div class="tt-board" role="list">
+      {
+        [...lanes, "tbd" as const].map((lane) => {
+          const inLane = rows
+            .map((row, i) => ({ row, i }))
+            .filter(({ row }) => (tierOf(row, boardKey) ?? "tbd") === lane);
+          return (
+            <div class="tt-lane" role="listitem" data-lane={lane} hidden={lane === "tbd" && inLane.length === 0}>
+              <span
+                class:list={["tt-lane-label", { tbd: lane === "tbd" }]}
+                style={lane === "tbd" ? undefined : `--tier-bg: ${tierColor(lane)}`}
+              >
+                {lane === "tbd" ? "TBD" : `Tier ${lane}`}
+              </span>
+              <div class="tt-lane-items" role="list">
+                {inLane.map(({ row, i }) => (
+                  <div class="tt-item" role="listitem" data-index={i} data-tiers={JSON.stringify(row.tiers)}>
+                    <a href={row.href} tabindex={row.href ? undefined : 0}>
+                      <KolIcon image={row.icon} alt={row.name} />
+                      <span class="tt-tip" aria-hidden="true">{row.name}</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  type Tiers = Record<string, number | null>;
+
+  function initTierTable(root: HTMLElement) {
+    const tbody = root.querySelector("tbody")!;
+    const headers = root.querySelectorAll<HTMLElement>("th[data-sort]");
+    const tableView = root.querySelector<HTMLElement>(".tt-table-view")!;
+    const boardView = root.querySelector<HTMLElement>(".tt-board-view")!;
+    const columnPicker = root.querySelector<HTMLElement>(".tt-board-column")!;
+
+    const rows = [...tbody.rows].map((tr) => ({
+      tr,
+      year: Number(tr.dataset.year),
+      tiers: JSON.parse(tr.dataset.tiers!) as Tiers,
+    }));
+
+    // --- Sorting ---
+
+    function sortBy(key: string, dir: 1 | -1) {
+      const value = (r: (typeof rows)[number]) =>
+        key === "year" ? r.year : (r.tiers[key] ?? null);
+
+      // TBD sorts last either way; ties fall back to release order
+      const sorted = [...rows].sort((a, b) => {
+        const av = value(a);
+        const bv = value(b);
+        if (av === null || bv === null) {
+          if (av !== bv) return av === null ? 1 : -1;
+        } else if (av !== bv) {
+          return (av - bv) * dir;
+        }
+        return a.year - b.year;
+      });
+      tbody.append(...sorted.map((r) => r.tr));
+
+      headers.forEach((th) =>
+        th.setAttribute(
+          "aria-sort",
+          th.dataset.sort !== key ? "none" : dir === 1 ? "ascending" : "descending",
+        ),
+      );
+    }
+
+    headers.forEach((th) =>
+      th.querySelector("button")!.addEventListener("click", () => {
+        sortBy(th.dataset.sort!, th.getAttribute("aria-sort") === "ascending" ? -1 : 1);
+      }),
+    );
+
+    // --- Tier board ---
+
+    const items = [...root.querySelectorAll<HTMLElement>(".tt-item")].map((el) => ({
+      el,
+      index: Number(el.dataset.index),
+      tiers: JSON.parse(el.dataset.tiers!) as Tiers,
+    }));
+    const laneLists = new Map(
+      [...root.querySelectorAll<HTMLElement>(".tt-lane")].map((lane) => [
+        lane.dataset.lane!,
+        lane.querySelector<HTMLElement>(".tt-lane-items")!,
+      ]),
+    );
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function placeBoard(key: string) {
+      // FLIP: note where everything is, move it, then animate from the old spot
+      const before = new Map(items.map((it) => [it.el, it.el.getBoundingClientRect()]));
+
+      for (const it of [...items].sort((a, b) => a.index - b.index)) {
+        laneLists.get(String(it.tiers[key] ?? "tbd"))!.append(it.el);
+      }
+      const tbdList = laneLists.get("tbd")!;
+      tbdList.parentElement!.hidden = tbdList.children.length === 0;
+
+      if (reduceMotion.matches) return;
+      for (const { el } of items) {
+        const from = before.get(el)!;
+        const to = el.getBoundingClientRect();
+        const dx = from.left - to.left;
+        const dy = from.top - to.top;
+        if (dx || dy) {
+          el.animate(
+            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }],
+            { duration: 400, easing: "ease-in-out" },
+          );
+        }
+      }
+    }
+
+    root.querySelectorAll<HTMLInputElement>(".tt-board-column input").forEach((input) =>
+      input.addEventListener("change", () => placeBoard(input.value)),
+    );
+
+    // --- View toggle ---
+
+    root.querySelectorAll<HTMLInputElement>(".tt-view input").forEach((input) =>
+      input.addEventListener("change", () => {
+        const board = input.value === "board";
+        tableView.hidden = board;
+        boardView.hidden = !board;
+        columnPicker.hidden = !board;
+      }),
+    );
+
+    root.querySelector<HTMLElement>(".tt-controls")!.hidden = false;
+  }
+
+  document.querySelectorAll<HTMLElement>(".tierTable").forEach(initTierTable);
+</script>
+
+<style>
+  .tierTable {
+    margin: 20px 0;
+  }
+
+  /* --- Controls (same dueling-button look as the odds calculator) --- */
+
+  .tt-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin: 0 10px 10px;
+  }
+
+  .tt-controls[hidden],
+  .tt-toggle[hidden] {
+    display: none;
+  }
+
+  .tt-toggle {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tt-toggle legend {
+    padding: 0;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .tt-toggle-options {
+    display: flex;
+    gap: 6px;
+  }
+
+  .tt-toggle-options label {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .tt-toggle-options input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .tt-toggle-options span {
+    padding: 4px 12px;
+    border: 1px solid rgb(180, 214, 40);
+    border-radius: 4px;
+  }
+
+  .tt-toggle-options input:checked + span {
+    background: rgb(10, 114, 80);
+    border-color: rgb(10, 114, 80);
+    color: white;
+    font-weight: bold;
+  }
+
+  .tt-toggle-options input:focus-visible + span {
+    outline: 2px solid rgb(10, 114, 80);
+    outline-offset: 2px;
+  }
+
+  /* --- Table (row/header colors come from the site's .content table styles) --- */
+
+  /* White behind the name column (overriding the row striping) so the KoL
+     icons' white backgrounds blend in instead of showing as boxes */
+  .tt-name {
+    background: #ffffff;
+    white-space: nowrap;
+  }
+
+  .tt-name :global(.kolIcon) {
+    margin-right: 6px;
+  }
+
+  th[data-sort] button {
+    all: unset;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  th[data-sort] button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  .tt-arrow::after {
+    content: "↕";
+    margin-left: 4px;
+    opacity: 0.5;
+  }
+  th[aria-sort="ascending"] .tt-arrow::after {
+    content: "▲";
+    opacity: 1;
+  }
+  th[aria-sort="descending"] .tt-arrow::after {
+    content: "▼";
+    opacity: 1;
+  }
+
+  /* Roomier, even-width marks in the table than inline in a paragraph */
+  .tt-tier {
+    text-align: center;
+  }
+
+  .tt-tier :global(.tierMark) {
+    min-width: 4.5em;
+    padding: 2px 8px;
+  }
+
+  /* --- Tier board --- */
+
+  .tt-board-view[hidden] {
+    display: none;
+  }
+
+  /* Divs with list roles rather than ol/ul, which would pick up the post's
+     numbered-step and bullet styling */
+  .tt-board {
+    margin: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .tt-lane {
+    display: flex;
+    align-items: stretch;
+    /* One row of icons (30px + border + padding), so empty tiers don't collapse */
+    min-height: 44px;
+    background: rgb(232, 232, 232);
+  }
+
+  .tt-lane + .tt-lane {
+    border-top: 1px solid #ccc;
+  }
+
+  .tt-lane[hidden] {
+    display: none;
+  }
+
+  .tt-lane-label {
+    flex: 0 0 4.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tier-bg);
+    color: #222;
+    font-weight: bold;
+  }
+
+  .tt-lane-label.tbd {
+    background: #ffffff;
+    border: 1px dashed #888;
+    color: #555;
+  }
+
+  .tt-lane-items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+  }
+
+  /* Icons only at native size; the name shows as a tooltip on hover or keyboard focus */
+  .tt-item {
+    position: relative;
+  }
+
+  .tt-item a {
+    display: block;
+    line-height: 0;
+  }
+
+  .tt-item :global(.kolIcon) {
+    border: 1px solid #ccc;
+  }
+
+  .tt-item a:hover :global(.kolIcon),
+  .tt-item a:focus-visible :global(.kolIcon) {
+    border-color: rgb(10, 114, 80);
+  }
+
+  .tt-tip {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: #222;
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  .tt-item a:hover .tt-tip,
+  .tt-item a:focus-visible .tt-tip {
+    opacity: 1;
+  }
+
+  @media (max-width: 480px) {
+    .tt-tier :global(.tierMark) {
+      min-width: 0;
+    }
+  }
+</style>

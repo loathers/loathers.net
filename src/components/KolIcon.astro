@@ -1,0 +1,58 @@
+---
+// KolIcon.astro
+//
+// Renders a KoL image we've copied into public/images/kol/. Paths mirror KoL's
+//   own image server (itemimages/pumpkin.gif), the same names mafia data and
+//   greenbox use, so a bare filename is assumed to be an item image.
+//
+// A missing icon fails the build rather than shipping a broken image; grab it
+//   with `npm run kol-icon -- pumpkin.gif`.
+
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
+interface Props {
+  /** Path under KoL's image root, e.g. "itemimages/pumpkin.gif". A bare filename means itemimages/. */
+  image: string;
+  /** Use "" when a visible label already names the thing. */
+  alt: string;
+  /** Rendered size in px. KoL item art is 30x30, so multiples of 30 stay crisp. */
+  size?: number;
+}
+
+const { image, alt, size = 30 } = Astro.props;
+const path = image.includes("/") ? image : `itemimages/${image}`;
+
+// Builds run from the project root (locally and in the Dockerfile)
+if (!existsSync(join(process.cwd(), "public", "images", "kol", path))) {
+  throw new Error(
+    `KolIcon: public/images/kol/${path} doesn't exist. Fetch it with \`npm run kol-icon -- ${path}\``,
+  );
+}
+---
+
+<img
+  class="kolIcon"
+  src={`/images/kol/${path}`}
+  alt={alt}
+  width={size}
+  height={size}
+  style={`--kol-size: ${size}px`}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  /* KoL art is tiny pixel art drawn on white, so keep the white and scale without blurring.
+     Size is pinned in CSS because the post body's .content img rule stretches images to 80% */
+  .kolIcon {
+    display: inline-block;
+    width: var(--kol-size);
+    height: var(--kol-size);
+    max-width: none;
+    margin: 0;
+    image-rendering: pixelated;
+    background: #ffffff;
+    vertical-align: middle;
+  }
+</style>
