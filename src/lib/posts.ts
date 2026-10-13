@@ -18,11 +18,12 @@ export async function getAllPostsSortedAsc() {
 
 // Teaser text for a post: the `excerpt` frontmatter field if set, otherwise
 // the opening of the post body with MDX imports, components, headings, and
-// markdown syntax stripped out, trimmed to a word boundary.
+// markdown syntax stripped out, trimmed to a word boundary. Curly quotes
+// flattened so teasers consistently use straight quotes. Because I like them!
 export function getExcerpt(post: CollectionEntry<"posts">, maxLength = 200): string {
-  if (post.data.excerpt) return post.data.excerpt;
+  if (post.data.excerpt) return straightenQuotes(post.data.excerpt);
 
-  const text = (post.body ?? "")
+  const text = straightenQuotes(post.body ?? "")
     .replace(/^(import|export)\s.*$/gm, "")
     .replace(/<([A-Z]\w*)[^>]*>[\s\S]*?<\/\1>/g, "")
     .replace(/<[A-Za-z][^>]*\/>/g, "")
@@ -41,10 +42,15 @@ export function getExcerpt(post: CollectionEntry<"posts">, maxLength = 200): str
   return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:—–-]+$/, "") + "…";
 }
 
+function straightenQuotes(text: string): string {
+  return text.replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
+}
+
 export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "UTC",
   }).format(date);
 }

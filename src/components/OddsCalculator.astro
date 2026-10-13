@@ -2,7 +2,7 @@
 // OddsCalculator.astro
 //
 // Small odds calculator for the Sword of S-Words post. Plausibly useful
-//   elsewhere I suppose, but mostly for that. 
+//   elsewhere I suppose, but mostly for that.
 //
 // "++Probability" modifier is a % applied multiplicatively to the base chance
 // (effective = base * (1 + bonus/100)), same as in-game Item Drop% bonuses.
@@ -68,16 +68,25 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
       </div>
     </div>
 
-    <div class="oddsCalc-row">
-      <label for={`${uid}-mode`}>What do you want to know?</label>
-      <select id={`${uid}-mode`} class="oc-mode">
-          <option value="adventures">Adventures needed for a number of items</option>
-          <option value="items">Items dropped in a number of adventures</option>
-      </select>
-    </div>
+    <!-- Swapping from a dropdown to dueling buttons -->
+    <fieldset class="oddsCalc-row oc-mode">
+      <legend>What do you want to know?</legend>
+      <div class="oc-mode-options">
+        <label>
+          <input type="radio" name={`${uid}-mode`} value="adventures" checked />
+          <span>Adventures needed for a number of items</span>
+        </label>
+        <label>
+          <input type="radio" name={`${uid}-mode`} value="items" />
+          <span>Items dropped in a number of adventures</span>
+        </label>
+      </div>
+    </fieldset>
 
     <div class="oddsCalc-row">
-      <label class="oc-amount-label" for={`${uid}-amount`}>Number of adventures</label>
+      <label class="oc-amount-label" for={`${uid}-amount`}
+        >Number of adventures</label
+      >
       <input
         id={`${uid}-amount`}
         class="oc-amount"
@@ -105,10 +114,17 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
 <script>
   function initCalculator(container: HTMLElement) {
     const baseInput = container.querySelector<HTMLInputElement>(".oc-base")!;
-    const bonusRange = container.querySelector<HTMLInputElement>(".oc-bonus-range")!;
-    const bonusNumber = container.querySelector<HTMLInputElement>(".oc-bonus-number")!;
-    const modeSelect = container.querySelector<HTMLSelectElement>(".oc-mode")!;
-    const amountInput = container.querySelector<HTMLInputElement>(".oc-amount")!;
+    const bonusRange =
+      container.querySelector<HTMLInputElement>(".oc-bonus-range")!;
+    const bonusNumber =
+      container.querySelector<HTMLInputElement>(".oc-bonus-number")!;
+    const modeInputs =
+      container.querySelectorAll<HTMLInputElement>(".oc-mode input");
+    const mode = () =>
+      container.querySelector<HTMLInputElement>(".oc-mode input:checked")!
+        .value;
+    const amountInput =
+      container.querySelector<HTMLInputElement>(".oc-amount")!;
     const amountLabel = container.querySelector(".oc-amount-label")!;
     const effectiveEl = container.querySelector(".oc-effective")!;
     const resultLabelEl = container.querySelector(".oc-result-label")!;
@@ -126,10 +142,11 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
       effectiveEl.textContent = `${(effective * 100).toFixed(2)}%`;
       barFill.style.width = `${Math.min(100, effective * 100)}%`;
 
-      if (modeSelect.value === "items") {
+      if (mode() === "items") {
         resultEl.textContent = (effective * amount).toFixed(2);
       } else {
-        const expectedAdventures = effective > 0 ? amount / effective : Infinity;
+        const expectedAdventures =
+          effective > 0 ? amount / effective : Infinity;
         resultEl.textContent = isFinite(expectedAdventures)
           ? expectedAdventures.toFixed(1)
           : "—";
@@ -150,7 +167,7 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     }
 
     function updateModeUI() {
-      if (modeSelect.value === "items") {
+      if (mode() === "items") {
         amountLabel.textContent = "Number of adventures";
         resultLabelEl.textContent = "Expected items";
       } else {
@@ -163,15 +180,15 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     baseInput.addEventListener("input", recalc);
     bonusRange.addEventListener("input", syncBonusFromRange);
     bonusNumber.addEventListener("input", syncBonusFromNumber);
-    modeSelect.addEventListener("change", updateModeUI);
+    modeInputs.forEach((input) =>
+      input.addEventListener("change", updateModeUI),
+    );
     amountInput.addEventListener("input", recalc);
 
     updateModeUI();
   }
 
-  document
-    .querySelectorAll<HTMLElement>(".oddsCalc")
-    .forEach(initCalculator);
+  document.querySelectorAll<HTMLElement>(".oddsCalc").forEach(initCalculator);
 </script>
 
 <style>
@@ -197,9 +214,60 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     gap: 4px;
   }
 
-  .oddsCalc-row label {
+  .oddsCalc-row label,
+  .oddsCalc-row legend {
     font-weight: bold;
     font-size: 0.9em;
+  }
+
+  fieldset.oddsCalc-row {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  fieldset.oddsCalc-row legend {
+    padding: 0;
+    margin-bottom: 4px;
+  }
+
+  /* Two toggle buttons instead of a dropdown: a closed <select> can't wrap its
+     text, so long options got cut off on phones */
+  .oc-mode-options {
+    display: flex;
+    gap: 6px;
+  }
+
+  .oc-mode-options label {
+    flex: 1;
+    display: flex;
+    cursor: pointer;
+  }
+
+  .oc-mode-options input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .oc-mode-options span {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid rgb(180, 214, 40);
+    border-radius: 4px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .oc-mode-options input:checked + span {
+    background: rgb(10, 114, 80);
+    border-color: rgb(10, 114, 80);
+    color: white;
+    font-weight: bold;
+  }
+
+  .oc-mode-options input:focus-visible + span {
+    outline: 2px solid rgb(10, 114, 80);
+    outline-offset: 2px;
   }
 
   .oddsCalc-bonus-controls {
@@ -216,19 +284,12 @@ const uid = `occ-${Math.random().toString(36).slice(2, 9)}`;
     width: 4.5em;
   }
 
-  .oddsCalc-row input[type="number"],
-  .oddsCalc-row select {
+  .oddsCalc-row input[type="number"] {
     padding: 4px;
     border: 1px solid rgb(180, 214, 40);
     border-radius: 4px;
     font-family: inherit;
     font-size: 1em;
-  }
-
-  /* Without an explicit width, the dropdown sizes itself to its longest option
-     and forces the whole page wider on phones */
-  .oddsCalc-row select {
-    width: 100%;
   }
 
   .oc-bar-track {

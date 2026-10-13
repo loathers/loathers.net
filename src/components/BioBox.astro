@@ -14,6 +14,6 @@ const { name, link } = Astro.props;
     <a href={link}>{name}</a>
   </h1>
   <div class={layoutStyles.flexBreak}></div>
-  <li><slot /></li>
+  <div class={layoutStyles.hotDogItem}><slot /></div>
 </div>
 <p></p>

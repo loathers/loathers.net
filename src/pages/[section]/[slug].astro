@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import layoutStyles from "@components/layout.module.css";
+import PostNav from "@components/PostNav.astro";
 import { getAllPostsSortedAsc, formatDate, getExcerpt } from "@lib/posts";
 import { render } from "astro:content";
-import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
+import type { InferGetStaticPropsType } from "astro";
 
 export async function getStaticPaths() {
   const posts = await getAllPostsSortedAsc();
@@ -23,88 +23,141 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post, previous, next } = Astro.props;
 const { Content } = await render(post);
-const needsPagination = Boolean(previous) || Boolean(next);
 ---
 
 <BaseLayout
   pageTitle={post.data.title}
   pathName={`/${post.data.section}/${post.data.slug}`}
   description={getExcerpt(post)}
+  article={{
+    publishedTime: post.data.date,
+    author: post.data.author,
+    tag: post.data.tag,
+  }}
 >
   <h1>{post.data.title}</h1>
-  <h6>{formatDate(post.data.date)} // {post.data.tag}</h6>
-  {
-    needsPagination && (
-      <nav>
-        <ul class={layoutStyles["nav-links"]}>
-          {previous && (
-            <li>
-              <a
-                href={`/${previous.data.section}/${previous.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                &nbsp;&nbsp;&nbsp;← {previous.data.title}
-              </a>
-            </li>
-          )}
-          <li class={layoutStyles.navSpacer}>&nbsp;</li>
-          {next && (
-            <li>
-              <a
-                href={`/${next.data.section}/${next.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                {next.data.title} →&nbsp;&nbsp;&nbsp;
-              </a>
-            </li>
-          )}
-        </ul>
-      </nav>
-    )
-  }
+  <p class="post-date">{formatDate(post.data.date)} // {post.data.tag}</p>
+  <PostNav previous={previous} next={next} />
   <Content />
   <p class="post-author">Article contributed by {post.data.author}</p>
-  {
-    needsPagination && (
-      <nav>
-        <ul class={layoutStyles["nav-links"]}>
-          {previous && (
-            <li>
-              <a
-                href={`/${previous.data.section}/${previous.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                &nbsp;&nbsp;&nbsp;← {previous.data.title}
-              </a>
-            </li>
-          )}
-          <li class={layoutStyles.navSpacer}>&nbsp;</li>
-          {next && (
-            <li>
-              <a
-                href={`/${next.data.section}/${next.data.slug}`}
-                class={layoutStyles["nav-link-text"]}
-              >
-                {next.data.title} →&nbsp;&nbsp;&nbsp;
-              </a>
-            </li>
-          )}
-        </ul>
-      </nav>
-    )
-  }
+  <PostNav previous={previous} next={next} />
 </BaseLayout>
 
+<script>
+  // Give each section heading a link icon so readers can share a link straight
+  // to that section. Clicking it also copies the full URL, Discord-ready.
+  // Chain icon from Feather Icons (MIT).
+  const LINK_ICON = `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+
+  document
+    .querySelectorAll<HTMLElement>(":is(h2, h3, h4)[id]")
+    .forEach((heading) => {
+      const anchor = document.createElement("a");
+      anchor.className = "heading-anchor";
+      anchor.href = `#${heading.id}`;
+      anchor.setAttribute("aria-label", `Link to "${heading.textContent}"`);
+      anchor.innerHTML = LINK_ICON;
+
+      anchor.addEventListener("click", () => {
+        const url = new URL(anchor.href, window.location.href).href;
+        navigator.clipboard?.writeText(url).then(() => {
+          // Shown with a class rather than :hover, since the jump to the
+          // section usually moves the heading out from under the mouse
+          anchor.querySelector(".heading-anchor-copied")?.remove();
+          const tip = document.createElement("span");
+          tip.className = "heading-anchor-copied";
+          tip.textContent = "Copied!";
+          anchor.append(tip);
+          anchor.classList.add("copied");
+          setTimeout(() => {
+            anchor.classList.remove("copied");
+            tip.classList.add("fading");
+            tip.addEventListener("transitionend", () => tip.remove(), {
+              once: true,
+            });
+          }, 1500);
+        });
+      });
+      heading.append(anchor);
+    });
+</script>
+
 <style>
+  /* Added by the script above, so these can't use Astro's scoped styles */
+  :global(.heading-anchor) {
+    position: relative;
+    margin-left: 0.4em;
+    font-size: 0.75em;
+    color: rgb(170, 170, 170);
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  /* Leave room above a heading when jumping to it, so it isn't jammed against
+     the top of the window and the "Copied!" tooltip stays visible */
+  :global(:is(h2, h3, h4)[id]) {
+    scroll-margin-top: 2em;
+  }
+
+  :global(.heading-anchor svg) {
+    vertical-align: -0.1em;
+  }
+
+  :global(:is(h2, h3, h4):hover .heading-anchor),
+  :global(.heading-anchor:focus-visible) {
+    opacity: 1;
+    transition-duration: 0.15s;
+  }
+
+  /* Phones have no hover, so keep the link faintly visible there */
+  @media (hover: none) {
+    :global(.heading-anchor) {
+      opacity: 0.6;
+    }
+  }
+
+  /* Keep the icon visible while "Copied!" shows, then fade out gently */
+  :global(.heading-anchor.copied) {
+    opacity: 1;
+    transition-duration: 0.15s;
+  }
+
+  /* Floats above the icon so it doesn't push the heading text around */
+  :global(.heading-anchor-copied) {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    color: rgb(10, 114, 80);
+    white-space: nowrap;
+    transition: opacity 0.6s;
+  }
+
+  :global(.heading-anchor-copied.fading) {
+    opacity: 0;
+  }
+
+  /* The date & tag line under the title, and the author line at the bottom */
+  .post-date,
   .post-author {
     margin: 0;
     margin-bottom: 10px;
     color: rgb(102, 102, 102);
     font-family: Menlo, Consolas, monospace;
     font-size: 0.8em;
+    font-weight: bold;
     height: 20px;
     line-height: 20px;
     text-align: right;
     overflow: hidden;
+  }
+
+  /* Matches how the date line looked back when it was an <h6>: bold, no
+     bottom margin, and none of the long-word breaking post paragraphs get */
+  .post-date {
+    margin-bottom: 0;
+    font-weight: bold;
+    overflow-wrap: normal;
   }
 </style>
