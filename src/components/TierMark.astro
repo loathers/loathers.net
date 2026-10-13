@@ -1,0 +1,48 @@
+---
+// TierMark.astro
+//
+// Inline tier badge for posts, e.g. the closing rating in an IOTM review:
+//   **MODERN RATING:** <TierMark tier={3} />
+// Leave out the tier for a dashed "TBD" badge. TierTable uses this too.
+
+import { tierColor } from "@lib/tiers";
+
+interface Props {
+  /** 0 (best) to 6. A string works too, so tier="3" is fine. */
+  tier?: number | string | null;
+}
+
+const raw = Astro.props.tier;
+const tier = raw === undefined || raw === null || raw === "" ? null : Number(raw);
+
+if (tier !== null && !Number.isInteger(tier)) {
+  throw new Error(`TierMark: "${raw}" isn't a tier number`);
+}
+---
+
+<span
+  class:list={["tierMark", { tbd: tier === null }]}
+  style={tier === null ? undefined : `--tier-bg: ${tierColor(tier)}`}
+  >{tier === null ? "TBD" : `Tier ${tier}`}</span
+>
+
+<style>
+  .tierMark {
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    background: var(--tier-bg);
+    color: #222;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .tierMark.tbd {
+    background: #ffffff;
+    border: 1px dashed #888;
+    color: #555;
+  }
+</style>
