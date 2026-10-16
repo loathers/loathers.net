@@ -228,7 +228,7 @@ dd {
     }
 
     /* Pull the teaser up snug under its title card */
-    article dl > a {
+    article dl>a {
         padding-bottom: 0;
     }
 
@@ -263,6 +263,15 @@ dd {
     display: grid;
     place-content: center;
     padding: 10px
+}
+
+/* grid items using divs won't shrink below the natural width of their 
+   contents by default. this led to mobile issues with TierTable extending
+   the page and cutting off text. hopefully this lets every block in a
+   post shrink to fit in similar instances going forward!! */
+
+.content>* {
+    min-width: 0;
 }
 
 .content ul {
