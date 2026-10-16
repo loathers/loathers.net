@@ -11,7 +11,7 @@
 //
 //   npm run build && npm run check:site
 
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import {
   DIST,
@@ -75,12 +75,28 @@ function readPage(file) {
   return htmlCache.get(file);
 }
 
+// The server runs Linux, where /Foo and /foo are different pages, but macOS
+// ignores case when looking up files. So match every folder and file name
+// exactly, or a link that works locally could still 404 in production.
+const listings = new Map();
+function existsExactly(path) {
+  let dir = DIST;
+  for (const name of path.split("/").filter(Boolean)) {
+    if (!listings.has(dir)) {
+      listings.set(dir, existsSync(dir) && statSync(dir).isDirectory() ? readdirSync(dir).map((n) => n.normalize("NFC")) : []);
+    }
+    if (!listings.get(dir).includes(name.normalize("NFC"))) return false;
+    dir = join(dir, name);
+  }
+  return true;
+}
+
 /** The file in dist/ a path would be served from, the way nginx finds it */
 function servedFile(path) {
   const file = join(DIST, path);
-  if (existsSync(file) && statSync(file).isFile()) return file;
-  const index = join(file, "index.html");
-  return existsSync(index) ? index : null;
+  if (existsExactly(path) && statSync(file).isFile()) return file;
+  const index = `${path.replace(/\/$/, "")}/index.html`;
+  return existsExactly(index) ? join(DIST, index) : null;
 }
 
 // --- Dead internal links, section links, and images ---
