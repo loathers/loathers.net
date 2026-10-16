@@ -1,0 +1,68 @@
+name: Docker
+
+# Builds and runs the real image (what Coolify deploys), but only when the
+# files that shape it change, so ordinary post PRs skip it
+on:
+  pull_request:
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - nginx.conf
+      - .github/workflows/docker.yml
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - nginx.conf
+      - .github/workflows/docker.yml
+
+permissions:
+  contents: read
+
+jobs:
+  docker:
+    name: Docker image & nginx
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build image
+        run: docker build -t loathers-net .
+
+      - name: Start container
+        run: |
+          docker run -d --name site -p 8080:80 loathers-net
+          for i in $(seq 1 20); do
+            curl -sf -o /dev/null http://localhost:8080/ && exit 0
+            sleep 1
+          done
+          echo "Site never came up"
+          exit 1
+
+      - name: Check pages and redirects
+        run: |
+          fail=0
+          # expect <path> <status> [exact Location header]
+          expect() {
+            read -r status location < <(curl -s -o /dev/null -w '%{http_code} %header{location}\n' "http://localhost:8080$1")
+            if [ "$status" != "$2" ] || [ "$location" != "${3:-}" ]; then
+              echo "✗ $1: got $status ${location:-(no redirect)}, expected $2 ${3:-(no redirect)}"
+              fail=1
+            else
+              echo "✓ $1: $status ${location:-}"
+            fi
+          }
+          expect / 200
+          expect /bios/ 200
+          expect /analysis/2026-garden-slot/ 200
+          # The trailing-slash redirect stays relative, so https visitors stay on https
+          expect /bios 301 /bios/
+          expect /contribute 301 https://opencollective.com/loathers
+          expect /contribute/ 301 https://opencollective.com/loathers
+          expect /definitely-not-a-page/ 404
+          exit $fail
+
+      - name: Container logs
+        if: always()
+        run: docker logs site || true
