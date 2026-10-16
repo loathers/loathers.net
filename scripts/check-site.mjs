@@ -117,7 +117,9 @@ for (const page of pages) {
     const target = servedFile(path);
     const where = {
       file: source?.file,
-      line: lineOf(source?.text, raw, isImage && raw.split("/").pop()),
+      // Quoted/bracketed forms first, so a dead "analysis/x" isn't matched
+      // against a working "/analysis/x" earlier in the post
+      line: lineOf(source?.text, `"${raw}"`, `(${raw})`, raw, isImage && raw.split("/").pop()),
     };
 
     if (!target) {
