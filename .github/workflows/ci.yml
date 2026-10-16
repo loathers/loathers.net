@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   site:
-    name: Typecheck & build
+    name: Typecheck, build & checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -25,7 +25,18 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      # Coolify deploys whatever lands on main, so a failed build here is a
-      # failed deploy caught early
+      # Coolify deploys whatever lands on main via npm run build, catching failures
+      # here avoids silent failures when Coolify pulls the site
       - name: Build
         run: npm run build
+
+      # Some checks to warn the user via PR annotations but stop short of blocking a merge
+      - name: Check links, alt text & slugs
+        run: npm run check:site
+        continue-on-error: true
+
+      # Check page width via GitHub runner's installed browser in hopes of never having
+      # a dumb mobile layout issue ever again.
+      - name: Check pages fit on phones
+        run: npm run check:mobile
+        continue-on-error: true
