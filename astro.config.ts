@@ -18,7 +18,4 @@ export default defineConfig({
       ],
     },
   },
-  redirects: {
-    "/contribute": "https://opencollective.com/loathers",
-  },
 });

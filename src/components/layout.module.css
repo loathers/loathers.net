@@ -120,16 +120,6 @@ a {
     font-weight: normal;
 }
 
-.nav-links ul {
-    list-style: none;
-    padding-left: 0px;
-}
-
-.nav-links ol {
-    list-style: none;
-    padding-left: 0px;
-}
-
 .nav-links li {
     list-style: none;
     padding-left: 0px;
@@ -150,10 +140,6 @@ a {
 
 .navSpacer {
     flex-grow: 1;
-}
-
-.nav-links span {
-    color: rgb(65, 65, 65);
 }
 
 /* This is a way to cheat flexboxes into making full width items */
@@ -228,7 +214,7 @@ dd {
     }
 
     /* Pull the teaser up snug under its title card */
-    article dl > a {
+    article dl>a {
         padding-bottom: 0;
     }
 
@@ -238,31 +224,21 @@ dd {
     }
 }
 
-/* This controls page titles, ported into Layout via a pageTitle var */
-
-.heading {
-    padding: 10px;
-    color: rgb(39, 39, 39);
-
-    font-family: Arial Black, Verdana, Arial;
-
-    font-size: 20px;
-    letter-spacing: -1px;
-    font-weight: bold;
-
-    height: 50px;
-    line-height: 50px;
-    overflow: hidden;
-
-    margin-top: 5px;
-}
-
 /* This controls spacing for the post itself */
 
 .content {
     display: grid;
     place-content: center;
     padding: 10px
+}
+
+/* grid items using divs won't shrink below the natural width of their 
+   contents by default. this led to mobile issues with TierTable extending
+   the page and cutting off text. hopefully this lets every block in a
+   post shrink to fit in similar instances going forward!! */
+
+.content>* {
+    min-width: 0;
 }
 
 .content ul {
