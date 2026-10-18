@@ -66,6 +66,7 @@ const imageUrl = new URL(SITE.image, SITE.siteUrl).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <link rel="icon" href={SITE.image} />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
   </head>
   <body>
     <div class={layoutStyles.container}>

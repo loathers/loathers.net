@@ -44,11 +44,22 @@ import opencollectiveLogo from "../images/opencollective-logo20px.png";
         />
       </a>
     </li>
+    <li class="icon">
+      <a href="/rss.xml" aria-label="RSS feed" title="RSS feed">
+        <!-- Feed icon from Feather Icons (MIT), in the same light gray as the logos -->
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+    </li>
   </ul>
 </nav>
 
 <style>
-  img {
+  img,
+  svg {
     display: inline-block;
     line-height: 25px;
     margin: 0px;
@@ -68,9 +79,14 @@ import opencollectiveLogo from "../images/opencollective-logo20px.png";
       padding-right: 8px;
     }
 
-    img {
+    img,
+    svg {
       flex-shrink: 0;
       margin: 0 4px;
     }
+  }
+
+  svg {
+    color: rgb(220, 220, 220);
   }
 </style>
