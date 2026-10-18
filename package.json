@@ -21,9 +21,9 @@
     "check:mobile": "node scripts/check-mobile-layout.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/mdx": "^8.1.0",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.3.5"
+    "astro": "^7.4.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -31,7 +31,6 @@
     "typescript": "^6.0.3"
   },
   "allowScripts": {
-    "esbuild": true,
     "fsevents": true
   }
 }
