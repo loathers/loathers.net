@@ -94,7 +94,7 @@ const uid = `tt-${Math.random().toString(36).slice(2, 9)}`;
           </th>
           {
             columns.map((c) => (
-              <th scope="col" data-sort={c.key} aria-sort="none">
+              <th scope="col" class="tt-tier" data-sort={c.key} aria-sort="none">
                 <button type="button">
                   {c.label}
                   <span class="tt-arrow" aria-hidden="true" />
@@ -375,6 +375,7 @@ const uid = `tt-${Math.random().toString(36).slice(2, 9)}`;
   }
 
   /* Roomier, even-width marks in the table than inline in a paragraph */
+  /* Headers too, so they sit over their centered badges */
   .tt-tier {
     text-align: center;
   }

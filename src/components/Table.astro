@@ -1,0 +1,290 @@
+---
+// Table.astro
+//
+// Wraps an ordinary markdown table to add a few extras, all optional:
+//
+//   <Table
+//     sortable                                  click headers to sort
+//     compact                                   only as wide as needed, centered
+//     widths={["10em", null, "4em"]}            suggested widths (em, px, or %); null = leave as is
+//     highlight={{
+//       columns: { Item: "shade" },             by header text or 1-based position
+//       rows: { 3: "best", "anchor bomb": "good" },  by 1-based position or first cell
+//       cells: [{ row: 2, column: "gold", color: "bad" }],
+//     }}
+//   >
+//
+//   | Item | ... |
+//   | ---- | --- |
+//
+//   </Table>
+//
+// Colors: shade (darkens and bolds, and stacks with the others), best, good, bad.
+// Adding one is a single line in the styles below.
+//
+// Highlights, widths, and compact are applied at build time, so they work
+// without JavaScript and stay attached to their rows when sorted. Only
+// sorting needs the script at the bottom.
+
+type Color = "shade" | "best" | "good" | "bad";
+type ColumnKey = string | number;
+
+interface Props {
+  sortable?: boolean;
+  compact?: boolean;
+  widths?: (string | null)[];
+  highlight?: {
+    columns?: Record<ColumnKey, Color>;
+    rows?: Record<ColumnKey, Color>;
+    cells?: { row: ColumnKey; column: ColumnKey; color: Color }[];
+  };
+}
+
+const { sortable = false, compact = false, widths, highlight = {} } = Astro.props;
+
+const html = await Astro.slots.render("default");
+
+const textOf = (cellHtml: string) =>
+  cellHtml
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&#39;|&#x27;/g, "'")
+    .replace(/&quot;/g, '"')
+    .trim();
+
+const ROW = /<tr\b([^>]*)>([\s\S]*?)<\/tr>/g;
+const CELL = /<(td|th)\b([^>]*)>([\s\S]*?)<\/\1>/g;
+
+const headers = [...(html.match(/<thead\b[^>]*>[\s\S]*?<\/thead>/)?.[0] ?? "").matchAll(CELL)].map(
+  (m) => textOf(m[3]),
+);
+const bodyRows = [...(html.match(/<tbody\b[^>]*>[\s\S]*?<\/tbody>/)?.[0] ?? "").matchAll(ROW)];
+const firstCells = bodyRows.map((row) => textOf(row[2].match(CELL)?.[0] ?? ""));
+
+// A typo in a highlight or width should fail loudly (in npm run dev and in CI)
+// rather than quietly color nothing
+function fail(message: string): never {
+  throw new Error(`<Table>: ${message}`);
+}
+
+function columnIndex(key: ColumnKey): number {
+  if (typeof key === "number" || /^\d+$/.test(key)) {
+    const i = Number(key) - 1;
+    if (i < 0 || i >= headers.length) fail(`there's no column ${key}; this table has ${headers.length}`);
+    return i;
+  }
+  const i = headers.findIndex((h) => h.toLowerCase() === key.toLowerCase());
+  if (i === -1) fail(`no column named "${key}". Columns are: ${headers.join(", ")}`);
+  return i;
+}
+
+function rowIndex(key: ColumnKey): number {
+  if (typeof key === "number" || /^\d+$/.test(key)) {
+    const i = Number(key) - 1;
+    if (i < 0 || i >= bodyRows.length) fail(`there's no row ${key}; this table has ${bodyRows.length}`);
+    return i;
+  }
+  const i = firstCells.findIndex((c) => c.toLowerCase() === key.toLowerCase());
+  if (i === -1) fail(`no row starting with "${key}"`);
+  return i;
+}
+
+if (widths && widths.length > headers.length) {
+  fail(`${widths.length} widths given, but this table only has ${headers.length} columns`);
+}
+
+const columnColor = new Map<number, Color>();
+for (const [key, color] of Object.entries(highlight.columns ?? {})) columnColor.set(columnIndex(key), color);
+const rowColor = new Map<number, Color>();
+for (const [key, color] of Object.entries(highlight.rows ?? {})) rowColor.set(rowIndex(key), color);
+const cellColor = new Map<string, Color>();
+for (const { row, column, color } of highlight.cells ?? []) {
+  cellColor.set(`${rowIndex(row)}:${columnIndex(column)}`, color);
+}
+
+// Each cell gets one color (cell beats row beats column), plus shade if any
+// of them asked for it, since shade darkens whatever color is underneath
+function classesFor(r: number, c: number): string[] {
+  const asked = [cellColor.get(`${r}:${c}`), rowColor.get(r), columnColor.get(c)].filter(
+    (color): color is Color => color !== undefined,
+  );
+  const color = asked.find((x) => x !== "shade");
+  return [color && `hl-${color}`, asked.includes("shade") && "hl-shade"].filter(Boolean) as string[];
+}
+
+const addClasses = (attrs: string, classes: string[]) => {
+  if (classes.length === 0) return attrs;
+  if (/\bclass="/.test(attrs)) return attrs.replace(/\bclass="/, `class="${classes.join(" ")} `);
+  return `${attrs} class="${classes.join(" ")}"`;
+};
+
+let r = -1;
+let table = html.replace(/<tbody\b[^>]*>[\s\S]*?<\/tbody>/, (tbody) =>
+  tbody.replace(ROW, (_, rowAttrs: string, cells: string) => {
+    r++;
+    let c = -1;
+    const body = cells.replace(CELL, (_, tag: string, attrs: string, content: string) => {
+      c++;
+      return `<${tag}${addClasses(attrs, classesFor(r, c))}>${content}</${tag}>`;
+    });
+    return `<tr${rowAttrs}>${body}</tr>`;
+  }),
+);
+
+if (widths) {
+  // Percentages are a share of whatever room there is, so they apply on every
+  // screen. Fixed sizes (em, px) go in a variable instead, which the styles
+  // below only use on wider screens, since on a phone a fixed-width column
+  // would force sideways scrolling.
+  const col = (w: string | null) => {
+    if (!w) return "<col>";
+    return w.trim().endsWith("%") ? `<col style="width: ${w}">` : `<col style="--col-width: ${w}">`;
+  };
+  const cols = widths.map(col).join("");
+  table = table.replace(/<table\b([^>]*)>/, `<table$1><colgroup>${cols}</colgroup>`);
+}
+---
+
+<div class:list={["dataTable", { compact }]} data-sortable={sortable ? "" : undefined}>
+  <Fragment set:html={table} />
+</div>
+
+<script>
+  type Value = number | string | null;
+
+  // Blank-ish cells sort last whichever way you sort
+  const EMPTY = /^(|—|–|-|\?|n\/a|tbd)$/i;
+  const NUMBER = /^[+−-]?\$?\d[\d,]*(\.\d+)?%?$/;
+
+  function valueOf(cell: Element | undefined): Value {
+    const text = (cell?.textContent ?? "").trim();
+    if (EMPTY.test(text)) return null;
+    if (NUMBER.test(text)) return Number(text.replace(/[$,%]/g, "").replace("−", "-"));
+    return text;
+  }
+
+  function compare(a: Value, b: Value): number {
+    if (typeof a === "number" && typeof b === "number") return a - b;
+    if (typeof a === "number") return -1;
+    if (typeof b === "number") return 1;
+    return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+  }
+
+  function initTable(wrapper: HTMLElement) {
+    const table = wrapper.querySelector("table");
+    const tbody = table?.tBodies[0];
+    if (!table || !tbody) return;
+
+    const original = [...tbody.rows];
+    const headers = [...table.querySelectorAll<HTMLTableCellElement>("thead th")];
+
+    headers.forEach((th, column) => {
+      th.setAttribute("aria-sort", "none");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.append(...th.childNodes);
+      const arrow = document.createElement("span");
+      arrow.className = "sortArrow";
+      arrow.setAttribute("aria-hidden", "true");
+      button.append(arrow);
+      th.append(button);
+
+      // ascending, then descending, then back to the order it was written in
+      button.addEventListener("click", () => {
+        const state = th.getAttribute("aria-sort");
+        const next = state === "none" ? "ascending" : state === "ascending" ? "descending" : "none";
+        headers.forEach((h) => h.setAttribute("aria-sort", "none"));
+
+        if (next === "none") {
+          tbody.append(...original);
+          return;
+        }
+        th.setAttribute("aria-sort", next);
+        const dir = next === "ascending" ? 1 : -1;
+        const sorted = [...original].sort((rowA, rowB) => {
+          const a = valueOf(rowA.cells[column]);
+          const b = valueOf(rowB.cells[column]);
+          if (a === null || b === null) {
+            if (a !== b) return a === null ? 1 : -1;
+            return 0;
+          }
+          return compare(a, b) * dir;
+        });
+        tbody.append(...sorted);
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>(".dataTable[data-sortable]").forEach(initTable);
+</script>
+
+<style>
+  /* The table is rendered markdown, so it doesn't get Astro's scoping
+     attributes; :global reaches inside, still limited to .dataTable */
+
+  /* As wide as the content needs, up to a cap so a single long cell wraps
+     instead of stretching the whole table back to full width; centered */
+  .dataTable.compact :global(table) {
+    width: auto;
+    max-width: min(100%, 40em);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Suggested column widths, on screens wide enough to have room for them */
+  @media (min-width: 701px) {
+    .dataTable :global(col) {
+      width: var(--col-width, auto);
+    }
+  }
+
+  /* --- Highlight colors --- */
+
+  .dataTable :global(td.hl-best) {
+    background-color: rgb(232, 244, 170);
+  }
+
+  .dataTable :global(td.hl-good) {
+    background-color: rgb(204, 235, 204);
+  }
+
+  .dataTable :global(td.hl-bad) {
+    background-color: rgb(244, 204, 204);
+  }
+
+  /* An overlay rather than a color, so it darkens the row striping or any
+     other highlight underneath it. Bold too, since it usually marks the
+     column that labels each row (like TakerSpace's Item column) */
+  .dataTable :global(td.hl-shade) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+    font-weight: bold;
+  }
+
+  /* --- Sorting --- */
+
+  .dataTable :global(th button) {
+    all: unset;
+    cursor: pointer;
+  }
+
+  .dataTable :global(th button:focus-visible) {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  .dataTable :global(.sortArrow::after) {
+    content: "↕";
+    margin-left: 4px;
+    opacity: 0.5;
+  }
+
+  .dataTable :global(th[aria-sort="ascending"] .sortArrow::after) {
+    content: "▲";
+    opacity: 1;
+  }
+
+  .dataTable :global(th[aria-sort="descending"] .sortArrow::after) {
+    content: "▼";
+    opacity: 1;
+  }
+</style>
