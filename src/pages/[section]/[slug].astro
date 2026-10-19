@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PostNav from "@components/PostNav.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 import { getAllPostsSortedAsc, formatDate, getExcerpt } from "@lib/posts";
+import { buildToc } from "@lib/toc";
 import { render } from "astro:content";
 import type { InferGetStaticPropsType } from "astro";
 
@@ -22,7 +24,8 @@ export async function getStaticPaths() {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post, previous, next } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const toc = post.data.toc ? buildToc(post.body ?? "", headings) : [];
 ---
 
 <BaseLayout
@@ -38,6 +41,7 @@ const { Content } = await render(post);
   <h1>{post.data.title}</h1>
   <p class="post-date">{formatDate(post.data.date)} // {post.data.tag}</p>
   <PostNav previous={previous} next={next} />
+  <TableOfContents entries={toc} />
   <Content />
   <p class="post-author">Article contributed by {post.data.author}</p>
   <PostNav previous={previous} next={next} />
