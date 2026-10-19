@@ -25,7 +25,7 @@ jobs:
     name: Docker image & nginx
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Build image
         run: docker build -t loathers-net .
@@ -61,6 +61,21 @@ jobs:
           expect /contribute 301 https://opencollective.com/loathers
           expect /contribute/ 301 https://opencollective.com/loathers
           expect /definitely-not-a-page/ 404
+          # Renamed posts: old addresses (with and without the slash, and encoded
+          # the way browsers send ö and ') land on the new ones, which load
+          expect /analysis/2026-02-Heartstone 301 /analysis/2026-02-heartstone/
+          expect /analysis/2026-02-Heartstone/ 301 /analysis/2026-02-heartstone/
+          expect /analysis/2026-02-heartstone/ 200
+          expect /analysis/2026-04-Baseball-Diamond/ 301 /analysis/2026-04-baseball-diamond/
+          expect /analysis/2026-04-baseball-diamond/ 200
+          expect /analysis/2023-TTT-wardrobe/ 301 /analysis/2023-ttt-wardrobe/
+          expect /analysis/2023-ttt-wardrobe/ 200
+          expect "/analysis/2026-03-Archaeologist's-Spade" 301 /analysis/2026-03-archaeologists-spade/
+          expect /analysis/2026-03-Archaeologist%27s-Spade/ 301 /analysis/2026-03-archaeologists-spade/
+          expect /analysis/2026-03-archaeologists-spade/ 200
+          expect /analysis/2025-08-M%C3%B6bius-ring 301 /analysis/2025-08-mobius-ring/
+          expect /analysis/2025-08-M%C3%B6bius-ring/ 301 /analysis/2025-08-mobius-ring/
+          expect /analysis/2025-08-mobius-ring/ 200
           exit $fail
 
       - name: Container logs

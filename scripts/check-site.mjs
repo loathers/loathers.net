@@ -8,6 +8,7 @@
 //     URL ending in /), which is what trips up relative links.
 //   - Images without alt text
 //   - Two posts sharing a section + slug, where one silently replaces the other
+//   - Slugs that aren't lowercase letters, numbers, and dashes
 //
 //   npm run build && npm run check:site
 
@@ -211,9 +212,23 @@ for (const [url, dupes] of bySlug) {
   }
 }
 
+// --- Slug format ---
+
+// Capitals break links that get the case wrong (the server is case-sensitive,
+// macOS isn't), and apostrophes or accents turn into %27 / %C3%B6 when shared
+for (const post of postList) {
+  if (/^[a-z0-9-]+$/.test(post.slug)) continue;
+  warn({
+    title: "Slug format",
+    message: `"${post.slug}" should be lowercase letters, numbers, and dashes only. If the post is already live, add a redirect from the old address in nginx.conf.`,
+    file: post.file,
+    line: lineOf(post.text, "slug:"),
+  });
+}
+
 const count = warningCount();
 console.log(
   count
     ? `\n${count} warning(s) across ${pages.length} pages (warnings only; nothing here fails the build)`
-    : `✓ ${pages.length} pages: no dead links, missing alt text, or duplicate slugs`,
+    : `✓ ${pages.length} pages: no dead links, missing alt text, or slug problems`,
 );
