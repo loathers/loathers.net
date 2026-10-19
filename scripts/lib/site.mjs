@@ -32,12 +32,18 @@ export function requireBuild() {
   }
 }
 
-/** Every page Astro built, as { url: "/analysis/foo/", file: "dist/analysis/foo/index.html" } */
+/**
+ * Every page Astro built, as { url: "/analysis/foo/", file: "dist/analysis/foo/index.html" },
+ * plus the 404 page, which nginx shows for missing addresses
+ */
 export function builtPages() {
-  return walk(DIST, (name) => name === "index.html").map((file) => {
+  const pages = walk(DIST, (name) => name === "index.html").map((file) => {
     const dir = toPosix(relative(DIST, file)).replace(/index\.html$/, "");
     return { url: `/${dir}`, file };
   });
+  const notFound = join(DIST, "404.html");
+  if (existsSync(notFound)) pages.push({ url: "/404.html", file: notFound });
+  return pages;
 }
 
 /** Every post's source, with the frontmatter fields the checks care about */
@@ -57,7 +63,7 @@ export function posts() {
 export function sourceFor(url, postList) {
   const post = postList.find((p) => p.url === decodeURI(url));
   if (post) return post;
-  const name = url === "/" ? "index" : url.replace(/^\/|\/$/g, "");
+  const name = url === "/" ? "index" : url.replace(/^\/|\/$/g, "").replace(/\.html$/, "");
   for (const candidate of [`${name}.astro`, `${name}/index.astro`]) {
     const file = join(PAGES, candidate);
     if (existsSync(file) && statSync(file).isFile()) {
