@@ -23,6 +23,26 @@ Otherwise, it's all basic markdown, and should be very easy to contribute to! Pl
 - Please do **NOT** use H1 (the `# blahblah` construction); subheadings should be done with `##` for H2. Reserving H1 for the core title heading.
 - Use normal markdown links for most things. For links to other pages on the site, start the address with a slash, like `<a href="/tools/">blahblah</a>` or `[blahblah](/analysis/2024-12-takerspace/)`. Links without the leading slash (like `./tools/` or `analysis/...`) break once the page is live, and CI will warn about them.
 
+### Footnotes
+
+For asides that would interrupt the flow of a paragraph, use markdown footnotes. Put a marker in the text, and the note itself anywhere in the post (the bottom is tidiest):
+
+```
+Turn-bloat is what helps you take as few days as possible.[^1]
+
+[^1]: This is even the case if you didn't do anything on one of the days.
+```
+
+On the site, each marker shows up as a small green numbered badge. Clicking it opens the note right below that paragraph, and clicking again closes it. Every note is also collected in a "Footnotes" box at the bottom of the post.
+
+A few notes:
+
+- Footnotes are numbered in the order they appear, whatever you label them, so `[^1]`, `[^tavern]`, and `[^note]` all work. Words can be easier to keep track of in a long post.
+- Each label needs a matching `[^label]: ...` line, or the marker won't turn into a footnote.
+- Notes can have links and formatting like the rest of the post.
+
+Live example: [So You Want To Go Fast?](https://www.loathers.net/analysis/going-fast-part-1/)
+
 ### Using custom Loathers.net Components
 
 We have a bunch of custom components that can be used to improve posts! To use one, import it once near the top of your post (right after the frontmatter), then drop it in wherever you like:
