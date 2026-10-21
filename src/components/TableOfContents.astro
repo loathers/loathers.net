@@ -1,0 +1,115 @@
+---
+// TableOfContents.astro
+//
+// The "Contents" box at the top of posts with `toc: true` in their frontmatter.
+//   A <details> element, so it collapses without any JavaScript; open by default.
+
+import type { TocEntry } from "@lib/toc";
+
+interface Props {
+  entries: TocEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+{
+  entries.length > 0 && (
+    <details class="toc" open>
+      <summary>Contents</summary>
+      <nav aria-label="Contents">
+        <ul>
+          {entries.map((section) => (
+            <li>
+              <a href={`#${section.slug}`}>{section.text}</a>
+              {section.children.length > 0 && (
+                <ul>
+                  {section.children.map((sub) => (
+                    <li>
+                      <a href={`#${sub.slug}`} class:list={{ step: sub.step !== undefined }}>
+                        {sub.step !== undefined && <span class="tocStep">{sub.step}</span>}
+                        {sub.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  )
+}
+
+<style>
+  .toc {
+    margin: 0.75em 0 1em;
+    padding: 0.5em 1em;
+    background: rgb(244, 244, 244);
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 0.5rem;
+  }
+
+  .toc summary {
+    cursor: pointer;
+    font-family: Arial Black, Arial, Verdana;
+    padding: 0.25em 0;
+  }
+
+  /* The box sits inside the post content, so undo the bullets, indents, and
+     spacing meant for lists in the post body (the .toc prefix outranks them) */
+  .toc ul {
+    list-style: none;
+    margin: 0.25em 0 0.5em;
+    padding-left: 0;
+  }
+
+  .toc ul ul {
+    margin: 0.15em 0 0.35em;
+    padding-left: 1.25em;
+  }
+
+  .toc li {
+    margin: 0.2em 0;
+    padding-left: 0;
+    line-height: 1.4;
+  }
+
+  .toc a {
+    font-weight: normal;
+  }
+
+  .toc ul ul a {
+    font-size: 0.95em;
+  }
+
+  /* Badge beside the text, so a long step title wraps under itself rather
+     than under the number */
+  .toc a.step {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .toc a.step .tocStep {
+    flex-shrink: 0;
+  }
+
+  /* Matches the orange number badges on the steps themselves. A minimum width
+     rather than a fixed one, so 10+ stretches into a pill instead of cramming */
+  .tocStep {
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-width: 1.4em;
+    height: 1.4em;
+    padding: 0 0.3em;
+    margin-right: 0.4em;
+    border-radius: 0.7em;
+    background: #ff6f00;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    vertical-align: 0.1em;
+  }
+</style>

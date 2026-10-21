@@ -12,6 +12,8 @@ const posts = defineCollection({
     tag: z.string(),
     author: z.string(),
     excerpt: z.string().optional(),
+    // Show a "Contents" box at the top of the post
+    toc: z.boolean().optional(),
   }),
 });
 

@@ -6,6 +6,8 @@ author: "Captain Scotch"
 section: "analysis"
 tag: "IOTM Overview"
 ---
+import Table from "@components/Table.astro"
+
 This IOTM is clearly a love letter from TPTB to the Kingdom's best dart thrower, ThreeBulletHamburgler (#1993636). "But Scotch, 3BH hasn't been around for ages, and I didn't know that!" Well, yes. But just trust me. TPTB *must* know that his dart holster is ever-filled. They just KNOW, dude. Now that I'm done sharing my latest evidence-free conspiracy, let's skip past [the debatable existence of birds](https://en.wikipedia.org/wiki/Birds_Aren't_Real) and talk about the March IOTM: the **Everfull Dart Holster**.
 
 ## General Summary
@@ -38,8 +40,10 @@ Each time your level increases, you get dart perks, choosing one random perk fro
 
 For reference, here is a nice table to demonstrate how many darts you need to throw for various levels of value, perk counts, and what that corresponding level means to the X numbers mentioned above.
 
+<Table compact>
+
 | Darts Thrown (X^2) | Dart Level (X) | Delevel (5X) | 
-| --- | --- | --- | 
+| :---: | :---: | :---: | 
 | 1 | 1 | 5 | 
 | 4 | 2 | 10 | 
 | 9 | 3 | 15 | 
@@ -61,6 +65,8 @@ For reference, here is a nice table to demonstrate how many darts you need to th
 | 361 | 19 | 55 | 
 | 400 | 20 | 55 | 
 
+</Table>
+
 This table will return later, because this IOTM is deceptively complicated.
 
 ## Speedrun Applicability
@@ -73,8 +79,10 @@ There is a bit of a catch, though: you do need to max out your dart perks to mak
 
 So, you need to upgrade it. But this is where the randomness rears its head. Due to the fact that you are always given a random selection of 3 out of whatever perks you don't have at each dart level, it actually takes a surprisingly long time to get the 5 bullseye perks properly staged onto your account. And due to the fact that only a single dart regenerates per combat, the tail end of the probability distribution takes an absurd number of darts to get to. Here is the table I shared before, but instead of looking at the 5X total, I've added both a "projected turns spent" (accounting for the rough NC to combat ratio you usually see in a KOL speedrun, and a minimal gob of freefights) and a probability estimate of the likelihood that you've fully upgraded your bullseye shot by that mark (with a quick and easy 5000 round trial for a basic probability distribution).
 
+<Table compact>
+
 | Darts Thrown (X^2) | Dart Level (X) | %Bullseye Filled | Projected Turns Spent | 
-| --- | --- | --- | --- | 
+| :---: | :---: | :---: | :---: | 
 | 1 | 1 | 0% | 1 |
 | 4 | 2 | 0% | 5 |
 | 9 | 3 | 0% | 12 |
@@ -95,6 +103,8 @@ So, you need to upgrade it. But this is where the randomness rears its head. Due
 | 324 | 18 | 2% | 421 |
 | 361 | 19 | 0% | 469 |
 | 400 | 20 | 0% | 520 |
+
+</Table>
 
 This tells us a few distinct things. First, an entirely average run will have their bullseye perks by (roughly) turn 150. However, there's a huge range on that estimate, which leads to a lot of mild frustration; at most, a truly unlucky speedster might not unlock all the perks during your actual run, unlocking around turn 420. At a minimum, a stupendously lucky person might have their perks unlocked by turn 50. Visualizing the table in a quick chart, it's even clearer how frustrating the range is -- in about 25% of runs, you'll have your full five before turn 100. But in 20% of runs, you won't hit that mark until nearly turn 300. 
 

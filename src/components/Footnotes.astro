@@ -1,0 +1,254 @@
+---
+// Footnotes.astro
+//
+// Styles and behavior for markdown footnotes (`text[^1]` ... `[^1]: the note`).
+//   This component does not need to be imported to be used; it is used by default
+//   with classic markdown footnotes.
+//
+//   - Markers in the text become small green badges.
+//   - Clicking one opens that note in a box right below its paragraph, and
+//     clicking again (or the ×) closes it. Without JavaScript, markers still
+//     jump to the list at the bottom, the way plain markdown footnotes do.
+//   - The list of all footnotes at the bottom sits in its own dashed box, so
+//     it reads as separate from the post itself.
+---
+
+<script>
+  function initFootnotes() {
+    const refs = document.querySelectorAll<HTMLAnchorElement>(
+      "a[data-footnote-ref]",
+    );
+
+    refs.forEach((ref) => {
+      const targetId = decodeURIComponent(ref.hash.slice(1));
+      const note = document.getElementById(targetId);
+      if (!note) return;
+
+      const number = ref.textContent?.trim() ?? "";
+      const popoutId = `${targetId}-popout`;
+      ref.setAttribute("role", "button");
+      ref.setAttribute("aria-expanded", "false");
+      ref.setAttribute("aria-controls", popoutId);
+
+      ref.addEventListener("click", (event) => {
+        event.preventDefault();
+        const open = document.getElementById(popoutId);
+        if (open) {
+          open.remove();
+          ref.setAttribute("aria-expanded", "false");
+          return;
+        }
+
+        const box = document.createElement("aside");
+        box.className = "footnotePopout";
+        box.id = popoutId;
+        box.setAttribute("aria-label", `Footnote ${number}`);
+
+        const badge = document.createElement("span");
+        badge.className = "footnotePopoutNumber";
+        badge.textContent = number;
+
+        // A copy of the note's text, minus the ↩ link back up to the marker
+        const body = document.createElement("div");
+        body.className = "footnotePopoutBody";
+        body.append(...[...note.childNodes].map((n) => n.cloneNode(true)));
+        body
+          .querySelectorAll("[data-footnote-backref]")
+          .forEach((a) => a.remove());
+
+        const close = document.createElement("button");
+        close.type = "button";
+        close.className = "footnotePopoutClose";
+        close.setAttribute("aria-label", "Close footnote");
+        close.textContent = "×";
+        close.addEventListener("click", (event) => {
+          box.remove();
+          ref.setAttribute("aria-expanded", "false");
+          // Hand focus back to the marker for keyboard users (a keyboard
+          // "click" has detail 0); after a mouse click that would just draw a
+          // focus ring around the marker for no reason
+          if (event.detail === 0) ref.focus();
+        });
+
+        box.append(badge, body, close);
+
+        // Below the paragraph (or list item, or table cell) the marker is in.
+        // Notes from the same paragraph stack in the order they appear.
+        const block =
+          ref.closest("p, li, td, th, blockquote, h2, h3, h4") ??
+          ref.parentElement!;
+        const insideBlock = block.matches("li, td, th, blockquote");
+        let anchor: Element = block;
+        if (insideBlock) {
+          block.append(box);
+        } else {
+          while (
+            anchor.nextElementSibling?.classList.contains("footnotePopout") &&
+            Number(
+              anchor.nextElementSibling.querySelector(".footnotePopoutNumber")
+                ?.textContent,
+            ) < Number(number)
+          ) {
+            anchor = anchor.nextElementSibling;
+          }
+          anchor.after(box);
+        }
+        ref.setAttribute("aria-expanded", "true");
+      });
+    });
+  }
+
+  initFootnotes();
+</script>
+
+<style>
+  /* All of this styles markdown output, which doesn't carry Astro's scoping
+     attributes, so it's :global, limited to post content */
+
+  /* --- Markers in the text: small green badges --- */
+
+  :global(sup:has(> a[data-footnote-ref])) {
+    vertical-align: 0.35em;
+    line-height: 0;
+  }
+
+  :global(a[data-footnote-ref]) {
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-width: 1.45em;
+    height: 1.45em;
+    padding: 0 0.3em;
+    margin: 0 0.1em 0 0.2em;
+    border-radius: 0.75em;
+    background: rgb(10, 114, 80);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* An invisible margin around the badge that also counts as the badge, so
+     it's easy to tap on a phone without looking any bigger */
+  :global(a[data-footnote-ref]) {
+    position: relative;
+  }
+
+  :global(a[data-footnote-ref]::after) {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
+
+  /* Darker when hovered, open, or focused from the keyboard (instead of a
+     focus outline, which would spill onto the neighboring text) */
+  :global(a[data-footnote-ref]:hover),
+  :global(a[data-footnote-ref][aria-expanded="true"]),
+  :global(a[data-footnote-ref]:focus-visible) {
+    background: rgb(5, 80, 55);
+    outline: none;
+  }
+
+  /* --- A note opened under its paragraph --- */
+
+  :global(.footnotePopout) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6em;
+    margin: 0.4em 0 0.8em;
+    padding: 0.6em 0.8em;
+    background: rgb(244, 244, 244);
+    border-left: 6px solid rgb(10, 114, 80);
+    border-radius: 0.5rem;
+    font-size: 0.95em;
+  }
+
+  :global(.footnotePopoutNumber) {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.5em;
+    height: 1.5em;
+    padding: 0 0.3em;
+    border-radius: 0.75em;
+    background: rgb(10, 114, 80);
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    /* Without this it inherits the post's tall line spacing, which sits the
+       number low in its circle */
+    line-height: 1;
+    /* Line the badge up with the first line of the note */
+    margin-top: 0.15em;
+  }
+
+  :global(.footnotePopoutBody) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  :global(.footnotePopoutBody p) {
+    margin: 0;
+  }
+
+  :global(.footnotePopoutClose) {
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    padding: 0 0.2em;
+    font-size: 1.3em;
+    line-height: 1;
+    color: rgb(102, 102, 102);
+    cursor: pointer;
+  }
+
+  :global(.footnotePopoutClose:hover) {
+    color: black;
+  }
+
+  /* --- The list of every footnote at the bottom --- */
+
+  :global(section.footnotes) {
+    margin: 2em 0 1em;
+    padding: 0.25em 1.25em 0.75em;
+    background: white;
+    border: 3px dashed rgb(10, 114, 80);
+    border-radius: 0.75rem;
+  }
+
+  :global(section.footnotes ol) {
+    padding-left: 0;
+  }
+
+  /* Each number beside its note (the post's numbered-list badges put it on a
+     line of its own above notes that are paragraphs), and green to match the
+     markers instead of the orange step badges */
+  /* "ol li" here so these outrank the post's own numbered-list styles */
+  :global(section.footnotes ol li) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.6em;
+    align-items: baseline;
+    padding-left: 0;
+  }
+
+  :global(section.footnotes ol li::before) {
+    background: rgb(10, 114, 80);
+    margin-right: 0;
+  }
+
+  :global(section.footnotes ol li > *) {
+    grid-column: 2;
+  }
+
+  :global(section.footnotes ol li p) {
+    margin: 0;
+  }
+
+  /* When a marker jumps here without JavaScript, show which note it meant */
+  :global(section.footnotes li:target) {
+    background: rgb(232, 244, 237);
+    border-radius: 0.4rem;
+  }
+</style>

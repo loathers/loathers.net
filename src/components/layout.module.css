@@ -297,18 +297,34 @@ dd {
 .content table {
     margin: 10px;
     max-width: 100%;
-    overflow: hidden;
+    /* (No overflow: hidden here; it would stop the sticky header below from
+       sticking. Phones get their own sideways scrolling further down.) */
+    /* Every digit the same width, so numbers line up down a column */
+    font-variant-numeric: tabular-nums;
 }
 
 .content th {
-    border-bottom: 3px solid #ccc;
+    /* Thin dark-green accent under the header, matching the site's links */
+    border-bottom: 3px solid rgb(10, 114, 80);
     background-color: black;
     color: white;
-    padding: 0.5em;
+    padding: 0.55em 0.7em;
+    /* On long tables the header stays in view while you scroll down (on
+       desktop; on phones the table scrolls inside its own box instead) */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Line headers up with their columns, which are left-aligned. A column
+   aligned in markdown (|:---:|) keeps its own alignment, and :where() keeps
+   this rule weak enough for components to center their own columns */
+.content th:where(:not([align]):not([style*="text-align"])) {
+    text-align: left;
 }
 
 .content td {
-    padding: 0.25em;
+    padding: 0.4em 0.7em;
 }
 
 .content tr {
@@ -317,6 +333,14 @@ dd {
 
 .content tbody tr:nth-child(odd) {
     background: rgb(232, 232, 232);
+}
+
+/* A light tint on the row under the mouse, to help follow it across wide
+   tables (devices without a mouse just skip it) */
+@media (hover: hover) {
+    .content tbody tr:hover {
+        background: #FFFFFF;
+    }
 }
 
 /* On narrow screens, let wide tables scroll sideways instead of stretching the page */

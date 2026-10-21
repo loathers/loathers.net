@@ -61,6 +61,15 @@ jobs:
           expect /contribute 301 https://opencollective.com/loathers
           expect /contribute/ 301 https://opencollective.com/loathers
           expect /definitely-not-a-page/ 404
+          # The 404 page itself can't be visited directly
+          expect /404.html 404
+          # Missing pages show our 404 page, not nginx's plain one
+          if curl -s http://localhost:8080/definitely-not-a-page/ | grep -q "<title>[^<]*Page not found"; then
+            echo "✓ missing pages show the site's 404 page"
+          else
+            echo "✗ missing pages show nginx's default 404 page, not ours"
+            fail=1
+          fi
           # Renamed posts: old addresses (with and without the slash, and encoded
           # the way browsers send ö and ') land on the new ones, which load
           expect /analysis/2026-02-Heartstone 301 /analysis/2026-02-heartstone/

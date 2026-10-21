@@ -14,13 +14,34 @@ author: "Your name"
 section: "analysis" OR "scripting" OR "shenanigans"
 tag: "Whatever your heart desires"
 excerpt: "Optional field where you describe your post"
+toc: true (optional; adds a "Contents" box at the top, handy for long guides)
 ---
 ```
 
 Otherwise, it's all basic markdown, and should be very easy to contribute to! Please put up a PR with any markdown file you'd like to add. Here are a handful of small stylistic things we would prefer to have contributors do, but can change on our end if you aren't as comfortable with it and would like to just submit the content and get support from our editors.
 
 - Please do **NOT** use H1 (the `# blahblah` construction); subheadings should be done with `##` for H2. Reserving H1 for the core title heading.
-- Use normal markdown links for most things. For internal site links, you can use `<a href="./tools/">blahblah</a>` to create relative links.
+- Use normal markdown links for most things. For links to other pages on the site, start the address with a slash, like `<a href="/tools/">blahblah</a>` or `[blahblah](/analysis/2024-12-takerspace/)`. Links without the leading slash (like `./tools/` or `analysis/...`) break once the page is live, and CI will warn about them.
+
+### Footnotes
+
+For asides that would interrupt the flow of a paragraph, use markdown footnotes. Put a marker in the text, and the note itself anywhere in the post (the bottom is tidiest):
+
+```
+Turn-bloat is what helps you take as few days as possible.[^1]
+
+[^1]: This is even the case if you didn't do anything on one of the days.
+```
+
+On the site, each marker shows up as a small green numbered badge. Clicking it opens the note right below that paragraph, and clicking again closes it. Every note is also collected in a "Footnotes" box at the bottom of the post.
+
+A few notes:
+
+- Footnotes are numbered in the order they appear, whatever you label them, so `[^1]`, `[^tavern]`, and `[^note]` all work. Words can be easier to keep track of in a long post.
+- Each label needs a matching `[^label]: ...` line, or the marker won't turn into a footnote.
+- Notes can have links and formatting like the rest of the post.
+
+Live example: [So You Want To Go Fast?](https://www.loathers.net/analysis/going-fast-part-1/)
 
 ### Using custom Loathers.net Components
 
@@ -118,6 +139,47 @@ An inline, color-coded tier badge using the same colors as the IOTM Tier List sh
 Write `tier={3}` or `tier="3"`, not `tier=3`, which isn't valid MDX. An invalid tier fails the build so it gets caught.
 
 Live example: the [Garden Slot retro review](https://www.loathers.net/analysis/2026-garden-slot/) (once it's published), at the end of each garden's section
+
+#### Table
+
+Wraps an ordinary markdown table to add sorting, sizing, and color highlights. Tables without it look the same as always, so only reach for it when a table needs one of these. Leave a blank line after the opening tag and before the closing one, or the markdown table won't render.
+
+```
+<Table sortable highlight={{ columns: { Item: "shade" } }}>
+
+| Item | Description | gold |
+| ---- | ----------- | ---- |
+| golden pet rock | Familiar hatchling | 7 |
+| anchor bomb | Combat item; freerun banish | 1 |
+
+</Table>
+```
+
+All the options are optional, and can be combined:
+
+- `sortable`: readers can click a column header to sort by it. Clicking again reverses the sort, and a third click puts the table back in the order you wrote it. Numbers sort as numbers, and empty cells (or `—`, `TBD`, `N/A`) always sort last.
+- `compact`: the table is only as wide as its content (up to about two-thirds of the page) and centered, instead of stretching across the whole page. Good for small tables; see Tearaway Pants.
+- `widths`: a suggested width for each column, in order, with `null` for columns you want to leave alone, like `widths={["10em", "10em", null]}`. Columns still grow if their content needs more room. Percentages split the table's width and work on every screen, which makes them the easy way to get an even split, like `widths={["50%", "50%"]}` for a side-by-side comparison. Fixed sizes like `em` or `px` only apply on wider screens, so phones don't end up scrolling sideways.
+- `highlight`: colors parts of the table. Name columns by their header text or position, and rows by their position or by the text in their first cell (which keeps working if you add rows above it later). Highlights stay with their rows when readers sort.
+
+```
+<Table highlight={{
+  columns: { Item: "shade" },
+  rows: { 1: "best", "anchor bomb": "bad" },
+  cells: [{ row: "golden pet rock", column: "gold", color: "good" }],
+}}>
+```
+
+The colors are:
+
+- `shade`: darker background and bold text. It layers on top of the other colors, so a shaded column stays shaded in a highlighted row. Good for the column that labels each row.
+- `best`: light greenish-yellow, for the standout option.
+- `good`: light green.
+- `bad`: light red.
+
+If a highlight names a column or row that doesn't exist, the build fails with a message saying which one, so typos get caught instead of quietly coloring nothing.
+
+Live examples: [TakerSpace](https://www.loathers.net/analysis/2024-12-takerspace/) (sortable, shaded Item column), [A Primer on Faxes & Summons](https://www.loathers.net/analysis/faxes-and-summons/) (widths), [Tearaway Pants](https://www.loathers.net/analysis/2024-08-tearaway-pants/) (compact)
 
 #### TierTable
 
