@@ -12,6 +12,10 @@
 //       rows: { 3: "best", "anchor bomb": "good" },  by 1-based position or first cell
 //       cells: [{ row: 2, column: "gold", color: "bad" }],
 //     }}
+//     bars={["Faxes", "Summons"]}               a bar after each number, sized to it
+//     barMax={20}                               where a bar is full (one number for a
+//                                               shared scale, or one per bars column);
+//                                               above it shows as "20+" with an arrow
 //   >
 //
 //   | Item | ... |
@@ -22,7 +26,11 @@
 // Colors: shade (darkens and bolds, and stacks with the others), best, good, bad.
 // Adding one is a single line in the styles below.
 //
-// Highlights, widths, and compact are applied at build time, so they work
+// Bars start at zero, share one scale unless barMax gives one per column, and
+// default to the largest value as full. A cell like ">20" reads as "more than
+// 20" and gets an arrow. Non-numbers (blank, —, TBD) just get no bar.
+//
+// Highlights, bars, widths, and compact are applied at build time, so they work
 // without JavaScript and stay attached to their rows when sorted. Only
 // sorting needs the script at the bottom.
 
@@ -38,15 +46,19 @@ interface Props {
     rows?: Record<ColumnKey, Color>;
     cells?: { row: ColumnKey; column: ColumnKey; color: Color }[];
   };
+  bars?: ColumnKey[];
+  barMax?: number | number[];
 }
 
-const { sortable = false, compact = false, widths, highlight = {} } = Astro.props;
+const { sortable = false, compact = false, widths, highlight = {}, bars = [], barMax } = Astro.props;
 
 const html = await Astro.slots.render("default");
 
 const textOf = (cellHtml: string) =>
   cellHtml
     .replace(/<[^>]+>/g, "")
+    .replace(/&gt;/g, ">")
+    .replace(/&lt;/g, "<")
     .replace(/&amp;/g, "&")
     .replace(/&#39;|&#x27;/g, "'")
     .replace(/&quot;/g, '"')
@@ -102,6 +114,73 @@ for (const { row, column, color } of highlight.cells ?? []) {
   cellColor.set(`${rowIndex(row)}:${columnIndex(column)}`, color);
 }
 
+// --- Bars ---
+
+const barColumns = bars.map(columnIndex);
+
+// "17" is 17; ">20" or "20+" is "more than 20". Anything else gets no bar.
+function readBar(cellHtml: string): { value: number; more: boolean } | null {
+  const m = textOf(cellHtml).match(/^(>|≥)?\s*(\d[\d,]*(?:\.\d+)?)\s*(\+)?$/);
+  if (!m) return null;
+  return { value: Number(m[2].replace(/,/g, "")), more: Boolean(m[1] || m[3]) };
+}
+
+const barValues = new Map<number, ({ value: number; more: boolean } | null)[]>(
+  barColumns.map((c) => [c, bodyRows.map((row) => readBar([...row[2].matchAll(CELL)][c]?.[3] ?? ""))]),
+);
+
+for (const [c, values] of barValues) {
+  if (values.every((v) => v === null)) fail(`column "${headers[c]}" has no numbers to draw bars for`);
+}
+if (Array.isArray(barMax) && barMax.length !== barColumns.length) {
+  fail(`barMax has ${barMax.length} values, but bars names ${barColumns.length} columns; give one each, or a single number to share`);
+}
+for (const m of [barMax].flat()) {
+  if (m !== undefined && !(m > 0)) fail(`barMax must be above zero, not ${m}`);
+}
+
+// One shared scale unless barMax gives a max per column
+const largest = Math.max(...[...barValues.values()].flat().map((v) => v?.value ?? 0));
+const maxFor = (c: number) =>
+  Array.isArray(barMax) ? barMax[barColumns.indexOf(c)] : (barMax ?? (largest || 1));
+
+// What each bar cell shows, plus the widest label per column, so every number
+// gets the same slot and the bars below it all start from the same point
+const barCells = new Map<string, { label: string; percent: number; arrow: boolean; sortValue: number }>();
+const labelWidth = new Map<number, number>();
+for (const [c, values] of barValues) {
+  values.forEach((v, r) => {
+    if (!v) return;
+    const max = maxFor(c);
+    const capped = v.value > max || (v.more && v.value >= max);
+    const label = capped ? `${max}+` : textOf([...bodyRows[r][2].matchAll(CELL)][c][3]);
+    barCells.set(`${r}:${c}`, {
+      label,
+      percent: capped ? 100 : (v.value / max) * 100,
+      arrow: capped || v.more,
+      // "more than 20" sorts just above 20
+      sortValue: v.more ? v.value + 0.5 : v.value,
+    });
+    labelWidth.set(c, Math.max(labelWidth.get(c) ?? 0, label.length));
+  });
+}
+
+function barHtml(r: number, c: number, content: string): { attrs: string; content: string } | null {
+  const bar = barCells.get(`${r}:${c}`);
+  if (!bar) return null;
+  // Keep the cell's own markup unless the label changed (">20" or 25 becoming "20+")
+  const shown = bar.label === textOf(content) ? content : bar.label;
+  return {
+    attrs: ` data-sort-value="${bar.sortValue}"`,
+    content:
+      `<span class="barCell">` +
+      `<span class="barValue" style="flex-basis: ${labelWidth.get(c)}ch">${shown}</span>` +
+      `<span class="barTrack" aria-hidden="true">` +
+      `<span class="${bar.arrow ? "barFill barMore" : "barFill"}" style="width: ${bar.percent.toFixed(1)}%"></span>` +
+      `</span></span>`,
+  };
+}
+
 // Each cell gets one color (cell beats row beats column), plus shade if any
 // of them asked for it, since shade darkens whatever color is underneath
 function classesFor(r: number, c: number): string[] {
@@ -125,7 +204,9 @@ let table = html.replace(/<tbody\b[^>]*>[\s\S]*?<\/tbody>/, (tbody) =>
     let c = -1;
     const body = cells.replace(CELL, (_, tag: string, attrs: string, content: string) => {
       c++;
-      return `<${tag}${addClasses(attrs, classesFor(r, c))}>${content}</${tag}>`;
+      const bar = barHtml(r, c, content);
+      const cellAttrs = addClasses(attrs, classesFor(r, c)) + (bar?.attrs ?? "");
+      return `<${tag}${cellAttrs}>${bar?.content ?? content}</${tag}>`;
     });
     return `<tr${rowAttrs}>${body}</tr>`;
   }),
@@ -156,7 +237,9 @@ if (widths) {
   const EMPTY = /^(|—|–|-|\?|n\/a|tbd)$/i;
   const NUMBER = /^[+−-]?\$?\d[\d,]*(\.\d+)?%?$/;
 
-  function valueOf(cell: Element | undefined): Value {
+  function valueOf(cell: HTMLElement | undefined): Value {
+    // Bar cells carry their number, since "20+" isn't one on its own
+    if (cell?.dataset.sortValue) return Number(cell.dataset.sortValue);
     const text = (cell?.textContent ?? "").trim();
     if (EMPTY.test(text)) return null;
     if (NUMBER.test(text)) return Number(text.replace(/[$,%]/g, "").replace("−", "-"));
@@ -258,6 +341,47 @@ if (widths) {
   .dataTable :global(td.hl-shade) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
     font-weight: bold;
+  }
+
+  /* --- Bars --- */
+
+  /* Number first, in a fixed-width slot (sized to the column's widest label),
+     so every bar in the column starts from the same point */
+  .dataTable :global(.barCell) {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .dataTable :global(.barValue) {
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .dataTable :global(.barTrack) {
+    flex: 1;
+    min-width: 8em;
+    height: 0.85em;
+  }
+
+  .dataTable :global(.barFill) {
+    display: block;
+    height: 100%;
+    background: rgb(10, 114, 80);
+    border-radius: 2px;
+  }
+
+  /* Off the end of the scale: the bar ends in an arrowhead */
+  .dataTable :global(.barFill.barMore) {
+    border-radius: 2px 0 0 2px;
+    clip-path: polygon(0 0, calc(100% - 0.6em) 0, 100% 50%, calc(100% - 0.6em) 100%, 0 100%);
+  }
+
+  @media (max-width: 700px) {
+    .dataTable :global(.barTrack) {
+      min-width: 3.5em;
+    }
   }
 
   /* --- Sorting --- */

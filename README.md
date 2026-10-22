@@ -142,7 +142,7 @@ Live example: the [Garden Slot retro review](https://www.loathers.net/analysis/2
 
 #### Table
 
-Wraps an ordinary markdown table to add sorting, sizing, and color highlights. Tables without it look the same as always, so only reach for it when a table needs one of these. Leave a blank line after the opening tag and before the closing one, or the markdown table won't render.
+Wraps an ordinary markdown table to add sorting, sizing, color highlights, and bars. Tables without it look the same as always, so only reach for it when a table needs one of these. Leave a blank line after the opening tag and before the closing one, or the markdown table won't render.
 
 ```
 <Table sortable highlight={{ columns: { Item: "shade" } }}>
@@ -177,9 +177,18 @@ The colors are:
 - `good`: light green.
 - `bad`: light red.
 
-If a highlight names a column or row that doesn't exist, the build fails with a message saying which one, so typos get caught instead of quietly coloring nothing.
+`bars` turns number columns into a little bar chart: each number gets a green bar after it, sized to its value, so readers can see the shape of the data at a glance while the exact numbers stay readable. Name the columns the same way as for highlights. `barMax` sets the value that fills a bar, for instances when you want to just do an approximate capped value.
 
-Live examples: [TakerSpace](https://www.loathers.net/analysis/2024-12-takerspace/) (sortable, shaded Item column), [A Primer on Faxes & Summons](https://www.loathers.net/analysis/faxes-and-summons/) (widths), [Tearaway Pants](https://www.loathers.net/analysis/2024-08-tearaway-pants/) (compact)
+```
+<Table compact bars={["Faxes", "In-Zone/Queue Summons"]} barMax={20}>
+```
+
+- All bars start at zero. Cells that aren't numbers (blank, `—`, `TBD`) are treated like zero and get no bar. Bars work with `sortable`, and items capped with `barMax` sort just above the max.
+- With one `barMax` number, all the bar columns share a max. Pass a list instead, a la `barMax={[20, 50]}`, for a separate scale per column (in the same order as `bars`). Leave it out and the largest number in those columns fills the bar. Anything above `barMax` shows as `20+` with a full bar ending in an arrow, representing values that run off the chart. Writing `>20` or `20+` in the table itself means the same thing.
+
+If a highlight or bar names a column or row that doesn't exist, the build fails with a message saying which one, so typos get caught instead of quietly doing nothing. The same goes for a bars column with no numbers in it, or a `barMax` that doesn't fit.
+
+Live examples: [TakerSpace](https://www.loathers.net/analysis/2024-12-takerspace/) (sortable, shaded Item column), [A Primer on Faxes & Summons](https://www.loathers.net/analysis/faxes-and-summons/) (widths), [Tearaway Pants](https://www.loathers.net/analysis/2024-08-tearaway-pants/) (compact), [Black Rose Garden](https://www.loathers.net/analysis/2026-10-black-rose-garden/) (bars; once it's published)
 
 #### TierTable
 
