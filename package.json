@@ -18,7 +18,8 @@
     "typecheck": "astro check",
     "kol-icon": "node scripts/fetch-kol-icon.mjs",
     "check:site": "node scripts/check-site.mjs",
-    "check:mobile": "node scripts/check-mobile-layout.mjs"
+    "check:mobile": "node scripts/check-mobile-layout.mjs",
+    "sync-iotms": "node scripts/sync-iotms.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.0",

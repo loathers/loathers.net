@@ -1,0 +1,2475 @@
+{
+  "sheet": "https://docs.google.com/spreadsheets/d/1pDTE8VhuSyH03xvkVW5JGvTQf7PYitaNGLMHLVXz_5A/",
+  "tiers": [
+    {
+      "tier": 0,
+      "turnsSaved": "15+",
+      "explanation": "This is the cream of the crop; the best turn-saving IOTMs imaginable. It is critical to have these if you want to do competitive unrestricted speedruns.",
+      "example": "The Bandersnatch gives one free run every 5 pounds of familiar weight the players can stack on it. In unrestricted, you can hit >110 one to two times per run, which equates to 22 free runs; that burns 22 turns of delay, for 22 turns saved. It also gets better every single time new familiar weight sources are introduced; if you're really really focusing on it, you may even be able to get 30 runs out of this dang thing."
+    },
+    {
+      "tier": 1,
+      "turnsSaved": "7-15",
+      "explanation": "These are extremely powerful IOTMs. Some require synergies to operate successfully.",
+      "example": "The Garbage Tote gives access to the \"broken champagne bottle\", which gives you 11 shots of doubled item drop. By using this on copied Green Ops Soldiers, you can usually get 7-9 green smoke bombs, which are worth 90% of a free run. That's roughly 7.2 turns saved from the bottle via burned delay. The garbage shirt also doubles stat gains, and faster leveling can get you 1-2 turns of savings through routing power; that's well within the 7-15 turn range."
+    },
+    {
+      "tier": 2,
+      "turnsSaved": "4-7",
+      "explanation": "These are pretty good IOTMs. They are going to help speed up your runs and almost every top speedrunner will have most of these.",
+      "example": "The voter registration form gives you small buffs each day from voting, which are a fractional savings at best, but probably about a fourth of a turn due to the inclusion of a spicy familiar XP buff. It also gives you three free wanderers each day that do not require you to charge up equipment to access, which can be used to burn delay, for the benefit of 3 turns saved from delay burn and a little under half a turn from 3 extra familiar combats. Additionally, the voting wanderers can be used to do a neat trick where you synergize macrometeorites or the \"replace monster\" feature of the power glove to transform a turn-costing voting wanderer into a Lobsterfrogman at Sonofa Beach, which is worth ~ 1 turn on net. This edges out at a tiny bit over 4 turns per day, making it a marginal tier 2 item on non-ghost days, but firmly there in my view. (Also, it's worth noting that on ghost days, which happen ~ 1/3 of the time, you can synergize this with spitting Whatsian Commando Ghosts for TURDs keys; those are 100% free runs from ghosts, which you can use to turn your remaining ghost wanderers into free delay burn. It's a cute interaction that raises the ceiling of this item significantly!)"
+    },
+    {
+      "tier": 3,
+      "turnsSaved": "2-4",
+      "explanation": "These are decent quality IOTMs. They will shave a noticable amount of turns, and are necessary for big speedruns, but aren't going to by themselves make your runs way better.",
+      "example": "The Cargo Cultist Shorts allow you to pull something from your shorts pocket once a day. The top 3 options from the shorts (specifically: a free Mountain Man, 5 turns of the 2nd filthworm scent, and the astrologer bell for a star chart + a few stars/lines) all save on net about 2 turns. The pants themselves are neat, as they give 66% initiative (worth ~ a fourth of a turn on the init test in the Defiled Alcove) and 66% food drops from monsters (helpful on forcing blasting soda to drop, as it is a food item; this is ~ half a turn of item drop on the expected value of getting the drop). That nets out to a tiny bit more than 2 turns per day of value, making it a low-end item in this tier, but firmly above tier 4."
+    },
+    {
+      "tier": 4,
+      "turnsSaved": "0-2",
+      "explanation": "These are OK IOTMs. They have a few niche use cases, and some synergies, but it is certainly possible to get a silver quality leaderboard run without all of them.",
+      "example": "The obtuse angel has a skill (\"fire a badly romantic arrow\") that will turn the monster you are fighting into a wandering monster that you can fight 2-3 times over the remainder of the day. This would often be a 2-3 turns saved activity, but it isn't usually that in modern play, as it is an unpredictable wandering monster, so you cannot guarantee it is placed in a delay zone. There are a few ways to force the issue (namely with tavern turns, the shore, and Icy Peak), so you can usually get one into a delay zone, but the other 1-2 monsters will likely occur in zones that are non-delay. This makes this (usually) 1 turn saved on the delay turn burnt, and a bit under half a turn of value from 3 extra familiar combats (if you are able to wear a charging familiar in on those fights). Ergo, it's a high-quality item for this tier."
+    },
+    {
+      "tier": 5,
+      "turnsSaved": "<1",
+      "explanation": "These IOTMs are not necessary for speedrunning; they have small uses, but you should never bend over backwards to buy these or fit them into your plans.",
+      "example": "The Spacegate Access Badge gives you access to spacegate in-run. There are two useful things from this -- first, it gives you access to a daily buff, which can be mildly useful (either +50% stats or +30 ML are your likely picks; neither is worth a full turn but both will help you marginally in gaining stats). Second, one of the planets has an adventure that grants the player a ton of moxie stats in exchange for a few turns spent. Depending on how your powerleveling suite looks, this may be worth a tiny bit to you. It is unlikely to be worth routing around, but there is a world where it saves you ~ 1 turn on net versus other powerleveling options. (It is worth noting that Spacegate is a lot better in Dark Gyffte, where you can use it to get extremely large insects early in-run for ensorceling. But that's one path out of roughly 40, so that isn't enough value to drag it up from tier 5.)"
+    },
+    {
+      "tier": 6,
+      "turnsSaved": "0",
+      "explanation": "These IOTMs are virtually completely useless for speedrunning. Any turn savings you glean from them are fractional at best and non-dependable.",
+      "example": "The elf sleeper agent does not do anything that is relevant to a speed ascender. The one relevant drop (the Tryptophan dart) is entirely unpredictable, and using this familiar actively hurts you as many, many familiars will save more turns with their usage than even one dart will save you. If anything, usage of the sleeper agent likely harms your run and leaves turns on the table. It's a clear tier 6 familiar."
+    }
+  ],
+  "iotms": [
+    {
+      "name": "Apathargic Bandersnatch",
+      "year": 2009,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "fairy-worn boots",
+      "year": 2011,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "Source terminal",
+      "year": 2016,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeFights": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "Kramco Industries packing carton",
+      "year": 2019,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "baby camelCalf",
+      "year": 2020,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "emotion chip",
+      "year": 2021,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "packaged backup camera",
+      "year": 2021,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeFights": "indirect"
+      }
+    },
+    {
+      "name": "packaged cold medicine cabinet",
+      "year": 2021,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
+    },
+    {
+      "name": "packaged jurassic parka",
+      "year": 2022,
+      "tier": 0,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "book of facts",
+      "year": 2023,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeFights": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "boxed bat wings",
+      "year": 2024,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "itemGen": "direct",
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "lab-grown blood cubic zirconia",
+      "year": 2025,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "itemGen": "direct",
+        "banish": "direct"
+      }
+    },
+    {
+      "name": "seal-clubbing club loot box",
+      "year": 2026,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeKills": "direct",
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "scabbarded Sword of S Words",
+      "year": 2026,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Tome of Clip Art",
+      "year": 2011,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Pack of Every Card",
+      "year": 2015,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "LI-11 Motor Pool voucher",
+      "year": 2017,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "freeFights": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "corked genie bottle",
+      "year": 2017,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "Pocket Meteor Guide",
+      "year": 2017,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "replacer": "direct"
+      }
+    },
+    {
+      "name": "space planula",
+      "year": 2017,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "January's Garbage Tote (unopened)",
+      "year": 2018,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "Fourth of May Cosplay Saber kit",
+      "year": 2019,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "packaged Pocket Professor",
+      "year": 2019,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "mint-in-box Powerful Glove",
+      "year": 2020,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "replacer": "direct"
+      }
+    },
+    {
+      "name": "Comprehensive Cartographic Compendium",
+      "year": 2020,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "packaged miniature crystal ball",
+      "year": 2021,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "packaged fire extinguisher",
+      "year": 2021,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "grey gosling",
+      "year": 2022,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "undrilled cosmic bowling ball",
+      "year": 2022,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "boxed autumn-aton",
+      "year": 2022,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "sleeping patriotic eagle",
+      "year": 2023,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "banish": "direct"
+      }
+    },
+    {
+      "name": "closed-circuit pay phone",
+      "year": 2023,
+      "tier": 1,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "indirect",
+        "freeFights": "direct",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "cursed monkey glove",
+      "year": 2023,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "shrink-wrapped Cincho de Mayo",
+      "year": 2023,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "shrink-wrapped 2002 Mr. Store Catalog",
+      "year": 2023,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeKills": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "wrapped candy cane sword cane",
+      "year": 2023,
+      "tier": 1,
+      "accountBound": true
+    },
+    {
+      "name": "baby chest mimic",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeFights": "indirect"
+      }
+    },
+    {
+      "name": "in-the-box Spring Shoes",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "banish": "direct"
+      }
+    },
+    {
+      "name": "packaged Everfull Dart Holster",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
+    },
+    {
+      "name": "boxed Apriling Band Helmet",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "packaged Roman Candelabra",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "boxed Sept-Ember Censer",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Unpeeled Peridot of Peril",
+      "year": 2025,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "McHugeLarge deluxe ski set",
+      "year": 2025,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "boxed Heartstone",
+      "year": 2026,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "indirect",
+        "freeKills": "indirect",
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "boxed Archaeologist's Spade",
+      "year": 2026,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "wrapped Baseball Diamond",
+      "year": 2026,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Interesting Coin Inheritance Letter",
+      "year": 2026,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "replacer": "direct"
+      }
+    },
+    {
+      "name": "Clan VIP Lounge invitation",
+      "year": 2009,
+      "tier": 2,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeKills": "direct",
+        "sneaks": "indirect",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Schmalz's First Prize Beer",
+      "year": 2010,
+      "tier": 2,
+      "accountBound": true
+    },
+    {
+      "name": "Moping Artistic Goth Kid",
+      "year": 2012,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "The Smith's Tome",
+      "year": 2013,
+      "tier": 2,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Granny Tood's Thanksgarden Catalog",
+      "year": 2016,
+      "tier": 2,
+      "accountBound": true
+    },
+    {
+      "name": "Witchess Set",
+      "year": 2016,
+      "tier": 2,
+      "zone": true,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "heart-shaped crate",
+      "year": 2017,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "freeFights": "direct",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "suspicious package",
+      "year": 2017,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "xo-skeleton-in-a-box",
+      "year": 2017,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "Neverending Party invitation envelope",
+      "year": 2018,
+      "tier": 2,
+      "zone": true,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "latte lovers club card",
+      "year": 2018,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "voter registration form",
+      "year": 2018,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "mint condition Lil' Doctor&trade; bag",
+      "year": 2019,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "unopened diabolic pizza cube box",
+      "year": 2019,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Unopened Eight Days a Week Pill Keeper",
+      "year": 2019,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "combat lover's locket lockbox",
+      "year": 2022,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "packaged train set",
+      "year": 2022,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "boxed August Scepter",
+      "year": 2023,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "itemGen": "direct",
+        "replacer": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "boxed Mayam Calendar",
+      "year": 2024,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "indirect",
+        "itemGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Sealed TakerSpace letter of Marque",
+      "year": 2024,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct",
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "packaged prismatic beret",
+      "year": 2025,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "Allied Radio Backpack pack",
+      "year": 2025,
+      "tier": 2,
+      "con": true,
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "assemble-it-yourself Leprecondo",
+      "year": 2025,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeRuns": "direct",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "pasta wand loot box",
+      "year": 2026,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "indirect",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "black rosebud",
+      "year": 2026,
+      "tier": 2,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Libram of Candy Heart Summoning",
+      "year": 2007,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "Libram of BRICKOs",
+      "year": 2010,
+      "tier": 3,
+      "accountBound": true
+    },
+    {
+      "name": "Order of the Green Thumb Order Form",
+      "year": 2013,
+      "tier": 3,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "bottle of lovebug pheromones",
+      "year": 2015,
+      "tier": 3,
+      "accountBound": true
+    },
+    {
+      "name": "Chateau Mantegna room key",
+      "year": 2015,
+      "tier": 3,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "sneaks": "indirect"
+      }
+    },
+    {
+      "name": "yellow puck",
+      "year": 2015,
+      "tier": 3,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "yellow puck with a bow on it",
+      "year": 2015,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
+    },
+    {
+      "name": "machine elf capsule",
+      "year": 2015,
+      "tier": 3,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "disconnected intergnat",
+      "year": 2016,
+      "tier": 3,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "DIY protonic accelerator kit",
+      "year": 2016,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "li'l orphan tot",
+      "year": 2016,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect"
+      }
+    },
+    {
+      "name": "potted tea tree",
+      "year": 2016,
+      "tier": 3,
+      "con": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "X-32-F snowman crate",
+      "year": 2016,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "kitten burglar",
+      "year": 2018,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "red-spotted snapper roe",
+      "year": 2019,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "bagged Cargo Cultist Shorts",
+      "year": 2020,
+      "tier": 3,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "packaged familiar scrapbook",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "power seed",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
+    },
+    {
+      "name": "packaged Daylight Shavings Helmet",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "bottled vampire vintner",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "mint condition magnifying glass",
+      "year": 2022,
+      "tier": 3,
+      "ioty": true,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "undamaged Unbreakable Umbrella",
+      "year": 2022,
+      "tier": 3,
+      "accountBound": true
+    },
+    {
+      "name": "packaged June Cleaver",
+      "year": 2022,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "unopened tiny stillsuit",
+      "year": 2022,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "mummified entombed cookbookbat",
+      "year": 2022,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "rock garden guide",
+      "year": 2023,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
+    },
+    {
+      "name": "peace turkey outline",
+      "year": 2024,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "Packaged April Shower Thoughts Calendar",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Möbius ring box",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "new-in-box toy Cupid bow",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "shrunken head in a duffel bag",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "steals": "direct"
+      }
+    },
+    {
+      "name": "meat shield toddler",
+      "year": 2026,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "shrink-wrapped Cup of 13s",
+      "year": 2026,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "miniscule temporal rip",
+      "year": 2005,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "Tome of Snowcone Summoning",
+      "year": 2006,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "navel ring of navel gazing",
+      "year": 2007,
+      "tier": 4,
+      "replica": true
+    },
+    {
+      "name": "Libram of Divine Favors",
+      "year": 2008,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "sane hatrack",
+      "year": 2008,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "spooky rattling cigar box",
+      "year": 2008,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "container of Spooky Putty",
+      "year": 2009,
+      "tier": 4,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "floaty stone sphere",
+      "year": 2009,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "Libram of Love Songs",
+      "year": 2009,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "panicked kernel",
+      "year": 2010,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "Crown of Thrones",
+      "year": 2010,
+      "tier": 4
+    },
+    {
+      "name": "Greatest American Pants",
+      "year": 2010,
+      "tier": 4,
+      "replica": true
+    },
+    {
+      "name": "a cute angel",
+      "year": 2011,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "Mint Salton Pepper's Peppermint Seed Catalog",
+      "year": 2011,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "mysterious chest",
+      "year": 2011,
+      "tier": 4,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Camp Scout backpack",
+      "year": 2012,
+      "tier": 4,
+      "replica": true
+    },
+    {
+      "name": "can of Rain-Doh",
+      "year": 2012,
+      "tier": 4
+    },
+    {
+      "name": "Libram of Resolutions",
+      "year": 2012,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "Unagnimated Gnome",
+      "year": 2012,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "avatar of the Unconscious Collective",
+      "year": 2013,
+      "tier": 4,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "deanimated reanimator's coffin",
+      "year": 2013,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
+      "name": "Libram of Pulled Taffy",
+      "year": 2013,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "indirect",
+        "freeRuns": "indirect"
+      }
+    },
+    {
+      "name": "Buddy Bjorn",
+      "year": 2014,
+      "tier": 4
+    },
+    {
+      "name": "fist turkey outline",
+      "year": 2014,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Little Geneticist DNA-Splicing Lab",
+      "year": 2014,
+      "tier": 4,
+      "replica": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "still grill",
+      "year": 2014,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "shrine to the Barrel god",
+      "year": 2015,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "haunted doghouse",
+      "year": 2015,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
+      "name": "portable Mayo Clinic",
+      "year": 2015,
+      "tier": 4,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Dear Past Self Package",
+      "year": 2016,
+      "tier": 4,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "LT&T telegraph office deed",
+      "year": 2016,
+      "tier": 4,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "New-You Club Membership Form",
+      "year": 2017,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "pantogram",
+      "year": 2017,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "unpowered Robortender",
+      "year": 2017,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Bastille Battalion control rig crate",
+      "year": 2018,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Boxing Day care package",
+      "year": 2018,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "SongBoom&trade; BoomBox Box",
+      "year": 2018,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "Beach Comb Box",
+      "year": 2019,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "rune-strewn spoon cocoon",
+      "year": 2019,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "vampyric cloake pattern",
+      "year": 2019,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "packaged knock-off retro superhero cape",
+      "year": 2020,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
+      "name": "unopened Bird-a-Day calendar",
+      "year": 2020,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "Our Daily Candles order form",
+      "year": 2021,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "shortest-order cook",
+      "year": 2021,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "MayDay Contract",
+      "year": 2022,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "pair of high-end designer sweatpants",
+      "year": 2022,
+      "tier": 4,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "S.I.T. Course Completion Certificate",
+      "year": 2023,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "dark Jill-of-All-Trades",
+      "year": 2023,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "Black & White Apron Enrollment Form",
+      "year": 2024,
+      "tier": 4,
+      "ioty": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "yeti in a travel cooler",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "CyberRealm keycode",
+      "year": 2025,
+      "tier": 4,
+      "zone": true,
+      "ioty": true,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "sneaks": "indirect"
+      }
+    },
+    {
+      "name": "packaged Monodent of the Sea",
+      "year": 2025,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "indirect",
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "replacer": "direct"
+      }
+    },
+    {
+      "name": "stocking full of bones",
+      "year": 2025,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "packaged Portable Laughing Stock",
+      "year": 2026,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "discreetly-wrapped Eternity Codpiece",
+      "year": 2026,
+      "tier": 4,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Cheshire Bitten",
+      "year": 2005,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "coffee sprite",
+      "year": 2005,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "doppelshifter egg",
+      "year": 2005,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "silk garter snake",
+      "year": 2005,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "calm attention-deficit demon",
+      "year": 2006,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Comma Chameleon egg",
+      "year": 2006,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "unwound cymbal-playing monkey",
+      "year": 2006,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "bottled green pixie",
+      "year": 2007,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "jitterbug larva",
+      "year": 2007,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "nervous tick egg",
+      "year": 2007,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "llama lama cria",
+      "year": 2008,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "packet of mayfly bait",
+      "year": 2008,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Scratch 'n' Sniff Sticker Tome",
+      "year": 2008,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "siesta-ing Casagnova gnome",
+      "year": 2008,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "unemployed hunchbacked minion",
+      "year": 2008,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "infant sandworm",
+      "year": 2009,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "passed-out psychedelic bear",
+      "year": 2009,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "suspicious stocking",
+      "year": 2009,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Tome of Sugar Shummoning",
+      "year": 2009,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "uniclops egg",
+      "year": 2009,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "glowing frisbee",
+      "year": 2010,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "hungover chauvinist pig",
+      "year": 2010,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "perfectly ordinary frog",
+      "year": 2010,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Loathing Legion knife",
+      "year": 2011,
+      "tier": 5
+    },
+    {
+      "name": "My Own Pen Pal kit",
+      "year": 2011,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Operation Patriot Shield",
+      "year": 2011,
+      "tier": 5,
+      "replica": true
+    },
+    {
+      "name": "rehearsing dramatic hedgehog",
+      "year": 2011,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "sleeping piano cat",
+      "year": 2011,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Sorcerers of the Shore Grimoire",
+      "year": 2011,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "stuffed-shirt scarecrow",
+      "year": 2011,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Boris's Helm",
+      "year": 2012,
+      "tier": 5
+    },
+    {
+      "name": "box of bear arms",
+      "year": 2012,
+      "tier": 5
+    },
+    {
+      "name": "deactivated nanobots",
+      "year": 2012,
+      "tier": 5,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "Small Medium",
+      "year": 2012,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "The Groose in the Hoose",
+      "year": 2012,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "The Kloop in the Coop",
+      "year": 2012,
+      "tier": 5,
+      "zone": true,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "adventurer clone egg",
+      "year": 2013,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "dreaming Jung man",
+      "year": 2013,
+      "tier": 5,
+      "zone": true,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Folder Holder",
+      "year": 2013,
+      "tier": 5,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "GameInformPowerDailyPro subscription card",
+      "year": 2013,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "Jarlsberg's pan",
+      "year": 2013,
+      "tier": 5
+    },
+    {
+      "name": "KoLHS Pep Squad Box",
+      "year": 2013,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Pantsgiving",
+      "year": 2013,
+      "tier": 5,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "Crimbo sapling",
+      "year": 2014,
+      "tier": 5,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "airplane charter: Conspiracy Island",
+      "year": 2014,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "airplane charter: Spring Break Beach",
+      "year": 2014,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "Discontent Winter Garden Catalog",
+      "year": 2014,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "hibernating Grimstone Golem",
+      "year": 2014,
+      "tier": 5,
+      "zone": true,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "praying Grim Brother",
+      "year": 2014,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Sneaky Pete's leather jacket",
+      "year": 2014,
+      "tier": 5
+    },
+    {
+      "name": "The Confiscator's Grimoire",
+      "year": 2014,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Thor's Pliers",
+      "year": 2014,
+      "tier": 5,
+      "benefits": {
+        "freeKills": "indirect"
+      }
+    },
+    {
+      "name": "airplane charter: Dinseylandfill",
+      "year": 2015,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "airplane charter: That 70s Volcano",
+      "year": 2015,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "airplane charter: The Glaciest",
+      "year": 2015,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "Ed the Undying exhibit crate",
+      "year": 2015,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "golden monkey statuette",
+      "year": 2015,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Professor of Spelunkology",
+      "year": 2015,
+      "tier": 5,
+      "zone": true,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "basking robin",
+      "year": 2016,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Build-a-City Gingerbread kit",
+      "year": 2016,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "detective school application",
+      "year": 2016,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Gordon Beer's Beer Garden Catalog",
+      "year": 2016,
+      "tier": 5,
+      "con": true,
+      "accountBound": true
+    },
+    {
+      "name": "Xi Receiver Unit",
+      "year": 2016,
+      "tier": 5,
+      "con": true,
+      "accountBound": true
+    },
+    {
+      "name": "hopeful candle",
+      "year": 2017,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Horsery contract",
+      "year": 2017,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "locked mumming trunk",
+      "year": 2017,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Spacegate access badge",
+      "year": 2017,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "FantasyRealm membership packet",
+      "year": 2018,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "God Lobster Egg",
+      "year": 2018,
+      "tier": 5,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "kerosene-soaked skip",
+      "year": 2018,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "Pok&eacute;fam Guide to Capturing All of Them",
+      "year": 2018,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "Distant Woods Getaway Brochure",
+      "year": 2019,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "PirateRealm membership packet",
+      "year": 2019,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "Retrospecs try-at-home kit",
+      "year": 2019,
+      "tier": 5,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "Better Shrooms and Gardens catalog",
+      "year": 2020,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "box o' ghosts",
+      "year": 2020,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "packaged SpinMaster&trade; lathe",
+      "year": 2020,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "sinistral homunculus",
+      "year": 2020,
+      "tier": 5,
+      "accountBound": true
+    },
+    {
+      "name": "deed to Oliver's Place",
+      "year": 2022,
+      "tier": 5,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "indirect",
+        "freeFights": "direct"
+      }
+    },
+    {
+      "name": "A Guide to Burning Leaves",
+      "year": 2023,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "wardrobe-o-matic",
+      "year": 2023,
+      "tier": 5,
+      "con": true,
+      "accountBound": true
+    },
+    {
+      "name": "untorn tearaway pants package",
+      "year": 2024,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "mini kiwi egg",
+      "year": 2024,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
+      "name": "crimbo elfling",
+      "year": 2004,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "Dark Jill-O-Lantern",
+      "year": 2004,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "hand turkey outline",
+      "year": 2004,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "deflated inflatable dodecapede",
+      "year": 2005,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "emo roe",
+      "year": 2005,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Jekyllin hide belt",
+      "year": 2005,
+      "tier": 6
+    },
+    {
+      "name": "lucky Tam O'Shanter",
+      "year": 2005,
+      "tier": 6
+    },
+    {
+      "name": "miniature gravy-covered maypole",
+      "year": 2005,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "orphan baby yeti",
+      "year": 2005,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "personal raindrop",
+      "year": 2005,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "pygmy bugbear shaman",
+      "year": 2005,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "sweet nutcracker",
+      "year": 2005,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "wax lips",
+      "year": 2005,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "astral badger",
+      "year": 2006,
+      "tier": 6,
+      "zone": true,
+      "accountBound": true
+    },
+    {
+      "name": "homeless hobo spirit",
+      "year": 2006,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "iceberglet",
+      "year": 2006,
+      "tier": 6
+    },
+    {
+      "name": "jewel-eyed wizard hat",
+      "year": 2006,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "March hat",
+      "year": 2006,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "McPhee's Grimoire of Hilarious Object Summoning",
+      "year": 2006,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "pilgrim shield",
+      "year": 2006,
+      "tier": 6
+    },
+    {
+      "name": "plastic pumpkin bucket",
+      "year": 2006,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "Travoltan trousers",
+      "year": 2006,
+      "tier": 6
+    },
+    {
+      "name": "yuletide troll chrysalis",
+      "year": 2006,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "bad penguin egg",
+      "year": 2007,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "bottle-rocket crossbow",
+      "year": 2007,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "class five ecto-larva",
+      "year": 2007,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Crimbo P. R. E. S. S. I. E.",
+      "year": 2007,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "dandy lion cub",
+      "year": 2007,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Great Ball of Frozen Fire",
+      "year": 2007,
+      "tier": 6
+    },
+    {
+      "name": "Mayflower bouquet",
+      "year": 2007,
+      "tier": 6
+    },
+    {
+      "name": "V for Vivala mask",
+      "year": 2007,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "wizard action figure",
+      "year": 2007,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "candy cornucopia",
+      "year": 2008,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "cotton candy cocoon",
+      "year": 2008,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "haiku katana",
+      "year": 2008,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "little box of fireworks",
+      "year": 2008,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "naughty origami kit",
+      "year": 2008,
+      "tier": 6
+    },
+    {
+      "name": "Sp'n-Zor's Grimoire of \"Tasteful\" Gifts",
+      "year": 2008,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Bag o' Tricks",
+      "year": 2009,
+      "tier": 6
+    },
+    {
+      "name": "Elvish sunglasses",
+      "year": 2009,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "moveable feast",
+      "year": 2009,
+      "tier": 6
+    },
+    {
+      "name": "squamous polyp",
+      "year": 2009,
+      "tier": 6,
+      "replica": true,
+      "accountBound": true
+    },
+    {
+      "name": "tiny costume wardrobe",
+      "year": 2009,
+      "tier": 6
+    },
+    {
+      "name": "Grumpy Bumpkin's Pumpkin Seed Catalog",
+      "year": 2010,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "hibernating robot reindeer",
+      "year": 2010,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Juju Mojo Mask",
+      "year": 2010,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "organ grinder",
+      "year": 2010,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "stinky cheese ball",
+      "year": 2010,
+      "tier": 6
+    },
+    {
+      "name": "Make-Your-Own-Vampire-Fangs kit",
+      "year": 2011,
+      "tier": 6,
+      "replica": true
+    },
+    {
+      "name": "Pete & Jackie's Dragon Tooth Emporium Catalog",
+      "year": 2012,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Thinknerd's Grimoire of Geeky Gifts",
+      "year": 2012,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Snow Suit",
+      "year": 2013,
+      "tier": 6
+    },
+    {
+      "name": "elf sleeper agent",
+      "year": 2019,
+      "tier": 6,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "bag of Iunion stones",
+      "year": 2020,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "Guzzlr application",
+      "year": 2020,
+      "tier": 6,
+      "accountBound": true
+    },
+    {
+      "name": "coat of paint",
+      "year": 2021,
+      "tier": 6,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "unoccupied sheep suit",
+      "year": 2023,
+      "tier": 6,
+      "ioty": true,
+      "accountBound": true
+    },
+    {
+      "name": "unevolved organism",
+      "year": 2024,
+      "tier": 6,
+      "con": true,
+      "accountBound": true
+    }
+  ]
+}

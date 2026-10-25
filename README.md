@@ -239,6 +239,16 @@ import KolIcon from "@components/KolIcon.astro"
 
 Icons render at KoL's native 30x30 by default; pass `size={60}` (or another multiple of 30) to scale them up without blurring. If you use an icon you haven't downloaded, the build will fail and tell you the exact `npm run kol-icon` command to fix it.
 
+### IOTM tiers
+
+IOTM tiers and categories come from my [IOTM tier spreadsheet](https://docs.google.com/spreadsheets/d/1pDTE8VhuSyH03xvkVW5JGvTQf7PYitaNGLMHLVXz_5A/). This is the main source of truth. The site builds a copy of this sheet in `src/data/iotms.json`. After changing the sheet (say, adding a new IOTM prior to its review going up), update the copy and commit it:
+
+```
+npm run sync-iotms
+```
+
+This also lists anything in the sheet that doesn't add up, like an IOTM missing from one tab or two tabs disagreeing on its tier. Don't edit `iotms.json` by hand, since the next sync overwrites it. CI warns when the copy is out of date with the sheet.
+
 ## For contributors to the core website frontend/backend
 
 To set up a local development environment, clone this repository and run `npm run dev` or `npm start`. In theory that should be all you need to do? Probably an `npm install` for good measure first.
