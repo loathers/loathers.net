@@ -169,6 +169,15 @@
       }
     },
     {
+      "name": "scabbarded Sword of S Words",
+      "year": 2026,
+      "tier": 0,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
       "name": "seal-clubbing club loot box",
       "year": 2026,
       "tier": 0,
@@ -177,15 +186,6 @@
         "summonOrCopy": "direct",
         "freeKills": "direct",
         "steals": "direct"
-      }
-    },
-    {
-      "name": "scabbarded Sword of S Words",
-      "year": 2026,
-      "tier": 0,
-      "accountBound": true,
-      "benefits": {
-        "itemGen": "direct"
       }
     },
     {
@@ -209,17 +209,6 @@
       }
     },
     {
-      "name": "LI-11 Motor Pool voucher",
-      "year": 2017,
-      "tier": 1,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "direct",
-        "freeFights": "indirect",
-        "buffGen": "direct"
-      }
-    },
-    {
       "name": "corked genie bottle",
       "year": 2017,
       "tier": 1,
@@ -228,6 +217,17 @@
       "benefits": {
         "summonOrCopy": "direct",
         "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "LI-11 Motor Pool voucher",
+      "year": 2017,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct",
+        "freeFights": "indirect",
         "buffGen": "direct"
       }
     },
@@ -279,6 +279,15 @@
       }
     },
     {
+      "name": "Comprehensive Cartographic Compendium",
+      "year": 2020,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
+    },
+    {
       "name": "mint-in-box Powerful Glove",
       "year": 2020,
       "tier": 1,
@@ -289,12 +298,13 @@
       }
     },
     {
-      "name": "Comprehensive Cartographic Compendium",
-      "year": 2020,
+      "name": "packaged fire extinguisher",
+      "year": 2021,
       "tier": 1,
+      "replica": true,
       "accountBound": true,
       "benefits": {
-        "summonOrCopy": "direct"
+        "steals": "direct"
       }
     },
     {
@@ -305,13 +315,12 @@
       "accountBound": true
     },
     {
-      "name": "packaged fire extinguisher",
-      "year": 2021,
+      "name": "boxed autumn-aton",
+      "year": 2022,
       "tier": 1,
-      "replica": true,
       "accountBound": true,
       "benefits": {
-        "steals": "direct"
+        "itemGen": "direct"
       }
     },
     {
@@ -328,26 +337,6 @@
       "accountBound": true,
       "benefits": {
         "freeRuns": "direct"
-      }
-    },
-    {
-      "name": "boxed autumn-aton",
-      "year": 2022,
-      "tier": 1,
-      "accountBound": true,
-      "benefits": {
-        "itemGen": "direct"
-      }
-    },
-    {
-      "name": "sleeping patriotic eagle",
-      "year": 2023,
-      "tier": 1,
-      "replica": true,
-      "accountBound": true,
-      "benefits": {
-        "buffGen": "direct",
-        "banish": "direct"
       }
     },
     {
@@ -375,6 +364,18 @@
       }
     },
     {
+      "name": "shrink-wrapped 2002 Mr. Store Catalog",
+      "year": 2023,
+      "tier": 1,
+      "replica": true,
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct",
+        "freeKills": "direct",
+        "itemGen": "direct"
+      }
+    },
+    {
       "name": "shrink-wrapped Cincho de Mayo",
       "year": 2023,
       "tier": 1,
@@ -385,15 +386,14 @@
       }
     },
     {
-      "name": "shrink-wrapped 2002 Mr. Store Catalog",
+      "name": "sleeping patriotic eagle",
       "year": 2023,
       "tier": 1,
       "replica": true,
       "accountBound": true,
       "benefits": {
-        "summonOrCopy": "direct",
-        "freeKills": "direct",
-        "itemGen": "direct"
+        "buffGen": "direct",
+        "banish": "direct"
       }
     },
     {
@@ -410,6 +410,25 @@
       "benefits": {
         "summonOrCopy": "direct",
         "freeFights": "indirect"
+      }
+    },
+    {
+      "name": "boxed Apriling Band Helmet",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct",
+        "sneaks": "direct"
+      }
+    },
+    {
+      "name": "boxed Sept-Ember Censer",
+      "year": 2024,
+      "tier": 1,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
       }
     },
     {
@@ -432,16 +451,6 @@
       }
     },
     {
-      "name": "boxed Apriling Band Helmet",
-      "year": 2024,
-      "tier": 1,
-      "accountBound": true,
-      "benefits": {
-        "freeFights": "direct",
-        "sneaks": "direct"
-      }
-    },
-    {
       "name": "packaged Roman Candelabra",
       "year": 2024,
       "tier": 1,
@@ -452,12 +461,12 @@
       }
     },
     {
-      "name": "boxed Sept-Ember Censer",
-      "year": 2024,
+      "name": "McHugeLarge deluxe ski set",
+      "year": 2025,
       "tier": 1,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "sneaks": "direct"
       }
     },
     {
@@ -470,12 +479,13 @@
       }
     },
     {
-      "name": "McHugeLarge deluxe ski set",
-      "year": 2025,
+      "name": "boxed Archaeologist's Spade",
+      "year": 2026,
       "tier": 1,
       "accountBound": true,
       "benefits": {
-        "sneaks": "direct"
+        "freeKills": "direct",
+        "itemGen": "direct"
       }
     },
     {
@@ -492,13 +502,13 @@
       }
     },
     {
-      "name": "boxed Archaeologist's Spade",
+      "name": "Interesting Coin Inheritance Letter",
       "year": 2026,
       "tier": 1,
       "accountBound": true,
       "benefits": {
         "freeKills": "direct",
-        "itemGen": "direct"
+        "replacer": "direct"
       }
     },
     {
@@ -509,16 +519,6 @@
       "benefits": {
         "freeKills": "direct",
         "itemGen": "direct"
-      }
-    },
-    {
-      "name": "Interesting Coin Inheritance Letter",
-      "year": 2026,
-      "tier": 1,
-      "accountBound": true,
-      "benefits": {
-        "freeKills": "direct",
-        "replacer": "direct"
       }
     },
     {
@@ -563,12 +563,6 @@
       }
     },
     {
-      "name": "Granny Tood's Thanksgarden Catalog",
-      "year": 2016,
-      "tier": 2,
-      "accountBound": true
-    },
-    {
       "name": "Witchess Set",
       "year": 2016,
       "tier": 2,
@@ -610,6 +604,15 @@
       }
     },
     {
+      "name": "latte lovers club card",
+      "year": 2018,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
+    },
+    {
       "name": "Neverending Party invitation envelope",
       "year": 2018,
       "tier": 2,
@@ -618,15 +621,6 @@
       "accountBound": true,
       "benefits": {
         "freeFights": "direct"
-      }
-    },
-    {
-      "name": "latte lovers club card",
-      "year": 2018,
-      "tier": 2,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "direct"
       }
     },
     {
@@ -639,7 +633,7 @@
       }
     },
     {
-      "name": "mint condition Lil' Doctor&trade; bag",
+      "name": "mint condition Lil’ Doctor™ bag",
       "year": 2019,
       "tier": 2,
       "accountBound": true,
@@ -721,15 +715,6 @@
       }
     },
     {
-      "name": "packaged prismatic beret",
-      "year": 2025,
-      "tier": 2,
-      "accountBound": true,
-      "benefits": {
-        "buffGen": "direct"
-      }
-    },
-    {
       "name": "Allied Radio Backpack pack",
       "year": 2025,
       "tier": 2,
@@ -752,13 +737,12 @@
       }
     },
     {
-      "name": "pasta wand loot box",
-      "year": 2026,
+      "name": "packaged prismatic beret",
+      "year": 2025,
       "tier": 2,
       "accountBound": true,
       "benefits": {
-        "freeKills": "indirect",
-        "turnbloat": "direct"
+        "buffGen": "direct"
       }
     },
     {
@@ -769,6 +753,16 @@
       "accountBound": true,
       "benefits": {
         "freeKills": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "pasta wand loot box",
+      "year": 2026,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "indirect",
         "turnbloat": "direct"
       }
     },
@@ -815,6 +809,17 @@
       }
     },
     {
+      "name": "machine elf capsule",
+      "year": 2015,
+      "tier": 3,
+      "zone": true,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "freeFights": "direct"
+      }
+    },
+    {
       "name": "yellow puck",
       "year": 2015,
       "tier": 3,
@@ -828,17 +833,6 @@
       "accountBound": true,
       "benefits": {
         "freeKills": "direct"
-      }
-    },
-    {
-      "name": "machine elf capsule",
-      "year": 2015,
-      "tier": 3,
-      "zone": true,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "indirect",
-        "freeFights": "direct"
       }
     },
     {
@@ -857,6 +851,12 @@
         "freeRuns": "indirect",
         "freeFights": "direct"
       }
+    },
+    {
+      "name": "Granny Tood's Thanksgarden Catalog",
+      "year": 2016,
+      "tier": 3,
+      "accountBound": true
     },
     {
       "name": "li'l orphan tot",
@@ -918,6 +918,26 @@
       }
     },
     {
+      "name": "bottled vampire vintner",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
+      "name": "packaged Daylight Shavings Helmet",
+      "year": 2021,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct"
+      }
+    },
+    {
       "name": "packaged familiar scrapbook",
       "year": 2021,
       "tier": 3,
@@ -936,26 +956,6 @@
       }
     },
     {
-      "name": "packaged Daylight Shavings Helmet",
-      "year": 2021,
-      "tier": 3,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "indirect",
-        "buffGen": "direct"
-      }
-    },
-    {
-      "name": "bottled vampire vintner",
-      "year": 2021,
-      "tier": 3,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "indirect",
-        "buffGen": "direct"
-      }
-    },
-    {
       "name": "mint condition magnifying glass",
       "year": 2022,
       "tier": 3,
@@ -966,10 +966,15 @@
       }
     },
     {
-      "name": "undamaged Unbreakable Umbrella",
+      "name": "mummified entombed cookbookbat",
       "year": 2022,
       "tier": 3,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "itemGen": "direct",
+        "turnbloat": "direct"
+      }
     },
     {
       "name": "packaged June Cleaver",
@@ -981,23 +986,18 @@
       }
     },
     {
+      "name": "undamaged Unbreakable Umbrella",
+      "year": 2022,
+      "tier": 3,
+      "accountBound": true
+    },
+    {
       "name": "unopened tiny stillsuit",
       "year": 2022,
       "tier": 3,
       "accountBound": true,
       "benefits": {
         "buffGen": "direct",
-        "turnbloat": "direct"
-      }
-    },
-    {
-      "name": "mummified entombed cookbookbat",
-      "year": 2022,
-      "tier": 3,
-      "accountBound": true,
-      "benefits": {
-        "freeRuns": "indirect",
-        "itemGen": "direct",
         "turnbloat": "direct"
       }
     },
@@ -1017,17 +1017,6 @@
       "accountBound": true,
       "benefits": {
         "freeRuns": "direct"
-      }
-    },
-    {
-      "name": "Packaged April Shower Thoughts Calendar",
-      "year": 2025,
-      "tier": 3,
-      "accountBound": true,
-      "benefits": {
-        "freeKills": "direct",
-        "buffGen": "direct",
-        "turnbloat": "direct"
       }
     },
     {
@@ -1051,6 +1040,17 @@
       }
     },
     {
+      "name": "Packaged April Shower Thoughts Calendar",
+      "year": 2025,
+      "tier": 3,
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct",
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
+    },
+    {
       "name": "shrunken head in a duffel bag",
       "year": 2025,
       "tier": 3,
@@ -1061,8 +1061,8 @@
       }
     },
     {
-      "name": "meat shield toddler",
-      "year": 2026,
+      "name": "yeti in a travel cooler",
+      "year": 2025,
       "tier": 3,
       "accountBound": true,
       "benefits": {
@@ -1070,14 +1070,12 @@
       }
     },
     {
-      "name": "shrink-wrapped Cup of 13s",
+      "name": "meat shield toddler",
       "year": 2026,
-      "tier": 4,
+      "tier": 3,
       "accountBound": true,
       "benefits": {
-        "freeRuns": "indirect",
-        "buffGen": "direct",
-        "turnbloat": "direct"
+        "buffGen": "direct"
       }
     },
     {
@@ -1141,12 +1139,6 @@
       "accountBound": true
     },
     {
-      "name": "panicked kernel",
-      "year": 2010,
-      "tier": 4,
-      "accountBound": true
-    },
-    {
       "name": "Crown of Thrones",
       "year": 2010,
       "tier": 4
@@ -1156,6 +1148,12 @@
       "year": 2010,
       "tier": 4,
       "replica": true
+    },
+    {
+      "name": "panicked kernel",
+      "year": 2010,
+      "tier": 4,
+      "accountBound": true
     },
     {
       "name": "a cute angel",
@@ -1199,6 +1197,12 @@
       "accountBound": true
     },
     {
+      "name": "Pete & Jackie's Dragon Tooth Emporium Catalog",
+      "year": 2012,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
       "name": "Unagnimated Gnome",
       "year": 2012,
       "tier": 4,
@@ -1239,6 +1243,12 @@
       "tier": 4
     },
     {
+      "name": "Discontent Winter Garden Catalog",
+      "year": 2014,
+      "tier": 4,
+      "accountBound": true
+    },
+    {
       "name": "fist turkey outline",
       "year": 2014,
       "tier": 4,
@@ -1264,15 +1274,6 @@
       "accountBound": true
     },
     {
-      "name": "shrine to the Barrel god",
-      "year": 2015,
-      "tier": 4,
-      "accountBound": true,
-      "benefits": {
-        "itemGen": "direct"
-      }
-    },
-    {
       "name": "haunted doghouse",
       "year": 2015,
       "tier": 4,
@@ -1287,6 +1288,15 @@
       "tier": 4,
       "benefits": {
         "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "shrine to the Barrel god",
+      "year": 2015,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
       }
     },
     {
@@ -1352,7 +1362,7 @@
       }
     },
     {
-      "name": "SongBoom&trade; BoomBox Box",
+      "name": "SongBoom™ BoomBox Box",
       "year": 2018,
       "tier": 4,
       "accountBound": true
@@ -1441,21 +1451,21 @@
       }
     },
     {
-      "name": "S.I.T. Course Completion Certificate",
-      "year": 2023,
-      "tier": 4,
-      "accountBound": true,
-      "benefits": {
-        "itemGen": "direct"
-      }
-    },
-    {
       "name": "dark Jill-of-All-Trades",
       "year": 2023,
       "tier": 4,
       "accountBound": true,
       "benefits": {
         "freeFights": "direct"
+      }
+    },
+    {
+      "name": "S.I.T. Course Completion Certificate",
+      "year": 2023,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
       }
     },
     {
@@ -1467,15 +1477,6 @@
       "benefits": {
         "freeRuns": "indirect",
         "itemGen": "direct"
-      }
-    },
-    {
-      "name": "yeti in a travel cooler",
-      "year": 2025,
-      "tier": 3,
-      "accountBound": true,
-      "benefits": {
-        "buffGen": "direct"
       }
     },
     {
@@ -1513,20 +1514,22 @@
       }
     },
     {
-      "name": "packaged Portable Laughing Stock",
-      "year": 2026,
-      "tier": 4,
-      "accountBound": true,
-      "benefits": {
-        "buffGen": "direct"
-      }
-    },
-    {
       "name": "discreetly-wrapped Eternity Codpiece",
       "year": 2026,
       "tier": 4,
       "ioty": true,
       "accountBound": true
+    },
+    {
+      "name": "shrink-wrapped Cup of 13s",
+      "year": 2026,
+      "tier": 4,
+      "accountBound": true,
+      "benefits": {
+        "freeRuns": "indirect",
+        "buffGen": "direct",
+        "turnbloat": "direct"
+      }
     },
     {
       "name": "Cheshire Bitten",
@@ -1798,6 +1801,13 @@
       "accountBound": true
     },
     {
+      "name": "Gordon Beer's Beer Garden Catalog",
+      "year": 2013,
+      "tier": 5,
+      "con": true,
+      "accountBound": true
+    },
+    {
       "name": "Jarlsberg's pan",
       "year": 2013,
       "tier": 5
@@ -1817,13 +1827,6 @@
       }
     },
     {
-      "name": "Crimbo sapling",
-      "year": 2014,
-      "tier": 5,
-      "replica": true,
-      "accountBound": true
-    },
-    {
       "name": "airplane charter: Conspiracy Island",
       "year": 2014,
       "tier": 5,
@@ -1838,9 +1841,10 @@
       "accountBound": true
     },
     {
-      "name": "Discontent Winter Garden Catalog",
+      "name": "Crimbo sapling",
       "year": 2014,
       "tier": 5,
+      "replica": true,
       "accountBound": true
     },
     {
@@ -1947,13 +1951,6 @@
       }
     },
     {
-      "name": "Gordon Beer's Beer Garden Catalog",
-      "year": 2016,
-      "tier": 5,
-      "con": true,
-      "accountBound": true
-    },
-    {
       "name": "Xi Receiver Unit",
       "year": 2016,
       "tier": 5,
@@ -2023,7 +2020,7 @@
       }
     },
     {
-      "name": "Pok&eacute;fam Guide to Capturing All of Them",
+      "name": "Pokéfam Guide to Capturing All of Them",
       "year": 2018,
       "tier": 5,
       "accountBound": true
@@ -2068,7 +2065,7 @@
       "accountBound": true
     },
     {
-      "name": "packaged SpinMaster&trade; lathe",
+      "name": "packaged SpinMaster™ lathe",
       "year": 2020,
       "tier": 5,
       "accountBound": true
@@ -2108,6 +2105,15 @@
       "accountBound": true
     },
     {
+      "name": "mini kiwi egg",
+      "year": 2024,
+      "tier": 5,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
+    },
+    {
       "name": "untorn tearaway pants package",
       "year": 2024,
       "tier": 5,
@@ -2117,12 +2123,12 @@
       }
     },
     {
-      "name": "mini kiwi egg",
-      "year": 2024,
+      "name": "packaged Portable Laughing Stock",
+      "year": 2026,
       "tier": 5,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "buffGen": "direct"
       }
     },
     {
@@ -2413,12 +2419,6 @@
       "year": 2011,
       "tier": 6,
       "replica": true
-    },
-    {
-      "name": "Pete & Jackie's Dragon Tooth Emporium Catalog",
-      "year": 2012,
-      "tier": 6,
-      "accountBound": true
     },
     {
       "name": "Thinknerd's Grimoire of Geeky Gifts",

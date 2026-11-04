@@ -110,8 +110,23 @@ async function readTab({ name, gid }, needed) {
     throw new Error(`The "${name}" tab has no ${missing.map((m) => `"${m}"`).join(", ")} column. Was it renamed?`);
   }
   return rows
-    .map((cells) => Object.fromEntries(columns.map((c, i) => [c, (cells[i] ?? "").trim()])))
+    .map((cells) => Object.fromEntries(columns.map((c, i) => [c, cleanCell(cells[i] ?? "", name)])))
     .filter((row) => row[columns[0]] !== "");
+}
+
+// Names copied from mafia's data files come with HTML codes in them, like
+// "SongBoom&trade;". Turn those into the real characters (™), but mention
+// them so they get fixed in the sheet too.
+const ENTITIES = { trade: "™", eacute: "é", amp: "&", quot: '"', apos: "'", nbsp: " " };
+
+function cleanCell(text, tab) {
+  const cleaned = text
+    .trim()
+    .replace(/&(#\d+|[a-z]+);/gi, (code, name) =>
+      name.startsWith("#") ? String.fromCodePoint(Number(name.slice(1))) : (ENTITIES[name] ?? code),
+    );
+  if (cleaned !== text.trim()) problem(`"${text.trim()}" in ${tab} has HTML codes in it; it should be "${cleaned}"`);
+  return cleaned;
 }
 
 // --- Building the JSON ---
@@ -208,6 +223,15 @@ function build(explanationRows, tierRows, categoryRows) {
       problem(`"${name}" is in Categorized IOTMs but not IOTM Tiers`);
     }
   }
+
+  // Our own order (tier, then year, then name), so re-sorting the sheet doesn't
+  // reshuffle the whole file; a sync's diff then only shows real changes
+  iotms.sort(
+    (a, b) =>
+      (a.tier ?? 99) - (b.tier ?? 99) ||
+      (a.year ?? 0) - (b.year ?? 0) ||
+      a.name.localeCompare(b.name, "en", { sensitivity: "base" }),
+  );
 
   return { sheet: SHEET_URL, tiers, iotms };
 }

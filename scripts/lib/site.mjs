@@ -55,7 +55,9 @@ export function posts() {
       frontmatter.match(new RegExp(`^${name}:\\s*["']?(.*?)["']?\\s*$`, "m"))?.[1];
     const section = field("section");
     const slug = field("slug");
-    return { file: toPosix(relative(ROOT, file)), text, section, slug, url: `/${section}/${slug}/` };
+    const tag = field("tag");
+    const hasBoxedIotm = /^boxed-iotm:/m.test(frontmatter);
+    return { file: toPosix(relative(ROOT, file)), text, section, slug, tag, hasBoxedIotm, url: `/${section}/${slug}/` };
   });
 }
 

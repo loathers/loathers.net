@@ -15,6 +15,7 @@ section: "analysis" OR "scripting" OR "shenanigans"
 tag: "Whatever your heart desires"
 excerpt: "Optional field where you describe your post"
 toc: true (optional; adds a "Contents" box at the top, handy for long guides)
+boxed-iotm: "boxed bat wings" (IOTM reviews only; see IOTM tiers below)
 ---
 ```
 
@@ -248,6 +249,16 @@ npm run sync-iotms
 ```
 
 This also lists anything in the sheet that doesn't add up, like an IOTM missing from one tab or two tabs disagreeing on its tier. Don't edit `iotms.json` by hand, since the next sync overwrites it. CI warns when the copy is out of date with the sheet.
+
+Each IOTM review says which IOTM it covers with `boxed-iotm:` in its frontmatter, using the boxed Mr. Store name exactly as the sheet spells it (capitals included). Posts covering more than one IOTM use a list:
+
+```
+boxed-iotm:
+  - "Crown of Thrones"
+  - "Buddy Bjorn"
+```
+
+The build fails if a name isn't in the sheet, and suggests close matches. If the IOTM is brand new, add it to the sheet and run `npm run sync-iotms` first. CI also warns about any IOTM review missing `boxed-iotm:`.
 
 ## For contributors to the core website frontend/backend
 
