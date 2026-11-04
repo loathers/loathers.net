@@ -5,7 +5,10 @@ slug: "2025-06-beret"
 author: "Captain Scotch"
 section: "analysis"
 tag: "IOTM Overview"
+boxed-iotm: "packaged prismatic beret"
 ---
+
+import TierMark from "@components/TierMark.astro"
 
 For this month's IOTM, we get a hat. This makes sense, given that the current challenge path is primarily a [chapeau-focused affair](https://wiki.kingdomofloathing.com/Hat_Trick). June's hat is a beret, a style of hat that is actually quite a bit more common in the kingdom than I realized. We have berets of the following flavors: bark, bauxite, brimstone, Elf Guard red/white, raspberry, seasonal, and silent. Since it's Pride month, the prismatic beret is going to massively increase the number of accessible colors beret-lovers can plop on their head, as the item's color range adds 42 additional berets. But will these myriad colors help you ascend faster? The answer is yes -- let's find out how!
 
@@ -20,7 +23,7 @@ The prismatic beret is a hat. The hat gives you access to three skills (busking,
 - Elemental Damage (gaining 1 point each 2 `BDA`, in the order of cold, spooky, stench, sleaze, and hot)
 - Elemental Spell Damage (gaining 1 point each 2 `BDA`, in the order of sleaze, stench, spooky, hot, and cold)
 
-There is a soft cap on the value of `P` at 1100 power; after 1100 power, additional `P` is added at the discounted rate of of `P ^ 0.8`, slowing the enchantment gains. `P` is subject to several boosters -- Tao of the Terrapin (which doubles hat/pants power) is counted for this equation, as is the effect "Hammertime", an effect from 2011's Tome of Clip Art that adds +300% to your pants power.
+There is a soft cap on the value of `P` at 1100 power; after 1100 power, additional `P` is added at the discounted rate of `P ^ 0.8`, slowing the enchantment gains. `P` is subject to several boosters -- Tao of the Terrapin (which doubles hat/pants power) is counted for this equation, as is the effect "Hammertime", an effect from 2011's Tome of Clip Art that adds +300% to your pants power.
 
 For the three skills: 
 
@@ -48,7 +51,7 @@ If these were the only things this IOTM did, this would be a pretty awful IOTM. 
 
 The way busking works is pretty wild. In a nutshell, it's an out-of-combat skill that generates a paltry amount of meat, along with 10 turns each of a bunch of effects. The number of effects you get is based on the overall `P` used to derive the rest of the hat's enchantment amounts -- the higher the `P`, the more effects you get. The effects are from a pool similar to the [ittah bittah hookah](https://wiki.kingdomofloathing.com/Ittah_bittah_hookah) and [Crazy Horse](https://wiki.kingdomofloathing.com/A_Horsery) effect pools. If you are unfamiliar with how these pools operate, here are some basic rules:
 
-- The effects must be "positive" -- that means if an effect has something TPTB deem a "negative" attribute (e.g., decreases your stats, makes fights harder, decreases one modifier to increase another), it is ineligible for the busking effect pool. Traditionally, ML and combat rate modification are seen as a "neutral" effects due to increasing fight difficulty or changing the overall combat expectation of a zone, so both are (largely) not in the pool, with singular exceptions discussed later.
+- The effects must be "positive" -- that means if an effect has something TPTB deem a "negative" attribute (e.g., decreases your stats, makes fights harder, decreases one modifier to increase another), it is ineligible for the busking effect pool. Traditionally, ML and combat rate modification are seen as "neutral" effects due to increasing fight difficulty or changing the overall combat expectation of a zone, so both are (largely) not in the pool, with singular exceptions discussed later.
 - The effects must not be avatar potion effects; there are a ton of avatar potions in the game, and this (helpfully) keeps the pool of effects a bit more skewed away from actively useless effects.
 - The effects must not be scaling effects; during spading, we discovered that effects that scale according to the amount of turns of the effect remaining seem to be ineligible (things like [Roly Poly](https://wiki.kingdomofloathing.com/Roly_Poly), which scales additional initiative per the # of turns remaining)
 - Effects that gain you access to specific zones are ineligible; I.E., no Half-Astral, Transpondent, Dis Abled, Absinthe-Minded, Shadow Affinity, etc. 
@@ -70,7 +73,7 @@ First, we'll start out with a few interesting turnsaving effects that may be wor
 - **Dirty Pear** is an effect that doubles your sleaze and sleaze spell damage, a great thing to do when completing your mob of Zeppelin protestors. With the <a href="/analysis/2023-12-candy-cane-sword">Candy Cane Sword Cane</a> in standard, this busk saves 1-2 turns; it generally saves 2+ turns without the CCSC, and saves some effort in procuring all the possible sources of sleaze damage.
 - **Riboflavin'** is an effect that allows you to pickpocket. That's it! It is a pretty nice thing to have pickpocket (effectively) on demand, despite all our shiny pickpocket-likes that can also serve the purpose (i.e. swoops, the deft pirate hook, septapus, the FLART...). This likely is worth about 1 turn if used creatively in concert with waffling.
 - **Salty Mouth** is an effect that gives +5 adventures and is consumed if you drink a beer, like an Astral Pilsner. No real turnsave here, but being able to snag 5 turns per salty mouth accessible wish is going to be a huge turnbloat boon for any paths that are on the precipice of a 1-day run.
-- **Craft Tea** and **Inigo's Incantation of Inspiration** are effects that gives 1 free craft in exchange for 5 turns of the effect. As busking gives you 10 turns, that's two free crafts for any busk that happens to hit either of these. You may be able to get away with using Crafting Plans from the <a href="/analysis/2025-03-leprecondo">Leprecondo</a>, but if you're going to need to spend any turns crafting, this could save you those turns!
+- **Craft Tea** and **Inigo's Incantation of Inspiration** are effects that give 1 free craft in exchange for 5 turns of the effect. As busking gives you 10 turns, that's two free crafts for any busk that happens to hit either of these. You may be able to get away with using Crafting Plans from the <a href="/analysis/2025-03-leprecondo">Leprecondo</a>, but if you're going to need to spend any turns crafting, this could save you those turns!
 - **Stone-Faced** is the effect normally acquired through stone wool. You need two stone wool every ascension to unlock the Hidden City for the Level 11 quest. In the modern meta, you actually want 3, to reset the <a href="/analysis/2024-05-mayam-calendar">Mayam calendar</a>. Getting three generally requires spending a yellow ray on Baa'Baa, the 11-leaf-clover adventure for the Hidden Temple. With busking, you may be able to avoid this by using a peridot adventure to get a stone sheep, swooping one wool, and forcing the drop for your three, saving one of your few yellow rays for something else. I doubt everyone will be doing this, but it's a real option!
 - **Hammertime**, as discussed earlier, increases your pants power by +300%. This opens up avenues for different (higher power) busks. Not directly turnsaving, but if it opens up big busks that encase multiple effects, it can be useful!
 
@@ -147,7 +150,7 @@ Having covered one simple suite, we're now going to give a selection of the best
 - For Busk \#5...
     - If you want higher **meat drop**, get +100% meat drop at 70 power (Gear: astral shirt, no pants)
     - If you want higher **initiative or item drop**, get +300% initiative and +30% item at 300 power. (Gear: no shirt, alpha-mail pants)
-    - If you want anything else, you're out of luck, because busk the seeds for busk \#5 are strangely terrible.
+    - If you want anything else, you're out of luck, because the seeds for busk \#5 are strangely terrible.
 
 And finally, if you want to experience Hammertime, likely in a 1-day run, get yourself 540% meat drop for nuns alongside +5 turns generated with...
 
@@ -173,8 +176,8 @@ And finally, if you want to experience Hammertime, likely in a 1-day run, get yo
 
 In addition to those in-standard synergies, there is one out-of-standard synergy that bears mention:
 
-- If you own a **Mad Hatrack** (2008), you can cast the busking skill by equipping the prismatic beret on the hatrack and equipping youself with whatever hat you want. This opens up a -bonkers- universe of additional busks, as the hat on your head is the hat that's active for the busk calculations. You're swapping out a 10 power hat with anything from 0 to 300, which is also doubled by Tao. It's wacky, dude. 
+- If you own a **Mad Hatrack** (2008), you can cast the busking skill by equipping the prismatic beret on the hatrack and equipping yourself with whatever hat you want. This opens up a -bonkers- universe of additional busks, as the hat on your head is the hat that's active for the busk calculations. You're swapping out a 10 power hat with anything from 0 to 300, which is also doubled by Tao. It's wacky, dude. 
 
 ## Overall Rating
 
-We rate the prismatic beret a tier 2 IOTM. I struggled a lot with what to rate this one. It's genuinely pretty hard to rank! The non-busk uses are worth fractional turns at best, so that can be mostly ignored for the purposes of ranking the IOTM. Busking represents a massive amount of extra item and meat drop, and is flexible enough to help you in a lot of different areas. It opens up your wishes for more items snagged with the Monkey's Paw and interesting edge case uses for your pocket wishes. If you use the Hammertime suite noted above, or the other simple "item/meat" configuration, busking represents about 4-5 turns saved; if you're a bit more clever and use it judiciously to solve a bunch of different tasks, you can inch it closer to 6-7 turns saved. In my head, I tend to think of wishes as worth "roughly a 1-2 turns" -- due to the shorter duration on these effects and the (frankly) annoying resource tradeoffs you have to make to generate them, I think it's more apt to consider busks as closer to a flat 1 turn saved, with maybe two that edge higher than that. That lands us around 6 turns saved in expectation -- on the edge of a T1 IOTM, but not *quite* there. 
+We rate the prismatic beret a <TierMark tier={2} /> IOTM. I struggled a lot with what to rate this one. It's genuinely pretty hard to rank! The non-busk uses are worth fractional turns at best, so that can be mostly ignored for the purposes of ranking the IOTM. Busking represents a massive amount of extra item and meat drop, and is flexible enough to help you in a lot of different areas. It opens up your wishes for more items snagged with the Monkey's Paw and interesting edge case uses for your pocket wishes. If you use the Hammertime suite noted above, or the other simple "item/meat" configuration, busking represents about 4-5 turns saved; if you're a bit more clever and use it judiciously to solve a bunch of different tasks, you can inch it closer to 6-7 turns saved. In my head, I tend to think of wishes as worth "roughly 1-2 turns" -- due to the shorter duration on these effects and the (frankly) annoying resource tradeoffs you have to make to generate them, I think it's more apt to consider busks as closer to a flat 1 turn saved, with maybe two that edge higher than that. That lands us around 6 turns saved in expectation -- on the edge of a T1 IOTM, but not *quite* there. 
