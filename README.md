@@ -260,6 +260,8 @@ boxed-iotm:
 
 The build fails if a name isn't in the sheet, and suggests close matches. If the IOTM is brand new, add it to the sheet and run `npm run sync-iotms` first. CI also warns about any IOTM review missing `boxed-iotm:`.
 
+The [IOTM Tiers page](https://www.loathers.net/iotm-tiers/) shows every IOTM in the sheet, and links to each review using `boxed-iotm:`, so new reviews show up there on their own. What each tier means is written on the page itself, in `src/pages/iotm-tiers.astro`, not synced from the sheet's Tier Explanations tab.
+
 ## For contributors to the core website frontend/backend
 
 To set up a local development environment, clone this repository and run `npm run dev` or `npm start`. In theory that should be all you need to do? Probably an `npm install` for good measure first.

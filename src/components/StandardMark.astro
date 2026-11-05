@@ -1,0 +1,35 @@
+---
+// StandardMark.astro
+//
+// A small clock marking an IOTM that's allowed in Standard, used on the
+// /iotm-tiers/ page, with a hoverover explaining what it is
+
+import { STANDARD_SINCE } from "@lib/iotms";
+---
+
+<span
+  class="standardMark"
+  title={`In Standard (released ${STANDARD_SINCE} or later)`}
+  ><span aria-hidden="true">⏲&#xFE0E;</span><span class="visuallyHidden"
+    >(in Standard)</span
+  ></span
+>
+
+<style>
+  .standardMark {
+    margin-right: 4px;
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: normal;
+    cursor: help;
+  }
+
+  .visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

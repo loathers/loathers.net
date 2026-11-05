@@ -1,0 +1,107 @@
+---
+// TierCard.astro
+//
+// One tier's box on the /iotm-tiers/ page, in that tier's color: what the tier
+// means on the left, an example in the middle, and our reviews in the tier on
+// the right (stacked on phones).
+//   <TierCard tier={2} saves="4-7 turns">
+//     <p>What the tier means.</p>
+//     <Fragment slot="example"><p>An example, linking a review.</p></Fragment>
+//   </TierCard>
+
+import { tierColor } from "@lib/tiers";
+import TierMark from "./TierMark.astro";
+import TierReviews from "./TierReviews.astro";
+import { reviewPostsInTier } from "@lib/iotmReviews";
+
+interface Props {
+  tier: number;
+  /** How many turns it saves, e.g. "4-7 turns"; "saved per day" is added */
+  saves: string;
+}
+
+const { tier, saves } = Astro.props;
+const reviewCount = (await reviewPostsInTier(tier)).size;
+---
+
+<section
+  class="tierCard"
+  id={`tier-${tier}`}
+  style={`--tier-bg: ${tierColor(tier)}`}
+>
+  <h2><TierMark tier={tier} /> {saves} saved per day</h2>
+  <div class="columns">
+    <div class="column">
+      <h3>What it means</h3>
+      <slot />
+    </div>
+    <div class="column">
+      <h3>Example</h3>
+      <slot name="example" />
+    </div>
+    <div class="column">
+      <h3>Our reviews ({reviewCount})</h3>
+      <TierReviews tier={tier} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .tierCard {
+    margin: 20px 0;
+    padding: 10px 14px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background: var(--tier-bg);
+  }
+
+  h2 {
+    margin: 0 0 10px;
+  }
+
+  /* White badge on the colored card, so it doesn't vanish into it */
+  h2 :global(.tierMark) {
+    background: #fff;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 14px;
+  }
+
+  .column {
+    min-width: 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #444;
+  }
+
+  .column :global(p) {
+    margin: 0 0 8px;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  details :global(p) {
+    margin-top: 6px;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 760px) {
+    .columns {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

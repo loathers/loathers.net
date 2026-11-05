@@ -5,7 +5,8 @@
 //   builds from. The sheet is the source of truth: edit it, then run this and
 //   commit the updated JSON. Nothing is fetched while the site builds.
 //
-//   Uses three tabs: Tier Explanations, IOTM Tiers, and Categorized IOTMs. 
+//   Uses two tabs: IOTM Tiers and Categorized IOTMs.
+//
 //   Also reports issues (like non-updated sheet w/ a new IOTM)
 //
 //   npm run sync-iotms
@@ -20,7 +21,6 @@ const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/`;
 // Tabs by their ID (the gid= in the sheet's URL), so renaming a tab doesn't
 // break anything
 const TABS = {
-  explanations: { name: "Tier Explanations", gid: "652855806" },
   tiers: { name: "IOTM Tiers", gid: "903911646" },
   categories: { name: "Categorized IOTMs", gid: "1172527980" },
 };
@@ -39,6 +39,7 @@ const BENEFITS = {
   Banish: "banish",
   Replacer: "replacer",
   Turnbloat: "turnbloat",
+  Leveling: "leveling",
 };
 const BENEFIT_LEVELS = { 1: "direct", 2: "indirect" };
 
@@ -153,18 +154,7 @@ function readYear(text, where) {
 // can say that instead of "missing"
 const lower = (s) => s.toLowerCase();
 
-function build(explanationRows, tierRows, categoryRows) {
-  const tiers = explanationRows.map((row) => {
-    const match = /^TIER (\d)$/i.exec(row[""] ?? "");
-    if (!match) problem(`Tier Explanations has a row called "${row[""]}" instead of "TIER 0" to "TIER 6"`);
-    return {
-      tier: match ? Number(match[1]) : null,
-      turnsSaved: row["Turns Saved (per Day)"],
-      explanation: row["Plain Text Explanation"],
-      example: row["Example Logic"],
-    };
-  });
-
+function build(tierRows, categoryRows) {
   const categories = new Map();
   for (const row of categoryRows) {
     const name = row[ITEM];
@@ -233,7 +223,7 @@ function build(explanationRows, tierRows, categoryRows) {
       a.name.localeCompare(b.name, "en", { sensitivity: "base" }),
   );
 
-  return { sheet: SHEET_URL, tiers, iotms };
+  return { sheet: SHEET_URL, iotms };
 }
 
 // The same layout VS Code gives JSON when it formats a file, so saving the
@@ -245,12 +235,11 @@ const format = (data) => `${JSON.stringify(data, null, 2)}\n`;
 const report = (text) => console.log(inCI ? `::warning title=IOTM sheet::${text}` : `  - ${text}`);
 
 try {
-  const [explanationRows, tierRows, categoryRows] = await Promise.all([
-    readTab(TABS.explanations, ["", "Turns Saved (per Day)", "Plain Text Explanation", "Example Logic"]),
+  const [tierRows, categoryRows] = await Promise.all([
     readTab(TABS.tiers, [ITEM, "Year", "Speed Tier", ...Object.keys(FLAGS)]),
     readTab(TABS.categories, [ITEM, "Year", "Speed Tier", "Unlocks a New Zone?", ...Object.keys(BENEFITS)]),
   ]);
-  const data = build(explanationRows, tierRows, categoryRows);
+  const data = build(tierRows, categoryRows);
   const json = format(data);
 
   if (problems.length) {
@@ -270,7 +259,7 @@ try {
     }
   } else {
     writeFileSync(OUT, json);
-    console.log(`Wrote ${data.iotms.length} IOTMs and ${data.tiers.length} tiers to src/data/iotms.json.`);
+    console.log(`Wrote ${data.iotms.length} IOTMs to src/data/iotms.json.`);
   }
 } catch (error) {
   // In --check mode a Google outage is only worth a warning

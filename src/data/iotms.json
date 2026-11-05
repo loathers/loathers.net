@@ -1,49 +1,5 @@
 {
   "sheet": "https://docs.google.com/spreadsheets/d/1pDTE8VhuSyH03xvkVW5JGvTQf7PYitaNGLMHLVXz_5A/",
-  "tiers": [
-    {
-      "tier": 0,
-      "turnsSaved": "15+",
-      "explanation": "This is the cream of the crop; the best turn-saving IOTMs imaginable. It is critical to have these if you want to do competitive unrestricted speedruns.",
-      "example": "The Bandersnatch gives one free run every 5 pounds of familiar weight the players can stack on it. In unrestricted, you can hit >110 one to two times per run, which equates to 22 free runs; that burns 22 turns of delay, for 22 turns saved. It also gets better every single time new familiar weight sources are introduced; if you're really really focusing on it, you may even be able to get 30 runs out of this dang thing."
-    },
-    {
-      "tier": 1,
-      "turnsSaved": "7-15",
-      "explanation": "These are extremely powerful IOTMs. Some require synergies to operate successfully.",
-      "example": "The Garbage Tote gives access to the \"broken champagne bottle\", which gives you 11 shots of doubled item drop. By using this on copied Green Ops Soldiers, you can usually get 7-9 green smoke bombs, which are worth 90% of a free run. That's roughly 7.2 turns saved from the bottle via burned delay. The garbage shirt also doubles stat gains, and faster leveling can get you 1-2 turns of savings through routing power; that's well within the 7-15 turn range."
-    },
-    {
-      "tier": 2,
-      "turnsSaved": "4-7",
-      "explanation": "These are pretty good IOTMs. They are going to help speed up your runs and almost every top speedrunner will have most of these.",
-      "example": "The voter registration form gives you small buffs each day from voting, which are a fractional savings at best, but probably about a fourth of a turn due to the inclusion of a spicy familiar XP buff. It also gives you three free wanderers each day that do not require you to charge up equipment to access, which can be used to burn delay, for the benefit of 3 turns saved from delay burn and a little under half a turn from 3 extra familiar combats. Additionally, the voting wanderers can be used to do a neat trick where you synergize macrometeorites or the \"replace monster\" feature of the power glove to transform a turn-costing voting wanderer into a Lobsterfrogman at Sonofa Beach, which is worth ~ 1 turn on net. This edges out at a tiny bit over 4 turns per day, making it a marginal tier 2 item on non-ghost days, but firmly there in my view. (Also, it's worth noting that on ghost days, which happen ~ 1/3 of the time, you can synergize this with spitting Whatsian Commando Ghosts for TURDs keys; those are 100% free runs from ghosts, which you can use to turn your remaining ghost wanderers into free delay burn. It's a cute interaction that raises the ceiling of this item significantly!)"
-    },
-    {
-      "tier": 3,
-      "turnsSaved": "2-4",
-      "explanation": "These are decent quality IOTMs. They will shave a noticable amount of turns, and are necessary for big speedruns, but aren't going to by themselves make your runs way better.",
-      "example": "The Cargo Cultist Shorts allow you to pull something from your shorts pocket once a day. The top 3 options from the shorts (specifically: a free Mountain Man, 5 turns of the 2nd filthworm scent, and the astrologer bell for a star chart + a few stars/lines) all save on net about 2 turns. The pants themselves are neat, as they give 66% initiative (worth ~ a fourth of a turn on the init test in the Defiled Alcove) and 66% food drops from monsters (helpful on forcing blasting soda to drop, as it is a food item; this is ~ half a turn of item drop on the expected value of getting the drop). That nets out to a tiny bit more than 2 turns per day of value, making it a low-end item in this tier, but firmly above tier 4."
-    },
-    {
-      "tier": 4,
-      "turnsSaved": "0-2",
-      "explanation": "These are OK IOTMs. They have a few niche use cases, and some synergies, but it is certainly possible to get a silver quality leaderboard run without all of them.",
-      "example": "The obtuse angel has a skill (\"fire a badly romantic arrow\") that will turn the monster you are fighting into a wandering monster that you can fight 2-3 times over the remainder of the day. This would often be a 2-3 turns saved activity, but it isn't usually that in modern play, as it is an unpredictable wandering monster, so you cannot guarantee it is placed in a delay zone. There are a few ways to force the issue (namely with tavern turns, the shore, and Icy Peak), so you can usually get one into a delay zone, but the other 1-2 monsters will likely occur in zones that are non-delay. This makes this (usually) 1 turn saved on the delay turn burnt, and a bit under half a turn of value from 3 extra familiar combats (if you are able to wear a charging familiar in on those fights). Ergo, it's a high-quality item for this tier."
-    },
-    {
-      "tier": 5,
-      "turnsSaved": "<1",
-      "explanation": "These IOTMs are not necessary for speedrunning; they have small uses, but you should never bend over backwards to buy these or fit them into your plans.",
-      "example": "The Spacegate Access Badge gives you access to spacegate in-run. There are two useful things from this -- first, it gives you access to a daily buff, which can be mildly useful (either +50% stats or +30 ML are your likely picks; neither is worth a full turn but both will help you marginally in gaining stats). Second, one of the planets has an adventure that grants the player a ton of moxie stats in exchange for a few turns spent. Depending on how your powerleveling suite looks, this may be worth a tiny bit to you. It is unlikely to be worth routing around, but there is a world where it saves you ~ 1 turn on net versus other powerleveling options. (It is worth noting that Spacegate is a lot better in Dark Gyffte, where you can use it to get extremely large insects early in-run for ensorceling. But that's one path out of roughly 40, so that isn't enough value to drag it up from tier 5.)"
-    },
-    {
-      "tier": 6,
-      "turnsSaved": "0",
-      "explanation": "These IOTMs are virtually completely useless for speedrunning. Any turn savings you glean from them are fractional at best and non-dependable.",
-      "example": "The elf sleeper agent does not do anything that is relevant to a speed ascender. The one relevant drop (the Tryptophan dart) is entirely unpredictable, and using this familiar actively hurts you as many, many familiars will save more turns with their usage than even one dart will save you. If anything, usage of the sleeper agent likely harms your run and leaves turns on the table. It's a clear tier 6 familiar."
-    }
-  ],
   "iotms": [
     {
       "name": "Apathargic Bandersnatch",
@@ -92,7 +48,10 @@
       "year": 2020,
       "tier": 0,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "steals": "direct"
+      }
     },
     {
       "name": "emotion chip",
@@ -102,7 +61,8 @@
       "accountBound": true,
       "benefits": {
         "freeRuns": "direct",
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -205,7 +165,8 @@
       "accountBound": true,
       "benefits": {
         "buffGen": "direct",
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -217,7 +178,8 @@
       "benefits": {
         "summonOrCopy": "direct",
         "freeRuns": "indirect",
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -257,7 +219,11 @@
       "year": 2018,
       "tier": 1,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "leveling": "direct"
+      }
     },
     {
       "name": "Fourth of May Cosplay Saber kit",
@@ -312,7 +278,11 @@
       "year": 2021,
       "tier": 1,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "indirect",
+        "freeFights": "indirect"
+      }
     },
     {
       "name": "boxed autumn-aton",
@@ -328,7 +298,11 @@
       "year": 2022,
       "tier": 1,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "steals": "direct",
+        "leveling": "direct"
+      }
     },
     {
       "name": "undrilled cosmic bowling ball",
@@ -400,7 +374,11 @@
       "name": "wrapped candy cane sword cane",
       "year": 2023,
       "tier": 1,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "indirect",
+        "buffGen": "direct"
+      }
     },
     {
       "name": "baby chest mimic",
@@ -428,7 +406,8 @@
       "tier": 1,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -438,7 +417,8 @@
       "accountBound": true,
       "benefits": {
         "freeRuns": "direct",
-        "banish": "direct"
+        "banish": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -508,7 +488,8 @@
       "accountBound": true,
       "benefits": {
         "freeKills": "direct",
-        "replacer": "direct"
+        "replacer": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -539,7 +520,10 @@
       "name": "Schmalz's First Prize Beer",
       "year": 2010,
       "tier": 2,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
     },
     {
       "name": "Moping Artistic Goth Kid",
@@ -559,7 +543,8 @@
       "benefits": {
         "freeRuns": "direct",
         "buffGen": "direct",
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -620,7 +605,8 @@
       "replica": true,
       "accountBound": true,
       "benefits": {
-        "freeFights": "direct"
+        "freeFights": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -648,7 +634,8 @@
       "tier": 2,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -677,7 +664,8 @@
       "accountBound": true,
       "benefits": {
         "buffGen": "direct",
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -690,7 +678,8 @@
         "buffGen": "direct",
         "itemGen": "direct",
         "replacer": "direct",
-        "turnbloat": "direct"
+        "turnbloat": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -701,7 +690,8 @@
       "benefits": {
         "sneaks": "indirect",
         "itemGen": "direct",
-        "turnbloat": "direct"
+        "turnbloat": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -779,7 +769,10 @@
       "name": "Libram of BRICKOs",
       "year": 2010,
       "tier": 3,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "freeFights": "direct"
+      }
     },
     {
       "name": "Order of the Green Thumb Order Form",
@@ -795,7 +788,10 @@
       "name": "bottle of lovebug pheromones",
       "year": 2015,
       "tier": 3,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
     },
     {
       "name": "Chateau Mantegna room key",
@@ -824,7 +820,10 @@
       "year": 2015,
       "tier": 3,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "direct"
+      }
     },
     {
       "name": "yellow puck with a bow on it",
@@ -840,7 +839,11 @@
       "year": 2016,
       "tier": 3,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "DIY protonic accelerator kit",
@@ -856,7 +859,11 @@
       "name": "Granny Tood's Thanksgarden Catalog",
       "year": 2016,
       "tier": 3,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "freeKills": "indirect",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "li'l orphan tot",
@@ -982,14 +989,19 @@
       "tier": 3,
       "accountBound": true,
       "benefits": {
-        "turnbloat": "direct"
+        "turnbloat": "direct",
+        "leveling": "indirect"
       }
     },
     {
       "name": "undamaged Unbreakable Umbrella",
       "year": 2022,
       "tier": 3,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "leveling": "direct"
+      }
     },
     {
       "name": "unopened tiny stillsuit",
@@ -1075,27 +1087,37 @@
       "tier": 3,
       "accountBound": true,
       "benefits": {
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "direct"
       }
     },
     {
       "name": "miniscule temporal rip",
       "year": 2005,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "turnbloat": "direct"
+      }
     },
     {
       "name": "Tome of Snowcone Summoning",
       "year": 2006,
       "tier": 4,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
     },
     {
       "name": "navel ring of navel gazing",
       "year": 2007,
       "tier": 4,
-      "replica": true
+      "replica": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
     },
     {
       "name": "Libram of Divine Favors",
@@ -1136,7 +1158,10 @@
       "name": "Libram of Love Songs",
       "year": 2009,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
     },
     {
       "name": "Crown of Thrones",
@@ -1147,26 +1172,39 @@
       "name": "Greatest American Pants",
       "year": 2010,
       "tier": 4,
-      "replica": true
+      "replica": true,
+      "benefits": {
+        "freeRuns": "direct"
+      }
     },
     {
       "name": "panicked kernel",
       "year": 2010,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "leveling": "indirect"
+      }
     },
     {
       "name": "a cute angel",
       "year": 2011,
       "tier": 4,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
     },
     {
       "name": "Mint Salton Pepper's Peppermint Seed Catalog",
       "year": 2011,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "mysterious chest",
@@ -1182,19 +1220,29 @@
       "name": "Camp Scout backpack",
       "year": 2012,
       "tier": 4,
-      "replica": true
+      "replica": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
     },
     {
       "name": "can of Rain-Doh",
       "year": 2012,
-      "tier": 4
+      "tier": 4,
+      "benefits": {
+        "summonOrCopy": "direct"
+      }
     },
     {
       "name": "Libram of Resolutions",
       "year": 2012,
       "tier": 4,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "Pete & Jackie's Dragon Tooth Emporium Catalog",
@@ -1216,7 +1264,11 @@
       "year": 2013,
       "tier": 4,
       "ioty": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "sneaks": "indirect",
+        "turnbloat": "direct"
+      }
     },
     {
       "name": "deanimated reanimator's coffin",
@@ -1240,13 +1292,20 @@
     {
       "name": "Buddy Bjorn",
       "year": 2014,
-      "tier": 4
+      "tier": 4,
+      "benefits": {
+        "itemGen": "direct"
+      }
     },
     {
       "name": "Discontent Winter Garden Catalog",
       "year": 2014,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "fist turkey outline",
@@ -1271,7 +1330,11 @@
       "year": 2014,
       "tier": 4,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "leveling": "indirect"
+      }
     },
     {
       "name": "haunted doghouse",
@@ -1315,7 +1378,10 @@
       "year": 2016,
       "tier": 4,
       "zone": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
     },
     {
       "name": "New-You Club Membership Form",
@@ -1330,7 +1396,10 @@
       "name": "pantogram",
       "year": 2017,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct"
+      }
     },
     {
       "name": "unpowered Robortender",
@@ -1349,7 +1418,8 @@
       "tier": 4,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -1358,14 +1428,18 @@
       "tier": 4,
       "accountBound": true,
       "benefits": {
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
       "name": "SongBoom™ BoomBox Box",
       "year": 2018,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
     },
     {
       "name": "Beach Comb Box",
@@ -1401,7 +1475,10 @@
       "name": "packaged knock-off retro superhero cape",
       "year": 2020,
       "tier": 4,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct"
+      }
     },
     {
       "name": "unopened Bird-a-Day calendar",
@@ -1456,7 +1533,8 @@
       "tier": 4,
       "accountBound": true,
       "benefits": {
-        "freeFights": "direct"
+        "freeFights": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -1476,7 +1554,8 @@
       "accountBound": true,
       "benefits": {
         "freeRuns": "indirect",
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -1500,7 +1579,8 @@
         "summonOrCopy": "indirect",
         "freeRuns": "indirect",
         "buffGen": "direct",
-        "replacer": "direct"
+        "replacer": "direct",
+        "leveling": "direct"
       }
     },
     {
@@ -1518,7 +1598,11 @@
       "year": 2026,
       "tier": 4,
       "ioty": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "buffGen": "direct",
+        "itemGen": "direct"
+      }
     },
     {
       "name": "shrink-wrapped Cup of 13s",
@@ -1528,7 +1612,8 @@
       "benefits": {
         "freeRuns": "indirect",
         "buffGen": "direct",
-        "turnbloat": "direct"
+        "turnbloat": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -1845,7 +1930,10 @@
       "year": 2014,
       "tier": 5,
       "replica": true,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "leveling": "indirect"
+      }
     },
     {
       "name": "hibernating Grimstone Golem",
@@ -1947,7 +2035,8 @@
       "zone": true,
       "accountBound": true,
       "benefits": {
-        "itemGen": "direct"
+        "itemGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -2032,7 +2121,8 @@
       "accountBound": true,
       "benefits": {
         "sneaks": "indirect",
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "indirect"
       }
     },
     {
@@ -2062,13 +2152,19 @@
       "name": "box o' ghosts",
       "year": 2020,
       "tier": 5,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "leveling": "indirect"
+      }
     },
     {
       "name": "packaged SpinMaster™ lathe",
       "year": 2020,
       "tier": 5,
-      "accountBound": true
+      "accountBound": true,
+      "benefits": {
+        "leveling": "indirect"
+      }
     },
     {
       "name": "sinistral homunculus",
@@ -2126,9 +2222,11 @@
       "name": "packaged Portable Laughing Stock",
       "year": 2026,
       "tier": 5,
+      "con": true,
       "accountBound": true,
       "benefits": {
-        "buffGen": "direct"
+        "buffGen": "direct",
+        "leveling": "indirect"
       }
     },
     {

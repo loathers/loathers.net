@@ -17,16 +17,14 @@ export interface Iotm {
   benefits?: Partial<Record<string, Benefit>>;
 }
 
-export interface TierExplanation {
-  tier: number;
-  turnsSaved: string;
-  explanation: string;
-  example: string;
-}
-
 export const SHEET_URL: string = data.sheet;
-export const TIERS = data.tiers as TierExplanation[];
 export const IOTMS = data.iotms as Iotm[];
+
+// Standard allows IOTMs released from January of two years ago on (in 2026,
+// everything from 2024 on). Worked out when the site builds, so it moves along
+// with the first deploy each January.
+export const STANDARD_SINCE = new Date().getFullYear() - 2;
+export const isStandard = (iotm: Iotm) => iotm.year >= STANDARD_SINCE;
 
 const byName = new Map(IOTMS.map((iotm) => [iotm.name, iotm]));
 export const findIotm = (name: string) => byName.get(name);
