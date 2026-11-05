@@ -9,6 +9,9 @@
 //
 //   Also reports issues (like non-updated sheet w/ a new IOTM)
 //
+//   Saves the day it ran as "updated", which the tier page shows as
+//   "as of Nov 2026". --check ignores that date when comparing.
+//
 //   npm run sync-iotms
 //   npm run sync-iotms -- --check   (only warns, doesn't fail CI)
 
@@ -223,7 +226,9 @@ function build(tierRows, categoryRows) {
       a.name.localeCompare(b.name, "en", { sensitivity: "base" }),
   );
 
-  return { sheet: SHEET_URL, iotms };
+  // Today, in the site's own reckoning (YYYY-MM-DD)
+  const updated = new Date().toISOString().slice(0, 10);
+  return { sheet: SHEET_URL, updated, iotms };
 }
 
 // The same layout VS Code gives JSON when it formats a file, so saving the
@@ -251,8 +256,10 @@ try {
     let current = "";
     try {
       current = readFileSync(OUT, "utf8");
+      // Only the ratings count: a file synced on another day still matches
+      data.updated = JSON.parse(current).updated;
     } catch { }
-    if (current === json) {
+    if (current === format(data)) {
       console.log("src/data/iotms.json matches the sheet.");
     } else {
       report("src/data/iotms.json is out of date with the sheet. Run `npm run sync-iotms` and commit the result.");

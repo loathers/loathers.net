@@ -29,7 +29,7 @@ const reviewCount = (await reviewPostsInTier(tier)).size;
   id={`tier-${tier}`}
   style={`--tier-bg: ${tierColor(tier)}`}
 >
-  <h2><TierMark tier={tier} /> {saves} saved per day</h2>
+  <h2><TierMark tier={tier} link={false} /> {saves} saved per day</h2>
   <div class="columns">
     <div class="column">
       <h3>What it means</h3>
@@ -87,16 +87,6 @@ const reviewCount = (await reviewPostsInTier(tier)).size;
 
   .column :global(p) {
     margin: 0 0 8px;
-  }
-
-  summary {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  details :global(p) {
-    margin-top: 6px;
-    font-size: 0.95em;
   }
 
   @media (max-width: 760px) {

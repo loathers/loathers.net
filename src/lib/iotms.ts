@@ -18,6 +18,12 @@ export interface Iotm {
 }
 
 export const SHEET_URL: string = data.sheet;
+/** When the sheet was last synced, as "Nov 2026" */
+export const UPDATED = new Date(`${data.updated}T12:00:00Z`).toLocaleDateString("en-US", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 export const IOTMS = data.iotms as Iotm[];
 
 // Standard allows IOTMs released from January of two years ago on (in 2026,

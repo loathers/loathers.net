@@ -4,26 +4,34 @@
 // Inline tier badge for posts, e.g. the closing rating in an IOTM review:
 //   **MODERN RATING:** <TierMark tier={3} />
 // Leave out the tier for a dashed "TBD" badge. TierTable uses this too.
+// Links to that tier's card on /iotm-tiers/; pass link={false} where a link
+// would get in the way (inside another link or a checkbox label).
 
 import { tierColor } from "@lib/tiers";
 
 interface Props {
   /** 0 (best) to 6. A string works too, so tier="3" is fine. */
   tier?: number | string | null;
+  /** Link to the tier's card on /iotm-tiers/ (default true) */
+  link?: boolean;
 }
 
-const raw = Astro.props.tier;
+const { tier: raw, link = true } = Astro.props;
 const tier = raw === undefined || raw === null || raw === "" ? null : Number(raw);
 
 if (tier !== null && !Number.isInteger(tier)) {
   throw new Error(`TierMark: "${raw}" isn't a tier number`);
 }
+
+const Tag = link && tier !== null ? "a" : "span";
 ---
 
-<span
+<Tag
   class:list={["tierMark", { tbd: tier === null }]}
   style={tier === null ? undefined : `--tier-bg: ${tierColor(tier)}`}
-  >{tier === null ? "TBD" : `Tier ${tier}`}</span
+  href={Tag === "a" ? `/iotm-tiers/#tier-${tier}` : undefined}
+  title={Tag === "a" ? `What Tier ${tier} means` : undefined}
+  >{tier === null ? "TBD" : `Tier ${tier}`}</Tag
 >
 
 <style>
@@ -38,6 +46,14 @@ if (tier !== null && !Number.isInteger(tier)) {
     line-height: 1.4;
     text-align: center;
     white-space: nowrap;
+  }
+
+  a.tierMark {
+    text-decoration: none;
+  }
+
+  a.tierMark:hover {
+    border-color: rgb(10, 114, 80);
   }
 
   .tierMark.tbd {
