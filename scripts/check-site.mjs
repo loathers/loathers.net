@@ -226,9 +226,24 @@ for (const post of postList) {
   });
 }
 
+// --- IOTM reviews without boxed-iotm ---
+
+// Reviews name their IOTM so the site can show its tier from the sheet. (The
+// build itself fails if a boxed-iotm name isn't in the sheet.)
+const REVIEW_TAGS = new Set(["IOTM Overview", "IOTM Retro Review"]);
+for (const post of postList) {
+  if (!REVIEW_TAGS.has(post.tag) || post.hasBoxedIotm) continue;
+  warn({
+    title: "Missing boxed-iotm",
+    message: `IOTM reviews should say which IOTM they cover, like boxed-iotm: "boxed bat wings", using the name from the IOTM tier sheet.`,
+    file: post.file,
+    line: lineOf(post.text, "tag:"),
+  });
+}
+
 const count = warningCount();
 console.log(
   count
     ? `\n${count} warning(s) across ${pages.length} pages (warnings only; nothing here fails the build)`
-    : `✓ ${pages.length} pages: no dead links, missing alt text, or slug problems`,
+    : `✓ ${pages.length} pages: no dead links, missing alt text, slug problems, or reviews missing boxed-iotm`,
 );

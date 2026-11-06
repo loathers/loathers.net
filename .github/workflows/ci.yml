@@ -40,3 +40,8 @@ jobs:
       - name: Check pages fit on phones
         run: npm run check:mobile
         continue-on-error: true
+
+      # Warns if the sheet was edited without running npm run sync-iotms (never
+      # fails, so a Google outage can't block a merge)
+      - name: Check IOTM data matches the sheet
+        run: npm run sync-iotms -- --check

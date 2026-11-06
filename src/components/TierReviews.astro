@@ -1,0 +1,69 @@
+---
+// TierReviews.astro
+//
+// Lists our reviews of IOTMs in one tier, for the /iotm-tiers/ page (TierCard
+// puts one in each card):
+//   <TierReviews tier={2} />
+// Built from each review's `boxed-iotm:` and the tier sheet, so new reviews
+// show up on their own. IOTMs in Standard get a clock in front. Posts covering several
+// IOTMs (like the Garden Slot retro) say which ones are in this tier.
+
+import { reviewPostsInTier, postUrl, type Post } from "@lib/iotmReviews";
+import { isStandard } from "@lib/iotms";
+import StandardMark from "./StandardMark.astro";
+
+interface Props {
+  tier: number;
+}
+
+// One line per post, even when it covers several IOTMs in this tier
+const posts = await reviewPostsInTier(Astro.props.tier);
+const coversSeveral = (post: Post) => Array.isArray(post.data["boxed-iotm"]);
+// Everything here is a review, so "Bat wings: Overview" can just be "Bat wings"
+const shortTitle = (post: Post) => post.data.title.replace(/:\s*(IOTM\s+)?Overview$/i, "");
+---
+
+{
+  posts.size === 0 ? (
+    <p class="none">No reviews in this tier yet.</p>
+  ) : (
+    <ul class="tierReviews">
+      {[...posts].map(([post, iotms]) => (
+        <li>
+          {!coversSeveral(post) && isStandard(iotms[0]) && <StandardMark />}
+          <a href={postUrl(post)}>{shortTitle(post)}</a>
+          {coversSeveral(post) && (
+            <span class="covers">
+              {" ("}
+              {iotms.map((iotm, i) => (
+                <>
+                  {i > 0 && ", "}
+                  {isStandard(iotm) && <StandardMark />}
+                  {iotm.name}
+                </>
+              ))}
+              {")"}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .tierReviews {
+    margin: 0;
+    font-size: 0.85em;
+    padding-left: 1.2rem;
+  }
+
+  .tierReviews li {
+    margin-bottom: 4px;
+  }
+
+  .covers,
+  .none {
+    color: #444;
+  }
+</style>

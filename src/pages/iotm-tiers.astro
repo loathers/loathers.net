@@ -1,0 +1,216 @@
+---
+// The /iotm-tiers/ page: finally, our readers will know how much of a sicko i am.
+// based on the google sheet; IOTM list comes from src/data/iotms.json (npm run sync-iotms).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TierMark from "@components/TierMark.astro";
+import TierCard from "@components/TierCard.astro";
+import StandardMark from "@components/StandardMark.astro";
+import IotmTable from "@components/IotmTable.astro";
+import { IOTMS, SHEET_URL, STANDARD_SINCE, UPDATED } from "@lib/iotms";
+---
+
+<BaseLayout
+  pageTitle="IOTM Tiers for Speedrunning"
+  description="How much does every IOTM in KoL speed up a speedrun? We measure it, from the best at T0 to the worst at T6."
+>
+  <h1>IOTM Tiers for Speedrunning</h1>
+
+  <p>
+    Here at Loathers.net, our analysts spend a medically concerning amount of
+    time analyzing KoL's myriad items-of-the-month and determining how many
+    turns they save in a modern speedrun. Doctors HATE this one weird trick!
+    This page is an attempt to help summarize what the heck our team is talking
+    about when we rate the various IOTMs by their speedrun potential. This page
+    pulls data from Captain Scotch's <a href={SHEET_URL}
+      >IOTM tier spreadsheet</a
+    >, which he has diligently maintained since early 2021.
+  </p>
+
+  <nav class="jump" aria-label="Jump to">
+    <span
+      ><a href="#every-iotm">Skip ahead to the full tier list</a>, or jump to a
+      tier!</span
+    >
+    {[0, 1, 2, 3, 4, 5, 6].map((tier) => <TierMark tier={tier} />)}
+  </nav>
+
+  <p>
+    IOTMs marked with <StandardMark /> are accessible in Standard speedruns (that
+    is, released in {STANDARD_SINCE} or later).
+  </p>
+
+  <TierCard tier={0} saves="15+ turns">
+    <p>
+      The best-of-the-best. The cream of the crop. The big kahuna. These IOTMs
+      save a boatload of turns by themselves, cutting over 15 turns every single
+      day. These are the kinds of IOTMs that can shave entire days off your run
+      if you only have a few shinies, and are still explicitly routed around and
+      optimized if you have many. You probably need these!
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2025-10-blood-cubic-zirconia/"
+          >Blood Cubic Zirconia</a
+        > is a T0 IOTM. In a normal speedrun, you save 8-9 turns a day in flat savings
+        from freekills. You can get the same or more turns saved from clever usage
+        of refracted gaze. The ML effect helps in multiple areas of the run, likely
+        saving you 1-2 turns per run. And you also get some bonkers buffs that could
+        feasibly save turns, like +411% mysticality, all the spooky damage you need
+        to ace the tower test, an extra 60% meat drop for nuns, and a huge boost of
+        spell damage for advancing Blech House. And then on top of that you get a
+        few turn-taking all-day banishes! That's WAY over 15 turns, man!
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={1} saves="7-15 turns">
+    <p>
+      These are great IOTMs. Some of them require synergies to operate
+      successfully, but 7-15 turns is the kind of weighty margin that can
+      separate a Bronze from a Silver in a challenge path leaderboard.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2024-02-spring-shoes/">Spring Shoes</a> are a T1 IOTM.
+        With 1 freerun every 30 turns, you can expect about 6-7 turns of value per
+        day from freeruns alone. The +/- combat is worth 1-ish turn per day. Spring
+        Kick is extremely difficult to benchmark, but is worth (in my view) at least
+        2-3 turns per day by letting you powerfully manipulate the queue. The init
+        and fruit are both worth about half a turn. So you're at about 11 turns saved
+        per day. It's a very, very good IOTM.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={2} saves="4-7 turns">
+    <p>
+      These are pretty good IOTMs. They don't individually make or break a run,
+      and sometimes you can get away without having one or two of them, but
+      there are a lot of them, and their savings add up.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2025-03-leprecondo">Leprecondo</a> is a T2 IOTM. In
+        modern Standard, you'll save a flat 5 turns per day from the spleen items.
+        The familiar XP buff is worth a few turns per run in freed-up familiar flex,
+        bar darts are probably worth a turn per run, and crafting plans are worth
+        anywhere from 0 to 3 turns depending on the path and your crafting needs.
+        There's perhaps a fraction of a turn or so from all the initiative buffs,
+        as well. This nets out to an IOTM that saves you 6-7 or so turns per day in
+        modern Standard; high-end T2, but T2 all the same.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={3} saves="2-4 turns">
+    <p>
+      These are decent quality IOTMs. They will shave a number of turns in the
+      aggregate, and are often necessary for big speedruns or useful in some
+      synergistic ways with better IOTMs... but they probably aren't going to
+      make your runs way better by themselves.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2025-07-cooler-yeti/">Cooler Yeti</a> is a T3 IOTM.
+        The turnbloat potential is helpful for cutting daycount for things like 1-day
+        attempts or getting over the 3-day to 2-day jump, but the real value is in
+        100 turns of +100% item drops and +100% meat drops; generally those kinds
+        of effects aren't worth a ton by themselves, but 100 dang turns of it means
+        you can fit the majority of your run's item drop activities (and nuns!) into
+        the duration. In actual usage, my guess is that most runners will get the
+        meat/item effect once a run and otherwise put this guy on the shelf. But that's
+        totally fine, and still worth about 2 turns per day in the grand scheme of
+        things.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={4} saves="0-2 turns">
+    <p>
+      These are OK IOTMs. They have a few niche use cases, and some synergies,
+      but it is certainly possible to get a Silver-quality leaderboard run
+      without all of them. The savings are small, but they're dependable: a T4
+      IOTM does at least a little something in every run.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2026-01-eternity-codpiece">Eternity Codpiece</a> is
+        a T4 IOTM. The simplistic “slot in a bunch of item drop, ascend, profit” method
+        of using it probably saves you a turn or so over a full run. While that gets
+        a bit more fractional as you lower the item drop percentage, it's still additive
+        item drop compared to what you'd be getting naturally, and pulling a steely
+        marble for +65 sleaze damage is likely to save you a turn. It also happily
+        allays some equipment pressure by letting you double up on IOTMs in one accessory
+        slot. I'm comfortable saying this saves anywhere from half a turn to a full
+        turn per day; it does so dependably, too, which helps push this up from a
+        T5 to a T4.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={5} saves="Less than 1 turn">
+    <p>
+      These IOTMs aren't really necessary for speedrunning; they have small
+      uses, but you should never bend over backwards to buy these or fit them
+      into your plans. They can occasionally save a turn, but in many paths, or
+      alongside IOTMs with similar functions, they save nothing at all.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="/analysis/2026-07-portable-laughing-stock/"
+          >Portable Laughing Stock</a
+        > is a T5 KoL Con item. There's only so much you can do with nice buffs and
+        a bit of turngen. These buffs are generally less useful than most buff-based
+        IOTMs, too, essentially deriving their total value from the leveling assistance
+        that the new fruit unlocks. There is some turngen benefit here as well, with
+        4.5 adventures per fullness being on the high side (and a relatively easy
+        path to 6-9 fullness per day taken up by the fruit)... but overall, this is
+        a skippable item that often won't do anything for you.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <TierCard tier={6} saves="0 turns">
+    <p>
+      These IOTMs are virtually completely useless for speedrunning. Any turn
+      savings you glean from them are fractional at best and non-dependable. In
+      most cases, you're better off using literally anything else.
+    </p>
+    <Fragment slot="example">
+      <p>
+        The <a href="https://wiki.kingdomofloathing.com/Evolving_Organism"
+          >unevolved organism</a
+        > is a T6 KoL Con item. It's effectively useless. While it has a fun and cute
+        mechanic (adding a new ability every 400 XP), none of the abilities it offers
+        you are remotely useful for modern speedrunning. Familiar damage, HP/MP regen,
+        and barrrnacle blocks haven't really been super useful in decades. Perhaps
+        there'd be a run on these in 2008's low-MP meta, but for modern running...
+        just don't use it. Trust me.
+      </p>
+    </Fragment>
+  </TierCard>
+
+  <h2 id="every-iotm">All IOTM Ratings (as of {UPDATED})</h2>
+
+  <p>
+    There are {IOTMS.length} items rated in the sheet, a collection of IOTMs, IOTYs,
+    and KoL Con items. Use the filters above the table to narrow your scope to specific
+    groups of IOTMs. Click a column header to sort by it, and hover over an IOTM function
+    for a plaintext explanation of what it means. In the IOTM function column, solid
+    tags perform that particular function directly, while dashed tags mean that the
+    IOTM performs that function indirectly, either on a small marginal basis or through
+    a specific synergy with another IOTM.
+  </p>
+
+  <IotmTable />
+</BaseLayout>
+
+<style>
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0;
+  }
+</style>

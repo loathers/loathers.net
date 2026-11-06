@@ -1,0 +1,711 @@
+---
+// IotmTable.astro
+//
+// Every IOTM in the tier sheet, for the /iotm-tiers/ page:
+//   <IotmTable />
+// Starts in tier, then year order; click a column header to re-sort. Names
+// and years are colored like the sheet's, IOTMs in Standard get a clock, and
+// reviewed IOTMs get [Review] links. IOTM Functions come from the sheet's
+// Categorized IOTMs tab.
+//
+// The filter bar above it narrows the list by name, tier, Standard, reviewed,
+// notes, and what the IOTM does (the sheet's Categorized IOTMs columns).
+// Filters go in the page's address, so a filtered list can be linked to:
+//   /iotm-tiers/?standard&does=freeKills&tier=0,1
+// Without JS the filter bar stays hidden and it's a plain table.
+
+import { IOTMS, isStandard, type Iotm } from "@lib/iotms";
+import { reviewsByIotm, postUrl } from "@lib/iotmReviews";
+import TierMark from "./TierMark.astro";
+import StandardMark from "./StandardMark.astro";
+import { BENEFITS, benefitStyle } from "@lib/benefits";
+
+const reviews = await reviewsByIotm();
+
+// The Notes filters: [key for the filter and the address, label, hover text,
+// which IOTMs get it]. Nearly every IOTM is account-bound, so the filter is
+// for the rare ones that aren't.
+const LABELS: [string, string, string, (iotm: Iotm) => boolean][] = [
+  ["ioty", "IOTY", "Item of the Year", (iotm) => !!iotm.ioty],
+  [
+    "con",
+    "Con",
+    "KoL Con item, via the Time Twitching Tower",
+    (iotm) => !!iotm.con,
+  ],
+  ["zone", "Zone", "Unlocks a new zone", (iotm) => !!iotm.zone],
+  [
+    "replica",
+    "Replica",
+    "Has a replica in Legacy of Loathing",
+    (iotm) => !!iotm.replica,
+  ],
+  [
+    "nonBinding",
+    "Non-Binding",
+    "This item does not bind-on-use",
+    (iotm) => !iotm.accountBound,
+  ],
+];
+const labelsFor = (iotm: Iotm) => LABELS.filter(([, , , has]) => has(iotm));
+
+// What it does, from the sheet's Categorized IOTMs tab, in its colors
+const benefitsFor = (iotm: Iotm) =>
+  BENEFITS.filter((b) => iotm.benefits?.[b.key]).map((b) => ({
+    ...b,
+    indirect: iotm.benefits?.[b.key] === "indirect",
+  }));
+
+// Year cells shade from the sheet's dark blue (oldest) to its purple (newest)
+const years = IOTMS.map((iotm) => iotm.year);
+const [firstYear, lastYear] = [Math.min(...years), Math.max(...years)];
+const OLD = [47, 79, 143];
+const NEW = [142, 124, 195];
+function yearColor(year: number) {
+  const t = (year - firstYear) / Math.max(1, lastYear - firstYear);
+  return `rgb(${OLD.map((c, i) => Math.round(c + (NEW[i] - c) * t)).join(", ")})`;
+}
+---
+
+<div class="iotmTable">
+  <form class="filters" role="search" aria-label="Filter IOTMs" hidden>
+    <div class="mainFilters">
+      <input
+        type="search"
+        name="q"
+        placeholder="Search IOTMs…"
+        aria-label="Search IOTMs by name"
+        autocomplete="off"
+      />
+      <fieldset class="tiers">
+        <legend>Tier</legend>
+        {
+          [0, 1, 2, 3, 4, 5, 6].map((tier) => (
+            <label>
+              <input type="checkbox" name="tier" value={tier} />
+              <span>
+                <TierMark tier={tier} link={false} />
+              </span>
+            </label>
+          ))
+        }
+      </fieldset>
+      <label class="check">
+        <input type="checkbox" name="standard" />
+        <StandardMark />Standard
+      </label>
+      <label class="check">
+        <input type="checkbox" name="reviewed" />
+        Reviewed
+      </label>
+    </div>
+
+    <details class="moreFilters">
+      <summary>More filters<span class="activeCount"></span></summary>
+      <div class="chips" role="group" aria-labelledby="filter-does">
+        <span class="groupLabel" id="filter-does">IOTM Functions</span>
+        <div class="chipList">
+          {
+            BENEFITS.map((b) => (
+              <label
+                class="benefit"
+                title={b.description}
+                style={benefitStyle(b)}
+              >
+                <input type="checkbox" name="does" value={b.key} />
+                <span>{b.label}</span>
+              </label>
+            ))
+          }
+          <label
+            class="check"
+            title="Leave out IOTMs that only help with this indirectly"
+          >
+            <input type="checkbox" name="direct" />
+            Direct only
+          </label>
+        </div>
+      </div>
+      <div class="chips" role="group" aria-labelledby="filter-notes">
+        <span class="groupLabel" id="filter-notes">Miscellaneous</span>
+        <div class="chipList">
+          {
+            LABELS.map(([key, label, title]) => (
+              <label title={title}>
+                <input type="checkbox" name="notes" value={key} />
+                <span>{label}</span>
+              </label>
+            ))
+          }
+        </div>
+      </div>
+    </details>
+
+    <div class="status">
+      <span class="count" aria-live="polite"></span>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col" class="name" data-sort="name" aria-sort="none">
+          <button type="button"
+            >IOTM<span class="arrow" aria-hidden="true"></span></button
+          >
+        </th>
+        <th scope="col" class="year" data-sort="year" aria-sort="none">
+          <button type="button"
+            >Year<span class="arrow" aria-hidden="true"></span></button
+          >
+        </th>
+        <th scope="col" class="tier" data-sort="tier" aria-sort="ascending">
+          <button type="button"
+            >Tier<span class="arrow" aria-hidden="true"></span></button
+          >
+        </th>
+        <th
+          scope="col"
+          title="Dashed tags only perform this function indirectly or marginally"
+          >IOTM Functions</th
+        >
+      </tr>
+    </thead>
+    <tbody>
+      {
+        IOTMS.map((iotm, i) => {
+          const posts = reviews.get(iotm.name) ?? [];
+          return (
+            <tr
+              data-index={i}
+              data-name={iotm.name}
+              data-year={iotm.year}
+              data-tier={iotm.tier}
+              data-standard={isStandard(iotm) ? "" : undefined}
+              data-reviewed={posts.length ? "" : undefined}
+              data-notes={labelsFor(iotm)
+                .map(([key]) => key)
+                .join(" ")}
+              data-does={JSON.stringify(iotm.benefits ?? {})}
+            >
+              <td class="name">
+                {isStandard(iotm) && <StandardMark />}
+                {iotm.name}
+                {posts.map((post) => (
+                  <a href={postUrl(post)} title={post.data.title}>
+                    [
+                    {post.data.tag === "IOTM Retro Review" ? "Retro" : "Review"}
+                    ]
+                  </a>
+                ))}
+              </td>
+              <td class="year" style={`background: ${yearColor(iotm.year)}`}>
+                {iotm.year}
+              </td>
+              <td class="tier">
+                <TierMark tier={iotm.tier} />
+              </td>
+              <td class="does">
+                {benefitsFor(iotm).map((b) => (
+                  <abbr
+                    class:list={{ indirect: b.indirect }}
+                    style={benefitStyle(b)}
+                    title={
+                      b.indirect
+                        ? `${b.description} (indirectly or marginally)`
+                        : b.description
+                    }
+                  >
+                    {b.label}
+                  </abbr>
+                ))}
+              </td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+  <p class="noMatches" hidden>No IOTMs match these filters.</p>
+</div>
+
+<script>
+  function initIotmTable(root: HTMLElement) {
+    const tbody = root.querySelector("tbody")!;
+    const headers = root.querySelectorAll<HTMLElement>("th[data-sort]");
+    const rows = [...tbody.rows].map((tr) => ({
+      tr,
+      index: Number(tr.dataset.index),
+      name: tr.dataset.name!,
+      year: Number(tr.dataset.year),
+      tier: Number(tr.dataset.tier),
+      standard: tr.dataset.standard !== undefined,
+      reviewed: tr.dataset.reviewed !== undefined,
+      notes: new Set(tr.dataset.notes!.split(" ").filter(Boolean)),
+      does: JSON.parse(tr.dataset.does!) as Record<
+        string,
+        "direct" | "indirect"
+      >,
+    }));
+    type Row = (typeof rows)[number];
+
+    const compare: Record<string, (a: Row, b: Row) => number> = {
+      name: (a, b) =>
+        a.name.localeCompare(b.name, "en", { sensitivity: "base" }),
+      year: (a, b) => a.year - b.year,
+      tier: (a, b) => a.tier - b.tier,
+    };
+
+    function sortBy(key: string, dir: 1 | -1) {
+      // Ties keep the starting order (tier, then year, then name)
+      const sorted = [...rows].sort(
+        (a, b) => compare[key](a, b) * dir || a.index - b.index,
+      );
+      tbody.append(...sorted.map((r) => r.tr));
+      headers.forEach((th) =>
+        th.setAttribute(
+          "aria-sort",
+          th.dataset.sort !== key
+            ? "none"
+            : dir === 1
+              ? "ascending"
+              : "descending",
+        ),
+      );
+    }
+
+    headers.forEach((th) =>
+      th.querySelector("button")!.addEventListener("click", () => {
+        sortBy(
+          th.dataset.sort!,
+          th.getAttribute("aria-sort") === "ascending" ? -1 : 1,
+        );
+      }),
+    );
+
+    // --- Filtering ---
+
+    const form = root.querySelector<HTMLFormElement>(".filters")!;
+    const count = form.querySelector<HTMLElement>(".count")!;
+    const noMatches = root.querySelector<HTMLElement>(".noMatches")!;
+    const moreFilters = form.querySelector<HTMLDetailsElement>(".moreFilters")!;
+    const activeCount = form.querySelector<HTMLElement>(".activeCount")!;
+    const field = (name: string) =>
+      form.elements.namedItem(name) as HTMLInputElement;
+    const boxes = (name: string) => [
+      ...form.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`),
+    ];
+    const LISTS = ["tier", "notes", "does"];
+    const FLAGS = ["standard", "reviewed", "direct"];
+
+    // Chips in the same group narrow it down together: Notes "IOTY" and "Con"
+    // shows IOTMs that are both. No tiers picked means every tier.
+    function applyFilters() {
+      const q = field("q").value.trim().toLowerCase();
+      const tiers = new Set(
+        boxes("tier")
+          .filter((b) => b.checked)
+          .map((b) => Number(b.value)),
+      );
+      const notes = boxes("notes")
+        .filter((b) => b.checked)
+        .map((b) => b.value);
+      const does = boxes("does")
+        .filter((b) => b.checked)
+        .map((b) => b.value);
+      const [standard, reviewed, direct] = FLAGS.map((f) => field(f).checked);
+
+      let shown = 0;
+      for (const row of rows) {
+        const show =
+          (!q || row.name.toLowerCase().includes(q)) &&
+          (!tiers.size || tiers.has(row.tier)) &&
+          (!standard || row.standard) &&
+          (!reviewed || row.reviewed) &&
+          notes.every((n) => row.notes.has(n)) &&
+          does.every((d) =>
+            direct ? row.does[d] === "direct" : row.does[d] !== undefined,
+          );
+        row.tr.hidden = !show;
+        if (show) shown++;
+      }
+      count.textContent = `Showing ${shown} of ${rows.length}`;
+      const hiddenActive = notes.length + does.length + (direct ? 1 : 0);
+      activeCount.textContent = hiddenActive ? ` (${hiddenActive})` : "";
+      noMatches.hidden = shown > 0;
+      saveToAddress();
+    }
+
+    // The address keeps the filters, like ?standard&tier=0,1&q=bat
+    function saveToAddress() {
+      const params = new URLSearchParams();
+      const q = field("q").value.trim();
+      if (q) params.set("q", q);
+      for (const list of LISTS) {
+        const picked = boxes(list)
+          .filter((b) => b.checked)
+          .map((b) => b.value);
+        if (picked.length) params.set(list, picked.join(","));
+      }
+      for (const flag of FLAGS) if (field(flag).checked) params.set(flag, "");
+      const query = params
+        .toString()
+        .replace(/=(?=&|$)/g, "")
+        .replace(/%2C/g, ",");
+      history.replaceState(
+        null,
+        "",
+        `${location.pathname}${query ? `?${query}` : ""}${location.hash}`,
+      );
+    }
+
+    function loadFromAddress() {
+      const params = new URLSearchParams(location.search);
+      field("q").value = params.get("q") ?? "";
+      for (const list of LISTS) {
+        const picked = new Set(
+          (params.get(list) ?? "").split(",").filter(Boolean),
+        );
+        boxes(list).forEach((b) => (b.checked = picked.has(b.value)));
+      }
+      for (const flag of FLAGS) field(flag).checked = params.has(flag);
+    }
+
+    form.addEventListener("input", applyFilters);
+    form.addEventListener("submit", (event) => event.preventDefault());
+    // Reset clears the boxes after this event, so filter on the next tick
+    form.addEventListener("reset", () => setTimeout(applyFilters));
+
+    loadFromAddress();
+    applyFilters();
+    // A shared link with filters tucked under "More filters" opens them
+    if (activeCount.textContent) moreFilters.open = true;
+    form.hidden = false;
+  }
+
+  document.querySelectorAll<HTMLElement>(".iotmTable").forEach(initIotmTable);
+</script>
+
+<style>
+  .iotmTable {
+    margin: 20px 0;
+  }
+
+  /* --- Filter bar: the main filters in one row, the rest under "More
+     filters", and the count in a footer. Chips are gray until picked. --- */
+
+  .filters {
+    margin: 0 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgb(244, 244, 244);
+  }
+
+  .filters[hidden],
+  .noMatches[hidden] {
+    display: none;
+  }
+
+  .mainFilters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    padding: 12px;
+  }
+
+  .mainFilters input[type="search"] {
+    flex: 0 1 13em;
+    min-width: 0;
+    padding: 5px 9px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font: inherit;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
+  }
+
+  legend {
+    padding: 0;
+  }
+
+  .tiers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* The search box and badges explain themselves; the label is for screen
+     readers */
+  .tiers legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* Picked tiers get a green ring, and the rest fade once any are picked */
+  .tiers label {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .tiers input,
+  .chipList label:not(.check) input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .tiers input:checked + span :global(.tierMark) {
+    outline: 2px solid rgb(10, 114, 80);
+    outline-offset: 1px;
+  }
+
+  .tiers input:focus-visible + span :global(.tierMark) {
+    outline: 2px dashed rgb(10, 114, 80);
+    outline-offset: 1px;
+  }
+
+  .tiers:has(input:checked) label:not(:has(input:checked)) {
+    opacity: 0.45;
+  }
+
+  /* --- More filters --- */
+
+  .moreFilters {
+    border-top: 1px solid #ddd;
+  }
+
+  .moreFilters summary {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(10, 114, 80);
+  }
+
+  .moreFilters[open] summary {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .chips {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    align-items: start;
+    gap: 6px 10px;
+    padding: 10px 12px;
+  }
+
+  .chips + .chips {
+    border-top: 1px dashed #ddd;
+  }
+
+  /* Plain divs rather than fieldsets here: browsers won't reliably lay a
+     legend out as a grid item, which stacked the chips one per line */
+  .groupLabel {
+    padding-top: 3px;
+    font-weight: bold;
+  }
+
+  .chipList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .chipList label:not(.check) {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .chipList label:not(.check) span {
+    padding: 2px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    background: #fff;
+    color: #444;
+    font-size: 0.9em;
+  }
+
+  .chipList label:not(.check):hover span {
+    border-color: rgb(10, 114, 80);
+  }
+
+  .chipList input:checked + span {
+    background: rgb(10, 114, 80);
+    border-color: rgb(10, 114, 80);
+    color: white;
+    font-weight: bold;
+  }
+
+  /* What it does chips carry their color: a stripe until picked, then filled */
+  .chipList label.benefit:not(.check) span {
+    border-left: 4px solid var(--benefit);
+  }
+
+  .chipList label.benefit:not(.check):hover span {
+    border-color: var(--benefit);
+  }
+
+  .chipList label.benefit input:checked + span {
+    background: var(--benefit);
+    border-color: var(--benefit);
+    color: #fff;
+  }
+
+  .chipList input:focus-visible + span {
+    outline: 2px solid rgb(10, 114, 80);
+    outline-offset: 2px;
+  }
+
+  .chipList .check {
+    margin-left: 8px;
+    font-size: 0.9em;
+  }
+
+  /* --- Footer --- */
+
+  .status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+    background: rgb(232, 232, 232);
+    font-size: 0.9em;
+  }
+
+  .count {
+    font-weight: bold;
+  }
+
+  .status button {
+    padding: 2px 12px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  @media (max-width: 480px) {
+    .chips {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .noMatches {
+    margin: 10px;
+    font-style: italic;
+  }
+
+  /* Same sortable-header look as TierTable */
+  th[data-sort] button {
+    all: unset;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  th[data-sort] button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  .arrow::after {
+    content: "↕";
+    margin-left: 4px;
+    opacity: 0.5;
+  }
+
+  th[aria-sort="ascending"] .arrow::after {
+    content: "▲";
+    opacity: 1;
+  }
+
+  th[aria-sort="descending"] .arrow::after {
+    content: "▼";
+    opacity: 1;
+  }
+
+  .tier {
+    text-align: center;
+  }
+
+  .tier :global(.tierMark) {
+    min-width: 4.5em;
+    padding: 2px 8px;
+  }
+
+  /* In the sheet's colors: solid for direct, its pale shade with a dashed
+     border for indirect */
+  .does abbr {
+    display: inline-block;
+    margin: 1px 4px 1px 0;
+    padding: 0 5px;
+    border: 1px solid var(--benefit);
+    border-radius: 4px;
+    background: var(--benefit);
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: help;
+    white-space: nowrap;
+  }
+
+  .does abbr.indirect {
+    border-style: dashed;
+    background: var(--benefit-pale);
+    color: #333;
+    font-weight: normal;
+  }
+
+  /* White on dark gray names, and white on blue-to-purple years, like the
+     sheet. Set on the cells so the row striping and hover don't change them. */
+  .name {
+    text-align: right;
+  }
+
+  td.name {
+    background: #616161;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  td.name a {
+    margin-left: 6px;
+    color: rgb(180, 214, 40);
+    white-space: nowrap;
+  }
+
+  td.name a:hover,
+  td.name a:focus-visible {
+    color: #fff;
+  }
+
+  .year {
+    text-align: center;
+  }
+
+  td.year {
+    color: #fff;
+    font-weight: bold;
+  }
+</style>
