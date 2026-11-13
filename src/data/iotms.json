@@ -1,6 +1,6 @@
 {
   "sheet": "https://docs.google.com/spreadsheets/d/1pDTE8VhuSyH03xvkVW5JGvTQf7PYitaNGLMHLVXz_5A/",
-  "updated": "2026-11-05",
+  "updated": "2026-11-13",
   "iotms": [
     {
       "name": "Apathargic Bandersnatch",
@@ -755,6 +755,17 @@
       "benefits": {
         "freeKills": "indirect",
         "turnbloat": "direct"
+      }
+    },
+    {
+      "name": "unopened legendary acorndion",
+      "year": 2026,
+      "tier": 2,
+      "accountBound": true,
+      "benefits": {
+        "itemGen": "direct",
+        "banish": "direct",
+        "leveling": "indirect"
       }
     },
     {

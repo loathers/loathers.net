@@ -174,7 +174,7 @@ All the options are optional, and can be combined:
 The colors are:
 
 - `shade`: darker background and bold text. It layers on top of the other colors, so a shaded column stays shaded in a highlighted row. Good for the column that labels each row.
-- `best`: light greenish-yellow, for the standout option.
+- `best`: soft gold, for the standout option.
 - `good`: light green.
 - `bad`: light red.
 

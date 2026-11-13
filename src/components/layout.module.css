@@ -449,13 +449,14 @@ dd {
     margin: 0px;
 }
 
-/* Keep images small */
+/* Keep images small: big ones shrink to 80% of the column, small ones keep
+   their own size instead of being stretched blurry */
 
 .content img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    max-width: 80%;
 }
 
 .legendary {

@@ -79,6 +79,14 @@ function fail(message: string): never {
   throw new Error(`<Table>: ${message}`);
 }
 
+// Markdown only makes a table when the header row has a | --- | row under it;
+// without one the lines stay plain text and there's nothing here to work on
+if (headers.length === 0) {
+  fail(
+    "no table found inside. Check for a separator row like | --- | --- | under the header row, and a blank line after <Table> and before </Table>",
+  );
+}
+
 function columnIndex(key: ColumnKey): number {
   if (typeof key === "number" || /^\d+$/.test(key)) {
     const i = Number(key) - 1;
@@ -323,8 +331,9 @@ if (widths) {
 
   /* --- Highlight colors --- */
 
+  /* Gold, so a table using both best and good can tell them apart at a glance */
   .dataTable :global(td.hl-best) {
-    background-color: rgb(232, 244, 170);
+    background-color: rgb(255, 230, 150);
   }
 
   .dataTable :global(td.hl-good) {
